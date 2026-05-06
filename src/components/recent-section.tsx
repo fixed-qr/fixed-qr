@@ -1,6 +1,8 @@
 import { screenWidth } from "@/constants/dimensions";
 import { spacing } from "@/constants/theme";
 import { useTheme } from "@/hooks/use-theme";
+import { useStore } from "@/store/useStore";
+import { getProviderLogo } from "@/utils/get-provider-logo";
 import { Link } from "expo-router";
 import { Image, StyleSheet } from "react-native";
 import { ThemedText, ThemedView } from "./ui";
@@ -10,42 +12,65 @@ const width = (screenWidth - gap * 3 - 40) / 3;
 
 export function RecentSection() {
   const theme = useTheme();
+  const transactions = useStore((state) => state.transactions);
+
   return (
     <ThemedView style={styles.container}>
-      {/* Card Title */}
       <ThemedText type="smallBold" style={[{ color: theme.textSecondary }]}>
         Recent
       </ThemedText>
-      {/* Cards */}
-      <ThemedView style={[styles.cardContainer]}>
-        <Link
-          href={{
-            pathname: "/(modals)/qr-code/result",
-            params: { amount: 255, upiId: "6299453306@axi" },
-          }}
-        >
-          <ThemedView
-            style={[
-              styles.card,
-              { backgroundColor: theme.card, borderColor: theme.border },
-            ]}
+      {transactions.length ? (
+        <ThemedView style={[styles.cardContainer]}>
+          {Array.from(
+            new Map(transactions.map((item) => [item.amount, item])).values(),
+          ).map((tsx) => (
+            <Link
+              key={tsx.transactionId}
+              href={{
+                pathname: "/(modals)/qr-code/result",
+                params: {
+                  upiId: tsx.upiId,
+                  amount: tsx.amount,
+                  provider: tsx.provider,
+                },
+              }}
+            >
+              <ThemedView
+                style={[
+                  styles.card,
+                  { backgroundColor: theme.card, borderColor: theme.border },
+                ]}
+              >
+                <ThemedView style={styles.rupeeContainer}>
+                  <Image
+                    source={require("@/assets/images/icons/rupee-64.png")}
+                    style={[styles.rupeeUintImage, { tintColor: theme.text }]}
+                  />
+                  <ThemedText style={styles.amountText}>
+                    {tsx.amount}
+                  </ThemedText>
+                </ThemedView>
+                <ThemedView style={styles.logoContainer}>
+                  <Image
+                    source={getProviderLogo(tsx.provider)}
+                    style={styles.image}
+                  />
+                </ThemedView>
+              </ThemedView>
+            </Link>
+          ))}
+        </ThemedView>
+      ) : (
+        <ThemedView style={styles.recentTransactionEmpty}>
+          <ThemedText
+            type="small"
+            themeColor="textSecondary"
+            style={styles.emptyText}
           >
-            <ThemedView style={styles.rupeeContainer}>
-              <Image
-                source={require("@/assets/images/icons/rupee-64.png")}
-                style={[styles.rupeeUintImage, { tintColor: theme.text }]}
-              />
-              <ThemedText style={styles.amountText}>255</ThemedText>
-            </ThemedView>
-            <ThemedView style={styles.logoContainer}>
-              <Image
-                source={require("@/assets/images/logo/google-pay.png")}
-                style={styles.image}
-              />
-            </ThemedView>
-          </ThemedView>
-        </Link>
-      </ThemedView>
+            You don't have recent transactions yet.
+          </ThemedText>
+        </ThemedView>
+      )}
     </ThemedView>
   );
 }
@@ -95,5 +120,12 @@ const styles = StyleSheet.create({
     objectFit: "contain",
     width: "100%",
     height: "100%",
+  },
+  recentTransactionEmpty: {
+    paddingHorizontal: 16,
+  },
+  emptyText: {
+    textAlign: "center",
+    paddingVertical: 32,
   },
 });
