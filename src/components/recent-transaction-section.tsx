@@ -8,7 +8,7 @@ import { Image, StyleSheet } from "react-native";
 import { ThemedText, ThemedView } from "./ui";
 
 const gap = spacing[8];
-const width = (screenWidth - gap * 3 - 40) / 3;
+const width = (screenWidth - gap - 40 - 1) / 2;
 
 export function RecentTransactionSection() {
   const theme = useTheme();
