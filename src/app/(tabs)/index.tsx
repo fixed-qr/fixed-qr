@@ -1,4 +1,4 @@
-import { Header, RecentSection } from "@/components";
+import { Header, RecentTransactionSection } from "@/components";
 import {
     Ionicons,
     SafeAreaView,
@@ -38,7 +38,7 @@ export default function HomeScreen() {
             </ThemedText>
           </ThemedView>
         </Link>
-        <RecentSection />
+        <RecentTransactionSection />
       </ScrollView>
     </SafeAreaView>
   );

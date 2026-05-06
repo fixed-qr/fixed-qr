@@ -10,14 +10,14 @@ import { ThemedText, ThemedView } from "./ui";
 const gap = spacing[8];
 const width = (screenWidth - gap * 3 - 40) / 3;
 
-export function RecentSection() {
+export function RecentTransactionSection() {
   const theme = useTheme();
   const transactions = useStore((state) => state.transactions);
 
   return (
     <ThemedView style={styles.container}>
       <ThemedText type="smallBold" style={[{ color: theme.textSecondary }]}>
-        Recent
+        Recent Transactions
       </ThemedText>
       {transactions.length ? (
         <ThemedView style={[styles.cardContainer]}>
