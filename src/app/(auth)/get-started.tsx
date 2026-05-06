@@ -1,43 +1,22 @@
 import { SecureInput } from "@/components";
 import {
-  Ionicons,
-  SafeAreaScrollView,
-  ThemedText,
-  ThemedView,
+    Ionicons,
+    SafeAreaScrollView,
+    ThemedText,
+    ThemedView,
 } from "@/components/ui";
 import { useTheme } from "@/hooks/use-theme";
 import { useStore } from "@/store/useStore";
+import { User } from "@/types/user";
+import { validateUser } from "@/utils/validators";
 import { useRouter } from "expo-router";
 import { useState } from "react";
 import { Image, Pressable, StyleSheet, Switch, TextInput } from "react-native";
 
-interface User {
-  username: string;
-  password: string;
-}
-
-const validateUser = (user: User) => {
-  const errors: Partial<User> = {};
-
-  if (!user.username.trim()) {
-    errors.username = "Username is required";
-  } else if (!/^\w+$/.test(user.username)) {
-    errors.username = "Only letters, numbers, underscore allowed";
-  }
-
-  if (!user.password.trim()) {
-    errors.password = "Password is required";
-  } else if (!/(?=.*[A-Za-z])(?=.*\d).{6,}/.test(user.password)) {
-    errors.password = "Min 6 chars, include letters & numbers";
-  }
-
-  return errors;
-};
-
 export default function GetStarted() {
   const theme = useTheme();
   const [user, setUser] = useState<User>({
-    username: "",
+    name: "",
     password: "",
   });
   const [errors, setErrors] = useState<Partial<User>>({});
@@ -97,22 +76,22 @@ export default function GetStarted() {
               type="smallBold"
               style={[styles.label, { color: theme.textSecondary }]}
             >
-              Username
+              Name
             </ThemedText>
             <TextInput
-              textContentType="username"
-              placeholder="Enter your unique username"
+              textContentType="name"
+              placeholder="Enter your name"
               placeholderTextColor={theme.textSecondary}
               style={[styles.inputField, { color: theme.text }]}
-              value={user.username}
-              onChangeText={(text) => handleInputChange("username", text)}
+              value={user.name}
+              onChangeText={(text) => handleInputChange("name", text)}
             />
           </ThemedView>
         </ThemedView>
-        {!!errors.username && (
+        {!!errors.name && (
           <ThemedView style={styles.error}>
             <ThemedText type="small" themeColor="danger">
-              {errors.username}
+              {errors.name}
             </ThemedText>
           </ThemedView>
         )}
