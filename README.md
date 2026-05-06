@@ -1,56 +1,101 @@
-# Welcome to your Expo app 👋
+# FixedQR
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+**FixedQR** is a simple and fast mobile application designed to help shop owners generate **UPI QR codes for any payment amount instantly**.
 
-## Get started
+The app also remembers previously used amounts and shows them as **quick shortcut buttons**, allowing users to regenerate QR codes in one tap without retyping amounts.
 
-1. Install dependencies
+## Overview
 
-   ```bash
-   npm install
-   ```
+In day-to-day business, many payments repeat in common amounts like:
 
-2. Start the app
+- ₹10
+- ₹20
+- ₹50
+- ₹100
+- ₹200
 
-   ```bash
-   npx expo start
-   ```
+Entering the same amount again and again slows down the billing process.
 
-In the output, you'll find options to open the app in a
+**FixedQR** makes this easier by:
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+- Letting users enter any amount and generate a QR code instantly
+- Saving previously used amounts automatically
+- Providing quick buttons to reuse those amounts
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+## Key Features
 
-## Get a fresh project
+## Instant QR Generation
 
-When you're ready, run:
+Enter any amount and generate a payment QR code immediately.
 
-```bash
-npm run reset-project
+Customers can scan and pay without manual amount entry.
+
+## Previous Amount Shortcuts
+
+The app automatically stores recently used amounts and displays them as quick buttons.
+
+Example:
+
+```text
+₹10   ₹20   ₹50   ₹100   ₹150
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+Tap any amount to instantly generate the same QR again.
 
-### Other setup steps
+## Simple Account Setup
 
-- To set up ESLint for linting, run `npx expo lint`, or follow our guide on ["Using ESLint and Prettier"](https://docs.expo.dev/guides/using-eslint/)
-- If you'd like to set up unit testing, follow our guide on ["Unit Testing with Jest"](https://docs.expo.dev/develop/unit-testing/)
-- Learn more about the TypeScript setup in this template in our guide on ["Using TypeScript"](https://docs.expo.dev/guides/typescript/)
+- Create an account using name and password
+- Quick and easy access to the app
 
-## Learn more
+## UPI ID Support
 
-To learn more about developing your project with Expo, look at the following resources:
+- Add your UPI ID
+- Use it to generate payment QR codes
+- Update it anytime if needed
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+## Fast and Lightweight
 
-## Join the community
+- Smooth performance
+- Minimal steps to generate QR
+- Designed for everyday usage
 
-Join our community of developers creating universal apps.
+## How It Works
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+```text
+Open App
+   ↓
+Create Account
+   ↓
+Enter Amount
+   ↓
+Generate QR Code
+   ↓
+Customer Scans & Pays
+   ↓
+Amount Saved as Shortcut
+   ↓
+Reuse Anytime
+```
+
+## Benefits
+
+- Faster payment collection
+- No need to type amounts repeatedly
+- Reduces customer waiting time
+- Easy to use for daily business
+- Helps manage frequent transactions efficiently
+
+## Ideal For
+
+- Small shops
+- Tea stalls
+- Food vendors
+- Grocery stores
+- Service counters
+- Any business handling frequent small payments
+
+## Note
+
+This application only helps in generating QR codes for payments.
+
+Actual transactions are completed through UPI apps used by customers.
