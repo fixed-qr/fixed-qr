@@ -61,7 +61,19 @@ export function RecentTransactionSection() {
           ))}
         </ThemedView>
       ) : (
-        <ThemedView style={styles.recentTransactionEmpty}>
+        <ThemedView
+          style={[
+            styles.recentTransactionEmpty,
+            {
+              backgroundColor: theme.backgroundElement,
+              borderColor: theme.border,
+            },
+          ]}
+        >
+          <Image
+            source={require("@/assets/images/icons/not-found.png")}
+            style={styles.notFoundImage}
+          />
           <ThemedText
             type="small"
             themeColor="textSecondary"
@@ -77,10 +89,10 @@ export function RecentTransactionSection() {
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: spacing[12],
+    marginTop: spacing[20],
   },
   cardContainer: {
-    marginTop: gap,
+    marginTop: 16,
     flexDirection: "row",
     flexWrap: "wrap",
     gap: gap,
@@ -88,12 +100,12 @@ const styles = StyleSheet.create({
   card: {
     width: width,
     height: width,
-    borderRadius: 24,
-    borderWidth: 1,
     alignItems: "center",
     justifyContent: "center",
     position: "relative",
     padding: gap,
+    borderRadius: 24,
+    borderWidth: 1,
   },
   rupeeContainer: {
     backgroundColor: "transparent",
@@ -122,10 +134,21 @@ const styles = StyleSheet.create({
     height: "100%",
   },
   recentTransactionEmpty: {
+    marginTop: 16,
+    paddingVertical: 32,
     paddingHorizontal: 16,
+    alignItems: "center",
+    justifyContent: "center",
+    gap: 16,
+    borderRadius: 24,
+    borderWidth: 1,
+  },
+  notFoundImage: {
+    objectFit: "contain",
+    width: 120,
+    height: 120,
   },
   emptyText: {
     textAlign: "center",
-    paddingVertical: 32,
   },
 });
