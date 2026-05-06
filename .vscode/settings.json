@@ -1,0 +1,24 @@
+{
+  "files.exclude": {
+    "**/node_modules": true,
+    "**/.expo": true
+  },
+  "editor.codeActionsOnSave": {
+    "source.fixAll": "explicit",
+    "source.organizeImports": "explicit",
+    "source.sortMembers": "explicit"
+  },
+  "cSpell.words": [
+    "fixedqr",
+    "fixedqrapp",
+    "gpay",
+    "Maru",
+    "MMKV",
+    "PAYTM",
+    "phonepe",
+    "Pressable",
+    "qrcode",
+    "srgb",
+    "worklets"
+  ]
+}
