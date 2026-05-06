@@ -6,7 +6,7 @@ import { Image, StyleSheet } from "react-native";
 import { ThemedText, ThemedView } from "./ui";
 
 const gap = spacing[8];
-const boxWidth = (screenWidth - gap * 3 - 16) / 2;
+const width = (screenWidth - gap * 3 - 40) / 3;
 
 export function RecentSection() {
   const theme = useTheme();
@@ -35,7 +35,7 @@ export function RecentSection() {
                 source={require("@/assets/images/icons/rupee-64.png")}
                 style={[styles.rupeeUintImage, { tintColor: theme.text }]}
               />
-              <ThemedText type="subtitle">255</ThemedText>
+              <ThemedText style={styles.amountText}>255</ThemedText>
             </ThemedView>
             <ThemedView style={styles.logoContainer}>
               <Image
@@ -61,8 +61,8 @@ const styles = StyleSheet.create({
     gap: gap,
   },
   card: {
-    width: boxWidth,
-    height: boxWidth,
+    width: width,
+    height: width,
     borderRadius: 24,
     borderWidth: 1,
     alignItems: "center",
@@ -77,10 +77,12 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   rupeeUintImage: {
-    height: 24,
-    width: 24,
+    height: 15.5,
+    width: 15.5,
   },
-  rupeeText: {},
+  amountText: {
+    fontSize: 22,
+  },
   logoContainer: {
     position: "absolute",
     height: 28,
