@@ -7,7 +7,7 @@ import { Image, StyleSheet } from "react-native";
 
 export default function ProfileScreen() {
   const theme = useTheme();
-  const username = useStore((state) => state.user?.username);
+  const name = useStore((state) => state.user?.name);
 
   return (
     <SafeAreaScrollView>
@@ -26,7 +26,7 @@ export default function ProfileScreen() {
             style={[styles.userProfileAvatar, { tintColor: theme.primary }]}
           />
         </ThemedView>
-        <ThemedText style={styles.userProfileName}>Hi, {username}</ThemedText>
+        <ThemedText style={styles.userProfileName}>Hi, {name}</ThemedText>
       </ThemedView>
       <UPISection />
     </SafeAreaScrollView>

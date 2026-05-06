@@ -3,17 +3,43 @@ import { ThemedView } from "@/components/ui/themed-view";
 import { screenWidth } from "@/constants/dimensions";
 import { spacing } from "@/constants/theme";
 import { useTheme } from "@/hooks/use-theme";
+import { useStore } from "@/store/useStore";
+import { ProviderEnum } from "@/types/provider";
+import { generateTransactionId } from "@/utils/generate-transaction-id";
+import { getLocalDateTime } from "@/utils/get-local-date-time";
 import { getProviderLogo } from "@/utils/get-provider-logo";
 import { useLocalSearchParams } from "expo-router";
+import { useEffect } from "react";
 import { Image, StyleSheet } from "react-native";
 import QRCode from "react-native-qrcode-svg";
 
 const width = (screenWidth - 40) / 1.5;
 const borderRadius = 32;
 
+type LocalSearchParams = {
+  upiId: string;
+  amount: string;
+  provider: ProviderEnum;
+};
+
 export default function GeneratedQRCodeScreen() {
-  const { amount, upiId, provider } = useLocalSearchParams();
   const theme = useTheme();
+  const { upiId, amount, provider } = useLocalSearchParams<LocalSearchParams>();
+  const addTransaction = useStore((state) => state.addTransaction);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      addTransaction({
+        transactionId: generateTransactionId(),
+        upiId: upiId,
+        provider: provider,
+        amount: amount,
+        date: getLocalDateTime(),
+      });
+    }, 1000 * 5);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <ScrollView>

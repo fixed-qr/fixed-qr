@@ -1,10 +1,10 @@
 import { Header, RecentSection } from "@/components";
 import {
-  Ionicons,
-  SafeAreaView,
-  ScrollView,
-  ThemedText,
-  ThemedView,
+    Ionicons,
+    SafeAreaView,
+    ScrollView,
+    ThemedText,
+    ThemedView,
 } from "@/components/ui";
 import { spacing } from "@/constants/theme";
 import { useTheme } from "@/hooks/use-theme";
@@ -14,7 +14,7 @@ import { StyleSheet } from "react-native";
 
 export default function HomeScreen() {
   const theme = useTheme();
-  const username = useStore((state) => state.user?.username);
+  const username = useStore((state) => state.user?.name);
 
   return (
     <SafeAreaView>

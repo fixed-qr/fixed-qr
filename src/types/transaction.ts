@@ -1,9 +1,9 @@
-import { Provider } from "./provider";
+import { ProviderEnum } from "./provider";
 
 export interface Transaction {
   transactionId: string;
-  provider: Provider;
   upiId: string;
-  amount: number;
+  provider: ProviderEnum;
+  amount: string;
   date: string;
 }
