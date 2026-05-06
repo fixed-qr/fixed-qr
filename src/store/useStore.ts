@@ -32,8 +32,12 @@ export const useStore = create<Store>()(
           upiIds: get().upiIds.filter((item) => item.upiId !== upiId),
         }),
       addTransaction: (txn) =>
-        set({
-          transactions: [txn, ...get().transactions],
+        set((state) => {
+          const updated = [txn, ...state.transactions];
+
+          return {
+            transactions: updated.slice(0, 20), // keep only latest 20
+          };
         }),
       clearAll: () =>
         set({
