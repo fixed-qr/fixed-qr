@@ -90,56 +90,59 @@ export default function QRCodeFormScreen() {
         />
       </ThemedView>
       {/* Providers */}
-      <ThemedView style={styles.providerContainer}>
-        <ScrollView
-          horizontal={true}
-          contentContainerStyle={{
-            flexGrow: 1,
-            justifyContent: "center",
-            alignItems: "center",
-            paddingHorizontal: 0,
-            marginHorizontal: 0,
-          }}
-        >
-          {upiIds.length ? (
-            upiIds.map((upiId) => (
-              <Link
-                key={upiId.provider + upiId.upiId}
-                href={{
-                  pathname: "/(modals)/qr-code/result",
-                  params: {
-                    amount: value,
-                    upiId: upiId.upiId,
+
+      <ScrollView
+        horizontal={true}
+        style={[
+          styles.providerContainer,
+          { backgroundColor: theme.background, borderColor: theme.border },
+        ]}
+        contentContainerStyle={{
+          flexGrow: 1,
+          justifyContent: "center",
+          alignItems: "center",
+          paddingHorizontal: 0,
+          marginHorizontal: 0,
+        }}
+      >
+        {upiIds.length ? (
+          upiIds.map((upiId) => (
+            <Link
+              key={upiId.provider + upiId.upiId}
+              href={{
+                pathname: "/(modals)/qr-code/result",
+                params: {
+                  amount: value,
+                  upiId: upiId.upiId,
+                },
+              }}
+              disabled={!Number(value)}
+            >
+              <ThemedView
+                style={[
+                  styles.providerLink,
+                  {
+                    borderColor: theme.border,
+                    backgroundColor: theme.primarySoft,
                   },
-                }}
-                disabled={!Number(value)}
+                ]}
               >
-                <ThemedView
-                  style={[
-                    styles.providerLink,
-                    {
-                      borderColor: theme.border,
-                      backgroundColor: theme.primarySoft,
-                    },
-                  ]}
-                >
-                  <ThemedView style={styles.providerLogoContainer}>
-                    <Image
-                      source={getProviderLogo(upiId)}
-                      style={styles.providerLogo}
-                    />
-                  </ThemedView>
-                  <ThemedText type="smallBold" style={styles.providerLabel}>
-                    {upiId.label}
-                  </ThemedText>
+                <ThemedView style={styles.providerLogoContainer}>
+                  <Image
+                    source={getProviderLogo(upiId)}
+                    style={styles.providerLogo}
+                  />
                 </ThemedView>
-              </Link>
-            ))
-          ) : (
-            <ThemedText>Upi not added</ThemedText>
-          )}
-        </ScrollView>
-      </ThemedView>
+                <ThemedText type="smallBold" style={styles.providerLabel}>
+                  {upiId.label}
+                </ThemedText>
+              </ThemedView>
+            </Link>
+          ))
+        ) : (
+          <ThemedText>Upi not added</ThemedText>
+        )}
+      </ScrollView>
       {renderNumericKeyPad()}
     </ScrollView>
   );
@@ -168,9 +171,10 @@ const styles = StyleSheet.create({
   providerContainer: {
     flexDirection: "row",
     flexWrap: "wrap",
-    justifyContent: "center",
     gap: gap,
-    marginBottom: gap,
+    paddingVertical: gap,
+    borderTopWidth: 1,
+    borderBottomWidth: 1,
   },
   providerLink: {
     width: boxWidth,
