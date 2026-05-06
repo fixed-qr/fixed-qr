@@ -114,6 +114,7 @@ export default function QRCodeFormScreen() {
                 params: {
                   amount: value,
                   upiId: upiId.upiId,
+                  provider: upiId.provider,
                 },
               }}
               disabled={!Number(value)}
@@ -129,7 +130,7 @@ export default function QRCodeFormScreen() {
               >
                 <ThemedView style={styles.providerLogoContainer}>
                   <Image
-                    source={getProviderLogo(upiId)}
+                    source={getProviderLogo(upiId.provider)}
                     style={styles.providerLogo}
                   />
                 </ThemedView>

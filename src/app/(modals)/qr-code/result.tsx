@@ -3,6 +3,7 @@ import { ThemedView } from "@/components/ui/themed-view";
 import { screenWidth } from "@/constants/dimensions";
 import { spacing } from "@/constants/theme";
 import { useTheme } from "@/hooks/use-theme";
+import { getProviderLogo } from "@/utils/get-provider-logo";
 import { useLocalSearchParams } from "expo-router";
 import { Image, StyleSheet } from "react-native";
 import QRCode from "react-native-qrcode-svg";
@@ -11,13 +12,17 @@ const width = (screenWidth - 40) / 1.5;
 const borderRadius = 32;
 
 export default function GeneratedQRCodeScreen() {
-  const { amount, upiId } = useLocalSearchParams();
+  const { amount, upiId, provider } = useLocalSearchParams();
   const theme = useTheme();
 
   return (
     <ScrollView>
       <ThemedView style={styles.container}>
         <ThemedView style={[styles.upiIdContainer]}>
+          <Image
+            source={getProviderLogo(provider as any)}
+            style={styles.image}
+          />
           <ThemedText style={styles.message}>Scan to pay</ThemedText>
           <ThemedText
             type="smallBold"
@@ -69,6 +74,10 @@ const styles = StyleSheet.create({
     paddingBlock: 2.5,
     paddingInline: 12,
     borderRadius: 16,
+  },
+  image: {
+    width: 48,
+    height: 48,
   },
   message: {
     fontSize: 18,

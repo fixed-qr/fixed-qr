@@ -1,8 +1,10 @@
 import { providers } from "@/constants/providers";
-import { UpiId } from "@/types/upi";
+import { ProviderEnum } from "@/types/provider";
 import { ImageSourcePropType } from "react-native";
 
-export const getProviderLogo = (upi: UpiId): ImageSourcePropType => {
-  const obj = providers.find((pr) => pr.provider === upi.provider);
+export const getProviderLogo = (
+  provider: ProviderEnum,
+): ImageSourcePropType => {
+  const obj = providers.find((pr) => pr.provider === provider);
   return obj?.logoImage as ImageSourcePropType;
 };
