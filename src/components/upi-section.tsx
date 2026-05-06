@@ -5,10 +5,10 @@ import { useStore } from "@/store/useStore";
 import { UpiId } from "@/types/upi";
 import { Link } from "expo-router";
 import {
-  Image,
-  ImageSourcePropType,
-  Pressable,
-  StyleSheet,
+    Image,
+    ImageSourcePropType,
+    Pressable,
+    StyleSheet,
 } from "react-native";
 import { Ionicons, ThemedText, ThemedView } from "./ui";
 
@@ -77,6 +77,7 @@ export function UPISection() {
         ) : (
           <ThemedView style={styles.upiIdEmpty}>
             <ThemedText
+              type="small"
               themeColor="textSecondary"
               style={styles.upiIdEmptyText}
             >
@@ -137,5 +138,6 @@ const styles = StyleSheet.create({
   },
   upiIdEmptyText: {
     textAlign: "center",
+    paddingVertical: 32,
   },
 });
