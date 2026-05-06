@@ -8,7 +8,7 @@ export const validateUser = (user: User) => {
 
   if (!user.name.trim()) {
     errors.name = "Name is required";
-  } else if (/^[A-Za-z]+( [A-Za-z]+)*$/.test(user.name)) {
+  } else if (!/^[A-Za-z]+( [A-Za-z]+)*$/.test(user.name)) {
     errors.name = "Only letters and single space allowed";
   }
 
