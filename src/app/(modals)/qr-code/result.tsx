@@ -4,7 +4,7 @@ import { screenWidth } from "@/constants/dimensions";
 import { spacing } from "@/constants/theme";
 import { useTheme } from "@/hooks/use-theme";
 import { useLocalSearchParams } from "expo-router";
-import { Image, Pressable, StyleSheet } from "react-native";
+import { Image, StyleSheet } from "react-native";
 import QRCode from "react-native-qrcode-svg";
 
 const width = (screenWidth - 40) / 1.5;
@@ -51,17 +51,6 @@ export default function GeneratedQRCodeScreen() {
             {amount}
           </ThemedText>
         </ThemedView>
-        <Pressable
-          style={({ pressed }) => {
-            return [
-              styles.saveToHistory,
-              { borderColor: theme.border },
-              pressed && { backgroundColor: theme.primarySoft },
-            ];
-          }}
-        >
-          <ThemedText>Save to History</ThemedText>
-        </Pressable>
       </ThemedView>
     </ScrollView>
   );
