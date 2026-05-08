@@ -2,25 +2,28 @@ import { screenWidth } from "@/constants/dimensions";
 import { spacing } from "@/constants/theme";
 import { useTheme } from "@/hooks/use-theme";
 import { useStore } from "@/store/useStore";
+import { getProviderLabel } from "@/utils/get-provider-label";
 import { getProviderLogo } from "@/utils/get-provider-logo";
 import { Link } from "expo-router";
-import { Image, StyleSheet } from "react-native";
-import { ThemedText, ThemedView } from "./ui";
+import React from "react";
+import { StyleSheet } from "react-native";
+import { QuickAction } from "../quick-action";
+import { Image, ThemedText, ThemedView } from "../ui";
 
 const gap = spacing[8];
-const width = (screenWidth - gap - 40 - 1) / 2;
+const width = (screenWidth - gap * 2 - 40 - 1) / 3;
 
-export function RecentTransactionSection() {
+export function QuickActions() {
   const theme = useTheme();
   const transactions = useStore((state) => state.transactions);
 
   return (
     <ThemedView style={styles.container}>
       <ThemedText type="smallBold" style={[{ color: theme.textSecondary }]}>
-        Recent Transactions
+        Quick Actions
       </ThemedText>
       {transactions.length ? (
-        <ThemedView style={[styles.cardContainer]}>
+        <ThemedView style={[styles.quickActions]}>
           {Array.from(
             new Map(transactions.map((item) => [item.amount, item])).values(),
           ).map((tsx) => (
@@ -35,35 +38,19 @@ export function RecentTransactionSection() {
                 },
               }}
             >
-              <ThemedView
-                style={[
-                  styles.card,
-                  { backgroundColor: theme.card, borderColor: theme.border },
-                ]}
-              >
-                <ThemedView style={styles.rupeeContainer}>
-                  <Image
-                    source={require("@/assets/images/icons/rupee-64.png")}
-                    style={[styles.rupeeUintImage, { tintColor: theme.text }]}
-                  />
-                  <ThemedText style={styles.amountText}>
-                    {tsx.amount}
-                  </ThemedText>
-                </ThemedView>
-                <ThemedView style={styles.logoContainer}>
-                  <Image
-                    source={getProviderLogo(tsx.provider)}
-                    style={styles.image}
-                  />
-                </ThemedView>
-              </ThemedView>
+              <QuickAction
+                logoImage={getProviderLogo(tsx.provider)}
+                label={getProviderLabel(tsx.provider)}
+                amount={tsx.amount}
+                size={width}
+              />
             </Link>
           ))}
         </ThemedView>
       ) : (
         <ThemedView
           style={[
-            styles.recentTransactionEmpty,
+            styles.transactionEmpty,
             {
               backgroundColor: theme.backgroundElement,
               borderColor: theme.border,
@@ -79,7 +66,7 @@ export function RecentTransactionSection() {
             themeColor="textSecondary"
             style={styles.emptyText}
           >
-            You don't have recent transactions yet.
+            Your recent transactions will appear here.
           </ThemedText>
         </ThemedView>
       )}
@@ -89,51 +76,15 @@ export function RecentTransactionSection() {
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: spacing[20],
+    marginTop: 20,
   },
-  cardContainer: {
+  quickActions: {
     marginTop: 16,
     flexDirection: "row",
     flexWrap: "wrap",
     gap: gap,
   },
-  card: {
-    width: width,
-    height: width,
-    alignItems: "center",
-    justifyContent: "center",
-    position: "relative",
-    padding: gap,
-    borderRadius: 24,
-    borderWidth: 1,
-  },
-  rupeeContainer: {
-    backgroundColor: "transparent",
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  rupeeUintImage: {
-    height: 15.5,
-    width: 15.5,
-  },
-  amountText: {
-    fontSize: 22,
-  },
-  logoContainer: {
-    position: "absolute",
-    height: 28,
-    width: 28,
-    bottom: 8,
-    left: 8,
-    backgroundColor: "transparent",
-  },
-  image: {
-    objectFit: "contain",
-    width: "100%",
-    height: "100%",
-  },
-  recentTransactionEmpty: {
+  transactionEmpty: {
     marginTop: 16,
     paddingVertical: 32,
     paddingHorizontal: 16,
