@@ -55,7 +55,7 @@ export function QuickAction({
 
 const styles = StyleSheet.create({
   quickAction: {
-    padding: 10,
+    padding: 12,
     borderWidth: 1,
     borderRadius: 28,
   },
