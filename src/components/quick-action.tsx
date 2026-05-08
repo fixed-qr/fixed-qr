@@ -28,12 +28,12 @@ export function QuickAction({
           backgroundColor: theme.backgroundElement,
           borderColor: theme.border,
           width: size,
-          height: size,
+          height: size / 1.25,
         },
       ]}
     >
       <Image source={logoImage} style={styles.logoImage} />
-      <Amount amount={amount} color="primary" />
+      <Amount amount={amount} />
       <ThemedView style={styles.provider}>
         <ThemedText
           type="small"
@@ -44,7 +44,7 @@ export function QuickAction({
         </ThemedText>
         <Ionicons
           name="arrow-forward"
-          size={18}
+          size={16}
           style={{ transform: "rotate(-45deg)" }}
           color={theme.textSecondary}
         />
@@ -55,8 +55,6 @@ export function QuickAction({
 
 const styles = StyleSheet.create({
   quickAction: {
-    aspectRatio: 1,
-    width: 150,
     padding: 10,
     borderWidth: 1,
     borderRadius: 28,

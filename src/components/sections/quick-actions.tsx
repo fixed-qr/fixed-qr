@@ -11,7 +11,7 @@ import { QuickAction } from "../quick-action";
 import { Image, ThemedText, ThemedView } from "../ui";
 
 const gap = spacing[8];
-const width = (screenWidth - gap * 2 - 40 - 1) / 3;
+const width = (screenWidth - gap - 40 - 1) / 2;
 
 export function QuickActions() {
   const theme = useTheme();

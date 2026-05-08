@@ -19,20 +19,20 @@ export function Amount({ amount, size, color }: AmountProps) {
     <ThemedView style={styles.amount}>
       <Image
         source={require("@/assets/images/icons/rupee-64.png")}
+        tintColor={color || theme.text}
         style={[
           styles.unitImage,
           {
-            tintColor: color || theme.text,
             width: size || initialSize,
             height: size || initialSize,
           },
         ]}
       />
       <ThemedText
+        themeColor={color || "text"}
         style={[
           styles.amountText,
           {
-            color,
             fontSize: size || initialSize + 6,
           },
         ]}
