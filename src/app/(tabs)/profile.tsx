@@ -1,4 +1,4 @@
-import { UPISection } from "@/components";
+import { UpiIds } from "@/components/sections";
 import { SafeAreaScrollView, ThemedText, ThemedView } from "@/components/ui";
 import { spacing } from "@/constants/theme";
 import { useTheme } from "@/hooks/use-theme";
@@ -28,7 +28,7 @@ export default function ProfileScreen() {
         </ThemedView>
         <ThemedText style={styles.userProfileName}>Hi, {name}</ThemedText>
       </ThemedView>
-      <UPISection />
+      <UpiIds />
     </SafeAreaScrollView>
   );
 }
