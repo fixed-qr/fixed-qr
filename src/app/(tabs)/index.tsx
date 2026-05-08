@@ -19,8 +19,8 @@ export default function HomeScreen() {
 
   return (
     <SafeAreaView>
+      <Header />
       <ScrollView>
-        <Header />
         <ThemedText
           style={[styles.greetingMessageText, { color: theme.textSecondary }]}
         >
