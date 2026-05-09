@@ -62,7 +62,9 @@ const styles = StyleSheet.create({
   },
   transaction: {
     flexDirection: "row",
-    padding: 8,
+    paddingBlock: 4,
+    paddingInline: 12,
+    borderBottomWidth: 1.5,
     gap: 8,
   },
   left: {},

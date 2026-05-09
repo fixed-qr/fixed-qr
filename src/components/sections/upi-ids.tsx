@@ -12,16 +12,16 @@ export function UpiIds() {
 
   return (
     <ThemedView>
-      <ThemedView style={styles.upiIdTitle}>
-        <ThemedText
-          style={[styles.upiIdTitleText, { color: theme.textSecondary }]}
-        >
-          Added UPI
-        </ThemedText>
-        <Link href={"/(modals)/add-upi"}>
-          <Ionicons name="add-circle" size={24} color={theme.textSecondary} />
-        </Link>
-      </ThemedView>
+      <Link href={"/(modals)/add-upi"}>
+        <ThemedView style={styles.upiIdTitle}>
+          <ThemedText
+            style={[styles.upiIdTitleText, { color: theme.textSecondary }]}
+          >
+            Added UPI
+          </ThemedText>
+          <Ionicons name="add-circle" size={18} color={theme.textSecondary} />
+        </ThemedView>
+      </Link>
       {upiIds.length ? (
         <ThemedView
           style={[styles.upiIds, { backgroundColor: theme.backgroundElement }]}

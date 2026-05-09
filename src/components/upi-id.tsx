@@ -24,23 +24,22 @@ export function UpiId({ logoImage, label, upiId, isLast }: UpiIdProps) {
     <ThemedView
       style={[
         styles.upiId,
+        styles.shared,
         { borderColor: theme.background, borderBottomWidth: isLast ? 0 : 1 },
       ]}
     >
-      <ThemedView style={styles.left}>
-        <ThemedView style={styles.logo}>
-          <Image source={logoImage} style={styles.logoImage} />
-        </ThemedView>
-        <ThemedView style={styles.upiIdInfo}>
+      <ThemedView style={[styles.left, styles.shared]}>
+        <Image source={logoImage} style={styles.logoImage} />
+        <ThemedView style={[styles.upiIdInfo, styles.shared]}>
           <ThemedText>{label}</ThemedText>
           <ThemedText type="small" style={{ color: theme.textSecondary }}>
             {upiId}
           </ThemedText>
         </ThemedView>
       </ThemedView>
-      <ThemedView style={styles.right}>
+      <ThemedView style={[styles.right, styles.shared]}>
         <Pressable onPress={() => removeUpiId(upiId)}>
-          <Ionicons name="close" size={24} color={theme.textSecondary} />
+          <Ionicons name="close" size={18} color={theme.textSecondary} />
         </Pressable>
       </ThemedView>
     </ThemedView>
@@ -48,6 +47,9 @@ export function UpiId({ logoImage, label, upiId, isLast }: UpiIdProps) {
 }
 
 const styles = StyleSheet.create({
+  shared: {
+    backgroundColor: "transparent",
+  },
   upiId: {
     flex: 1,
     flexDirection: "row",
@@ -62,17 +64,10 @@ const styles = StyleSheet.create({
     gap: spacing[8],
     backgroundColor: "transparent",
   },
-  right: {
-    backgroundColor: "transparent",
-  },
-  logo: {
-    backgroundColor: "transparent",
-  },
+  right: {},
   logoImage: {
     width: 24,
     height: 24,
   },
-  upiIdInfo: {
-    backgroundColor: "transparent",
-  },
+  upiIdInfo: {},
 });
