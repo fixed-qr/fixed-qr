@@ -1,6 +1,8 @@
 import { SecureInput } from "@/components";
 import { Ionicons, ScrollView, ThemedText, ThemedView } from "@/components/ui";
 import { useTheme } from "@/hooks/use-theme";
+import { useAuthStore } from "@/store/auth-store";
+import { useDataStore } from "@/store/data-store";
 import { useState } from "react";
 import { Pressable, StyleSheet } from "react-native";
 
@@ -8,17 +10,25 @@ export default function Authenticate() {
   const theme = useTheme();
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const storedPassword = useDataStore((state) => state.user?.password);
+  const setIsAuthenticated = useAuthStore((state) => state.setIsAuthenticated);
 
   const handlePasswordChange = (value: string) => {
     setPassword(value);
   };
 
   const handleOnSubmit = () => {
-    if (password.trim()) {
-      setError("");
-      return 0;
-    } else {
+    if (!password.trim()) {
       setError("Password is required");
+      return;
+    }
+
+    setError("");
+
+    if (password === storedPassword) {
+      setIsAuthenticated(true);
+    } else {
+      setError("Incorrect password");
     }
   };
 
