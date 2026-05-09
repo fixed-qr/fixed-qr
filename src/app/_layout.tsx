@@ -1,4 +1,5 @@
 import { useTheme } from "@/hooks/use-theme";
+import { useAppMetaStore } from "@/store/app-meta-store";
 import {
     DarkTheme,
     DefaultTheme,
@@ -6,11 +7,17 @@ import {
 } from "@react-navigation/native";
 import { Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
+import { useEffect } from "react";
 import { useColorScheme } from "react-native";
 
 export default function RootLayout() {
   const scheme = useColorScheme();
   const theme = useTheme();
+  const fetchAppMeta = useAppMetaStore((state) => state.fetchAppMeta);
+
+  useEffect(() => {
+    fetchAppMeta();
+  }, []);
 
   return (
     <ThemeProvider value={scheme === "dark" ? DarkTheme : DefaultTheme}>
