@@ -20,10 +20,10 @@ export function SecureInput({ value, onChangeText }: SecureInputProps) {
         },
       ]}
     >
-      <ThemedView style={styles.left}>
+      <ThemedView style={[styles.shared, styles.left]}>
         <Ionicons name="lock-closed" size={24} color={theme.textSecondary} />
       </ThemedView>
-      <ThemedView style={styles.right}>
+      <ThemedView style={[styles.shared, styles.right]}>
         <ThemedText
           type="smallBold"
           style={[styles.label, { color: theme.textSecondary }]}
@@ -44,6 +44,9 @@ export function SecureInput({ value, onChangeText }: SecureInputProps) {
 }
 
 const styles = StyleSheet.create({
+  shared: {
+    backgroundColor: "transparent",
+  },
   input: {
     width: "90%",
     flexDirection: "row",
@@ -52,18 +55,12 @@ const styles = StyleSheet.create({
     padding: 12,
     borderBottomWidth: 1,
   },
-  left: {
-    backgroundColor: "transparent",
-  },
+  left: {},
   right: {
     flex: 1,
-    backgroundColor: "transparent",
   },
-  label: {
-    backgroundColor: "transparent",
-  },
+  label: {},
   inputField: {
-    backgroundColor: "transparent",
     margin: 0,
     fontSize: 16,
   },

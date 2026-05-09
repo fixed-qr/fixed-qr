@@ -66,7 +66,7 @@ export function QuickActions() {
           />
           <ThemedText
             type="small"
-            themeColor="textSecondary"
+            color="textSecondary"
             style={styles.emptyText}
           >
             Your recent transactions will appear here.

@@ -90,7 +90,7 @@ export default function GetStarted() {
         </ThemedView>
         {!!errors.name && (
           <ThemedView style={styles.error}>
-            <ThemedText type="small" themeColor="danger">
+            <ThemedText type="small" color="danger">
               {errors.name}
             </ThemedText>
           </ThemedView>
@@ -103,7 +103,7 @@ export default function GetStarted() {
         />
         {!!errors.password && (
           <ThemedView style={styles.error}>
-            <ThemedText type="small" themeColor="danger">
+            <ThemedText type="small" color="danger">
               {errors.password}
             </ThemedText>
           </ThemedView>
@@ -114,7 +114,7 @@ export default function GetStarted() {
           <Switch />
           <ThemedText
             type="small"
-            themeColor="textSecondary"
+            color="textSecondary"
             style={styles.privacyPolicyText}
           >
             I agree to the Terms of Services & Privacy Policy
@@ -132,7 +132,7 @@ export default function GetStarted() {
             },
           ]}
         >
-          <ThemedText themeColor="textInverse">Get Started</ThemedText>
+          <ThemedText color="textInverse">Get Started</ThemedText>
           <Ionicons
             name="arrow-up"
             size={18}

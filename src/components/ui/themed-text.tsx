@@ -12,13 +12,13 @@ export type ThemedTextProps = TextProps & {
     | "link"
     | "linkPrimary"
     | "code";
-  themeColor?: ThemeColor;
+  color?: ThemeColor;
 };
 
 export function ThemedText({
   style,
   type = "default",
-  themeColor,
+  color,
   ...rest
 }: ThemedTextProps) {
   const theme = useTheme();
@@ -26,7 +26,7 @@ export function ThemedText({
   return (
     <Text
       style={[
-        { color: theme[themeColor ?? "text"] },
+        { color: theme[color ?? "text"] },
         type === "default" && styles.default,
         type === "title" && styles.title,
         type === "small" && styles.small,

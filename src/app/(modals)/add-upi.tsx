@@ -79,7 +79,7 @@ export default function AddUPI() {
       {/* UPI Input Validation Error */}
       {!!error && (
         <ThemedView>
-          <ThemedText type="small" themeColor="danger">
+          <ThemedText type="small" color="danger">
             {error}
           </ThemedText>
         </ThemedView>

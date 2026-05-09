@@ -1,6 +1,5 @@
 import { spacing } from "@/constants/theme";
 import { useTheme } from "@/hooks/use-theme";
-import React from "react";
 import { ImageSourcePropType, StyleSheet } from "react-native";
 import { Amount } from "./amount";
 import { Image, Ionicons, ThemedText, ThemedView } from "./ui";
@@ -37,7 +36,7 @@ export function QuickAction({
       <ThemedView style={styles.provider}>
         <ThemedText
           type="small"
-          themeColor="textSecondary"
+          color="textSecondary"
           style={styles.providerText}
         >
           {label}

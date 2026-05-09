@@ -23,22 +23,22 @@ export function Transaction({
   return (
     <ThemedView
       style={[
-        styles.transaction,
         styles.shared,
+        styles.transaction,
         { borderColor: theme.background, borderBottomWidth: isLast ? 0 : 1 },
       ]}
     >
-      <ThemedView style={[styles.left, styles.shared]}>
+      <ThemedView style={[styles.shared, styles.left]}>
         <Image source={logoImage} style={styles.logoImage} />
       </ThemedView>
-      <ThemedView style={[styles.right, styles.shared]}>
+      <ThemedView style={[styles.shared, styles.right]}>
         <ThemedView style={[styles.rightLeft, styles.shared]}>
           <ThemedText>{label}</ThemedText>
-          <ThemedText type="small" themeColor="textSecondary">
+          <ThemedText type="small" color="textSecondary">
             {timestamp}
           </ThemedText>
         </ThemedView>
-        <ThemedView style={[styles.rightRight, styles.shared]}>
+        <ThemedView style={[styles.shared, styles.rightRight]}>
           <Amount amount={amount} size={12} />
           <Ionicons
             name="arrow-back"

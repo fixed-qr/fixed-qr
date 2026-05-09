@@ -29,7 +29,7 @@ export function Amount({ amount, size, color }: AmountProps) {
         ]}
       />
       <ThemedText
-        themeColor={color || "text"}
+        color={color || "text"}
         style={[
           styles.amountText,
           {
