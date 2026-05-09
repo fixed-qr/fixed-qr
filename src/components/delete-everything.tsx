@@ -10,7 +10,7 @@ interface DeleteEverythingProps {
 
 export function DeleteEverything({ borderBottomWidth }: DeleteEverythingProps) {
   const router = useRouter();
-  const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
+  const { isAuthenticated, setIsAuthenticated } = useAuthStore();
   const clearAll = useDataStore((state) => state.clearAll);
 
   const handelOnPress = () => {
@@ -28,6 +28,7 @@ export function DeleteEverything({ borderBottomWidth }: DeleteEverythingProps) {
             style: "destructive",
             onPress: () => {
               clearAll();
+              setIsAuthenticated(false);
               router.replace("/(auth)/get-started");
             },
           },
