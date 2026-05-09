@@ -1,4 +1,5 @@
 export { Amount } from "./amount";
+export { DeleteEverything } from "./delete-everything";
 export { FormSheetHeader } from "./form-sheet-header";
 export { Header } from "./header";
 export { ProviderButton } from "./provider-button";

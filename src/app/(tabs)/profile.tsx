@@ -1,3 +1,4 @@
+import { DeleteEverything } from "@/components";
 import { Transactions, UpiIds } from "@/components/sections";
 import { SafeAreaScrollView, ThemedText, ThemedView } from "@/components/ui";
 import { spacing } from "@/constants/theme";
@@ -17,7 +18,6 @@ export default function ProfileScreen() {
             styles.userProfileAvatarContainer,
             {
               backgroundColor: theme.surface,
-              borderColor: theme.border,
             },
           ]}
         >
@@ -28,6 +28,7 @@ export default function ProfileScreen() {
         </ThemedView>
         <ThemedText style={styles.userProfileName}>Hi, {name}</ThemedText>
       </ThemedView>
+      <DeleteEverything />
       <UpiIds />
       <Transactions />
     </SafeAreaScrollView>
@@ -39,7 +40,8 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    marginBlock: 32,
+    marginTop: 32,
+    marginBottom: 24,
     gap: spacing[16],
   },
   userProfileAvatarContainer: {
@@ -47,7 +49,6 @@ const styles = StyleSheet.create({
     maxWidth: "45%",
     aspectRatio: 1,
     borderRadius: 999,
-    borderWidth: 1,
   },
   userProfileAvatar: {
     objectFit: "contain",
