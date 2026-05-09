@@ -10,10 +10,11 @@ import { screenWidth } from "@/constants/dimensions";
 import { providers } from "@/constants/providers";
 import { spacing } from "@/constants/theme";
 import { useTheme } from "@/hooks/use-theme";
+import { useAuthStore } from "@/store/auth-store";
 import { useDataStore } from "@/store/data-store";
 import { Provider } from "@/types/provider";
 import { validateUpi } from "@/utils/validators";
-import { useRouter } from "expo-router";
+import { Redirect, useRouter } from "expo-router";
 import { useState } from "react";
 import { Pressable, StyleSheet, TextInput } from "react-native";
 
@@ -22,24 +23,25 @@ const width = (screenWidth - gap * 2 - 40) / 3;
 
 export default function AddUPI() {
   const theme = useTheme();
-  const [upi, setUpi] = useState("");
+  const [upiId, setUpiId] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [isFocused, setIsFocused] = useState(false);
   const [selected, setSelected] = useState<Provider | null>(null);
+  const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
   const addUpiId = useDataStore((state) => state.addUpiId);
   const router = useRouter();
 
-  const handleUPITextChange = (value: string) => {
-    setUpi(value);
+  const handleUPIIdChange = (value: string) => {
+    setUpiId(value);
   };
 
   const handleSubmit = () => {
-    const validationError = validateUpi(upi);
+    const validationError = validateUpi(upiId);
     setError(validationError);
 
     if (!validationError && selected) {
       addUpiId({
-        upiId: upi,
+        upiId: upiId,
         provider: selected.provider,
         label: selected.label,
       });
@@ -47,14 +49,18 @@ export default function AddUPI() {
     }
   };
 
+  if (!isAuthenticated) {
+    return <Redirect href={"/(modals)/authenticate"} />;
+  }
+
   return (
     <ScrollView>
       {/* UPI Input */}
       <ThemedView>
-        <ThemedText style={styles.title}>Add New UPI</ThemedText>
+        <ThemedText style={styles.title}>Add New UPI ID</ThemedText>
         <TextInput
-          value={upi}
-          onChangeText={handleUPITextChange}
+          value={upiId}
+          onChangeText={handleUPIIdChange}
           onFocus={() => {
             setIsFocused(true);
           }}
@@ -69,7 +75,7 @@ export default function AddUPI() {
               color: theme.text,
               borderColor: error ? theme.danger : theme.inputBorder,
               backgroundColor:
-                isFocused || upi
+                isFocused || upiId
                   ? theme.backgroundSelected
                   : theme.inputBackground,
             },
