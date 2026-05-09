@@ -6,6 +6,7 @@ import {
     ThemedView,
 } from "@/components/ui";
 import { useTheme } from "@/hooks/use-theme";
+import { useAuthStore } from "@/store/auth-store";
 import { useDataStore } from "@/store/data-store";
 import { User } from "@/types/user";
 import { validateUser } from "@/utils/validators";
@@ -15,13 +16,14 @@ import { Image, Pressable, StyleSheet, Switch, TextInput } from "react-native";
 
 export default function GetStartedScreen() {
   const theme = useTheme();
+  const router = useRouter();
+  const setIsAuthenticated = useAuthStore((state) => state.setIsAuthenticated);
+  const createUser = useDataStore((state) => state.setUser);
   const [user, setUser] = useState<User>({
     name: "",
     password: "",
   });
   const [errors, setErrors] = useState<Partial<User>>({});
-  const createUser = useDataStore((state) => state.setUser);
-  const router = useRouter();
 
   const handleInputChange = (field: keyof User, value: string) => {
     setUser((prev) => ({
@@ -36,6 +38,7 @@ export default function GetStartedScreen() {
 
     if (Object.keys(validationErrors).length === 0) {
       createUser(user);
+      setIsAuthenticated(true);
       router.replace("/");
     }
   };
