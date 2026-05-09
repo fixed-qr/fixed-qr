@@ -14,9 +14,7 @@ export function UpiIds() {
     <ThemedView>
       <Link href={"/(modals)/add-upi"}>
         <ThemedView style={styles.upiIdTitle}>
-          <ThemedText
-            style={[styles.upiIdTitleText, { color: theme.textSecondary }]}
-          >
+          <ThemedText color="textSecondary" style={styles.upiIdTitleText}>
             Saved UPI IDs
           </ThemedText>
           <Ionicons name="add-circle" size={18} color={theme.textSecondary} />

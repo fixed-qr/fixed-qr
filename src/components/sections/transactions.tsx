@@ -15,7 +15,9 @@ export function Transactions() {
 
   return (
     <ThemedView>
-      <ThemedText style={styles.transactionsTitle}>Transactions</ThemedText>
+      <ThemedText color="textSecondary" style={styles.transactionsTitle}>
+        Transactions
+      </ThemedText>
       {transactions.length ? (
         <ThemedView
           style={[
