@@ -43,6 +43,7 @@ export function Transaction({
           <Ionicons
             name="arrow-back"
             size={18}
+            color={theme.text}
             style={{ transform: "rotate(-45deg)" }}
           />
         </ThemedView>
