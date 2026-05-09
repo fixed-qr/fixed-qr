@@ -11,7 +11,7 @@ export function Settings() {
   const theme = useTheme();
   const router = useRouter();
   const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
-  const [settingsOn, setSettingsOn] = useState(false);
+  const [settingsOn, setSettingsOn] = useState(true);
 
   const handleOnSettingPress = () => {
     if (isAuthenticated) {
@@ -45,7 +45,7 @@ export function Settings() {
           style={{ marginLeft: "auto" }}
         />
       </Pressable>
-      {settingsOn && (
+      {isAuthenticated && settingsOn && (
         <>
           <DeleteEverything borderBottomWidth={0} />
           <Setting
