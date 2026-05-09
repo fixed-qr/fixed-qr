@@ -1,4 +1,6 @@
 import { useTheme } from "@/hooks/use-theme";
+import { useAuthStore } from "@/store/auth-store";
+import { useRouter } from "expo-router";
 import { useState } from "react";
 import { Pressable, StyleSheet } from "react-native";
 import { DeleteEverything } from "../delete-everything";
@@ -7,14 +9,24 @@ import { Ionicons, ThemedText, ThemedView } from "../ui";
 
 export function Settings() {
   const theme = useTheme();
+  const router = useRouter();
+  const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
   const [settingsOn, setSettingsOn] = useState(false);
+
+  const handleOnSettingPress = () => {
+    if (isAuthenticated) {
+      setSettingsOn((prevState) => !prevState);
+    } else {
+      router.navigate("/(modals)/authenticate");
+    }
+  };
 
   return (
     <ThemedView
       style={[styles.settings, { backgroundColor: theme.backgroundElement }]}
     >
       <Pressable
-        onPress={() => setSettingsOn((prevState) => !prevState)}
+        onPress={handleOnSettingPress}
         style={[
           styles.shared,
           styles.deleteEverything,
@@ -39,7 +51,9 @@ export function Settings() {
           <Setting
             leftIcon="snow"
             label="View All Transaction"
-            onPress={() => {}}
+            onPress={() => {
+              router.navigate("/(modals)/transactions");
+            }}
           />
         </>
       )}
