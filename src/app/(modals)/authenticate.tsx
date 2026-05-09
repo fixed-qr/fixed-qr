@@ -3,11 +3,13 @@ import { Ionicons, ScrollView, ThemedText, ThemedView } from "@/components/ui";
 import { useTheme } from "@/hooks/use-theme";
 import { useAuthStore } from "@/store/auth-store";
 import { useDataStore } from "@/store/data-store";
+import { useRouter } from "expo-router";
 import { useState } from "react";
 import { Pressable, StyleSheet } from "react-native";
 
 export default function Authenticate() {
   const theme = useTheme();
+  const router = useRouter();
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const storedPassword = useDataStore((state) => state.user?.password);
@@ -27,6 +29,7 @@ export default function Authenticate() {
 
     if (password === storedPassword) {
       setIsAuthenticated(true);
+      router.back();
     } else {
       setError("Incorrect password");
     }
