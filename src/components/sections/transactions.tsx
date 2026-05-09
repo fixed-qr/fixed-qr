@@ -13,7 +13,11 @@ export function Transactions() {
 
   return (
     <ThemedView>
-      <ThemedText color="textSecondary" style={styles.transactionsTitle}>
+      <ThemedText
+        type="smallBold"
+        color="textSecondary"
+        style={styles.transactionsTitle}
+      >
         Transactions
       </ThemedText>
       {transactions.length ? (
