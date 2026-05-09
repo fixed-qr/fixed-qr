@@ -48,7 +48,11 @@ export function Transaction({
           />
         </ThemedView>
       </ThemedView>
-      <Ionicons name="information-circle" size={18} />
+      <Ionicons
+        name="information-circle"
+        size={18}
+        color={theme.textSecondary}
+      />
     </ThemedView>
   );
 }
