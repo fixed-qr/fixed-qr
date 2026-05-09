@@ -17,7 +17,7 @@ export function UpiIds() {
           <ThemedText
             style={[styles.upiIdTitleText, { color: theme.textSecondary }]}
           >
-            Added UPI
+            Saved UPI IDs
           </ThemedText>
           <Ionicons name="add-circle" size={18} color={theme.textSecondary} />
         </ThemedView>
