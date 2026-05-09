@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
     backgroundColor: "transparent",
   },
   input: {
-    width: "90%",
+    width: "100%",
     flexDirection: "row",
     alignItems: "center",
     gap: 8,
