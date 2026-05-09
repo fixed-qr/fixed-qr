@@ -1,8 +1,9 @@
+import { ProviderButton } from "@/components";
 import {
-  ScrollView,
-  SelectList,
-  ThemedText,
-  ThemedView,
+    ScrollView,
+    SelectList,
+    ThemedText,
+    ThemedView,
 } from "@/components/ui";
 import { screenWidth } from "@/constants/dimensions";
 import { providers } from "@/constants/providers";
@@ -13,7 +14,7 @@ import { Provider } from "@/types/provider";
 import { validateUpi } from "@/utils/validators";
 import { useRouter } from "expo-router";
 import { useState } from "react";
-import { Image, Pressable, StyleSheet, TextInput } from "react-native";
+import { Pressable, StyleSheet, TextInput } from "react-native";
 
 const gap = spacing[8];
 const width = (screenWidth - gap * 2 - 40) / 3;
@@ -49,6 +50,7 @@ export default function AddUPI() {
     <ScrollView>
       {/* UPI Input */}
       <ThemedView>
+        <ThemedText style={styles.title}>Add New UPI</ThemedText>
         <TextInput
           value={upi}
           onChangeText={handleUPITextChange}
@@ -89,21 +91,13 @@ export default function AddUPI() {
           onSelect={setSelected}
           keyExtractor={(item) => item.provider}
           renderItem={({ item, isSelected, onPress }) => (
-            <Pressable
+            <ProviderButton
+              label={item.label}
+              logoImage={item.logoImage}
+              isSelected={isSelected}
               onPress={onPress}
-              style={[
-                styles.provider,
-                {
-                  borderColor: theme.border,
-                  backgroundColor: isSelected
-                    ? theme.backgroundSelected
-                    : theme.surface,
-                },
-              ]}
-            >
-              <Image source={item.logoImage} style={styles.logoImage} />
-              <ThemedText style={styles.label}>{item.label}</ThemedText>
-            </Pressable>
+              size={width}
+            />
           )}
         />
       </ThemedView>
@@ -128,12 +122,17 @@ export default function AddUPI() {
 }
 
 const styles = StyleSheet.create({
+  title: {
+    fontSize: 22,
+    textAlign: "center",
+    marginVertical: 16,
+  },
   upiIdInput: {
     fontSize: 18,
-    marginBlock: 12,
+    marginVertical: 12,
     paddingHorizontal: 16,
     borderWidth: 1,
-    borderRadius: 24,
+    borderRadius: 16,
     fontWeight: 500,
   },
   selectListContainer: {

@@ -1,6 +1,7 @@
 export { Amount } from "./amount";
 export { FormSheetHeader } from "./form-sheet-header";
 export { Header } from "./header";
+export { ProviderButton } from "./provider-button";
 export { QuickAction } from "./quick-action";
 export { SecureInput } from "./secure-input";
 export { Transaction } from "./transaction";
