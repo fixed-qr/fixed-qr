@@ -1,4 +1,4 @@
-import { Settings, Transactions, UpiIds } from "@/components/sections";
+import { Settings, UpiIds } from "@/components/sections";
 import { SafeAreaScrollView, ThemedText, ThemedView } from "@/components/ui";
 import { spacing } from "@/constants/theme";
 import { useTheme } from "@/hooks/use-theme";
@@ -29,7 +29,6 @@ export default function ProfileScreen() {
       </ThemedView>
       <Settings />
       <UpiIds />
-      <Transactions />
     </SafeAreaScrollView>
   );
 }
