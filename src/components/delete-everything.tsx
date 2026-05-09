@@ -5,7 +5,11 @@ import { useRouter } from "expo-router";
 import { Alert, Pressable, StyleSheet } from "react-native";
 import { Ionicons, ThemedText } from "./ui";
 
-export function DeleteEverything() {
+interface DeleteEverythingProps {
+  borderBottomWidth?: number;
+}
+
+export function DeleteEverything({ borderBottomWidth }: DeleteEverythingProps) {
   const theme = useTheme();
   const router = useRouter();
   const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
@@ -42,12 +46,12 @@ export function DeleteEverything() {
   return (
     <Pressable
       onPress={handelOnPress}
-      style={({ pressed }) => [
+      style={[
+        styles.shared,
         styles.deleteEverything,
         {
-          backgroundColor: pressed
-            ? theme.backgroundSelected
-            : theme.backgroundElement,
+          borderBottomWidth: borderBottomWidth || 0,
+          borderColor: theme.background,
         },
       ]}
     >
@@ -64,13 +68,15 @@ export function DeleteEverything() {
 }
 
 const styles = StyleSheet.create({
+  shared: {
+    backgroundColor: "transparent",
+  },
   deleteEverything: {
-    marginBottom: 16,
     flexDirection: "row",
     alignItems: "center",
     gap: 8,
     paddingVertical: 12,
     paddingHorizontal: 16,
-    borderRadius: 99,
+    borderBottomWidth: 1,
   },
 });
