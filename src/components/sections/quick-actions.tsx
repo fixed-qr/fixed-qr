@@ -69,7 +69,7 @@ export function QuickActions() {
             color="textSecondary"
             style={styles.emptyText}
           >
-            Your recent transactions will appear here.
+            Your quick actions will appear here.
           </ThemedText>
         </ThemedView>
       )}

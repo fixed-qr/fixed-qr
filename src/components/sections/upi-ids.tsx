@@ -53,7 +53,7 @@ export function UpiIds() {
             color="textSecondary"
             style={styles.emptyText}
           >
-            Your recent transactions will appear here.
+            Your Saved UPI ID will appear here.
           </ThemedText>
         </ThemedView>
       )}
