@@ -6,7 +6,7 @@ import {
     ThemedView,
 } from "@/components/ui";
 import { useTheme } from "@/hooks/use-theme";
-import { useStore } from "@/store/useStore";
+import { useDataStore } from "@/store/data-store";
 import { User } from "@/types/user";
 import { validateUser } from "@/utils/validators";
 import { useRouter } from "expo-router";
@@ -20,7 +20,7 @@ export default function GetStarted() {
     password: "",
   });
   const [errors, setErrors] = useState<Partial<User>>({});
-  const createUser = useStore((state) => state.setUser);
+  const createUser = useDataStore((state) => state.setUser);
   const router = useRouter();
 
   const handleInputChange = (field: keyof User, value: string) => {

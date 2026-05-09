@@ -9,13 +9,13 @@ import {
 } from "@/components/ui";
 import { spacing } from "@/constants/theme";
 import { useTheme } from "@/hooks/use-theme";
-import { useStore } from "@/store/useStore";
+import { useDataStore } from "@/store/data-store";
 import { Link } from "expo-router";
 import { StyleSheet } from "react-native";
 
 export default function HomeScreen() {
   const theme = useTheme();
-  const username = useStore((state) => state.user?.name);
+  const username = useDataStore((state) => state.user?.name);
 
   return (
     <SafeAreaView>

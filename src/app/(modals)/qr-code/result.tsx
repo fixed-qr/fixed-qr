@@ -3,7 +3,7 @@ import { ThemedView } from "@/components/ui/themed-view";
 import { screenWidth } from "@/constants/dimensions";
 import { spacing } from "@/constants/theme";
 import { useTheme } from "@/hooks/use-theme";
-import { useStore } from "@/store/useStore";
+import { useDataStore } from "@/store/data-store";
 import { ProviderEnum } from "@/types/provider";
 import { generateTransactionId } from "@/utils/generate-transaction-id";
 import { getLocalDateTime } from "@/utils/get-local-date-time";
@@ -25,7 +25,7 @@ type LocalSearchParams = {
 export default function GeneratedQRCodeScreen() {
   const theme = useTheme();
   const { upiId, amount, provider } = useLocalSearchParams<LocalSearchParams>();
-  const addTransaction = useStore((state) => state.addTransaction);
+  const addTransaction = useDataStore((state) => state.addTransaction);
 
   useEffect(() => {
     const timer = setTimeout(() => {

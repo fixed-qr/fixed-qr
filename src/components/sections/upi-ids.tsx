@@ -1,5 +1,5 @@
 import { useTheme } from "@/hooks/use-theme";
-import { useStore } from "@/store/useStore";
+import { useDataStore } from "@/store/data-store";
 import { getProviderLogo } from "@/utils/get-provider-logo";
 import { Link } from "expo-router";
 import { StyleSheet } from "react-native";
@@ -8,7 +8,7 @@ import { UpiId } from "../upi-id";
 
 export function UpiIds() {
   const theme = useTheme();
-  const upiIds = useStore((state) => state.upiIds);
+  const upiIds = useDataStore((state) => state.upiIds);
 
   return (
     <ThemedView>

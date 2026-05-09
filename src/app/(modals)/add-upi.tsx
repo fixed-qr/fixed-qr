@@ -10,7 +10,7 @@ import { screenWidth } from "@/constants/dimensions";
 import { providers } from "@/constants/providers";
 import { spacing } from "@/constants/theme";
 import { useTheme } from "@/hooks/use-theme";
-import { useStore } from "@/store/useStore";
+import { useDataStore } from "@/store/data-store";
 import { Provider } from "@/types/provider";
 import { validateUpi } from "@/utils/validators";
 import { useRouter } from "expo-router";
@@ -26,7 +26,7 @@ export default function AddUPI() {
   const [error, setError] = useState<string | null>(null);
   const [isFocused, setIsFocused] = useState(false);
   const [selected, setSelected] = useState<Provider | null>(null);
-  const addUpiId = useStore((state) => state.addUpiId);
+  const addUpiId = useDataStore((state) => state.addUpiId);
   const router = useRouter();
 
   const handleUPITextChange = (value: string) => {

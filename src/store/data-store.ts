@@ -5,7 +5,7 @@ import { User } from "@/types/user";
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
 
-interface Store {
+interface DataStore {
   user: User | null;
   upiIds: UpiId[];
   transactions: Transaction[];
@@ -16,7 +16,7 @@ interface Store {
   clearAll: () => void;
 }
 
-export const useStore = create<Store>()(
+export const useDataStore = create<DataStore>()(
   persist(
     (set, get) => ({
       user: null,

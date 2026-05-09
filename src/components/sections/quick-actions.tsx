@@ -1,7 +1,7 @@
 import { screenWidth } from "@/constants/dimensions";
 import { spacing } from "@/constants/theme";
 import { useTheme } from "@/hooks/use-theme";
-import { useStore } from "@/store/useStore";
+import { useDataStore } from "@/store/data-store";
 import { getProviderLabel } from "@/utils/get-provider-label";
 import { getProviderLogo } from "@/utils/get-provider-logo";
 import { Link } from "expo-router";
@@ -15,7 +15,7 @@ const width = (screenWidth - gap - 40 - 1) / 2;
 
 export function QuickActions() {
   const theme = useTheme();
-  const transactions = useStore((state) => state.transactions);
+  const transactions = useDataStore((state) => state.transactions);
 
   return (
     <ThemedView>

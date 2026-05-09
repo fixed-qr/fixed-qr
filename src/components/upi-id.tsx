@@ -1,6 +1,6 @@
 import { spacing } from "@/constants/theme";
 import { useTheme } from "@/hooks/use-theme";
-import { useStore } from "@/store/useStore";
+import { useDataStore } from "@/store/data-store";
 import {
     Image,
     ImageSourcePropType,
@@ -18,7 +18,7 @@ interface UpiIdProps {
 
 export function UpiId({ logoImage, label, upiId, isLast }: UpiIdProps) {
   const theme = useTheme();
-  const removeUpiId = useStore((state) => state.removeUpiId);
+  const removeUpiId = useDataStore((state) => state.removeUpiId);
 
   return (
     <ThemedView

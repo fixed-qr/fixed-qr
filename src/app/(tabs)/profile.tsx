@@ -2,12 +2,12 @@ import { Transactions, UpiIds } from "@/components/sections";
 import { SafeAreaScrollView, ThemedText, ThemedView } from "@/components/ui";
 import { spacing } from "@/constants/theme";
 import { useTheme } from "@/hooks/use-theme";
-import { useStore } from "@/store/useStore";
+import { useDataStore } from "@/store/data-store";
 import { Image, StyleSheet } from "react-native";
 
 export default function ProfileScreen() {
   const theme = useTheme();
-  const name = useStore((state) => state.user?.name);
+  const name = useDataStore((state) => state.user?.name);
 
   return (
     <SafeAreaScrollView>
