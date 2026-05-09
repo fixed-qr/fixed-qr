@@ -7,8 +7,6 @@ import { StyleSheet } from "react-native";
 import { Transaction } from "../transaction";
 import { Image, ThemedText, ThemedView } from "../ui";
 
-const data = [1, 2, 3];
-
 export function Transactions() {
   const theme = useTheme();
   const transactions = useDataStore((state) => state.transactions);

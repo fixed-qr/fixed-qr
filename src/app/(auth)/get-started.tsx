@@ -179,7 +179,7 @@ const styles = StyleSheet.create({
     gap: 6,
   },
   input: {
-    width: "90%",
+    width: "100%",
     flexDirection: "row",
     alignItems: "center",
     gap: 8,
