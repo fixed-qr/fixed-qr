@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   quickActions: {
-    marginTop: 16,
+    marginTop: 8,
     flexDirection: "row",
     flexWrap: "wrap",
     gap: gap,

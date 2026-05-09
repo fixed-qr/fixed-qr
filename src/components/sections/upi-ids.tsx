@@ -73,8 +73,8 @@ const styles = StyleSheet.create({
   upiIdTitleText: {},
   upiIds: {
     flex: 1,
-    marginTop: 12,
-    paddingBlock: 8,
+    marginTop: 8,
+    paddingVertical: 8,
     borderRadius: 28,
     overflow: "hidden",
   },
