@@ -1,5 +1,6 @@
 import { ProviderButton } from "@/components";
 import {
+    Ionicons,
     ScrollView,
     SelectList,
     ThemedText,
@@ -115,6 +116,7 @@ export default function AddUPI() {
         ]}
         onPress={handleSubmit}
       >
+        <Ionicons name="save" size={18} color={theme.text} />
         <ThemedText>Save</ThemedText>
       </Pressable>
     </ScrollView>
@@ -128,41 +130,25 @@ const styles = StyleSheet.create({
     marginVertical: 16,
   },
   upiIdInput: {
-    fontSize: 18,
-    marginVertical: 12,
-    paddingHorizontal: 16,
+    fontSize: 16,
+    marginVertical: 8,
+    paddingHorizontal: 12,
     borderWidth: 1,
     borderRadius: 16,
-    fontWeight: 500,
+    height: 46,
   },
   selectListContainer: {
     flexDirection: "row",
     flexWrap: "wrap",
     gap: gap,
   },
-  provider: {
-    width: width,
-    height: width,
-    alignItems: "center",
-    justifyContent: "center",
-    gap: 4,
-    padding: 8,
-    borderRadius: 24,
-    borderWidth: 1,
-  },
-  logoImage: {
-    width: 48,
-    height: 48,
-  },
-  label: {
-    textAlign: "center",
-    fontSize: 14,
-  },
   saveButton: {
-    marginTop: 12,
-    padding: 12,
     justifyContent: "center",
     alignItems: "center",
+    flexDirection: "row",
+    gap: 8,
+    marginTop: 16,
+    padding: 12,
     borderWidth: 1,
     borderRadius: 48,
   },
