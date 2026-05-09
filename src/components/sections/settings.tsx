@@ -2,6 +2,7 @@ import { useTheme } from "@/hooks/use-theme";
 import { useState } from "react";
 import { Pressable, StyleSheet } from "react-native";
 import { DeleteEverything } from "../delete-everything";
+import { Setting } from "../setting";
 import { Ionicons, ThemedText, ThemedView } from "../ui";
 
 export function Settings() {
@@ -17,7 +18,10 @@ export function Settings() {
         style={[
           styles.shared,
           styles.deleteEverything,
-          { borderColor: theme.background },
+          {
+            borderColor: theme.background,
+            borderBottomWidth: settingsOn ? 1 : 0,
+          },
         ]}
       >
         <Ionicons name="settings" size={18} color={theme.text} />
@@ -29,7 +33,16 @@ export function Settings() {
           style={{ marginLeft: "auto" }}
         />
       </Pressable>
-      {settingsOn && <DeleteEverything borderBottomWidth={0} />}
+      {settingsOn && (
+        <>
+          <DeleteEverything borderBottomWidth={0} />
+          <Setting
+            leftIcon="snow"
+            label="View All Transaction"
+            onPress={() => {}}
+          />
+        </>
+      )}
     </ThemedView>
   );
 }
@@ -49,6 +62,5 @@ const styles = StyleSheet.create({
     gap: 8,
     paddingVertical: 12,
     paddingHorizontal: 16,
-    borderBottomWidth: 1,
   },
 });

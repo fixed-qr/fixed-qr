@@ -5,5 +5,6 @@ export { Header } from "./header";
 export { ProviderButton } from "./provider-button";
 export { QuickAction } from "./quick-action";
 export { SecureInput } from "./secure-input";
+export { Setting } from "./setting";
 export { Transaction } from "./transaction";
 export { UpiId } from "./upi-id";
