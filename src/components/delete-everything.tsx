@@ -2,7 +2,7 @@ import { useTheme } from "@/hooks/use-theme";
 import { useAuthStore } from "@/store/auth-store";
 import { useDataStore } from "@/store/data-store";
 import { useRouter } from "expo-router";
-import { Pressable, StyleSheet } from "react-native";
+import { Alert, Pressable, StyleSheet } from "react-native";
 import { Ionicons, ThemedText } from "./ui";
 
 export function DeleteEverything() {
@@ -13,8 +13,27 @@ export function DeleteEverything() {
 
   const handelOnPress = () => {
     if (isAuthenticated) {
-      clearAll();
-      router.replace("/(auth)/get-started");
+      Alert.alert(
+        "Delete Everything",
+        "Are you sure you want to delete everything? This action cannot be undone.",
+        [
+          {
+            text: "Cancel",
+            style: "cancel",
+          },
+          {
+            text: "Delete",
+            style: "destructive",
+            onPress: () => {
+              clearAll();
+              router.replace("/(auth)/get-started");
+            },
+          },
+        ],
+        {
+          cancelable: true,
+        },
+      );
     } else {
       router.navigate("/(modals)/authenticate");
     }
