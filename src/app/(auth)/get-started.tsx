@@ -13,7 +13,7 @@ import { useRouter } from "expo-router";
 import { useState } from "react";
 import { Image, Pressable, StyleSheet, Switch, TextInput } from "react-native";
 
-export default function GetStarted() {
+export default function GetStartedScreen() {
   const theme = useTheme();
   const [user, setUser] = useState<User>({
     name: "",

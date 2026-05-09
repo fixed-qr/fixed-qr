@@ -7,7 +7,7 @@ import { useRouter } from "expo-router";
 import { useState } from "react";
 import { Pressable, StyleSheet } from "react-native";
 
-export default function Authenticate() {
+export default function AuthenticateScreen() {
   const theme = useTheme();
   const router = useRouter();
   const [password, setPassword] = useState("");

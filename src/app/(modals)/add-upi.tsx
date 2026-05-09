@@ -21,7 +21,7 @@ import { Pressable, StyleSheet, TextInput } from "react-native";
 const gap = spacing[8];
 const width = (screenWidth - gap * 2 - 40) / 3;
 
-export default function AddUPI() {
+export default function AddUPIScreen() {
   const theme = useTheme();
   const [upiId, setUpiId] = useState("");
   const [error, setError] = useState<string | null>(null);
