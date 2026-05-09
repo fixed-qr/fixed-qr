@@ -1,45 +1,43 @@
 import { useTheme } from "@/hooks/use-theme";
 import { useStore } from "@/store/useStore";
+import { getProviderLabel } from "@/utils/get-provider-label";
 import { getProviderLogo } from "@/utils/get-provider-logo";
-import { Link } from "expo-router";
+import React from "react";
 import { StyleSheet } from "react-native";
-import { Image, Ionicons, ThemedText, ThemedView } from "../ui";
-import { UpiId } from "../upi-id";
+import { Transaction } from "../transaction";
+import { Image, ThemedText, ThemedView } from "../ui";
 
-export function UpiIds() {
+const data = [1, 2, 3];
+
+export function Transactions() {
   const theme = useTheme();
-  const upiIds = useStore((state) => state.upiIds);
+  const transactions = useStore((state) => state.transactions);
 
   return (
     <ThemedView>
-      <ThemedView style={styles.upiIdTitle}>
-        <ThemedText
-          style={[styles.upiIdTitleText, { color: theme.textSecondary }]}
-        >
-          Added UPI
-        </ThemedText>
-        <Link href={"/(modals)/add-upi"}>
-          <Ionicons name="add-circle" size={24} color={theme.textSecondary} />
-        </Link>
-      </ThemedView>
-      {upiIds.length ? (
+      <ThemedText style={styles.transactionsTitle}>Transactions</ThemedText>
+      {transactions.length ? (
         <ThemedView
-          style={[styles.upiIds, { backgroundColor: theme.backgroundElement }]}
+          style={[
+            styles.transactions,
+            { backgroundColor: theme.backgroundElement },
+          ]}
         >
-          {upiIds.map((u, index) => (
-            <UpiId
-              key={u.provider + index}
-              logoImage={getProviderLogo(u.provider)}
-              label={u.label}
-              upiId={u.upiId}
-              isLast={index === upiIds.length - 1}
+          {transactions.map((tsx, index) => (
+            <Transaction
+              key={tsx.transactionId + index}
+              logoImage={getProviderLogo(tsx.provider)}
+              label={getProviderLabel(tsx.provider)}
+              timestamp={tsx.date}
+              amount={tsx.amount}
+              isLast={index === transactions.length - 1}
             />
           ))}
         </ThemedView>
       ) : (
         <ThemedView
           style={[
-            styles.upiIdsEmpty,
+            styles.transactionEmpty,
             {
               backgroundColor: theme.backgroundElement,
               borderColor: theme.border,
@@ -64,21 +62,18 @@ export function UpiIds() {
 }
 
 const styles = StyleSheet.create({
-  upiIdTitle: {
-    width: "100%",
-    flexDirection: "row",
-    justifyContent: "space-between",
+  transactionsTitle: {
+    marginTop: 16,
     paddingInline: 8,
   },
-  upiIdTitleText: {},
-  upiIds: {
+  transactions: {
     flex: 1,
     marginTop: 8,
     paddingVertical: 8,
     borderRadius: 28,
     overflow: "hidden",
   },
-  upiIdsEmpty: {
+  transactionEmpty: {
     marginTop: 8,
     paddingVertical: 32,
     paddingHorizontal: 16,

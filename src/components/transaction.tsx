@@ -6,14 +6,16 @@ import { Image, Ionicons, ThemedText, ThemedView } from "./ui";
 interface TransactionProps {
   logoImage: ImageSourcePropType;
   label: string;
-  upiId: string;
+  timestamp: string;
+  amount: string;
   isLast: boolean;
 }
 
 export function Transaction({
   logoImage,
   label,
-  upiId,
+  timestamp,
+  amount,
   isLast,
 }: TransactionProps) {
   const theme = useTheme();
@@ -27,20 +29,17 @@ export function Transaction({
       ]}
     >
       <ThemedView style={[styles.left, styles.shared]}>
-        <Image
-          source={require("@/assets/images/logo/phone-pe.png")}
-          style={styles.logoImage}
-        />
+        <Image source={logoImage} style={styles.logoImage} />
       </ThemedView>
       <ThemedView style={[styles.right, styles.shared]}>
-        <ThemedView style={styles.rightLeft}>
-          <ThemedText>PhonePe</ThemedText>
+        <ThemedView style={[styles.rightLeft, styles.shared]}>
+          <ThemedText>{label}</ThemedText>
           <ThemedText type="small" themeColor="textSecondary">
-            2026-05-09 14:37:52
+            {timestamp}
           </ThemedText>
         </ThemedView>
         <ThemedView style={[styles.rightRight, styles.shared]}>
-          <Amount amount="365" />
+          <Amount amount={amount} size={12} />
           <Ionicons
             name="arrow-back"
             size={18}

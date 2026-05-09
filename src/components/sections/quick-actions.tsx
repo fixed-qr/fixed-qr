@@ -18,8 +18,11 @@ export function QuickActions() {
   const transactions = useStore((state) => state.transactions);
 
   return (
-    <ThemedView style={styles.container}>
-      <ThemedText type="smallBold" style={[{ color: theme.textSecondary }]}>
+    <ThemedView>
+      <ThemedText
+        type="smallBold"
+        style={[styles.quickActionsTitle, { color: theme.textSecondary }]}
+      >
         Quick Actions
       </ThemedText>
       {transactions.length ? (
@@ -75,8 +78,9 @@ export function QuickActions() {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    marginTop: 20,
+  quickActionsTitle: {
+    marginTop: 16,
+    paddingInline: 8,
   },
   quickActions: {
     marginTop: 8,
@@ -85,7 +89,7 @@ const styles = StyleSheet.create({
     gap: gap,
   },
   transactionEmpty: {
-    marginTop: 16,
+    marginTop: 8,
     paddingVertical: 32,
     paddingHorizontal: 16,
     alignItems: "center",
