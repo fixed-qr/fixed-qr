@@ -45,9 +45,8 @@ const styles = StyleSheet.create({
     gap: spacing[16],
   },
   userProfileAvatarContainer: {
-    width: "45%",
-    maxWidth: "45%",
     aspectRatio: 1,
+    width: 100,
     borderRadius: 999,
   },
   userProfileAvatar: {
