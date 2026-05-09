@@ -71,7 +71,6 @@ const styles = StyleSheet.create({
     marginTop: 8,
     paddingVertical: 8,
     borderRadius: 28,
-    overflow: "hidden",
   },
   transactionEmpty: {
     marginTop: 8,
