@@ -33,7 +33,7 @@ export function Amount({ amount, size, color }: AmountProps) {
         style={[
           styles.amountText,
           {
-            fontSize: size || initialSize + 6,
+            fontSize: size ? size + 6 : initialSize + 6,
           },
         ]}
       >
