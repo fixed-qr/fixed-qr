@@ -1,4 +1,4 @@
-import { maxContentWidth } from "@/constants/dimensions";
+import { screenWidth } from "@/constants/dimensions";
 import { useTheme } from "@/hooks/use-theme";
 import { StyleProp, StyleSheet, ViewStyle } from "react-native";
 import {
@@ -31,7 +31,7 @@ export function SafeAreaView({
         styles.safeAreaContainer,
         {
           backgroundColor: backgroundColor ?? theme.background,
-          maxWidth: fullWidth ? undefined : maxContentWidth,
+          maxWidth: fullWidth ? undefined : screenWidth,
           alignSelf: fullWidth ? undefined : "center",
         },
         style,

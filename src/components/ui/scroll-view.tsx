@@ -1,4 +1,3 @@
-import { bottomTabInset } from "@/constants/dimensions";
 import { spacing } from "@/constants/theme";
 import { useTheme } from "@/hooks/use-theme";
 import { ScrollView as NativeScrollView, ScrollViewProps } from "react-native";
@@ -10,18 +9,13 @@ export function ScrollView(props: ScrollViewProps) {
   const theme = useTheme();
   const safeAreaInsets = useSafeAreaInsets();
 
-  const insets = {
-    ...safeAreaInsets,
-    bottom: safeAreaInsets.bottom + bottomTabInset + spacing[16],
-  };
-
   return (
     <NativeScrollView
       {...rest}
       style={[{ backgroundColor: theme.background }, style]}
       showsVerticalScrollIndicator={false}
       showsHorizontalScrollIndicator={false}
-      contentInset={insets}
+      contentInset={safeAreaInsets}
       keyboardDismissMode="interactive"
       contentContainerStyle={[
         {
