@@ -1,35 +1,51 @@
 import { Settings, UpiIds } from "@/components/sections";
-import { SafeAreaScrollView, ThemedText, ThemedView } from "@/components/ui";
+import Transactions from "@/components/sections/transations";
+import {
+    SafeAreaView,
+    ScrollView,
+    ThemedText,
+    ThemedView,
+} from "@/components/ui";
 import { spacing } from "@/constants/theme";
 import { useTheme } from "@/hooks/use-theme";
 import { useDataStore } from "@/store/data-store";
+import BottomSheet from "@gorhom/bottom-sheet";
+import { useRef } from "react";
 import { Image, StyleSheet } from "react-native";
 
 export default function ProfileScreen() {
   const theme = useTheme();
   const name = useDataStore((state) => state.user?.name);
+  const bottomSheetRef = useRef<BottomSheet>(null);
 
   return (
-    <SafeAreaScrollView>
-      <ThemedView style={styles.userProfileContainer}>
-        <ThemedView
-          style={[
-            styles.userProfileAvatarContainer,
-            {
-              backgroundColor: theme.surface,
-            },
-          ]}
-        >
-          <Image
-            source={require("@/assets/images/tabIcons/user.png")}
-            style={[styles.userProfileAvatar, { tintColor: theme.primary }]}
-          />
+    <SafeAreaView>
+      <ScrollView>
+        <ThemedView style={styles.userProfileContainer}>
+          <ThemedView
+            style={[
+              styles.userProfileAvatarContainer,
+              {
+                backgroundColor: theme.surface,
+              },
+            ]}
+          >
+            <Image
+              source={require("@/assets/images/tabIcons/user.png")}
+              style={[styles.userProfileAvatar, { tintColor: theme.primary }]}
+            />
+          </ThemedView>
+          <ThemedText style={styles.userProfileName}>Hi, {name}</ThemedText>
         </ThemedView>
-        <ThemedText style={styles.userProfileName}>Hi, {name}</ThemedText>
-      </ThemedView>
-      <Settings />
-      <UpiIds />
-    </SafeAreaScrollView>
+        <Settings
+          onTransactionsButtonPress={() => {
+            bottomSheetRef.current?.snapToIndex(0);
+          }}
+        />
+        <UpiIds />
+      </ScrollView>
+      <Transactions ref={bottomSheetRef} snapPoints={["50%", "75%"]} />
+    </SafeAreaView>
   );
 }
 
