@@ -45,5 +45,6 @@ export function SafeAreaView({
 const styles = StyleSheet.create({
   safeAreaContainer: {
     flex: 1,
+    width: "100%",
   },
 });
