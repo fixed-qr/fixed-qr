@@ -10,6 +10,7 @@ import { Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { useEffect } from "react";
 import { useColorScheme } from "react-native";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 export default function RootLayout() {
   const scheme = useColorScheme();
@@ -23,30 +24,34 @@ export default function RootLayout() {
   return (
     <BottomSheetModalProvider>
       <ThemeProvider value={scheme === "dark" ? DarkTheme : DefaultTheme}>
-        <StatusBar style={scheme === "dark" ? "light" : "dark"} />
-        <Stack
-          screenOptions={{
-            headerShown: false,
-            contentStyle: { backgroundColor: theme.background },
-          }}
+        <GestureHandlerRootView
+          style={{ flex: 1, backgroundColor: theme.background }}
         >
-          <Stack.Screen name="(auth)/get-started" />
-          <Stack.Screen name="(tabs)" />
-          <Stack.Screen
-            name="(modals)"
-            options={{
-              presentation: "formSheet",
-              gestureDirection: "vertical",
-              animation: "slide_from_bottom",
-              sheetGrabberVisible: false,
-              sheetExpandsWhenScrolledToEdge: true,
-              sheetInitialDetentIndex: 0,
-              sheetCornerRadius: 32,
-              sheetElevation: 24,
-              sheetAllowedDetents: [0.7],
+          <StatusBar style={scheme === "dark" ? "light" : "dark"} />
+          <Stack
+            screenOptions={{
+              headerShown: false,
+              contentStyle: { backgroundColor: theme.background },
             }}
-          />
-        </Stack>
+          >
+            <Stack.Screen name="(auth)/get-started" />
+            <Stack.Screen name="(tabs)" />
+            <Stack.Screen
+              name="(modals)"
+              options={{
+                presentation: "formSheet",
+                gestureDirection: "vertical",
+                animation: "slide_from_bottom",
+                sheetGrabberVisible: false,
+                sheetExpandsWhenScrolledToEdge: true,
+                sheetInitialDetentIndex: 0,
+                sheetCornerRadius: 32,
+                sheetElevation: 24,
+                sheetAllowedDetents: [0.7],
+              }}
+            />
+          </Stack>
+        </GestureHandlerRootView>
       </ThemeProvider>
     </BottomSheetModalProvider>
   );

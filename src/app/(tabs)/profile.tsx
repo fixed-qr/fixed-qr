@@ -35,8 +35,6 @@ export default function ProfileScreen() {
 
 const styles = StyleSheet.create({
   userProfileContainer: {
-    flex: 1,
-    justifyContent: "center",
     alignItems: "center",
     marginTop: 32,
     marginBottom: 24,
@@ -53,7 +51,6 @@ const styles = StyleSheet.create({
     height: "100%",
   },
   userProfileName: {
-    flex: 1,
     width: "100%",
     textAlign: "center",
     fontSize: 24,

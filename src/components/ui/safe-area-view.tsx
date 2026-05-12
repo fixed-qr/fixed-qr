@@ -2,8 +2,8 @@ import { maxContentWidth } from "@/constants/dimensions";
 import { useTheme } from "@/hooks/use-theme";
 import { StyleProp, StyleSheet, ViewStyle } from "react-native";
 import {
-  SafeAreaView as NativeSafeAreaView,
-  SafeAreaViewProps as NativeSafeAreaViewProps,
+    SafeAreaView as NativeSafeAreaView,
+    SafeAreaViewProps as NativeSafeAreaViewProps,
 } from "react-native-safe-area-context";
 
 export interface SafeAreaViewProps extends NativeSafeAreaViewProps {
@@ -45,6 +45,5 @@ export function SafeAreaView({
 const styles = StyleSheet.create({
   safeAreaContainer: {
     flex: 1,
-    width: "100%",
   },
 });
