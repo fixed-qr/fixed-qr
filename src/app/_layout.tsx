@@ -1,5 +1,6 @@
 import { useTheme } from "@/hooks/use-theme";
 import { useAppMetaStore } from "@/store/app-meta-store";
+import { BottomSheetModalProvider } from "@gorhom/bottom-sheet";
 import {
     DarkTheme,
     DefaultTheme,
@@ -20,31 +21,33 @@ export default function RootLayout() {
   }, []);
 
   return (
-    <ThemeProvider value={scheme === "dark" ? DarkTheme : DefaultTheme}>
-      <StatusBar style={scheme === "dark" ? "light" : "dark"} />
-      <Stack
-        screenOptions={{
-          headerShown: false,
-          contentStyle: { backgroundColor: theme.background },
-        }}
-      >
-        <Stack.Screen name="(auth)/get-started" />
-        <Stack.Screen name="(tabs)" />
-        <Stack.Screen
-          name="(modals)"
-          options={{
-            presentation: "formSheet",
-            gestureDirection: "vertical",
-            animation: "slide_from_bottom",
-            sheetGrabberVisible: false,
-            sheetExpandsWhenScrolledToEdge: true,
-            sheetInitialDetentIndex: 0,
-            sheetCornerRadius: 32,
-            sheetElevation: 24,
-            sheetAllowedDetents: [0.7],
+    <BottomSheetModalProvider>
+      <ThemeProvider value={scheme === "dark" ? DarkTheme : DefaultTheme}>
+        <StatusBar style={scheme === "dark" ? "light" : "dark"} />
+        <Stack
+          screenOptions={{
+            headerShown: false,
+            contentStyle: { backgroundColor: theme.background },
           }}
-        />
-      </Stack>
-    </ThemeProvider>
+        >
+          <Stack.Screen name="(auth)/get-started" />
+          <Stack.Screen name="(tabs)" />
+          <Stack.Screen
+            name="(modals)"
+            options={{
+              presentation: "formSheet",
+              gestureDirection: "vertical",
+              animation: "slide_from_bottom",
+              sheetGrabberVisible: false,
+              sheetExpandsWhenScrolledToEdge: true,
+              sheetInitialDetentIndex: 0,
+              sheetCornerRadius: 32,
+              sheetElevation: 24,
+              sheetAllowedDetents: [0.7],
+            }}
+          />
+        </Stack>
+      </ThemeProvider>
+    </BottomSheetModalProvider>
   );
 }
