@@ -1,5 +1,5 @@
+import { Transactions } from "@/components/modals";
 import { Settings, UpiIds } from "@/components/sections";
-import Transactions from "@/components/sections/transations";
 import {
     SafeAreaView,
     ScrollView,

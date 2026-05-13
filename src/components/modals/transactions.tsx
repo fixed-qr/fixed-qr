@@ -16,7 +16,7 @@ interface TransactionsProps {
   snapPoints?: (number | string)[];
 }
 
-export default function Transactions({ ref, snapPoints }: TransactionsProps) {
+export function Transactions({ ref, snapPoints }: TransactionsProps) {
   const theme = useTheme();
   const insets = useSafeAreaInsets();
   const transactions = useDataStore((state) => state.transactions);
