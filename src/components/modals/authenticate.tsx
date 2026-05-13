@@ -1,19 +1,30 @@
 import { SecureInput } from "@/components";
-import { Ionicons, ScrollView, ThemedText, ThemedView } from "@/components/ui";
+import {
+    Ionicons,
+    ThemedText,
+    ThemedView,
+    UIBottomSheet,
+} from "@/components/ui";
 import { useTheme } from "@/hooks/use-theme";
 import { useAuthStore } from "@/store/auth-store";
 import { useDataStore } from "@/store/data-store";
-import { useRouter } from "expo-router";
-import { useState } from "react";
-import { Pressable, StyleSheet } from "react-native";
+import BottomSheet from "@gorhom/bottom-sheet";
+import { useEffect, useRef, useState } from "react";
+import { Keyboard, Pressable, StyleSheet } from "react-native";
 
-export default function AuthenticateScreen() {
+export function Authenticate() {
   const theme = useTheme();
-  const router = useRouter();
+  const bottomSheetRef = useRef<BottomSheet>(null);
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const storedPassword = useDataStore((state) => state.user?.password);
-  const setIsAuthenticated = useAuthStore((state) => state.setIsAuthenticated);
+  const { isAuthenticated, setIsAuthenticated } = useAuthStore();
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      bottomSheetRef.current?.close();
+    }
+  }, []);
 
   const handlePasswordChange = (value: string) => {
     setPassword(value);
@@ -29,27 +40,21 @@ export default function AuthenticateScreen() {
 
     if (password === storedPassword) {
       setIsAuthenticated(true);
-      router.back();
+      bottomSheetRef.current?.close();
+      Keyboard.dismiss();
     } else {
       setError("Incorrect password");
     }
   };
 
   return (
-    <ScrollView
-      contentContainerStyle={{
-        alignItems: "center",
-      }}
+    <UIBottomSheet
+      title="Verify Your Identity"
+      ref={bottomSheetRef}
+      enableDynamicSizing={true}
+      enablePanDownToClose={false}
+      backdropPressBehavior="none"
     >
-      <ThemedText style={styles.title}>
-        Verify your identity to continue
-      </ThemedText>
-      <Ionicons
-        name="lock-closed"
-        size={48}
-        color={theme.textSecondary}
-        style={styles.image}
-      />
       <SecureInput value={password} onChangeText={handlePasswordChange} />
       {!!error && (
         <ThemedView style={styles.error}>
@@ -76,19 +81,11 @@ export default function AuthenticateScreen() {
           style={{ transform: "rotate(45deg)" }}
         />
       </Pressable>
-    </ScrollView>
+    </UIBottomSheet>
   );
 }
 
 const styles = StyleSheet.create({
-  title: {
-    fontSize: 22,
-    textAlign: "center",
-    marginVertical: 16,
-  },
-  image: {
-    marginVertical: 8,
-  },
   error: {
     width: "90%",
   },

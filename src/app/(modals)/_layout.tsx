@@ -23,7 +23,6 @@ export default function HomeLayout() {
     >
       <Stack.Screen name="qr-code" />
       <Stack.Screen name="add-upi" />
-      <Stack.Screen name="authenticate" />
     </Stack>
   );
 }

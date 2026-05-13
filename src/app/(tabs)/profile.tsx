@@ -1,4 +1,4 @@
-import { Transactions } from "@/components/modals";
+import { Authenticate, Transactions } from "@/components/modals";
 import { Settings, UpiIds } from "@/components/sections";
 import {
     SafeAreaView,
@@ -45,6 +45,7 @@ export default function ProfileScreen() {
         <UpiIds />
       </ScrollView>
       <Transactions ref={bottomSheetRef} snapPoints={["50%", "75%"]} />
+      <Authenticate />
     </SafeAreaView>
   );
 }

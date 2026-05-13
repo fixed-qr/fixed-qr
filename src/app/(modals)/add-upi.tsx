@@ -10,11 +10,10 @@ import { screenWidth } from "@/constants/dimensions";
 import { providers } from "@/constants/providers";
 import { spacing } from "@/constants/theme";
 import { useTheme } from "@/hooks/use-theme";
-import { useAuthStore } from "@/store/auth-store";
 import { useDataStore } from "@/store/data-store";
 import { Provider } from "@/types/provider";
 import { validateUpi } from "@/utils/validators";
-import { Redirect, useRouter } from "expo-router";
+import { useRouter } from "expo-router";
 import { useState } from "react";
 import { Pressable, StyleSheet, TextInput } from "react-native";
 
@@ -27,7 +26,6 @@ export default function AddUPIScreen() {
   const [error, setError] = useState<string | null>(null);
   const [isFocused, setIsFocused] = useState(false);
   const [selected, setSelected] = useState<Provider | null>(null);
-  const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
   const addUpiId = useDataStore((state) => state.addUpiId);
   const router = useRouter();
 
@@ -48,10 +46,6 @@ export default function AddUPIScreen() {
       router.back();
     }
   };
-
-  if (!isAuthenticated) {
-    return <Redirect href={"/(modals)/authenticate"} />;
-  }
 
   return (
     <ScrollView>

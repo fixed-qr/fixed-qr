@@ -1,8 +1,6 @@
 import { spacing } from "@/constants/theme";
 import { useTheme } from "@/hooks/use-theme";
-import { useAuthStore } from "@/store/auth-store";
 import { useDataStore } from "@/store/data-store";
-import { useRouter } from "expo-router";
 import {
     Image,
     ImageSourcePropType,
@@ -20,16 +18,10 @@ interface UpiIdProps {
 
 export function UpiId({ logoImage, label, upiId, isLast }: UpiIdProps) {
   const theme = useTheme();
-  const router = useRouter();
   const removeUpiId = useDataStore((state) => state.removeUpiId);
-  const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
 
   const handleRemoveUpiId = (upiId: string) => {
-    if (isAuthenticated) {
-      removeUpiId(upiId);
-    } else {
-      router.navigate("/(modals)/authenticate");
-    }
+    removeUpiId(upiId);
   };
 
   return (
