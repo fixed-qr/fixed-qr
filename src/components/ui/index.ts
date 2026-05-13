@@ -1,3 +1,5 @@
+export { BottomSheet } from "./bottom-sheet";
+export { BottomSheetModal } from "./bottom-sheet-modal";
 export { Image } from "./image";
 export { SafeAreaScrollView } from "./safe-area-scroll-view";
 export { SafeAreaView } from "./safe-area-view";
