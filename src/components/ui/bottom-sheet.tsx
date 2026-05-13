@@ -1,6 +1,6 @@
 import { borderRadius } from "@/constants/platform";
 import { useTheme } from "@/hooks/use-theme";
-import GorhomBottomSheet, {
+import BottomSheet, {
     BottomSheetBackdrop,
     BottomSheetBackdropProps,
     BottomSheetView,
@@ -11,7 +11,7 @@ import { StyleProp, StyleSheet, ViewStyle } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { ThemedText } from "./themed-text";
 
-interface BottomSheetProps {
+interface UIBottomSheetProps {
   title?: string;
   children: ReactNode;
   index?: number;
@@ -23,7 +23,7 @@ interface BottomSheetProps {
   backdropPressBehavior?: "none" | "close" | "collapse";
 }
 
-export const BottomSheet = forwardRef<BottomSheetMethods, BottomSheetProps>(
+export const UIBottomSheet = forwardRef<BottomSheetMethods, UIBottomSheetProps>(
   (
     {
       title,
@@ -57,7 +57,7 @@ export const BottomSheet = forwardRef<BottomSheetMethods, BottomSheetProps>(
     );
 
     return (
-      <GorhomBottomSheet
+      <BottomSheet
         ref={ref}
         index={index}
         topInset={insets.top}
@@ -93,12 +93,10 @@ export const BottomSheet = forwardRef<BottomSheetMethods, BottomSheetProps>(
 
           {children}
         </BottomSheetView>
-      </GorhomBottomSheet>
+      </BottomSheet>
     );
   },
 );
-
-BottomSheet.displayName = "BottomSheet";
 
 const styles = StyleSheet.create({
   headerTitle: {

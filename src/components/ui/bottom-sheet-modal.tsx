@@ -1,11 +1,11 @@
 import { borderRadius } from "@/constants/platform";
 import { useTheme } from "@/hooks/use-theme";
-import BottomSheet, {
+import {
     BottomSheetBackdrop,
     BottomSheetBackdropProps,
+    BottomSheetModal,
     BottomSheetModalProvider,
     BottomSheetView,
-    BottomSheetModal as GorhomBottomSheetModal,
 } from "@gorhom/bottom-sheet";
 import React, { ReactNode, forwardRef, useCallback, useMemo } from "react";
 import { StyleProp, StyleSheet, ViewStyle } from "react-native";
@@ -13,7 +13,7 @@ import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { ThemedText } from "./themed-text";
 
-interface BottomSheetModalProps {
+interface UIBottomSheetModalProps {
   title?: string;
   children: ReactNode;
   index?: number;
@@ -25,9 +25,9 @@ interface BottomSheetModalProps {
   backdropPressBehavior?: "none" | "close" | "collapse";
 }
 
-export const BottomSheetModal = forwardRef<
-  GorhomBottomSheetModal,
-  BottomSheetModalProps
+export const UIBottomSheetModal = forwardRef<
+  BottomSheetModal,
+  UIBottomSheetModalProps
 >(
   (
     {
@@ -66,7 +66,7 @@ export const BottomSheetModal = forwardRef<
         style={{ flex: 1, backgroundColor: theme.background }}
       >
         <BottomSheetModalProvider>
-          <GorhomBottomSheetModal
+          <BottomSheetModal
             ref={ref}
             index={index}
             topInset={insets.top}
@@ -102,14 +102,12 @@ export const BottomSheetModal = forwardRef<
 
               {children}
             </BottomSheetView>
-          </GorhomBottomSheetModal>
+          </BottomSheetModal>
         </BottomSheetModalProvider>
       </GestureHandlerRootView>
     );
   },
 );
-
-BottomSheet.displayName = "BottomSheet";
 
 const styles = StyleSheet.create({
   headerTitle: {
