@@ -8,36 +8,32 @@ interface DeleteEverythingProps {}
 
 export function DeleteEverything({}: DeleteEverythingProps) {
   const router = useRouter();
-  const { isAuthenticated, setIsAuthenticated } = useAuthStore();
+  const setIsAuthenticated = useAuthStore((state) => state.setIsAuthenticated);
   const clearAll = useDataStore((state) => state.clearAll);
 
   const handelOnPress = () => {
-    if (isAuthenticated) {
-      Alert.alert(
-        "Delete Everything",
-        "Are you sure you want to delete everything? This action cannot be undone.",
-        [
-          {
-            text: "Cancel",
-            style: "cancel",
-          },
-          {
-            text: "Delete",
-            style: "destructive",
-            onPress: () => {
-              clearAll();
-              setIsAuthenticated(false);
-              router.replace("/(auth)/get-started");
-            },
-          },
-        ],
+    Alert.alert(
+      "Delete Everything",
+      "Are you sure you want to delete everything? This action cannot be undone.",
+      [
         {
-          cancelable: true,
+          text: "Cancel",
+          style: "cancel",
         },
-      );
-    } else {
-      router.navigate("/(modals)/authenticate");
-    }
+        {
+          text: "Delete",
+          style: "destructive",
+          onPress: () => {
+            clearAll();
+            setIsAuthenticated(false);
+            router.replace("/(auth)/get-started");
+          },
+        },
+      ],
+      {
+        cancelable: true,
+      },
+    );
   };
 
   return (

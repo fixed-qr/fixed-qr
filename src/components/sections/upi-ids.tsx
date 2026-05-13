@@ -15,18 +15,21 @@ export function UpiIds() {
       <Link href={"/(modals)/add-upi"}>
         <ThemedView style={styles.upiIdTitle}>
           <ThemedText
-            type="smallBold"
-            color="textSecondary"
+            variant="small"
+            weight="500"
             style={styles.upiIdTitleText}
           >
             Saved UPI IDs
           </ThemedText>
-          <Ionicons name="add-circle" size={18} color={theme.textSecondary} />
+          <Ionicons name="add-circle" size={18} color={theme.text.secondary} />
         </ThemedView>
       </Link>
       {upiIds.length ? (
         <ThemedView
-          style={[styles.upiIds, { backgroundColor: theme.backgroundElement }]}
+          style={[
+            styles.upiIds,
+            { backgroundColor: theme.background.secondary },
+          ]}
         >
           {upiIds.map((u, index) => (
             <UpiId
@@ -43,8 +46,8 @@ export function UpiIds() {
           style={[
             styles.upiIdsEmpty,
             {
-              backgroundColor: theme.backgroundElement,
-              borderColor: theme.border,
+              backgroundColor: theme.background.secondary,
+              borderColor: theme.border.primary,
             },
           ]}
         >
@@ -53,9 +56,8 @@ export function UpiIds() {
             style={styles.notFoundImage}
           />
           <ThemedText
-            type="small"
-            color="textSecondary"
-            style={styles.emptyText}
+            variant="small"
+            style={[styles.emptyText, { color: theme.text.secondary }]}
           >
             Your Saved UPI ID will appear here.
           </ThemedText>

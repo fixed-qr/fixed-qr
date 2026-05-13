@@ -25,7 +25,10 @@ export function Transaction({
       style={[
         styles.shared,
         styles.transaction,
-        { borderColor: theme.background, borderBottomWidth: isLast ? 0 : 1 },
+        {
+          borderColor: theme.background.primary,
+          borderBottomWidth: isLast ? 0 : 1,
+        },
       ]}
     >
       <ThemedView style={[styles.shared, styles.left]}>
@@ -34,7 +37,7 @@ export function Transaction({
       <ThemedView style={[styles.shared, styles.right]}>
         <ThemedView style={[styles.rightLeft, styles.shared]}>
           <ThemedText>{label}</ThemedText>
-          <ThemedText type="small" color="textSecondary">
+          <ThemedText variant="small" style={{ color: theme.text.secondary }}>
             {timestamp}
           </ThemedText>
         </ThemedView>
@@ -43,7 +46,7 @@ export function Transaction({
           <Ionicons
             name="arrow-back"
             size={18}
-            color={theme.text}
+            color={theme.text.primary}
             style={{ transform: "rotate(-45deg)" }}
           />
         </ThemedView>
@@ -51,7 +54,7 @@ export function Transaction({
       <Ionicons
         name="information-circle"
         size={18}
-        color={theme.textSecondary}
+        color={theme.text.secondary}
       />
     </ThemedView>
   );
@@ -63,8 +66,8 @@ const styles = StyleSheet.create({
   },
   transaction: {
     flexDirection: "row",
-    paddingBlock: 4,
-    paddingInline: 12,
+    paddingVertical: 8,
+    paddingHorizontal: 12,
     borderBottomWidth: 1.5,
     gap: 8,
   },

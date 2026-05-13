@@ -73,8 +73,13 @@ export function Authenticate() {
         onSubmitEditing={handleOnSubmit}
       />
       {!!error && (
-        <ThemedView style={styles.error}>
-          <ThemedText type="small" color="danger">
+        <ThemedView
+          style={[
+            styles.error,
+            { backgroundColor: theme.background.secondary },
+          ]}
+        >
+          <ThemedText variant="small" style={{ color: theme.status.danger }}>
             {error}
           </ThemedText>
         </ThemedView>
@@ -84,16 +89,20 @@ export function Authenticate() {
         style={({ pressed }) => [
           styles.authenticateButton,
           {
-            borderColor: theme.border,
-            backgroundColor: pressed ? theme.primaryHover : theme.primary,
+            borderColor: theme.border.primary,
+            backgroundColor: pressed
+              ? theme.accent.pressed
+              : theme.accent.primary,
           },
         ]}
       >
-        <ThemedText color="textInverse">Authenticate</ThemedText>
+        <ThemedText weight="600" style={{ color: theme.text.secondary }}>
+          Authenticate
+        </ThemedText>
         <Ionicons
           name="arrow-up"
           size={18}
-          color={theme.textInverse}
+          color={theme.text.secondary}
           style={{
             transform: [{ rotate: "45deg" }],
           }}
@@ -105,6 +114,7 @@ export function Authenticate() {
 
 const styles = StyleSheet.create({
   error: {
+    marginTop: 8,
     width: "90%",
   },
   authenticateButton: {

@@ -1,5 +1,5 @@
 import { screenWidth } from "@/constants/dimensions";
-import { spacing } from "@/constants/theme";
+import { spacing } from "@/constants/themex";
 import { useTheme } from "@/hooks/use-theme";
 import { useDataStore } from "@/store/data-store";
 import { getProviderLabel } from "@/utils/get-provider-label";
@@ -20,8 +20,9 @@ export function QuickActions() {
   return (
     <ThemedView>
       <ThemedText
-        type="smallBold"
-        style={[styles.quickActionsTitle, { color: theme.textSecondary }]}
+        variant="small"
+        weight="500"
+        style={[styles.quickActionsTitle, { color: theme.text.secondary }]}
       >
         Quick Actions
       </ThemedText>
@@ -55,8 +56,8 @@ export function QuickActions() {
           style={[
             styles.transactionEmpty,
             {
-              backgroundColor: theme.backgroundElement,
-              borderColor: theme.border,
+              backgroundColor: theme.background.secondary,
+              borderColor: theme.border.primary,
             },
           ]}
         >
@@ -65,9 +66,8 @@ export function QuickActions() {
             style={styles.notFoundImage}
           />
           <ThemedText
-            type="small"
-            color="textSecondary"
-            style={styles.emptyText}
+            variant="small"
+            style={[styles.emptyText, { color: theme.text.secondary }]}
           >
             Your quick actions will appear here.
           </ThemedText>

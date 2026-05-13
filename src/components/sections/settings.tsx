@@ -14,14 +14,17 @@ export function Settings({ onTransactionsButtonPress }: SettingsProps) {
   return (
     <ThemedView style={styles.container}>
       <ThemedText
-        type="smallBold"
-        color="textSecondary"
-        style={styles.settingsTitle}
+        variant="small"
+        weight="500"
+        style={[styles.settingsTitle, { color: theme.text.secondary }]}
       >
         Settings
       </ThemedText>
       <ThemedView
-        style={[styles.settings, { backgroundColor: theme.backgroundElement }]}
+        style={[
+          styles.settings,
+          { backgroundColor: theme.background.secondary },
+        ]}
       >
         <DeleteEverything />
         <Setting

@@ -1,4 +1,4 @@
-import { spacing } from "@/constants/theme";
+import { spacing } from "@/constants/themex";
 import { useTheme } from "@/hooks/use-theme";
 import { useDataStore } from "@/store/data-store";
 import {
@@ -29,21 +29,24 @@ export function UpiId({ logoImage, label, upiId, isLast }: UpiIdProps) {
       style={[
         styles.shared,
         styles.upiId,
-        { borderColor: theme.background, borderBottomWidth: isLast ? 0 : 1 },
+        {
+          borderColor: theme.background.primary,
+          borderBottomWidth: isLast ? 0 : 1,
+        },
       ]}
     >
       <ThemedView style={[styles.shared, styles.left]}>
         <Image source={logoImage} style={styles.logoImage} />
         <ThemedView style={[styles.shared, styles.upiIdInfo]}>
           <ThemedText>{label}</ThemedText>
-          <ThemedText type="small" style={{ color: theme.textSecondary }}>
+          <ThemedText variant="small" style={{ color: theme.text.primary }}>
             {upiId}
           </ThemedText>
         </ThemedView>
       </ThemedView>
       <ThemedView style={[styles.shared, styles.right]}>
         <Pressable onPress={() => handleRemoveUpiId(upiId)}>
-          <Ionicons name="close" size={18} color={theme.textSecondary} />
+          <Ionicons name="close" size={18} color={theme.text.primary} />
         </Pressable>
       </ThemedView>
     </ThemedView>
@@ -57,8 +60,8 @@ const styles = StyleSheet.create({
   upiId: {
     flex: 1,
     flexDirection: "row",
-    paddingBlock: 4,
-    paddingInline: 12,
+    paddingVertical: 8,
+    paddingHorizontal: 12,
     borderBottomWidth: 1.5,
   },
   left: {

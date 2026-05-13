@@ -26,9 +26,9 @@ export function ProviderButton({
         styles.provider,
         {
           width: size,
-          borderColor: theme.border,
+          borderColor: theme.border.primary,
           backgroundColor: isSelected
-            ? theme.backgroundSelected
+            ? theme.background.selected
             : "transparent",
         },
       ]}
@@ -38,8 +38,8 @@ export function ProviderButton({
       {isSelected && (
         <Ionicons
           name="checkmark-done"
-          size={18}
-          style={[styles.checkmarkDone, { color: theme.info }]}
+          size={20}
+          style={[styles.checkmarkDone, { color: theme.status.info }]}
         />
       )}
     </Pressable>
@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     gap: 4,
-    padding: 8,
+    padding: 12,
     borderRadius: 24,
     borderWidth: 1,
     position: "relative",
@@ -66,8 +66,8 @@ const styles = StyleSheet.create({
   },
   checkmarkDone: {
     position: "absolute",
-    top: 6,
-    right: 6,
+    top: 2,
+    right: 2,
     padding: 4,
     borderRadius: 99,
   },

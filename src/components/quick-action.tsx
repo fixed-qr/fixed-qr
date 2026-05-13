@@ -1,4 +1,4 @@
-import { spacing } from "@/constants/theme";
+import { spacing } from "@/constants/themex";
 import { useTheme } from "@/hooks/use-theme";
 import { ImageSourcePropType, StyleSheet } from "react-native";
 import { Amount } from "./amount";
@@ -24,8 +24,8 @@ export function QuickAction({
       style={[
         styles.quickAction,
         {
-          backgroundColor: theme.backgroundElement,
-          borderColor: theme.border,
+          backgroundColor: theme.background.secondary,
+          borderColor: theme.border.primary,
           width: size,
           height: size / 1.25,
         },
@@ -35,9 +35,8 @@ export function QuickAction({
       <Amount amount={amount} />
       <ThemedView style={styles.provider}>
         <ThemedText
-          type="small"
-          color="textSecondary"
-          style={styles.providerText}
+          variant="small"
+          style={[styles.providerText, { color: theme.text.secondary }]}
         >
           {label}
         </ThemedText>
@@ -45,7 +44,7 @@ export function QuickAction({
           name="arrow-forward"
           size={16}
           style={{ transform: "rotate(-45deg)" }}
-          color={theme.textSecondary}
+          color={theme.text.secondary}
         />
       </ThemedView>
     </ThemedView>

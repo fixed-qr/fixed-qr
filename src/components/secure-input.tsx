@@ -20,18 +20,18 @@ export function SecureInput({
       style={[
         styles.input,
         {
-          backgroundColor: theme.inputBackground,
-          borderColor: theme.inputBorder,
+          backgroundColor: theme.background.secondary,
+          borderColor: theme.border.primary,
         },
       ]}
     >
       <ThemedView style={[styles.shared, styles.left]}>
-        <Ionicons name="lock-closed" size={24} color={theme.textSecondary} />
+        <Ionicons name="lock-closed" size={24} color={theme.text.secondary} />
       </ThemedView>
       <ThemedView style={[styles.shared, styles.right]}>
         <ThemedText
-          type="smallBold"
-          style={[styles.label, { color: theme.textSecondary }]}
+          variant="small"
+          style={[styles.label, { color: theme.text.secondary }]}
         >
           Password
         </ThemedText>
@@ -42,8 +42,8 @@ export function SecureInput({
           autoCapitalize="none"
           returnKeyType="done"
           placeholder="Enter your secure password"
-          placeholderTextColor={theme.textSecondary}
-          style={[styles.inputField, { color: theme.text }]}
+          placeholderTextColor={theme.text.secondary}
+          style={[styles.inputField, { color: theme.text.primary }]}
           value={value}
           onChangeText={(text) => {
             onChangeText(text);

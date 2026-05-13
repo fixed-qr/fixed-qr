@@ -6,7 +6,7 @@ import {
     ThemedText,
     ThemedView,
 } from "@/components/ui";
-import { spacing } from "@/constants/theme";
+import { spacing } from "@/constants/themex";
 import { useTheme } from "@/hooks/use-theme";
 import { useDataStore } from "@/store/data-store";
 import BottomSheet from "@gorhom/bottom-sheet";
@@ -26,13 +26,16 @@ export default function ProfileScreen() {
             style={[
               styles.userProfileAvatarContainer,
               {
-                backgroundColor: theme.surface,
+                backgroundColor: theme.background.surface,
               },
             ]}
           >
             <Image
               source={require("@/assets/images/tabIcons/user.png")}
-              style={[styles.userProfileAvatar, { tintColor: theme.primary }]}
+              style={[
+                styles.userProfileAvatar,
+                { tintColor: theme.accent.primary },
+              ]}
             />
           </ThemedView>
           <ThemedText style={styles.userProfileName}>Hi, {name}</ThemedText>

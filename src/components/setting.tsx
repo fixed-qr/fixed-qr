@@ -28,16 +28,16 @@ export function Setting({
         styles.setting,
         {
           borderBottomWidth: isLast ? 0 : 1,
-          borderColor: theme.background,
+          borderColor: theme.background.primary,
         },
       ]}
     >
-      <Ionicons name={leftIcon} size={18} color={theme.text} />
+      <Ionicons name={leftIcon} size={18} color={theme.text.primary} />
       <ThemedText>{label}</ThemedText>
       <Ionicons
         name={rightIcon || "arrow-forward"}
         size={18}
-        color={theme.text}
+        color={theme.text.primary}
         style={{ marginLeft: "auto" }}
       />
     </Pressable>
@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     gap: 8,
     paddingVertical: 12,
-    paddingHorizontal: 16,
+    paddingHorizontal: 12,
     borderBottomWidth: 1,
   },
 });

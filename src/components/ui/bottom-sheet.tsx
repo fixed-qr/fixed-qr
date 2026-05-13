@@ -67,10 +67,10 @@ export const UIBottomSheet = forwardRef<BottomSheet, UIBottomSheetProps>(
         keyboardBlurBehavior="restore"
         backdropComponent={renderBackdrop}
         handleIndicatorStyle={{
-          backgroundColor: theme.text,
+          backgroundColor: theme.text.primary,
         }}
         backgroundStyle={{
-          backgroundColor: theme.background,
+          backgroundColor: theme.background.secondary,
           borderTopLeftRadius: borderRadius,
           borderTopRightRadius: borderRadius,
         }}
@@ -79,7 +79,7 @@ export const UIBottomSheet = forwardRef<BottomSheet, UIBottomSheetProps>(
           style={[
             styles.content,
             {
-              backgroundColor: theme.background,
+              backgroundColor: theme.background.secondary,
             },
             containerStyle,
           ]}

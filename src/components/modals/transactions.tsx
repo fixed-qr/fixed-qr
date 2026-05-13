@@ -33,22 +33,25 @@ export function Transactions({ ref, snapPoints }: TransactionsProps) {
       enablePanDownToClose
       snapPoints={snapPoints}
       backdropComponent={renderBackdrop}
-      handleIndicatorStyle={{ backgroundColor: theme.text }}
+      handleIndicatorStyle={{ backgroundColor: theme.text.primary }}
       backgroundStyle={{
-        backgroundColor: theme.background,
+        backgroundColor: theme.background.primary,
         borderTopLeftRadius: borderRadius,
         borderTopRightRadius: borderRadius,
       }}
     >
       <ThemedText style={styles.title}>Transactions</ThemedText>
       <BottomSheetScrollView
-        style={{ backgroundColor: theme.background, paddingHorizontal: 20 }}
+        style={{
+          backgroundColor: theme.background.primary,
+          paddingHorizontal: 20,
+        }}
       >
         {transactions.length ? (
           <ThemedView
             style={[
               styles.transactions,
-              { backgroundColor: theme.backgroundElement },
+              { backgroundColor: theme.background.secondary },
             ]}
           >
             {transactions.map((tsx, index) => (
@@ -67,8 +70,8 @@ export function Transactions({ ref, snapPoints }: TransactionsProps) {
             style={[
               styles.transactionEmpty,
               {
-                backgroundColor: theme.backgroundElement,
-                borderColor: theme.border,
+                backgroundColor: theme.background.secondary,
+                borderColor: theme.border.primary,
               },
             ]}
           >
@@ -77,9 +80,8 @@ export function Transactions({ ref, snapPoints }: TransactionsProps) {
               style={styles.notFoundImage}
             />
             <ThemedText
-              type="small"
-              color="textSecondary"
-              style={styles.emptyText}
+              variant="small"
+              style={[styles.emptyText, { color: theme.text.secondary }]}
             >
               Your recent transactions will appear here.
             </ThemedText>

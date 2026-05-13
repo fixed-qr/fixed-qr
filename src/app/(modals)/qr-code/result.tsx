@@ -1,7 +1,7 @@
 import { ScrollView, ThemedText } from "@/components/ui";
 import { ThemedView } from "@/components/ui/themed-view";
 import { screenWidth } from "@/constants/dimensions";
-import { spacing } from "@/constants/theme";
+import { spacing } from "@/constants/themex";
 import { useTheme } from "@/hooks/use-theme";
 import { useDataStore } from "@/store/data-store";
 import { ProviderEnum } from "@/types/provider";
@@ -51,8 +51,9 @@ export default function GeneratedQRCodeScreen() {
           />
           <ThemedText style={styles.message}>Scan to pay</ThemedText>
           <ThemedText
-            type="smallBold"
-            style={[styles.message, { color: theme.textMuted }]}
+            variant="small"
+            weight="500"
+            style={[styles.message, { color: theme.text.muted }]}
           >
             {upiId}
           </ThemedText>
@@ -61,14 +62,14 @@ export default function GeneratedQRCodeScreen() {
           style={[
             styles.qrCodeContainer,
             {
-              backgroundColor: theme.backgroundElement,
-              borderColor: theme.border,
+              backgroundColor: theme.background.secondary,
+              borderColor: theme.border.primary,
             },
           ]}
         >
           <QRCode
             value={`upi://pay?pa=${upiId}&pn=Shailesh%Pandit&am=${amount}&cu=INR`}
-            color={theme.text}
+            color={theme.text.primary}
             backgroundColor="transparent"
             size={width - borderRadius}
           />
@@ -76,9 +77,9 @@ export default function GeneratedQRCodeScreen() {
         <ThemedView style={styles.amountContainer}>
           <Image
             source={require("@/assets/images/icons/rupee-64.png")}
-            style={[styles.amountUnit, { tintColor: theme.primary }]}
+            style={[styles.amountUnit, { tintColor: theme.accent.primary }]}
           />
-          <ThemedText style={[styles.amount, { color: theme.primary }]}>
+          <ThemedText style={[styles.amount, { color: theme.accent.primary }]}>
             {amount}
           </ThemedText>
         </ThemedView>

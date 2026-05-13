@@ -12,14 +12,12 @@ export interface SafeAreaViewProps extends NativeSafeAreaViewProps {
   fullWidth?: boolean;
   paddingHorizontal?: number;
   paddingVertical?: number;
-  backgroundColor?: string;
 }
 
 export function SafeAreaView({
   children,
   style,
   fullWidth = false,
-  backgroundColor,
   ...props
 }: SafeAreaViewProps) {
   const theme = useTheme();
@@ -30,7 +28,7 @@ export function SafeAreaView({
       style={[
         styles.safeAreaContainer,
         {
-          backgroundColor: backgroundColor ?? theme.background,
+          backgroundColor: theme.background.primary,
           maxWidth: fullWidth ? undefined : screenWidth,
           alignSelf: fullWidth ? undefined : "center",
         },

@@ -8,7 +8,7 @@ import {
 } from "@/components/ui";
 import { screenWidth } from "@/constants/dimensions";
 import { providers } from "@/constants/providers";
-import { spacing } from "@/constants/theme";
+import { spacing } from "@/constants/themex";
 import { useTheme } from "@/hooks/use-theme";
 import { useDataStore } from "@/store/data-store";
 import { Provider } from "@/types/provider";
@@ -62,16 +62,16 @@ export default function AddUPIScreen() {
             setIsFocused(false);
           }}
           placeholder="Enter UPI ID"
-          placeholderTextColor={theme.placeholder}
+          placeholderTextColor={theme.text.secondary}
           style={[
             styles.upiIdInput,
             {
-              color: theme.text,
-              borderColor: error ? theme.danger : theme.inputBorder,
+              color: theme.text.primary,
+              borderColor: error ? theme.status.danger : theme.border.secondary,
               backgroundColor:
                 isFocused || upiId
-                  ? theme.backgroundSelected
-                  : theme.inputBackground,
+                  ? theme.background.selected
+                  : theme.background.secondary,
             },
           ]}
         />
@@ -79,7 +79,7 @@ export default function AddUPIScreen() {
       {/* UPI Input Validation Error */}
       {!!error && (
         <ThemedView>
-          <ThemedText type="small" color="danger">
+          <ThemedText variant="small" style={{ color: theme.status.danger }}>
             {error}
           </ThemedText>
         </ThemedView>
@@ -108,15 +108,15 @@ export default function AddUPIScreen() {
         style={({ pressed }) => [
           styles.saveButton,
           {
-            borderColor: theme.border,
+            borderColor: theme.border.primary,
             backgroundColor: pressed
-              ? theme.backgroundSelected
-              : theme.backgroundElement,
+              ? theme.background.selected
+              : theme.background.secondary,
           },
         ]}
         onPress={handleSubmit}
       >
-        <Ionicons name="save" size={18} color={theme.text} />
+        <Ionicons name="save" size={18} color={theme.text.primary} />
         <ThemedText>Save</ThemedText>
       </Pressable>
     </ScrollView>
@@ -132,10 +132,11 @@ const styles = StyleSheet.create({
   upiIdInput: {
     fontSize: 16,
     marginVertical: 8,
-    paddingHorizontal: 12,
+    paddingHorizontal: 16,
     borderWidth: 1,
     borderRadius: 16,
     height: 46,
+    fontWeight: 500,
   },
   selectListContainer: {
     flexDirection: "row",

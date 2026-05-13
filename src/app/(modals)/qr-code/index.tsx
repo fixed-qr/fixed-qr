@@ -1,6 +1,6 @@
 import { ScrollView, ThemedText, ThemedView } from "@/components/ui";
 import { screenWidth } from "@/constants/dimensions";
-import { spacing } from "@/constants/theme";
+import { spacing } from "@/constants/themex";
 import { useTheme } from "@/hooks/use-theme";
 import { useDataStore } from "@/store/data-store";
 import { getProviderLogo } from "@/utils/get-provider-logo";
@@ -31,15 +31,15 @@ export default function QRCodeFormScreen() {
 
     const pressableStyle = (key: string, pressed: boolean) => {
       let styles = {
-        borderColor: theme.border,
-        backgroundColor: theme.backgroundElement,
+        borderColor: theme.border.primary,
+        backgroundColor: theme.background.secondary,
         flex: 0,
       };
 
       if (pressed) {
-        styles.backgroundColor = theme.primarySoft as any;
+        styles.backgroundColor = theme.accent.soft as any;
       } else {
-        styles.backgroundColor = theme.backgroundElement;
+        styles.backgroundColor = theme.background.secondary;
       }
 
       if (key === "0") {
@@ -78,15 +78,15 @@ export default function QRCodeFormScreen() {
       <ThemedView style={styles.amountInput}>
         <Image
           source={require("@/assets/images/icons/rupee-64.png")}
-          style={[styles.rupeeUintImage, { tintColor: theme.primary }]}
+          style={[styles.rupeeUintImage, { tintColor: theme.accent.primary }]}
         />
         <TextInput
           value={value}
           editable={false}
           showSoftInputOnFocus={false}
           placeholder="0"
-          style={[styles.amount, { color: theme.primary }]}
-          placeholderTextColor={theme.primary}
+          style={[styles.amount, { color: theme.accent.primary }]}
+          placeholderTextColor={theme.accent.primary}
         />
       </ThemedView>
       {/* Providers */}
@@ -95,7 +95,10 @@ export default function QRCodeFormScreen() {
         horizontal={true}
         style={[
           styles.providerContainer,
-          { backgroundColor: theme.background, borderColor: theme.border },
+          {
+            backgroundColor: theme.background.primary,
+            borderColor: theme.border.primary,
+          },
         ]}
         contentContainerStyle={{
           flexGrow: 1,
@@ -123,8 +126,8 @@ export default function QRCodeFormScreen() {
                 style={[
                   styles.providerLink,
                   {
-                    borderColor: theme.border,
-                    backgroundColor: theme.primarySoft,
+                    borderColor: theme.border.primary,
+                    backgroundColor: theme.accent.soft,
                   },
                 ]}
               >
@@ -134,7 +137,11 @@ export default function QRCodeFormScreen() {
                     style={styles.providerLogo}
                   />
                 </ThemedView>
-                <ThemedText type="smallBold" style={styles.providerLabel}>
+                <ThemedText
+                  variant="small"
+                  weight="500"
+                  style={styles.providerLabel}
+                >
                   {upiId.label}
                 </ThemedText>
               </ThemedView>

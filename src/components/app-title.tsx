@@ -5,10 +5,7 @@ import { StyleSheet } from "react-native";
 export function AppTitle() {
   const theme = useTheme();
   return (
-    <ThemedText
-      type="default"
-      style={[styles.appTitle, { color: theme.primary }]}
-    >
+    <ThemedText style={[styles.appTitle, { color: theme.accent.primary }]}>
       FixedQR
     </ThemedText>
   );

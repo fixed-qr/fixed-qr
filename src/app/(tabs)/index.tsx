@@ -7,7 +7,7 @@ import {
     ThemedText,
     ThemedView,
 } from "@/components/ui";
-import { spacing } from "@/constants/theme";
+import { spacing } from "@/constants/themex";
 import { useTheme } from "@/hooks/use-theme";
 import { useDataStore } from "@/store/data-store";
 import { Link } from "expo-router";
@@ -22,7 +22,7 @@ export default function HomeScreen() {
       <Header />
       <ScrollView>
         <ThemedText
-          style={[styles.greetingMessageText, { color: theme.textSecondary }]}
+          style={[styles.greetingMessageText, { color: theme.text.secondary }]}
         >
           Hi, {username}
         </ThemedText>
@@ -30,11 +30,18 @@ export default function HomeScreen() {
           <ThemedView
             style={[
               styles.GenQRCode,
-              { backgroundColor: theme.primarySoft, borderColor: theme.border },
+              {
+                backgroundColor: theme.accent.soft,
+                borderColor: theme.border.primary,
+              },
             ]}
           >
-            <Ionicons name="qr-code-outline" size={24} color={theme.text} />
-            <ThemedText type="default" style={styles.GenQRCodeText}>
+            <Ionicons
+              name="qr-code-outline"
+              size={24}
+              color={theme.text.primary}
+            />
+            <ThemedText style={styles.GenQRCodeText}>
               Generate a QR Code
             </ThemedText>
           </ThemedView>

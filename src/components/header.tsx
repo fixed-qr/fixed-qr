@@ -1,6 +1,6 @@
 import { AppTitle } from "@/components/app-title";
 import { ThemedView } from "@/components/ui";
-import { spacing } from "@/constants/theme";
+import { spacing } from "@/constants/themex";
 import { useTheme } from "@/hooks/use-theme";
 import { Ionicons } from "@expo/vector-icons";
 import { Pressable, StyleSheet } from "react-native";
@@ -14,7 +14,7 @@ export function Header() {
       </ThemedView>
       <ThemedView style={styles.rightContainer}>
         <Pressable>
-          <Ionicons name="qr-code" size={28} color={theme.text} />
+          <Ionicons name="qr-code" size={28} color={theme.text.primary} />
         </Pressable>
       </ThemedView>
     </ThemedView>

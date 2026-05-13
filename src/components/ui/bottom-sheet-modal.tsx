@@ -63,7 +63,7 @@ export const UIBottomSheetModal = forwardRef<
 
     return (
       <GestureHandlerRootView
-        style={{ flex: 1, backgroundColor: theme.background }}
+        style={{ flex: 1, backgroundColor: theme.background.primary }}
       >
         <BottomSheetModalProvider>
           <BottomSheetModal
@@ -77,10 +77,10 @@ export const UIBottomSheetModal = forwardRef<
             keyboardBlurBehavior="restore"
             backdropComponent={renderBackdrop}
             handleIndicatorStyle={{
-              backgroundColor: theme.text,
+              backgroundColor: theme.text.primary,
             }}
             backgroundStyle={{
-              backgroundColor: theme.background,
+              backgroundColor: theme.background.primary,
               borderTopLeftRadius: borderRadius,
               borderTopRightRadius: borderRadius,
             }}
@@ -89,7 +89,7 @@ export const UIBottomSheetModal = forwardRef<
               style={[
                 styles.content,
                 {
-                  backgroundColor: theme.background,
+                  backgroundColor: theme.background.primary,
                 },
                 containerStyle,
               ]}
