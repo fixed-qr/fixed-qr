@@ -54,7 +54,7 @@ export const BottomSheetModal = forwardRef<
           {...props}
           appearsOnIndex={0}
           disappearsOnIndex={-1}
-          opacity={0.5}
+          opacity={0.25}
           pressBehavior={backdropPressBehavior}
         />
       ),
