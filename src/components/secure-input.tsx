@@ -5,9 +5,14 @@ import { Ionicons, ThemedText, ThemedView } from "./ui";
 interface SecureInputProps {
   value: string;
   onChangeText: (value: string) => void;
+  onSubmitEditing?: () => void;
 }
 
-export function SecureInput({ value, onChangeText }: SecureInputProps) {
+export function SecureInput({
+  value,
+  onChangeText,
+  onSubmitEditing,
+}: SecureInputProps) {
   const theme = useTheme();
 
   return (
@@ -31,12 +36,19 @@ export function SecureInput({ value, onChangeText }: SecureInputProps) {
           Password
         </ThemedText>
         <TextInput
+          // secureTextEntry
           textContentType="password"
+          autoCorrect={false}
+          autoCapitalize="none"
+          returnKeyType="done"
           placeholder="Enter your secure password"
           placeholderTextColor={theme.textSecondary}
           style={[styles.inputField, { color: theme.text }]}
-          onChangeText={onChangeText}
           value={value}
+          onChangeText={(text) => {
+            onChangeText(text);
+          }}
+          onSubmitEditing={onSubmitEditing}
         />
       </ThemedView>
     </ThemedView>

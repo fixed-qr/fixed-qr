@@ -14,48 +14,64 @@ import { Keyboard, Pressable, StyleSheet } from "react-native";
 
 export function Authenticate() {
   const theme = useTheme();
+
   const bottomSheetRef = useRef<BottomSheet>(null);
+
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+
   const storedPassword = useDataStore((state) => state.user?.password);
+
   const { isAuthenticated, setIsAuthenticated } = useAuthStore();
 
   useEffect(() => {
     if (isAuthenticated) {
       bottomSheetRef.current?.close();
     }
-  }, []);
+  }, [isAuthenticated]);
 
   const handlePasswordChange = (value: string) => {
+    setError("");
     setPassword(value);
   };
 
   const handleOnSubmit = () => {
-    if (!password.trim()) {
+    const trimmedPassword = password.trim();
+
+    if (!trimmedPassword) {
       setError("Password is required");
+      return;
+    }
+
+    if (trimmedPassword !== storedPassword) {
+      setError("Incorrect password");
       return;
     }
 
     setError("");
 
-    if (password === storedPassword) {
-      setIsAuthenticated(true);
-      bottomSheetRef.current?.close();
-      Keyboard.dismiss();
-    } else {
-      setError("Incorrect password");
-    }
+    Keyboard.dismiss();
+    setIsAuthenticated(true);
+    bottomSheetRef.current?.close();
   };
+
+  if (isAuthenticated) {
+    return null;
+  }
 
   return (
     <UIBottomSheet
       title="Verify Your Identity"
       ref={bottomSheetRef}
-      enableDynamicSizing={true}
+      enableDynamicSizing
       enablePanDownToClose={false}
       backdropPressBehavior="none"
     >
-      <SecureInput value={password} onChangeText={handlePasswordChange} />
+      <SecureInput
+        value={password}
+        onChangeText={handlePasswordChange}
+        onSubmitEditing={handleOnSubmit}
+      />
       {!!error && (
         <ThemedView style={styles.error}>
           <ThemedText type="small" color="danger">
@@ -78,7 +94,9 @@ export function Authenticate() {
           name="arrow-up"
           size={18}
           color={theme.textInverse}
-          style={{ transform: "rotate(45deg)" }}
+          style={{
+            transform: [{ rotate: "45deg" }],
+          }}
         />
       </Pressable>
     </UIBottomSheet>

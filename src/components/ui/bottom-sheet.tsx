@@ -5,7 +5,6 @@ import BottomSheet, {
     BottomSheetBackdropProps,
     BottomSheetView,
 } from "@gorhom/bottom-sheet";
-import type { BottomSheetMethods } from "@gorhom/bottom-sheet/lib/typescript/types";
 import React, { ReactNode, forwardRef, useCallback, useMemo } from "react";
 import { StyleProp, StyleSheet, ViewStyle } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -23,7 +22,7 @@ interface UIBottomSheetProps {
   backdropPressBehavior?: "none" | "close" | "collapse";
 }
 
-export const UIBottomSheet = forwardRef<BottomSheetMethods, UIBottomSheetProps>(
+export const UIBottomSheet = forwardRef<BottomSheet, UIBottomSheetProps>(
   (
     {
       title,
@@ -59,7 +58,7 @@ export const UIBottomSheet = forwardRef<BottomSheetMethods, UIBottomSheetProps>(
     return (
       <BottomSheet
         ref={ref}
-        index={index}
+        index={index ?? 0}
         topInset={insets.top}
         snapPoints={memoizedSnapPoints}
         enableDynamicSizing={enableDynamicSizing}

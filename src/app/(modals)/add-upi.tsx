@@ -51,7 +51,7 @@ export default function AddUPIScreen() {
     <ScrollView>
       {/* UPI Input */}
       <ThemedView>
-        <ThemedText style={styles.title}>Add New UPI ID</ThemedText>
+        <ThemedText style={styles.title}>Add UPI ID</ThemedText>
         <TextInput
           value={upiId}
           onChangeText={handleUPIIdChange}
@@ -61,7 +61,7 @@ export default function AddUPIScreen() {
           onBlur={() => {
             setIsFocused(false);
           }}
-          placeholder="Enter UPI"
+          placeholder="Enter UPI ID"
           placeholderTextColor={theme.placeholder}
           style={[
             styles.upiIdInput,
