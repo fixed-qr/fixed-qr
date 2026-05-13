@@ -1,5 +1,4 @@
 import { screenWidth } from "@/constants/dimensions";
-import { spacing } from "@/constants/themex";
 import { useTheme } from "@/hooks/use-theme";
 import { useDataStore } from "@/store/data-store";
 import { getProviderLabel } from "@/utils/get-provider-label";
@@ -10,7 +9,7 @@ import { StyleSheet } from "react-native";
 import { QuickAction } from "../quick-action";
 import { Image, ThemedText, ThemedView } from "../ui";
 
-const gap = spacing[8];
+const gap = 8;
 const width = (screenWidth - gap - 40 - 1) / 2;
 
 export function QuickActions() {

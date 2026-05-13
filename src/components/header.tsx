@@ -1,6 +1,5 @@
 import { AppTitle } from "@/components/app-title";
 import { ThemedView } from "@/components/ui";
-import { spacing } from "@/constants/themex";
 import { useTheme } from "@/hooks/use-theme";
 import { Ionicons } from "@expo/vector-icons";
 import { Pressable, StyleSheet } from "react-native";
@@ -25,8 +24,8 @@ const styles = StyleSheet.create({
   container: {
     width: "100%",
     flexDirection: "row",
-    paddingHorizontal: spacing[20],
-    paddingVertical: spacing[12],
+    paddingHorizontal: 20,
+    paddingVertical: 12,
     justifyContent: "space-between",
     alignItems: "center",
   },

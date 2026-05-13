@@ -6,7 +6,6 @@ import {
     ThemedText,
     ThemedView,
 } from "@/components/ui";
-import { spacing } from "@/constants/themex";
 import { useTheme } from "@/hooks/use-theme";
 import { useDataStore } from "@/store/data-store";
 import BottomSheet from "@gorhom/bottom-sheet";
@@ -58,7 +57,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginTop: 32,
     marginBottom: 24,
-    gap: spacing[16],
+    gap: 16,
   },
   userProfileAvatarContainer: {
     aspectRatio: 1,

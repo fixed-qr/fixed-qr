@@ -1,4 +1,3 @@
-import { spacing } from "@/constants/themex";
 import { useTheme } from "@/hooks/use-theme";
 import { ScrollView as NativeScrollView, ScrollViewProps } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -20,9 +19,9 @@ export function ScrollView(props: ScrollViewProps) {
       contentContainerStyle={[
         {
           backgroundColor: theme.background.primary,
-          paddingHorizontal: spacing[20],
+          paddingHorizontal: 20,
           justifyContent: "center",
-          gap: spacing[8],
+          gap: 8,
         },
         contentContainerStyle,
       ]}

@@ -8,7 +8,6 @@ import {
 } from "@/components/ui";
 import { screenWidth } from "@/constants/dimensions";
 import { providers } from "@/constants/providers";
-import { spacing } from "@/constants/themex";
 import { useTheme } from "@/hooks/use-theme";
 import { useDataStore } from "@/store/data-store";
 import { Provider } from "@/types/provider";
@@ -17,7 +16,7 @@ import { useRouter } from "expo-router";
 import { useState } from "react";
 import { Pressable, StyleSheet, TextInput } from "react-native";
 
-const gap = spacing[8];
+const gap = 8;
 const width = (screenWidth - gap * 2 - 40) / 3;
 
 export default function AddUPIScreen() {

@@ -1,4 +1,3 @@
-import { spacing } from "@/constants/themex";
 import { useTheme } from "@/hooks/use-theme";
 import { useDataStore } from "@/store/data-store";
 import {
@@ -67,7 +66,7 @@ const styles = StyleSheet.create({
   left: {
     flex: 1,
     flexDirection: "row",
-    gap: spacing[8],
+    gap: 8,
   },
   right: {},
   logoImage: {

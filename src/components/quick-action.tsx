@@ -1,4 +1,3 @@
-import { spacing } from "@/constants/themex";
 import { useTheme } from "@/hooks/use-theme";
 import { ImageSourcePropType, StyleSheet } from "react-native";
 import { Amount } from "./amount";
@@ -66,7 +65,7 @@ const styles = StyleSheet.create({
     marginTop: 2,
     flexDirection: "row",
     alignItems: "center",
-    gap: spacing[2],
+    gap: 2,
     backgroundColor: "transparent",
     overflow: "hidden",
   },

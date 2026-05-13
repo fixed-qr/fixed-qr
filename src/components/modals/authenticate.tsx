@@ -96,13 +96,13 @@ export function Authenticate() {
           },
         ]}
       >
-        <ThemedText weight="600" style={{ color: theme.text.secondary }}>
+        <ThemedText weight="600" style={{ color: theme.text.inverse }}>
           Authenticate
         </ThemedText>
         <Ionicons
           name="arrow-up"
           size={18}
-          color={theme.text.secondary}
+          color={theme.text.inverse}
           style={{
             transform: [{ rotate: "45deg" }],
           }}

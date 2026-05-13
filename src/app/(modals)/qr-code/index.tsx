@@ -1,6 +1,5 @@
 import { ScrollView, ThemedText, ThemedView } from "@/components/ui";
 import { screenWidth } from "@/constants/dimensions";
-import { spacing } from "@/constants/themex";
 import { useTheme } from "@/hooks/use-theme";
 import { useDataStore } from "@/store/data-store";
 import { getProviderLogo } from "@/utils/get-provider-logo";
@@ -10,7 +9,7 @@ import { useState } from "react";
 import { Pressable, StyleSheet, TextInput } from "react-native";
 
 const numericKeys = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "⌫"];
-const gap = spacing[8];
+const gap = 8;
 const boxWidth = (screenWidth - gap * 3 - 40) / 3;
 
 export default function QRCodeFormScreen() {

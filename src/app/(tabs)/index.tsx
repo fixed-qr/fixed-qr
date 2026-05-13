@@ -7,7 +7,6 @@ import {
     ThemedText,
     ThemedView,
 } from "@/components/ui";
-import { spacing } from "@/constants/themex";
 import { useTheme } from "@/hooks/use-theme";
 import { useDataStore } from "@/store/data-store";
 import { Link } from "expo-router";
@@ -54,7 +53,7 @@ export default function HomeScreen() {
 
 const styles = StyleSheet.create({
   greetingMessageText: {
-    marginBlock: spacing[16],
+    marginBlock: 16,
     marginLeft: 1,
     textTransform: "capitalize",
   },
@@ -65,7 +64,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
-    gap: spacing[8],
+    gap: 8,
     borderRadius: 68,
     borderWidth: 1,
   },

@@ -1,7 +1,6 @@
 import { ScrollView, ThemedText } from "@/components/ui";
 import { ThemedView } from "@/components/ui/themed-view";
 import { screenWidth } from "@/constants/dimensions";
-import { spacing } from "@/constants/themex";
 import { useTheme } from "@/hooks/use-theme";
 import { useDataStore } from "@/store/data-store";
 import { ProviderEnum } from "@/types/provider";
@@ -96,7 +95,7 @@ const styles = StyleSheet.create({
   upiIdContainer: {
     alignItems: "center",
     justifyContent: "center",
-    gap: spacing[8],
+    gap: 8,
     marginBlock: 12,
     paddingBlock: 2.5,
     paddingInline: 12,
