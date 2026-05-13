@@ -49,13 +49,13 @@ export default function GetStartedScreen() {
         <ThemedView style={styles.appLogo}>
           <Image
             source={require("@/assets/images/expo-logo.png")}
-            style={[styles.logoImage, { tintColor: theme.text }]}
+            style={[styles.logoImage, { tintColor: theme.text.primary }]}
           />
         </ThemedView>
         <ThemedText style={styles.appName}>FixedQR</ThemedText>
         <ThemedText
-          type="small"
-          style={[styles.screenDescription, { color: theme.textSecondary }]}
+          variant="small"
+          style={[styles.screenDescription, { color: theme.text.muted }]}
         >
           Get started to begin your personalized journey with FixedQR.
         </ThemedText>
@@ -66,26 +66,27 @@ export default function GetStartedScreen() {
           style={[
             styles.input,
             {
-              backgroundColor: theme.inputBackground,
-              borderColor: theme.inputBorder,
+              backgroundColor: theme.background.secondary,
+              borderColor: theme.border.primary,
             },
           ]}
         >
           <ThemedView style={styles.left}>
-            <Ionicons name="person" size={24} color={theme.textSecondary} />
+            <Ionicons name="person" size={24} color={theme.text.secondary} />
           </ThemedView>
           <ThemedView style={styles.right}>
             <ThemedText
-              type="smallBold"
-              style={[styles.label, { color: theme.textSecondary }]}
+              variant="small"
+              weight="500"
+              style={[styles.label, { color: theme.text.secondary }]}
             >
               Name
             </ThemedText>
             <TextInput
               textContentType="name"
               placeholder="Enter your name"
-              placeholderTextColor={theme.textSecondary}
-              style={[styles.inputField, { color: theme.text }]}
+              placeholderTextColor={theme.text.secondary}
+              style={[styles.inputField, { color: theme.text.primary }]}
               value={user.name}
               onChangeText={(text) => handleInputChange("name", text)}
             />
@@ -93,7 +94,7 @@ export default function GetStartedScreen() {
         </ThemedView>
         {!!errors.name && (
           <ThemedView style={styles.error}>
-            <ThemedText type="small" color="danger">
+            <ThemedText variant="small" style={{ color: theme.status.danger }}>
               {errors.name}
             </ThemedText>
           </ThemedView>
@@ -106,7 +107,7 @@ export default function GetStartedScreen() {
         />
         {!!errors.password && (
           <ThemedView style={styles.error}>
-            <ThemedText type="small" color="danger">
+            <ThemedText variant="small" style={{ color: theme.status.danger }}>
               {errors.password}
             </ThemedText>
           </ThemedView>
@@ -116,9 +117,8 @@ export default function GetStartedScreen() {
         <ThemedView style={styles.privacyPolicy}>
           <Switch />
           <ThemedText
-            type="small"
-            color="textSecondary"
-            style={styles.privacyPolicyText}
+            variant="small"
+            style={[styles.privacyPolicyText, { color: theme.text.secondary }]}
           >
             I agree to the Terms of Services & Privacy Policy
           </ThemedText>
@@ -130,18 +130,22 @@ export default function GetStartedScreen() {
           style={({ pressed }) => [
             styles.getStartedButton,
             {
-              borderColor: theme.border,
-              backgroundColor: pressed ? theme.primaryHover : theme.primary,
+              borderColor: theme.border.primary,
+              backgroundColor: pressed
+                ? theme.accent.pressed
+                : theme.accent.primary,
             },
           ]}
         >
-          <ThemedText color="textInverse">Get Started</ThemedText>
+          <ThemedText style={{ color: theme.text.inverse }}>
+            Get Started
+          </ThemedText>
           <Ionicons
             name="arrow-up"
             size={18}
             style={{
               transform: "rotate(45deg)",
-              color: theme.textInverse,
+              color: theme.text.inverse,
               fontWeight: 600,
             }}
           />
