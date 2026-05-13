@@ -13,9 +13,9 @@ export default function TabLayout() {
 
   return (
     <NativeTabs
-      backgroundColor={theme.background}
-      indicatorColor={theme.backgroundElement}
-      labelStyle={{ selected: { color: theme.text } }}
+      backgroundColor={theme.background.secondary}
+      indicatorColor={theme.background.selected}
+      labelStyle={{ selected: { color: theme.text.primary } }}
     >
       <NativeTabs.Trigger name="index">
         <NativeTabs.Trigger.Label>Home</NativeTabs.Trigger.Label>
