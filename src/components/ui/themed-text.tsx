@@ -1,46 +1,22 @@
 import { StyleSheet, Text, type TextProps } from "react-native";
 
+import { TextVariant } from "@/constants/text-variants";
+import { BackgroundColors, TextColors } from "@/constants/theme-colors";
 import { useTheme } from "@/hooks/use-theme";
-
-const variants = {
-  body: {
-    fontSize: 16,
-    lineHeight: 24,
-  },
-
-  small: {
-    fontSize: 14,
-    lineHeight: 20,
-  },
-
-  title: {
-    fontSize: 48,
-    lineHeight: 52,
-  },
-
-  subtitle: {
-    fontSize: 32,
-    lineHeight: 44,
-  },
-
-  link: {
-    fontSize: 14,
-    lineHeight: 30,
-  },
-} as const;
-
-type Variant = keyof typeof variants;
-
-type FontWeight = "400" | "500" | "600" | "700" | "800";
+import { FontWeight } from "@/types/font-weight";
 
 export type ThemedTextProps = TextProps & {
-  variant?: Variant;
+  variant?: TextVariant;
   weight?: FontWeight;
+  backgroundColor?: BackgroundColors;
+  color?: TextColors;
 };
 
 export function ThemedText({
-  variant = "body",
-  weight = "500",
+  variant,
+  weight,
+  backgroundColor,
+  color,
   style,
   ...props
 }: ThemedTextProps) {
@@ -52,7 +28,10 @@ export function ThemedText({
       style={[
         styles.base,
         {
-          color: theme.text.primary,
+          color: color ? theme["text"][color] : theme.text.primary,
+          backgroundColor: backgroundColor
+            ? theme["background"][backgroundColor]
+            : "transparent",
           fontWeight: weight,
         },
         style,
