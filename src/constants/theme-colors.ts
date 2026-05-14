@@ -89,7 +89,7 @@
  *
  */
 
-export const colors = {
+export const themeColors = {
   light: {
     background: {
       primary: "#FFFFFF",
@@ -199,6 +199,19 @@ export const colors = {
   },
 } as const;
 
-export type ThemeMode = keyof typeof colors;
-export type ThemeColors = typeof colors.light;
-export type ThemeColorsKeys = keyof typeof colors.light;
+// Types
+// ============================================================
+export type ThemeMode = keyof typeof themeColors;
+export type ThemeColors = typeof themeColors.light;
+export type ThemeGroup = keyof ThemeColors;
+
+// Section Key Types
+// ============================================================
+export type BackgroundColors = keyof ThemeColors["background"];
+export type TextColors = keyof ThemeColors["text"];
+export type AccentColors = keyof ThemeColors["accent"];
+export type StatusColors = keyof ThemeColors["status"];
+export type BorderColors = keyof ThemeColors["border"];
+export type IconColors = keyof ThemeColors["icon"];
+export type OverlayColors = keyof ThemeColors["overlay"];
+export type ShadowColors = keyof ThemeColors["shadow"];

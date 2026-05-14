@@ -1,4 +1,4 @@
-import { ThemeColors } from "@/constants/theme";
+import { ThemeColors } from "@/constants/theme-colors";
 import { useTheme } from "@/hooks/use-theme";
 import { PropsWithChildren } from "react";
 import { View, type ViewProps } from "react-native";
