@@ -46,7 +46,7 @@ export default function ProfileScreen() {
         />
         <UpiIds />
       </ScrollView>
-      <Transactions ref={bottomSheetRef} snapPoints={["50%", "75%"]} />
+      <Transactions ref={bottomSheetRef} />
       <Authenticate />
     </SafeAreaView>
   );

@@ -13,10 +13,9 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 interface TransactionsProps {
   ref?: Ref<BottomSheet>;
-  snapPoints?: (number | string)[];
 }
 
-export function Transactions({ ref, snapPoints }: TransactionsProps) {
+export function Transactions({ ref }: TransactionsProps) {
   const theme = useTheme();
   const insets = useSafeAreaInsets();
   const transactions = useDataStore((state) => state.transactions);
@@ -29,13 +28,15 @@ export function Transactions({ ref, snapPoints }: TransactionsProps) {
     <BottomSheet
       ref={ref}
       index={-1}
+      snapPoints={["50%", "75%"]}
+      enableDynamicSizing={false}
       topInset={insets.top}
-      enablePanDownToClose
-      snapPoints={snapPoints}
+      bottomInset={insets.bottom}
+      enablePanDownToClose={true}
       backdropComponent={renderBackdrop}
       handleIndicatorStyle={{ backgroundColor: theme.text.primary }}
       backgroundStyle={{
-        backgroundColor: theme.background.primary,
+        backgroundColor: theme.background.secondary,
         borderTopLeftRadius: borderRadius,
         borderTopRightRadius: borderRadius,
       }}
@@ -43,7 +44,7 @@ export function Transactions({ ref, snapPoints }: TransactionsProps) {
       <ThemedText style={styles.title}>Transactions</ThemedText>
       <BottomSheetScrollView
         style={{
-          backgroundColor: theme.background.primary,
+          backgroundColor: theme.background.secondary,
           paddingHorizontal: 20,
         }}
       >
@@ -51,7 +52,7 @@ export function Transactions({ ref, snapPoints }: TransactionsProps) {
           <ThemedView
             style={[
               styles.transactions,
-              { backgroundColor: theme.background.secondary },
+              { backgroundColor: theme.background.card },
             ]}
           >
             {transactions.map((tsx, index) => (
