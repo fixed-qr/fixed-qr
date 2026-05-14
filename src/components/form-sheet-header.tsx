@@ -5,9 +5,14 @@ import { ThemedView } from "./ui";
 export function FormSheetHeader() {
   const theme = useTheme();
   return (
-    <ThemedView style={styles.container}>
+    <ThemedView
+      style={[
+        styles.container,
+        { backgroundColor: theme.background.secondary },
+      ]}
+    >
       <ThemedView
-        style={[styles.hrLine, { backgroundColor: theme.border.primary }]}
+        style={[styles.hrLine, { backgroundColor: theme.text.muted }]}
       />
     </ThemedView>
   );
@@ -20,11 +25,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
-
   hrLine: {
-    height: 6,
-    width: "25%",
-    minWidth: "15%",
-    borderRadius: 100,
+    width: 36,
+    height: 4,
+    borderRadius: 4,
   },
 });

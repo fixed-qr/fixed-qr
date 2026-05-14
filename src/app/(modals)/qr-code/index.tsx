@@ -1,3 +1,4 @@
+import { Amount } from "@/components";
 import { ScrollView, ThemedText, ThemedView } from "@/components/ui";
 import { screenWidth } from "@/constants/dimensions";
 import { useTheme } from "@/hooks/use-theme";
@@ -6,7 +7,7 @@ import { getProviderLogo } from "@/utils/get-provider-logo";
 import { Image } from "expo-image";
 import { Link } from "expo-router";
 import { useState } from "react";
-import { Pressable, StyleSheet, TextInput } from "react-native";
+import { Pressable, StyleSheet } from "react-native";
 
 const numericKeys = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "⌫"];
 const gap = 8;
@@ -31,14 +32,14 @@ export default function QRCodeFormScreen() {
     const pressableStyle = (key: string, pressed: boolean) => {
       let styles = {
         borderColor: theme.border.primary,
-        backgroundColor: theme.background.secondary,
+        backgroundColor: theme.background.primary,
         flex: 0,
       };
 
       if (pressed) {
         styles.backgroundColor = theme.accent.soft as any;
       } else {
-        styles.backgroundColor = theme.background.secondary;
+        styles.backgroundColor = theme.background.primary;
       }
 
       if (key === "0") {
@@ -49,7 +50,12 @@ export default function QRCodeFormScreen() {
     };
 
     return (
-      <ThemedView style={styles.numericPadContainer}>
+      <ThemedView
+        style={[
+          styles.numericPadContainer,
+          { backgroundColor: theme.background.secondary },
+        ]}
+      >
         {numericKeys.map((key) => {
           if (key === "") {
             return <ThemedView key={key} style={styles.key} />;
@@ -73,20 +79,21 @@ export default function QRCodeFormScreen() {
   };
 
   return (
-    <ScrollView>
-      <ThemedView style={styles.amountInput}>
-        <Image
-          source={require("@/assets/images/icons/rupee-64.png")}
-          style={[styles.rupeeUintImage, { tintColor: theme.accent.primary }]}
-        />
-        <TextInput
-          value={value}
-          editable={false}
-          showSoftInputOnFocus={false}
-          placeholder="0"
-          style={[styles.amount, { color: theme.accent.primary }]}
-          placeholderTextColor={theme.accent.primary}
-        />
+    <ScrollView
+      style={{
+        backgroundColor: theme.background.secondary,
+      }}
+      contentContainerStyle={{
+        backgroundColor: theme.background.secondary,
+      }}
+    >
+      <ThemedView
+        style={[
+          styles.amountInput,
+          { backgroundColor: theme.background.secondary },
+        ]}
+      >
+        <Amount amount={value.length === 0 ? "0" : value} size={22} />
       </ThemedView>
       {/* Providers */}
 
@@ -95,7 +102,7 @@ export default function QRCodeFormScreen() {
         style={[
           styles.providerContainer,
           {
-            backgroundColor: theme.background.primary,
+            backgroundColor: theme.background.secondary,
             borderColor: theme.border.primary,
           },
         ]}
@@ -105,6 +112,7 @@ export default function QRCodeFormScreen() {
           alignItems: "center",
           paddingHorizontal: 0,
           marginHorizontal: 0,
+          backgroundColor: theme.background.secondary,
         }}
       >
         {upiIds.length ? (
@@ -159,12 +167,11 @@ const styles = StyleSheet.create({
   amountInput: {
     width: "100%",
     flexDirection: "row",
-    flex: 1,
     justifyContent: "center",
     alignItems: "center",
     padding: 8,
-    paddingInline: 32,
-    marginBlock: 16,
+    paddingHorizontal: 32,
+    marginVertical: 16,
   },
   rupeeUintImage: {
     height: 22,

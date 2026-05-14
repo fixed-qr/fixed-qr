@@ -12,7 +12,7 @@ import { useEffect } from "react";
 import { Image, StyleSheet } from "react-native";
 import QRCode from "react-native-qrcode-svg";
 
-const width = (screenWidth - 40) / 1.5;
+const width = (screenWidth - 40) / 1.6;
 const borderRadius = 32;
 
 type LocalSearchParams = {
@@ -42,8 +42,18 @@ export default function GeneratedQRCodeScreen() {
 
   return (
     <ScrollView>
-      <ThemedView style={styles.container}>
-        <ThemedView style={[styles.upiIdContainer]}>
+      <ThemedView
+        style={[
+          styles.container,
+          { backgroundColor: theme.background.secondary },
+        ]}
+      >
+        <ThemedView
+          style={[
+            styles.upiIdContainer,
+            { backgroundColor: theme.background.secondary },
+          ]}
+        >
           <Image
             source={getProviderLogo(provider as any)}
             style={styles.image}
@@ -52,7 +62,7 @@ export default function GeneratedQRCodeScreen() {
           <ThemedText
             variant="small"
             weight="500"
-            style={[styles.message, { color: theme.text.muted }]}
+            style={{ color: theme.text.muted }}
           >
             {upiId}
           </ThemedText>
@@ -73,12 +83,25 @@ export default function GeneratedQRCodeScreen() {
             size={width - borderRadius}
           />
         </ThemedView>
-        <ThemedView style={styles.amountContainer}>
+        <ThemedView
+          style={[
+            styles.amountContainer,
+            { backgroundColor: theme.background.secondary },
+          ]}
+        >
           <Image
             source={require("@/assets/images/icons/rupee-64.png")}
             style={[styles.amountUnit, { tintColor: theme.accent.primary }]}
           />
-          <ThemedText style={[styles.amount, { color: theme.accent.primary }]}>
+          <ThemedText
+            style={[
+              styles.amount,
+              {
+                color: theme.accent.primary,
+                backgroundColor: theme.background.secondary,
+              },
+            ]}
+          >
             {amount}
           </ThemedText>
         </ThemedView>

@@ -8,7 +8,7 @@ export default function QRCodeLayout() {
     <Stack
       screenOptions={{
         headerShown: false,
-        contentStyle: { backgroundColor: theme.background },
+        contentStyle: { backgroundColor: theme.background.secondary },
       }}
     />
   );

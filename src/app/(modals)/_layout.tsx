@@ -18,7 +18,7 @@ export default function HomeLayout() {
       screenOptions={{
         headerShown: true,
         header: renderFormSheetHeader,
-        contentStyle: { backgroundColor: theme.background },
+        contentStyle: { backgroundColor: theme.background.secondary },
       }}
     >
       <Stack.Screen name="qr-code" />

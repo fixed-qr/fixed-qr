@@ -22,14 +22,14 @@ export default function RootLayout() {
 
   return (
     <GestureHandlerRootView
-      style={{ flex: 1, backgroundColor: theme.background }}
+      style={{ flex: 1, backgroundColor: theme.background.primary }}
     >
       <ThemeProvider value={scheme === "dark" ? DarkTheme : DefaultTheme}>
         <StatusBar style={scheme === "dark" ? "light" : "dark"} />
         <Stack
           screenOptions={{
             headerShown: false,
-            contentStyle: { backgroundColor: theme.background },
+            contentStyle: { backgroundColor: theme.background.primary },
           }}
         >
           <Stack.Screen name="(auth)/get-started" />
