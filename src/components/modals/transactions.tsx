@@ -4,11 +4,10 @@ import { useTheme } from "@/hooks/use-theme";
 import { useDataStore } from "@/store/data-store";
 import { getProviderLabel } from "@/utils/get-provider-label";
 import { getProviderLogo } from "@/utils/get-provider-logo";
-import BottomSheet, { BottomSheetBackdrop } from "@gorhom/bottom-sheet";
+import BottomSheet from "@gorhom/bottom-sheet";
 import { BottomSheetScrollView } from "@gorhom/bottom-sheet/src";
 import React, { Ref } from "react";
 import { StyleSheet } from "react-native";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 interface TransactionsProps {
   ref?: Ref<BottomSheet>;
@@ -16,12 +15,7 @@ interface TransactionsProps {
 
 export function Transactions({ ref }: TransactionsProps) {
   const theme = useTheme();
-  const insets = useSafeAreaInsets();
   const transactions = useDataStore((state) => state.transactions);
-
-  const renderBackdrop = (props: any) => (
-    <BottomSheetBackdrop {...props} appearsOnIndex={1} disappearsOnIndex={-1} />
-  );
 
   return (
     <UIBottomSheet
