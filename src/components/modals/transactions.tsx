@@ -1,6 +1,5 @@
 import { Transaction } from "@/components";
-import { Image, ThemedText, ThemedView } from "@/components/ui";
-import { borderRadius } from "@/constants/platform";
+import { Image, ThemedText, ThemedView, UIBottomSheet } from "@/components/ui";
 import { useTheme } from "@/hooks/use-theme";
 import { useDataStore } from "@/store/data-store";
 import { getProviderLabel } from "@/utils/get-provider-label";
@@ -25,23 +24,13 @@ export function Transactions({ ref }: TransactionsProps) {
   );
 
   return (
-    <BottomSheet
+    <UIBottomSheet
+      title="Transactions"
       ref={ref}
       index={-1}
       snapPoints={["50%", "75%"]}
-      enableDynamicSizing={false}
-      topInset={insets.top}
-      bottomInset={insets.bottom}
       enablePanDownToClose={true}
-      backdropComponent={renderBackdrop}
-      handleIndicatorStyle={{ backgroundColor: theme.text.primary }}
-      backgroundStyle={{
-        backgroundColor: theme.background.secondary,
-        borderTopLeftRadius: borderRadius,
-        borderTopRightRadius: borderRadius,
-      }}
     >
-      <ThemedText style={styles.title}>Transactions</ThemedText>
       <BottomSheetScrollView
         style={{
           backgroundColor: theme.background.secondary,
@@ -89,16 +78,11 @@ export function Transactions({ ref }: TransactionsProps) {
           </ThemedView>
         )}
       </BottomSheetScrollView>
-    </BottomSheet>
+    </UIBottomSheet>
   );
 }
 
 const styles = StyleSheet.create({
-  title: {
-    textAlign: "center",
-    fontSize: 22,
-    marginVertical: 8,
-  },
   transactionsTitle: {
     marginTop: 16,
     paddingInline: 8,

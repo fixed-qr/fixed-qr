@@ -29,7 +29,7 @@ export const UIBottomSheet = forwardRef<BottomSheet, UIBottomSheetProps>(
       children,
       index,
       snapPoints,
-      enableDynamicSizing,
+      enableDynamicSizing = false,
       enablePanDownToClose,
       backdropPressBehavior = "close",
       renderHeader,
@@ -63,7 +63,6 @@ export const UIBottomSheet = forwardRef<BottomSheet, UIBottomSheetProps>(
         snapPoints={memoizedSnapPoints}
         enableDynamicSizing={enableDynamicSizing}
         enablePanDownToClose={enablePanDownToClose}
-        keyboardBehavior="interactive"
         keyboardBlurBehavior="restore"
         backdropComponent={renderBackdrop}
         handleIndicatorStyle={{
