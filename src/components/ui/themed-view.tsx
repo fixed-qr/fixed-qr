@@ -1,18 +1,30 @@
-import { ThemeColors } from "@/constants/theme-colors";
+import { BackgroundColors } from "@/constants/theme-colors";
 import { useTheme } from "@/hooks/use-theme";
 import { PropsWithChildren } from "react";
 import { View, type ViewProps } from "react-native";
 
 type ThemedViewProps = PropsWithChildren<ViewProps> & {
-  color?: ThemeColors;
+  backgroundColor?: BackgroundColors;
 };
 
-export function ThemedView({ style, children, ...props }: ThemedViewProps) {
+export function ThemedView({
+  style,
+  children,
+  backgroundColor,
+  ...props
+}: ThemedViewProps) {
   const theme = useTheme();
 
   return (
     <View
-      style={[{ backgroundColor: theme.background.primary }, style]}
+      style={[
+        {
+          backgroundColor: backgroundColor
+            ? theme["background"][backgroundColor]
+            : "transparent",
+        },
+        style,
+      ]}
       {...props}
     >
       {children}
