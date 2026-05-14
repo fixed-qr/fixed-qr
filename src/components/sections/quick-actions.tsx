@@ -29,26 +29,28 @@ export function QuickActions() {
         <ThemedView style={[styles.quickActions]}>
           {Array.from(
             new Map(transactions.map((item) => [item.amount, item])).values(),
-          ).map((tsx) => (
-            <Link
-              key={tsx.transactionId}
-              href={{
-                pathname: "/(modals)/qr-code/result",
-                params: {
-                  upiId: tsx.upiId,
-                  amount: tsx.amount,
-                  provider: tsx.provider,
-                },
-              }}
-            >
-              <QuickAction
-                logoImage={getProviderLogo(tsx.provider)}
-                label={getProviderLabel(tsx.provider)}
-                amount={tsx.amount}
-                size={width}
-              />
-            </Link>
-          ))}
+          )
+            .slice(0, 6)
+            .map((tsx) => (
+              <Link
+                key={tsx.transactionId}
+                href={{
+                  pathname: "/(modals)/qr-code/result",
+                  params: {
+                    upiId: tsx.upiId,
+                    amount: tsx.amount,
+                    provider: tsx.provider,
+                  },
+                }}
+              >
+                <QuickAction
+                  logoImage={getProviderLogo(tsx.provider)}
+                  label={getProviderLabel(tsx.provider)}
+                  amount={tsx.amount}
+                  size={width}
+                />
+              </Link>
+            ))}
         </ThemedView>
       ) : (
         <ThemedView
