@@ -3,89 +3,89 @@
  * TOKEN GROUPS
  * ------------------------------------------------------------------
  *
- * background → Layouts, cards, surfaces, containers
- * text       → Typography hierarchy
- * accent     → Brand & interactive colors
- * status     → Success, warning, error, info
- * border     → Borders, dividers, focus states
- * icon       → Icon hierarchy
- * overlay    → Modal/sheet overlays
- * shadow     → Elevation shadows
+ * - background → Layouts, cards, surfaces, containers
+ * - text       → Typography hierarchy
+ * - accent     → Brand & interactive colors
+ * - status     → Success, warning, error, info
+ * - border     → Borders, dividers, focus states
+ * - icon       → Icon hierarchy
+ * - overlay    → Modal/sheet overlays
+ * - shadow     → Elevation shadows
  *
  * ------------------------------------------------------------------
  * BACKGROUND USAGE
  * ------------------------------------------------------------------
  *
- * primary          → Main app background
- * secondary        → Section/group background
- * tertiary         → Nested layout background
- * surface          → Standard UI surface
- * surfaceElevated  → Modal/sheet/popover surfaces
- * card             → Primary card background
- * cardMuted        → Muted/secondary card
- * selected         → Active/selected state
- * disabled         → Disabled background state
+ * - primary          → Main app background
+ * - secondary        → Section/group background
+ * - tertiary         → Nested layout background
+ * - surface          → Standard UI surface
+ * - surfaceElevated  → Modal/sheet/popover surfaces
+ * - card             → Primary card background
+ * - cardMuted        → Muted/secondary card
+ * - selected         → Active/selected state
+ * - disabled         → Disabled background state
  *
  * ------------------------------------------------------------------
  * TEXT USAGE
  * ------------------------------------------------------------------
  *
- * primary   → Main readable text
- * secondary → Descriptions/subtitles
- * tertiary  → Metadata/supporting text
- * muted     → Placeholder/hint text
- * disabled  → Disabled/inactive text
- * inverse   → Text on accent/dark surfaces
+ * - primary   → Main readable text
+ * - secondary → Descriptions/subtitles
+ * - tertiary  → Metadata/supporting text
+ * - muted     → Placeholder/hint text
+ * - disabled  → Disabled/inactive text
+ * - inverse   → Text on accent/dark surfaces
  *
  * ------------------------------------------------------------------
  * ACCENT USAGE
  * ------------------------------------------------------------------
  *
- * primary → Primary actions/buttons/links
- * pressed → Pressed interaction state
- * soft    → Soft accent background
- * subtle  → Very subtle accent tint
+ * - primary → Primary actions/buttons/links
+ * - pressed → Pressed interaction state
+ * - soft    → Soft accent background
+ * - subtle  → Very subtle accent tint
  *
  * ------------------------------------------------------------------
  * STATUS USAGE
  * ------------------------------------------------------------------
  *
- * success → Success states
- * warning → Warning states
- * danger  → Error/destructive states
- * info    → Informational states
+ * - success → Success states
+ * - warning → Warning states
+ * - danger  → Error/destructive states
+ * - info    → Informational states
  *
  * ------------------------------------------------------------------
  * BORDER USAGE
  * ------------------------------------------------------------------
  *
- * primary  → Standard borders
- * secondary→ Stronger borders/dividers
- * subtle   → Soft separators
- * focus    → Focused/active states
+ * -primary  → Standard borders
+ * - secondary→ Stronger borders/dividers
+ * - subtle   → Soft separators
+ * - focus    → Focused/active states
  *
  * ------------------------------------------------------------------
  * ICON USAGE
  * ------------------------------------------------------------------
  *
- * primary   → Main icons
- * secondary → Secondary/inactive icons
- * muted     → Decorative icons
- * inverse   → Icons on accent surfaces
+ * - primary   → Main icons
+ * - secondary → Secondary/inactive icons
+ * - muted     → Decorative icons
+ * - inverse   → Icons on accent surfaces
  *
  * ------------------------------------------------------------------
  * OVERLAY USAGE
  * ------------------------------------------------------------------
  *
- * primary → Standard modal overlay
- * strong  → Fullscreen/heavy overlay
+ * - primary → Standard modal overlay
+ * - strong  → Fullscreen/heavy overlay
  *
  * ------------------------------------------------------------------
  * SHADOW USAGE
  * ------------------------------------------------------------------
  *
- * primary → Standard elevation shadow
- * strong  → High elevation shadow
+ * - primary → Standard elevation shadow
+ * - strong  → High elevation shadow
  *
  */
 
