@@ -1,5 +1,4 @@
-export { UIBottomSheet } from "./bottom-sheet";
-export { UIBottomSheetModal } from "./bottom-sheet-modal";
+export { AppBottomSheet } from "./app-bottom-sheet";
 export { Image } from "./image";
 export { SafeAreaScrollView } from "./safe-area-scroll-view";
 export { SafeAreaView } from "./safe-area-view";
@@ -7,4 +6,5 @@ export { ScrollView } from "./scroll-view";
 export { SelectList } from "./select-list";
 export { ThemedText } from "./themed-text";
 export { ThemedView } from "./themed-view";
+export { Title } from "./title";
 export { Ionicons } from "./vector-icons";

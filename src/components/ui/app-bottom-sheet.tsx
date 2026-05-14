@@ -3,43 +3,33 @@ import { useTheme } from "@/hooks/use-theme";
 import BottomSheet, {
     BottomSheetBackdrop,
     BottomSheetBackdropProps,
-    BottomSheetView,
 } from "@gorhom/bottom-sheet";
 import React, { ReactNode, forwardRef, useCallback, useMemo } from "react";
-import { StyleProp, StyleSheet, ViewStyle } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { ThemedText } from "./themed-text";
 
-interface UIBottomSheetProps {
-  title?: string;
+interface AppBottomSheetProps {
   children: ReactNode;
   index?: number;
   snapPoints?: (string | number)[];
   enableDynamicSizing?: boolean;
   enablePanDownToClose?: boolean;
-  renderHeader?: () => ReactNode;
-  containerStyle?: StyleProp<ViewStyle>;
   backdropPressBehavior?: "none" | "close" | "collapse";
 }
 
-export const UIBottomSheet = forwardRef<BottomSheet, UIBottomSheetProps>(
+export const AppBottomSheet = forwardRef<BottomSheet, AppBottomSheetProps>(
   (
     {
-      title,
       children,
       index,
       snapPoints,
-      enableDynamicSizing = false,
+      enableDynamicSizing,
       enablePanDownToClose,
-      backdropPressBehavior = "close",
-      renderHeader,
-      containerStyle,
+      backdropPressBehavior,
     },
     ref,
   ) => {
     const theme = useTheme();
     const insets = useSafeAreaInsets();
-
     const memoizedSnapPoints = useMemo(() => snapPoints, [snapPoints]);
 
     const renderBackdrop = useCallback(
@@ -49,7 +39,7 @@ export const UIBottomSheet = forwardRef<BottomSheet, UIBottomSheetProps>(
           appearsOnIndex={0}
           disappearsOnIndex={-1}
           opacity={0.25}
-          pressBehavior={backdropPressBehavior}
+          pressBehavior={backdropPressBehavior || "close"}
         />
       ),
       [],
@@ -58,7 +48,7 @@ export const UIBottomSheet = forwardRef<BottomSheet, UIBottomSheetProps>(
     return (
       <BottomSheet
         ref={ref}
-        index={index ?? 0}
+        index={index}
         topInset={insets.top}
         snapPoints={memoizedSnapPoints}
         enableDynamicSizing={enableDynamicSizing}
@@ -77,37 +67,8 @@ export const UIBottomSheet = forwardRef<BottomSheet, UIBottomSheetProps>(
           borderTopRightRadius: borderRadius,
         }}
       >
-        <BottomSheetView
-          style={[
-            styles.content,
-            {
-              backgroundColor: theme.background.secondary,
-            },
-            containerStyle,
-          ]}
-        >
-          {renderHeader ? (
-            renderHeader()
-          ) : title ? (
-            <ThemedText style={styles.headerTitle}>{title}</ThemedText>
-          ) : null}
-
-          {children}
-        </BottomSheetView>
+        {children}
       </BottomSheet>
     );
   },
 );
-
-const styles = StyleSheet.create({
-  headerTitle: {
-    textAlign: "center",
-    fontSize: 22,
-    marginVertical: 8,
-    fontWeight: "600",
-  },
-  content: {
-    paddingHorizontal: 20,
-    paddingBottom: 24,
-  },
-});

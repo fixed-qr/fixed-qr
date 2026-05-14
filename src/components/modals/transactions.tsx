@@ -1,5 +1,11 @@
 import { Transaction } from "@/components";
-import { Image, ThemedText, ThemedView, UIBottomSheet } from "@/components/ui";
+import {
+    AppBottomSheet,
+    Image,
+    ThemedText,
+    ThemedView,
+    Title,
+} from "@/components/ui";
 import { useTheme } from "@/hooks/use-theme";
 import { useDataStore } from "@/store/data-store";
 import { getProviderLabel } from "@/utils/get-provider-label";
@@ -18,19 +24,19 @@ export function Transactions({ ref }: TransactionsProps) {
   const transactions = useDataStore((state) => state.transactions);
 
   return (
-    <UIBottomSheet
-      title="Transactions"
+    <AppBottomSheet
       ref={ref}
       index={-1}
-      snapPoints={["50%", "75%"]}
+      snapPoints={["50%", "75%", "90%"]}
       enablePanDownToClose={true}
     >
       <BottomSheetScrollView
+        stickyHeaderIndices={[0]}
         style={{
           backgroundColor: theme.background.secondary,
-          paddingHorizontal: 20,
         }}
       >
+        <Title>Transactions</Title>
         {transactions.length ? (
           <ThemedView
             style={[
@@ -72,7 +78,7 @@ export function Transactions({ ref }: TransactionsProps) {
           </ThemedView>
         )}
       </BottomSheetScrollView>
-    </UIBottomSheet>
+    </AppBottomSheet>
   );
 }
 

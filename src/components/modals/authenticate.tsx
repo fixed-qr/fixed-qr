@@ -1,27 +1,24 @@
 import { SecureInput } from "@/components";
 import {
+    AppBottomSheet,
     Ionicons,
     ThemedText,
     ThemedView,
-    UIBottomSheet,
+    Title,
 } from "@/components/ui";
 import { useTheme } from "@/hooks/use-theme";
 import { useAuthStore } from "@/store/auth-store";
 import { useDataStore } from "@/store/data-store";
-import BottomSheet from "@gorhom/bottom-sheet";
+import BottomSheet, { BottomSheetView } from "@gorhom/bottom-sheet";
 import { useEffect, useRef, useState } from "react";
 import { Keyboard, Pressable, StyleSheet } from "react-native";
 
 export function Authenticate() {
   const theme = useTheme();
-
   const bottomSheetRef = useRef<BottomSheet>(null);
-
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-
   const storedPassword = useDataStore((state) => state.user?.password);
-
   const { isAuthenticated, setIsAuthenticated } = useAuthStore();
 
   useEffect(() => {
@@ -60,55 +57,63 @@ export function Authenticate() {
   }
 
   return (
-    <UIBottomSheet
-      title="Verify Your Identity"
+    <AppBottomSheet
       ref={bottomSheetRef}
-      enableDynamicSizing
+      index={0}
+      enableDynamicSizing={true}
       enablePanDownToClose={false}
       backdropPressBehavior="none"
     >
-      <SecureInput
-        value={password}
-        onChangeText={handlePasswordChange}
-        onSubmitEditing={handleOnSubmit}
-      />
-      {!!error && (
-        <ThemedView
-          style={[
-            styles.error,
-            { backgroundColor: theme.background.secondary },
+      <BottomSheetView
+        style={{
+          backgroundColor: theme.background.secondary,
+          paddingHorizontal: 20,
+        }}
+      >
+        <Title>Verify Your Identity</Title>
+        <SecureInput
+          value={password}
+          onChangeText={handlePasswordChange}
+          onSubmitEditing={handleOnSubmit}
+        />
+        {!!error && (
+          <ThemedView
+            style={[
+              styles.error,
+              { backgroundColor: theme.background.secondary },
+            ]}
+          >
+            <ThemedText variant="small" style={{ color: theme.status.danger }}>
+              {error}
+            </ThemedText>
+          </ThemedView>
+        )}
+        <Pressable
+          onPress={handleOnSubmit}
+          style={({ pressed }) => [
+            styles.authenticateButton,
+            {
+              borderColor: theme.border.primary,
+              backgroundColor: pressed
+                ? theme.accent.pressed
+                : theme.accent.primary,
+            },
           ]}
         >
-          <ThemedText variant="small" style={{ color: theme.status.danger }}>
-            {error}
+          <ThemedText weight="600" style={{ color: theme.text.inverse }}>
+            Authenticate
           </ThemedText>
-        </ThemedView>
-      )}
-      <Pressable
-        onPress={handleOnSubmit}
-        style={({ pressed }) => [
-          styles.authenticateButton,
-          {
-            borderColor: theme.border.primary,
-            backgroundColor: pressed
-              ? theme.accent.pressed
-              : theme.accent.primary,
-          },
-        ]}
-      >
-        <ThemedText weight="600" style={{ color: theme.text.inverse }}>
-          Authenticate
-        </ThemedText>
-        <Ionicons
-          name="arrow-up"
-          size={18}
-          color={theme.text.inverse}
-          style={{
-            transform: [{ rotate: "45deg" }],
-          }}
-        />
-      </Pressable>
-    </UIBottomSheet>
+          <Ionicons
+            name="arrow-up"
+            size={18}
+            color={theme.text.inverse}
+            style={{
+              transform: [{ rotate: "45deg" }],
+            }}
+          />
+        </Pressable>
+      </BottomSheetView>
+    </AppBottomSheet>
   );
 }
 
