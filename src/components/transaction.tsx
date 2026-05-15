@@ -1,7 +1,7 @@
 import { useTheme } from "@/hooks/use-theme";
 import { ImageSourcePropType, StyleSheet } from "react-native";
 import { Amount } from "./amount";
-import { Image, Ionicons, ThemedText, ThemedView } from "./ui";
+import { AppIcon, AppImage, AppText, AppView } from "./ui";
 
 interface TransactionProps {
   logoImage: ImageSourcePropType;
@@ -21,7 +21,7 @@ export function Transaction({
   const theme = useTheme();
 
   return (
-    <ThemedView
+    <AppView
       style={[
         styles.shared,
         styles.transaction,
@@ -31,32 +31,32 @@ export function Transaction({
         },
       ]}
     >
-      <ThemedView style={[styles.shared, styles.left]}>
-        <Image source={logoImage} style={styles.logoImage} />
-      </ThemedView>
-      <ThemedView style={[styles.shared, styles.right]}>
-        <ThemedView style={[styles.rightLeft, styles.shared]}>
-          <ThemedText variant="button">{label}</ThemedText>
-          <ThemedText variant="bodySmall" color="tertiary">
+      <AppView style={[styles.shared, styles.left]}>
+        <AppImage source={logoImage} style={styles.logoImage} />
+      </AppView>
+      <AppView style={[styles.shared, styles.right]}>
+        <AppView style={[styles.rightLeft, styles.shared]}>
+          <AppText variant="button">{label}</AppText>
+          <AppText variant="bodySmall" color="tertiary">
             {timestamp}
-          </ThemedText>
-        </ThemedView>
-        <ThemedView style={[styles.shared, styles.rightRight]}>
+          </AppText>
+        </AppView>
+        <AppView style={[styles.shared, styles.rightRight]}>
           <Amount amount={amount} size={12} />
-          <Ionicons
+          <AppIcon
             name="arrow-back"
             size={18}
             color={theme.text.primary}
             style={{ transform: "rotate(-45deg)" }}
           />
-        </ThemedView>
-      </ThemedView>
-      <Ionicons
+        </AppView>
+      </AppView>
+      <AppIcon
         name="information-circle"
         size={18}
         color={theme.text.secondary}
       />
-    </ThemedView>
+    </AppView>
   );
 }
 

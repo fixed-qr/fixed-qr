@@ -2,7 +2,7 @@ import { ThemeColors } from "@/constants/theme-colors";
 import { useTheme } from "@/hooks/use-theme";
 import React from "react";
 import { StyleSheet } from "react-native";
-import { Image, ThemedText, ThemedView } from "./ui";
+import { AppImage, AppText, AppView } from "./ui";
 
 const initialSize = 15.5;
 
@@ -16,8 +16,8 @@ export function Amount({ amount, size, color }: AmountProps) {
   const theme = useTheme();
 
   return (
-    <ThemedView style={styles.amount}>
-      <Image
+    <AppView style={styles.amount}>
+      <AppImage
         source={require("@/assets/images/icons/rupee-64.png")}
         tintColor={theme.text.primary}
         style={[
@@ -28,7 +28,7 @@ export function Amount({ amount, size, color }: AmountProps) {
           },
         ]}
       />
-      <ThemedText
+      <AppText
         style={[
           styles.amountText,
           {
@@ -37,8 +37,8 @@ export function Amount({ amount, size, color }: AmountProps) {
         ]}
       >
         {amount}
-      </ThemedText>
-    </ThemedView>
+      </AppText>
+    </AppView>
   );
 }
 

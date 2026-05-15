@@ -2,11 +2,11 @@ import { screenWidth } from "@/constants/dimensions";
 import { useTheme } from "@/hooks/use-theme";
 import { StyleProp, StyleSheet, ViewStyle } from "react-native";
 import {
-    SafeAreaView as NativeSafeAreaView,
-    SafeAreaViewProps as NativeSafeAreaViewProps,
+    SafeAreaView,
+    SafeAreaViewProps,
 } from "react-native-safe-area-context";
 
-export interface SafeAreaViewProps extends NativeSafeAreaViewProps {
+export interface AppSafeAreaViewProps extends SafeAreaViewProps {
   children?: React.ReactNode;
   style?: StyleProp<ViewStyle>;
   fullWidth?: boolean;
@@ -14,16 +14,16 @@ export interface SafeAreaViewProps extends NativeSafeAreaViewProps {
   paddingVertical?: number;
 }
 
-export function SafeAreaView({
+export function AppSafeAreaView({
   children,
   style,
   fullWidth = false,
   ...props
-}: SafeAreaViewProps) {
+}: AppSafeAreaViewProps) {
   const theme = useTheme();
 
   return (
-    <NativeSafeAreaView
+    <SafeAreaView
       {...props}
       style={[
         styles.safeAreaContainer,
@@ -36,7 +36,7 @@ export function SafeAreaView({
       ]}
     >
       {children}
-    </NativeSafeAreaView>
+    </SafeAreaView>
   );
 }
 

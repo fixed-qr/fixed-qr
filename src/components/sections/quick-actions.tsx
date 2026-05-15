@@ -7,7 +7,7 @@ import { Link } from "expo-router";
 import React from "react";
 import { StyleSheet } from "react-native";
 import { QuickAction } from "../quick-action";
-import { Image, ThemedText, ThemedView } from "../ui";
+import { AppImage, AppText, AppView } from "../ui";
 
 const gap = 8;
 const width = (screenWidth - gap - 40 - 1) / 2;
@@ -17,17 +17,17 @@ export function QuickActions() {
   const transactions = useDataStore((state) => state.transactions);
 
   return (
-    <ThemedView>
-      <ThemedText
+    <AppView>
+      <AppText
         variant="bodyMedium"
         color="tertiary"
         weight="600"
         style={styles.quickActionsTitle}
       >
         Quick Actions
-      </ThemedText>
+      </AppText>
       {transactions.length ? (
-        <ThemedView style={[styles.quickActions]}>
+        <AppView style={[styles.quickActions]}>
           {Array.from(
             new Map(transactions.map((item) => [item.amount, item])).values(),
           )
@@ -52,9 +52,9 @@ export function QuickActions() {
                 />
               </Link>
             ))}
-        </ThemedView>
+        </AppView>
       ) : (
-        <ThemedView
+        <AppView
           style={[
             styles.transactionEmpty,
             {
@@ -63,20 +63,20 @@ export function QuickActions() {
             },
           ]}
         >
-          <Image
+          <AppImage
             source={require("@/assets/images/icons/not-found.png")}
             style={styles.notFoundImage}
           />
-          <ThemedText
+          <AppText
             variant="bodyMedium"
             color="secondary"
             style={styles.emptyText}
           >
             Your quick actions will appear here.
-          </ThemedText>
-        </ThemedView>
+          </AppText>
+        </AppView>
       )}
-    </ThemedView>
+    </AppView>
   );
 }
 

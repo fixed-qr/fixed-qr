@@ -1,20 +1,18 @@
 import { useTheme } from "@/hooks/use-theme";
 import { StyleSheet } from "react-native";
-import { ThemedView } from "./ui";
+import { AppView } from "./ui";
 
 export function FormSheetHeader() {
   const theme = useTheme();
   return (
-    <ThemedView
+    <AppView
       style={[
         styles.container,
         { backgroundColor: theme.background.secondary },
       ]}
     >
-      <ThemedView
-        style={[styles.hrLine, { backgroundColor: theme.text.muted }]}
-      />
-    </ThemedView>
+      <AppView style={[styles.hrLine, { backgroundColor: theme.text.muted }]} />
+    </AppView>
   );
 }
 

@@ -1,12 +1,14 @@
 import { useTheme } from "@/hooks/use-theme";
-import { ComponentProps } from "react";
 import { Pressable, StyleSheet } from "react-native";
-import { Ionicons, ThemedText } from "./ui";
+import { AppIcon, AppText } from "./ui";
+import { AppIconProps } from "./ui/app-icon";
+
+type IconName = AppIconProps["name"];
 
 interface SettingProps {
-  leftIcon: ComponentProps<typeof Ionicons>["name"];
+  leftIcon: IconName;
   label: string;
-  rightIcon?: ComponentProps<typeof Ionicons>["name"];
+  rightIcon?: IconName;
   onPress: () => void;
   isLast?: boolean;
 }
@@ -32,9 +34,9 @@ export function Setting({
         },
       ]}
     >
-      <Ionicons name={leftIcon} size={18} color={theme.text.primary} />
-      <ThemedText variant="button">{label}</ThemedText>
-      <Ionicons
+      <AppIcon name={leftIcon} size={18} color={theme.text.primary} />
+      <AppText variant="button">{label}</AppText>
+      <AppIcon
         name={rightIcon || "arrow-forward"}
         size={18}
         color={theme.text.primary}

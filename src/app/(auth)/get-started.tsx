@@ -1,9 +1,10 @@
 import { SecureInput } from "@/components";
 import {
-    Ionicons,
-    SafeAreaScrollView,
-    ThemedText,
-    ThemedView,
+    AppIcon,
+    AppSafeAreaView,
+    AppScrollView,
+    AppText,
+    AppView,
 } from "@/components/ui";
 import { useTheme } from "@/hooks/use-theme";
 import { useAuthStore } from "@/store/auth-store";
@@ -44,123 +45,123 @@ export default function GetStartedScreen() {
   };
 
   return (
-    <SafeAreaScrollView>
-      <ThemedView style={styles.header}>
-        <ThemedView style={styles.appLogo}>
-          <Image
-            source={require("@/assets/images/expo-logo.png")}
-            style={[styles.logoImage, { tintColor: theme.text.primary }]}
-          />
-        </ThemedView>
-        <ThemedText style={styles.appName}>FixedQR</ThemedText>
-        <ThemedText
-          variant="bodySmall"
-          color="muted"
-          style={styles.screenDescription}
-        >
-          Get started to begin your personalized journey with FixedQR.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.form}>
-        {/* Username */}
-        <ThemedView
-          style={[
-            styles.input,
-            {
-              backgroundColor: theme.background.secondary,
-              borderColor: theme.border.primary,
-            },
-          ]}
-        >
-          <ThemedView style={styles.left}>
-            <Ionicons name="person" size={24} color={theme.text.secondary} />
-          </ThemedView>
-          <ThemedView style={styles.right}>
-            <ThemedText
-              variant="bodySmall"
-              weight="500"
-              color="secondary"
-              style={styles.label}
-            >
-              Name
-            </ThemedText>
-            <TextInput
-              textContentType="name"
-              placeholder="Enter your name"
-              placeholderTextColor={theme.text.secondary}
-              style={[styles.inputField, { color: theme.text.primary }]}
-              value={user.name}
-              onChangeText={(text) => handleInputChange("name", text)}
+    <AppSafeAreaView>
+      <AppScrollView>
+        <AppView style={styles.header}>
+          <AppView style={styles.appLogo}>
+            <Image
+              source={require("@/assets/images/expo-logo.png")}
+              style={[styles.logoImage, { tintColor: theme.text.primary }]}
             />
-          </ThemedView>
-        </ThemedView>
-        {!!errors.name && (
-          <ThemedView style={styles.error}>
-            <ThemedText
-              variant="bodySmall"
-              style={{ color: theme.status.danger }}
-            >
-              {errors.name}
-            </ThemedText>
-          </ThemedView>
-        )}
-
-        {/* Password */}
-        <SecureInput
-          value={user.password}
-          onChangeText={(text) => handleInputChange("password", text)}
-        />
-        {!!errors.password && (
-          <ThemedView style={styles.error}>
-            <ThemedText
-              variant="bodySmall"
-              style={{ color: theme.status.danger }}
-            >
-              {errors.password}
-            </ThemedText>
-          </ThemedView>
-        )}
-
-        {/* Privacy Policy */}
-        <ThemedView style={styles.privacyPolicy}>
-          <Switch />
-          <ThemedText
+          </AppView>
+          <AppText style={styles.appName}>FixedQR</AppText>
+          <AppText
             variant="bodySmall"
-            color="secondary"
-            style={styles.privacyPolicyText}
+            color="muted"
+            style={styles.screenDescription}
           >
-            I agree to the Terms of Services & Privacy Policy
-          </ThemedText>
-        </ThemedView>
+            Get started to begin your personalized journey with FixedQR.
+          </AppText>
+        </AppView>
+        <AppView style={styles.form}>
+          {/* Username */}
+          <AppView
+            style={[
+              styles.input,
+              {
+                backgroundColor: theme.background.secondary,
+                borderColor: theme.border.primary,
+              },
+            ]}
+          >
+            <AppView style={styles.left}>
+              <AppIcon name="person" size={24} color={theme.text.secondary} />
+            </AppView>
+            <AppView style={styles.right}>
+              <AppText
+                variant="bodySmall"
+                weight="500"
+                color="secondary"
+                style={styles.label}
+              >
+                Name
+              </AppText>
+              <TextInput
+                textContentType="name"
+                placeholder="Enter your name"
+                placeholderTextColor={theme.text.secondary}
+                style={[styles.inputField, { color: theme.text.primary }]}
+                value={user.name}
+                onChangeText={(text) => handleInputChange("name", text)}
+              />
+            </AppView>
+          </AppView>
+          {!!errors.name && (
+            <AppView style={styles.error}>
+              <AppText
+                variant="bodySmall"
+                style={{ color: theme.status.danger }}
+              >
+                {errors.name}
+              </AppText>
+            </AppView>
+          )}
 
-        {/* Action */}
-        <Pressable
-          onPress={handleGetStartedPress}
-          style={({ pressed }) => [
-            styles.getStartedButton,
-            {
-              borderColor: theme.border.primary,
-              backgroundColor: pressed
-                ? theme.accent.pressed
-                : theme.accent.primary,
-            },
-          ]}
-        >
-          <ThemedText style={{ color: theme.text.inverse }}>
-            Get Started
-          </ThemedText>
-          <Ionicons
-            name="arrow-up"
-            size={18}
-            style={{
-              transform: "rotate(45deg)",
-              color: theme.text.inverse,
-              fontWeight: 600,
-            }}
+          {/* Password */}
+          <SecureInput
+            value={user.password}
+            onChangeText={(text) => handleInputChange("password", text)}
           />
-        </Pressable>
-      </ThemedView>
-    </SafeAreaScrollView>
+          {!!errors.password && (
+            <AppView style={styles.error}>
+              <AppText
+                variant="bodySmall"
+                style={{ color: theme.status.danger }}
+              >
+                {errors.password}
+              </AppText>
+            </AppView>
+          )}
+
+          {/* Privacy Policy */}
+          <AppView style={styles.privacyPolicy}>
+            <Switch />
+            <AppText
+              variant="bodySmall"
+              color="secondary"
+              style={styles.privacyPolicyText}
+            >
+              I agree to the Terms of Services & Privacy Policy
+            </AppText>
+          </AppView>
+
+          {/* Action */}
+          <Pressable
+            onPress={handleGetStartedPress}
+            style={({ pressed }) => [
+              styles.getStartedButton,
+              {
+                borderColor: theme.border.primary,
+                backgroundColor: pressed
+                  ? theme.accent.pressed
+                  : theme.accent.primary,
+              },
+            ]}
+          >
+            <AppText style={{ color: theme.text.inverse }}>Get Started</AppText>
+            <AppIcon
+              name="arrow-up"
+              size={18}
+              style={{
+                transform: "rotate(45deg)",
+                color: theme.text.inverse,
+                fontWeight: 600,
+              }}
+            />
+          </Pressable>
+        </AppView>
+      </AppScrollView>
+    </AppSafeAreaView>
   );
 }
 

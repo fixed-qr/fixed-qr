@@ -1,10 +1,10 @@
 import { Authenticate, Transactions } from "@/components/modals";
 import { Settings, UpiIds } from "@/components/sections";
 import {
-    SafeAreaView,
-    ScrollView,
-    ThemedText,
-    ThemedView,
+    AppSafeAreaView,
+    AppScrollView,
+    AppText,
+    AppView,
 } from "@/components/ui";
 import { useTheme } from "@/hooks/use-theme";
 import { useDataStore } from "@/store/data-store";
@@ -18,10 +18,10 @@ export default function ProfileScreen() {
   const bottomSheetRef = useRef<BottomSheet>(null);
 
   return (
-    <SafeAreaView>
-      <ScrollView>
-        <ThemedView style={styles.userProfileContainer}>
-          <ThemedView
+    <AppSafeAreaView>
+      <AppScrollView>
+        <AppView style={styles.userProfileContainer}>
+          <AppView
             style={[
               styles.userProfileAvatarContainer,
               {
@@ -36,19 +36,19 @@ export default function ProfileScreen() {
                 { tintColor: theme.accent.primary },
               ]}
             />
-          </ThemedView>
-          <ThemedText style={styles.userProfileName}>Hi, {name}</ThemedText>
-        </ThemedView>
+          </AppView>
+          <AppText style={styles.userProfileName}>Hi, {name}</AppText>
+        </AppView>
         <Settings
           onTransactionsButtonPress={() => {
             bottomSheetRef.current?.snapToIndex(0);
           }}
         />
         <UpiIds />
-      </ScrollView>
+      </AppScrollView>
       <Transactions ref={bottomSheetRef} />
       <Authenticate />
-    </SafeAreaView>
+    </AppSafeAreaView>
   );
 }
 

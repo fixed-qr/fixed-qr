@@ -1,6 +1,6 @@
 import { useTheme } from "@/hooks/use-theme";
 import { StyleSheet, TextInput } from "react-native";
-import { Ionicons, ThemedText, ThemedView } from "./ui";
+import { AppIcon, AppText, AppView } from "./ui";
 
 interface SecureInputProps {
   value: string;
@@ -16,7 +16,7 @@ export function SecureInput({
   const theme = useTheme();
 
   return (
-    <ThemedView
+    <AppView
       style={[
         styles.input,
         {
@@ -25,16 +25,16 @@ export function SecureInput({
         },
       ]}
     >
-      <ThemedView style={[styles.shared, styles.left]}>
-        <Ionicons name="lock-closed" size={24} color={theme.text.secondary} />
-      </ThemedView>
-      <ThemedView style={[styles.shared, styles.right]}>
-        <ThemedText
+      <AppView style={[styles.shared, styles.left]}>
+        <AppIcon name="lock-closed" size={24} color={theme.text.secondary} />
+      </AppView>
+      <AppView style={[styles.shared, styles.right]}>
+        <AppText
           variant="bodyMedium"
           style={[styles.label, { color: theme.text.secondary }]}
         >
           Password
-        </ThemedText>
+        </AppText>
         <TextInput
           // secureTextEntry
           textContentType="password"
@@ -50,8 +50,8 @@ export function SecureInput({
           }}
           onSubmitEditing={onSubmitEditing}
         />
-      </ThemedView>
-    </ThemedView>
+      </AppView>
+    </AppView>
   );
 }
 

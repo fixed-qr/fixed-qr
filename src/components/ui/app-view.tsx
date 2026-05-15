@@ -3,16 +3,16 @@ import { useTheme } from "@/hooks/use-theme";
 import { PropsWithChildren } from "react";
 import { View, type ViewProps } from "react-native";
 
-type ThemedViewProps = PropsWithChildren<ViewProps> & {
+type AppViewProps = PropsWithChildren<ViewProps> & {
   backgroundColor?: BackgroundColors;
 };
 
-export function ThemedView({
+export function AppView({
   style,
   children,
   backgroundColor,
   ...rest
-}: ThemedViewProps) {
+}: AppViewProps) {
   const theme = useTheme();
 
   return (

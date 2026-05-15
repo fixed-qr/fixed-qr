@@ -4,9 +4,7 @@ import { useRouter } from "expo-router";
 import { Alert, StyleSheet } from "react-native";
 import { Setting } from "./setting";
 
-interface DeleteEverythingProps {}
-
-export function DeleteEverything({}: DeleteEverythingProps) {
+export function DeleteEverything() {
   const router = useRouter();
   const setIsAuthenticated = useAuthStore((state) => state.setIsAuthenticated);
   const clearAll = useDataStore((state) => state.clearAll);

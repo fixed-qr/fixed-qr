@@ -2,7 +2,7 @@ import { useTheme } from "@/hooks/use-theme";
 import { StyleSheet } from "react-native";
 import { DeleteEverything } from "../delete-everything";
 import { Setting } from "../setting";
-import { ThemedText, ThemedView } from "../ui";
+import { AppText, AppView } from "../ui";
 
 interface SettingsProps {
   onTransactionsButtonPress: () => void;
@@ -12,16 +12,16 @@ export function Settings({ onTransactionsButtonPress }: SettingsProps) {
   const theme = useTheme();
 
   return (
-    <ThemedView style={styles.container}>
-      <ThemedText
-        variant="bodySmall"
+    <AppView style={styles.container}>
+      <AppText
+        variant="bodyMedium"
         color="tertiary"
         weight="600"
         style={styles.settingsTitle}
       >
         Settings
-      </ThemedText>
-      <ThemedView
+      </AppText>
+      <AppView
         style={[
           styles.settings,
           { backgroundColor: theme.background.secondary },
@@ -36,8 +36,8 @@ export function Settings({ onTransactionsButtonPress }: SettingsProps) {
             onTransactionsButtonPress();
           }}
         />
-      </ThemedView>
-    </ThemedView>
+      </AppView>
+    </AppView>
   );
 }
 

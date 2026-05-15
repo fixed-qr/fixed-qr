@@ -1,10 +1,10 @@
 import { ProviderButton } from "@/components";
 import {
-    Ionicons,
-    ScrollView,
-    SelectList,
-    ThemedText,
-    ThemedView,
+    AppIcon,
+    AppScrollView,
+    AppSelectList,
+    AppText,
+    AppView,
 } from "@/components/ui";
 import { screenWidth } from "@/constants/dimensions";
 import { providers } from "@/constants/providers";
@@ -47,10 +47,10 @@ export default function AddUPIScreen() {
   };
 
   return (
-    <ScrollView>
+    <AppScrollView>
       {/* UPI Input */}
-      <ThemedView>
-        <ThemedText style={styles.title}>Add UPI ID</ThemedText>
+      <AppView>
+        <AppText style={styles.title}>Add UPI ID</AppText>
         <TextInput
           value={upiId}
           onChangeText={handleUPIIdChange}
@@ -74,21 +74,18 @@ export default function AddUPIScreen() {
             },
           ]}
         />
-      </ThemedView>
+      </AppView>
       {/* UPI Input Validation Error */}
       {!!error && (
-        <ThemedView>
-          <ThemedText
-            variant="bodySmall"
-            style={{ color: theme.status.danger }}
-          >
+        <AppView>
+          <AppText variant="bodySmall" style={{ color: theme.status.danger }}>
             {error}
-          </ThemedText>
-        </ThemedView>
+          </AppText>
+        </AppView>
       )}
       {/* Select UPI Provider */}
-      <ThemedView style={styles.selectListContainer}>
-        <SelectList
+      <AppView style={styles.selectListContainer}>
+        <AppSelectList
           data={providers}
           selectedItem={selected}
           onSelect={setSelected}
@@ -103,7 +100,7 @@ export default function AddUPIScreen() {
             />
           )}
         />
-      </ThemedView>
+      </AppView>
 
       {/* Handle Form Sublimation */}
       <Pressable
@@ -118,10 +115,10 @@ export default function AddUPIScreen() {
         ]}
         onPress={handleSubmit}
       >
-        <Ionicons name="save" size={18} color={theme.text.primary} />
-        <ThemedText variant="button">Save</ThemedText>
+        <AppIcon name="save" size={18} color={theme.text.primary} />
+        <AppText variant="button">Save</AppText>
       </Pressable>
-    </ScrollView>
+    </AppScrollView>
   );
 }
 

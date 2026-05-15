@@ -1,5 +1,5 @@
 import { Transaction } from "@/components";
-import { AppBottomSheet, Image, ThemedText, ThemedView } from "@/components/ui";
+import { AppBottomSheet, AppImage, AppText, AppView } from "@/components/ui";
 import { useTheme } from "@/hooks/use-theme";
 import { useDataStore } from "@/store/data-store";
 import { getProviderLabel } from "@/utils/get-provider-label";
@@ -30,7 +30,7 @@ export function Transactions({ ref }: TransactionsProps) {
         }}
       >
         {transactions.length ? (
-          <ThemedView
+          <AppView
             style={[
               styles.transactions,
               { backgroundColor: theme.background.card },
@@ -46,9 +46,9 @@ export function Transactions({ ref }: TransactionsProps) {
                 isLast={index === transactions.length - 1}
               />
             ))}
-          </ThemedView>
+          </AppView>
         ) : (
-          <ThemedView
+          <AppView
             style={[
               styles.transactionEmpty,
               {
@@ -57,17 +57,17 @@ export function Transactions({ ref }: TransactionsProps) {
               },
             ]}
           >
-            <Image
+            <AppImage
               source={require("@/assets/images/icons/not-found.png")}
               style={styles.notFoundImage}
             />
-            <ThemedText
+            <AppText
               variant="bodySmall"
               style={[styles.emptyText, { color: theme.text.secondary }]}
             >
               Your recent transactions will appear here.
-            </ThemedText>
-          </ThemedView>
+            </AppText>
+          </AppView>
         )}
       </BottomSheetScrollView>
     </AppBottomSheet>

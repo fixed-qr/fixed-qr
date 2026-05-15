@@ -6,7 +6,7 @@ import {
     Pressable,
     StyleSheet,
 } from "react-native";
-import { Ionicons, ThemedText, ThemedView } from "./ui";
+import { AppIcon, AppText, AppView } from "./ui";
 
 interface UpiIdProps {
   logoImage: ImageSourcePropType;
@@ -24,7 +24,7 @@ export function UpiId({ logoImage, label, upiId, isLast }: UpiIdProps) {
   };
 
   return (
-    <ThemedView
+    <AppView
       style={[
         styles.upiId,
         {
@@ -33,21 +33,21 @@ export function UpiId({ logoImage, label, upiId, isLast }: UpiIdProps) {
         },
       ]}
     >
-      <ThemedView style={styles.left}>
+      <AppView style={styles.left}>
         <Image source={logoImage} style={styles.logoImage} />
-        <ThemedView style={styles.upiIdInfo}>
-          <ThemedText variant="button">{label}</ThemedText>
-          <ThemedText variant="bodySmall" color="tertiary">
+        <AppView style={styles.upiIdInfo}>
+          <AppText variant="button">{label}</AppText>
+          <AppText variant="bodySmall" color="tertiary">
             {upiId}
-          </ThemedText>
-        </ThemedView>
-      </ThemedView>
-      <ThemedView style={styles.right}>
+          </AppText>
+        </AppView>
+      </AppView>
+      <AppView style={styles.right}>
         <Pressable onPress={() => handleRemoveUpiId(upiId)}>
-          <Ionicons name="close" size={18} color={theme.text.primary} />
+          <AppIcon name="close" size={18} color={theme.text.primary} />
         </Pressable>
-      </ThemedView>
-    </ThemedView>
+      </AppView>
+    </AppView>
   );
 }
 

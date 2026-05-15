@@ -5,21 +5,21 @@ import { BackgroundColors, TextColors } from "@/constants/theme-colors";
 import { useTheme } from "@/hooks/use-theme";
 import { FontWeight } from "@/types/font-weight";
 
-export type ThemedTextProps = TextProps & {
+export type AppTextProps = TextProps & {
   variant?: TextVariant;
   weight?: FontWeight;
   color?: TextColors;
   backgroundColor?: BackgroundColors;
 };
 
-export function ThemedText({
+export function AppText({
   variant = "bodyMedium",
   weight,
   color,
   backgroundColor,
   style,
   ...props
-}: ThemedTextProps) {
+}: AppTextProps) {
   const theme = useTheme();
 
   return (

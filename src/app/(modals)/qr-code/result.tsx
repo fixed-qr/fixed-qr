@@ -1,5 +1,5 @@
-import { ScrollView, ThemedText } from "@/components/ui";
-import { ThemedView } from "@/components/ui/themed-view";
+import { AppScrollView, AppText } from "@/components/ui";
+import { AppView } from "@/components/ui/app-view";
 import { screenWidth } from "@/constants/dimensions";
 import { useTheme } from "@/hooks/use-theme";
 import { useDataStore } from "@/store/data-store";
@@ -41,14 +41,14 @@ export default function GeneratedQRCodeScreen() {
   }, []);
 
   return (
-    <ScrollView>
-      <ThemedView
+    <AppScrollView>
+      <AppView
         style={[
           styles.container,
           { backgroundColor: theme.background.secondary },
         ]}
       >
-        <ThemedView
+        <AppView
           style={[
             styles.upiIdContainer,
             { backgroundColor: theme.background.secondary },
@@ -58,12 +58,12 @@ export default function GeneratedQRCodeScreen() {
             source={getProviderLogo(provider as any)}
             style={styles.image}
           />
-          <ThemedText style={styles.message}>Scan to pay</ThemedText>
-          <ThemedText variant="bodySmall" weight="500" color="tertiary">
+          <AppText style={styles.message}>Scan to pay</AppText>
+          <AppText variant="bodySmall" weight="500" color="tertiary">
             {upiId}
-          </ThemedText>
-        </ThemedView>
-        <ThemedView
+          </AppText>
+        </AppView>
+        <AppView
           style={[
             styles.qrCodeContainer,
             {
@@ -78,8 +78,8 @@ export default function GeneratedQRCodeScreen() {
             backgroundColor="transparent"
             size={width - borderRadius}
           />
-        </ThemedView>
-        <ThemedView
+        </AppView>
+        <AppView
           style={[
             styles.amountContainer,
             { backgroundColor: theme.background.secondary },
@@ -89,7 +89,7 @@ export default function GeneratedQRCodeScreen() {
             source={require("@/assets/images/icons/rupee-64.png")}
             style={[styles.amountUnit, { tintColor: theme.accent.primary }]}
           />
-          <ThemedText
+          <AppText
             style={[
               styles.amount,
               {
@@ -99,10 +99,10 @@ export default function GeneratedQRCodeScreen() {
             ]}
           >
             {amount}
-          </ThemedText>
-        </ThemedView>
-      </ThemedView>
-    </ScrollView>
+          </AppText>
+        </AppView>
+      </AppView>
+    </AppScrollView>
   );
 }
 

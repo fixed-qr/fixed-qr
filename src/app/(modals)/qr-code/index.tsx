@@ -1,5 +1,5 @@
 import { Amount } from "@/components";
-import { ScrollView, ThemedText, ThemedView } from "@/components/ui";
+import { AppScrollView, AppText, AppView } from "@/components/ui";
 import { screenWidth } from "@/constants/dimensions";
 import { useTheme } from "@/hooks/use-theme";
 import { useDataStore } from "@/store/data-store";
@@ -50,7 +50,7 @@ export default function QRCodeFormScreen() {
     };
 
     return (
-      <ThemedView
+      <AppView
         style={[
           styles.numericPadContainer,
           { backgroundColor: theme.background.secondary },
@@ -58,7 +58,7 @@ export default function QRCodeFormScreen() {
       >
         {numericKeys.map((key) => {
           if (key === "") {
-            return <ThemedView key={key} style={styles.key} />;
+            return <AppView key={key} style={styles.key} />;
           }
 
           return (
@@ -70,16 +70,16 @@ export default function QRCodeFormScreen() {
               ]}
               onPress={() => (key === "⌫" ? handleDelete() : handlePress(key))}
             >
-              <ThemedText style={styles.keyText}>{key}</ThemedText>
+              <AppText style={styles.keyText}>{key}</AppText>
             </Pressable>
           );
         })}
-      </ThemedView>
+      </AppView>
     );
   };
 
   return (
-    <ScrollView
+    <AppScrollView
       style={{
         backgroundColor: theme.background.secondary,
       }}
@@ -87,17 +87,17 @@ export default function QRCodeFormScreen() {
         backgroundColor: theme.background.secondary,
       }}
     >
-      <ThemedView
+      <AppView
         style={[
           styles.amountInput,
           { backgroundColor: theme.background.secondary },
         ]}
       >
         <Amount amount={value.length === 0 ? "0" : value} size={22} />
-      </ThemedView>
+      </AppView>
       {/* Providers */}
 
-      <ScrollView
+      <AppScrollView
         horizontal={true}
         style={[
           styles.providerContainer,
@@ -129,7 +129,7 @@ export default function QRCodeFormScreen() {
               }}
               disabled={!Number(value)}
             >
-              <ThemedView
+              <AppView
                 style={[
                   styles.providerLink,
                   {
@@ -138,28 +138,28 @@ export default function QRCodeFormScreen() {
                   },
                 ]}
               >
-                <ThemedView style={styles.providerLogoContainer}>
+                <AppView style={styles.providerLogoContainer}>
                   <Image
                     source={getProviderLogo(upiId.provider)}
                     style={styles.providerLogo}
                   />
-                </ThemedView>
-                <ThemedText
+                </AppView>
+                <AppText
                   variant="bodySmall"
                   weight="500"
                   style={styles.providerLabel}
                 >
                   {upiId.label}
-                </ThemedText>
-              </ThemedView>
+                </AppText>
+              </AppView>
             </Link>
           ))
         ) : (
-          <ThemedText>Upi not added</ThemedText>
+          <AppText>Upi not added</AppText>
         )}
-      </ScrollView>
+      </AppScrollView>
       {renderNumericKeyPad()}
-    </ScrollView>
+    </AppScrollView>
   );
 }
 

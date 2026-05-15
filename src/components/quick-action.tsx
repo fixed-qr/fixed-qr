@@ -1,7 +1,7 @@
 import { useTheme } from "@/hooks/use-theme";
 import { ImageSourcePropType, StyleSheet } from "react-native";
 import { Amount } from "./amount";
-import { Image, Ionicons, ThemedText, ThemedView } from "./ui";
+import { AppIcon, AppImage, AppText, AppView } from "./ui";
 
 interface QuickActionProps {
   logoImage: ImageSourcePropType;
@@ -19,7 +19,7 @@ export function QuickAction({
   const theme = useTheme();
 
   return (
-    <ThemedView
+    <AppView
       style={[
         styles.quickAction,
         {
@@ -30,20 +30,20 @@ export function QuickAction({
         },
       ]}
     >
-      <Image source={logoImage} style={styles.logoImage} />
+      <AppImage source={logoImage} style={styles.logoImage} />
       <Amount amount={amount} />
-      <ThemedView style={styles.provider}>
-        <ThemedText variant="bodyMedium" color="secondary">
+      <AppView style={styles.provider}>
+        <AppText variant="bodyMedium" color="secondary">
           {label}
-        </ThemedText>
-        <Ionicons
+        </AppText>
+        <AppIcon
           name="arrow-forward"
           size={16}
           style={{ transform: "rotate(-45deg)" }}
           color={theme.text.secondary}
         />
-      </ThemedView>
-    </ThemedView>
+      </AppView>
+    </AppView>
   );
 }
 

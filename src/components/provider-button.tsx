@@ -1,6 +1,6 @@
 import { useTheme } from "@/hooks/use-theme";
 import { ImageSourcePropType, Pressable, StyleSheet } from "react-native";
-import { Image, Ionicons, ThemedText } from "./ui";
+import { AppIcon, AppImage, AppText } from "./ui";
 
 interface ProviderButtonProps {
   label: string;
@@ -31,12 +31,12 @@ export function ProviderButton({
         },
       ]}
     >
-      <Image source={logoImage} style={styles.logoImage} />
-      <ThemedText variant="bodyMedium" style={styles.label}>
+      <AppImage source={logoImage} style={styles.logoImage} />
+      <AppText variant="bodyMedium" style={styles.label}>
         {label}
-      </ThemedText>
+      </AppText>
       {isSelected && (
-        <Ionicons
+        <AppIcon
           name="checkmark-done"
           size={20}
           style={[styles.checkmarkDone, { color: theme.status.info }]}

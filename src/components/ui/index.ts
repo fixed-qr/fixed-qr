@@ -1,10 +1,8 @@
 export { AppBottomSheet } from "./app-bottom-sheet";
-export { SafeAreaScrollView } from "./safe-area-scroll-view";
-export { SafeAreaView } from "./safe-area-view";
-export { ScrollView } from "./scroll-view";
-export { SelectList } from "./select-list";
-export { ThemedText } from "./themed-text";
-export { ThemedView } from "./themed-view";
-export { Title } from "./title";
-export { Ionicons } from "@expo/vector-icons";
-export { Image } from "react-native";
+export { AppIcon } from "./app-icon";
+export { AppImage } from "./app-image";
+export { AppSafeAreaView } from "./app-safe-area-view";
+export { AppScrollView } from "./app-scroll-view";
+export { AppSelectList } from "./app-select-list";
+export { AppText } from "./app-text";
+export { AppView } from "./app-view";

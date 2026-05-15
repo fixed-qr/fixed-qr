@@ -3,7 +3,7 @@ import { useDataStore } from "@/store/data-store";
 import { getProviderLogo } from "@/utils/get-provider-logo";
 import { Link } from "expo-router";
 import { StyleSheet } from "react-native";
-import { Image, Ionicons, ThemedText, ThemedView } from "../ui";
+import { AppIcon, AppImage, AppText, AppView } from "../ui";
 import { UpiId } from "../upi-id";
 
 export function UpiIds() {
@@ -11,22 +11,22 @@ export function UpiIds() {
   const upiIds = useDataStore((state) => state.upiIds);
 
   return (
-    <ThemedView>
+    <AppView>
       <Link href={"/(modals)/add-upi"}>
-        <ThemedView style={styles.upiIdTitle}>
-          <ThemedText
+        <AppView style={styles.upiIdTitle}>
+          <AppText
             variant="bodyMedium"
             color="tertiary"
             weight="600"
             style={styles.upiIdTitleText}
           >
             Saved UPI IDs
-          </ThemedText>
-          <Ionicons name="add-circle" size={18} color={theme.text.secondary} />
-        </ThemedView>
+          </AppText>
+          <AppIcon name="add-circle" size={18} color={theme.text.secondary} />
+        </AppView>
       </Link>
       {upiIds.length ? (
-        <ThemedView
+        <AppView
           style={[
             styles.upiIds,
             { backgroundColor: theme.background.secondary },
@@ -41,9 +41,9 @@ export function UpiIds() {
               isLast={index === upiIds.length - 1}
             />
           ))}
-        </ThemedView>
+        </AppView>
       ) : (
-        <ThemedView
+        <AppView
           style={[
             styles.upiIdsEmpty,
             {
@@ -52,20 +52,20 @@ export function UpiIds() {
             },
           ]}
         >
-          <Image
+          <AppImage
             source={require("@/assets/images/icons/not-found.png")}
             style={styles.notFoundImage}
           />
-          <ThemedText
+          <AppText
             variant="bodyMedium"
             color="secondary"
             style={styles.emptyText}
           >
             Your Saved UPI ID will appear here.
-          </ThemedText>
-        </ThemedView>
+          </AppText>
+        </AppView>
       )}
-    </ThemedView>
+    </AppView>
   );
 }
 

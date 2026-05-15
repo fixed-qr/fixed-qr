@@ -1,6 +1,6 @@
 import { Fragment, ReactElement, useMemo } from "react";
 
-interface SelectListProps<T> {
+interface AppSelectListProps<T> {
   data: T[];
   selectedItem: T | null;
   onSelect: (item: T) => void;
@@ -13,13 +13,13 @@ interface SelectListProps<T> {
   }) => ReactElement | null;
 }
 
-export function SelectList<T>({
+export function AppSelectList<T>({
   data,
   selectedItem,
   onSelect,
   keyExtractor,
   renderItem,
-}: SelectListProps<T>) {
+}: AppSelectListProps<T>) {
   const items = useMemo(() => {
     return data.map((item, index) => {
       const isSelected = selectedItem === item;

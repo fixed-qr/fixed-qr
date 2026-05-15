@@ -1,11 +1,5 @@
 import { SecureInput } from "@/components";
-import {
-    AppBottomSheet,
-    Ionicons,
-    ThemedText,
-    ThemedView,
-    Title,
-} from "@/components/ui";
+import { AppBottomSheet, AppText, AppView } from "@/components/ui";
 import { useTheme } from "@/hooks/use-theme";
 import { useAuthStore } from "@/store/auth-store";
 import { useDataStore } from "@/store/data-store";
@@ -13,6 +7,7 @@ import BottomSheet, { BottomSheetView } from "@gorhom/bottom-sheet";
 import { useEffect, useRef, useState } from "react";
 import { Keyboard, Pressable, StyleSheet } from "react-native";
 
+import { Ionicons } from "@expo/vector-icons";
 export function Authenticate() {
   const theme = useTheme();
   const bottomSheetRef = useRef<BottomSheet>(null);
@@ -70,26 +65,23 @@ export function Authenticate() {
           paddingHorizontal: 20,
         }}
       >
-        <Title>Verify Your Identity</Title>
+        <AppText variant="headingMedium">Verify Your Identity</AppText>
         <SecureInput
           value={password}
           onChangeText={handlePasswordChange}
           onSubmitEditing={handleOnSubmit}
         />
         {!!error && (
-          <ThemedView
+          <AppView
             style={[
               styles.error,
               { backgroundColor: theme.background.secondary },
             ]}
           >
-            <ThemedText
-              variant="bodySmall"
-              style={{ color: theme.status.danger }}
-            >
+            <AppText variant="bodySmall" style={{ color: theme.status.danger }}>
               {error}
-            </ThemedText>
-          </ThemedView>
+            </AppText>
+          </AppView>
         )}
         <Pressable
           onPress={handleOnSubmit}
@@ -103,9 +95,9 @@ export function Authenticate() {
             },
           ]}
         >
-          <ThemedText variant="button" color="inverse">
+          <AppText variant="button" color="inverse">
             Authenticate
-          </ThemedText>
+          </AppText>
           <Ionicons
             name="arrow-up"
             size={18}

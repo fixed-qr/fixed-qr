@@ -1,11 +1,11 @@
 import { Header } from "@/components";
 import { QuickActions } from "@/components/sections";
 import {
-    Ionicons,
-    SafeAreaView,
-    ScrollView,
-    ThemedText,
-    ThemedView,
+    AppIcon,
+    AppSafeAreaView,
+    AppScrollView,
+    AppText,
+    AppView,
 } from "@/components/ui";
 import { useTheme } from "@/hooks/use-theme";
 import { useDataStore } from "@/store/data-store";
@@ -17,18 +17,18 @@ export default function HomeScreen() {
   const username = useDataStore((state) => state.user?.name);
 
   return (
-    <SafeAreaView>
+    <AppSafeAreaView>
       <Header />
-      <ScrollView>
-        <ThemedText
+      <AppScrollView>
+        <AppText
           variant="headingSmall"
           color="secondary"
           style={styles.greetingMessageText}
         >
           Hi, {username}
-        </ThemedText>
+        </AppText>
         <Link href={"/(modals)/qr-code"}>
-          <ThemedView
+          <AppView
             style={[
               styles.GenQRCode,
               {
@@ -37,19 +37,19 @@ export default function HomeScreen() {
               },
             ]}
           >
-            <Ionicons
+            <AppIcon
               name="qr-code-outline"
               size={24}
               color={theme.text.primary}
             />
-            <ThemedText variant="button" style={styles.GenQRCodeText}>
+            <AppText variant="button" style={styles.GenQRCodeText}>
               Generate a QR Code
-            </ThemedText>
-          </ThemedView>
+            </AppText>
+          </AppView>
         </Link>
         <QuickActions />
-      </ScrollView>
-    </SafeAreaView>
+      </AppScrollView>
+    </AppSafeAreaView>
   );
 }
 
