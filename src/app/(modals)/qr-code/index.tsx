@@ -95,17 +95,13 @@ export default function QRCodeFormScreen() {
       >
         <Amount amount={value.length === 0 ? "0" : value} size={22} />
       </AppView>
+
+      {renderNumericKeyPad()}
       {/* Providers */}
 
       <AppScrollView
         horizontal={true}
-        style={[
-          styles.providerContainer,
-          {
-            backgroundColor: theme.background.secondary,
-            borderColor: theme.border.primary,
-          },
-        ]}
+        style={styles.providerContainer}
         contentContainerStyle={{
           flexGrow: 1,
           justifyContent: "center",
@@ -158,7 +154,6 @@ export default function QRCodeFormScreen() {
           <AppText>Upi not added</AppText>
         )}
       </AppScrollView>
-      {renderNumericKeyPad()}
     </AppScrollView>
   );
 }
@@ -186,9 +181,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     flexWrap: "wrap",
     gap: gap,
-    paddingVertical: gap,
-    borderTopWidth: 1,
-    borderBottomWidth: 1,
   },
   providerLink: {
     width: boxWidth,

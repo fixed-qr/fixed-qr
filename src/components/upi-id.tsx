@@ -12,10 +12,9 @@ interface UpiIdProps {
   logoImage: ImageSourcePropType;
   label: string;
   upiId: string;
-  isLast: boolean;
 }
 
-export function UpiId({ logoImage, label, upiId, isLast }: UpiIdProps) {
+export function UpiId({ logoImage, label, upiId }: UpiIdProps) {
   const theme = useTheme();
   const removeUpiId = useDataStore((state) => state.removeUpiId);
 

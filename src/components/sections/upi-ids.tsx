@@ -41,7 +41,6 @@ export function UpiIds() {
               logoImage={getProviderLogo(u.provider)}
               label={u.label}
               upiId={u.upiId}
-              isLast={index === upiIds.length - 1}
             />
           ))}
         </AppView>
