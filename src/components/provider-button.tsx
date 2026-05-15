@@ -27,14 +27,14 @@ export function ProviderButton({
         {
           width: size,
           borderColor: theme.border.primary,
-          backgroundColor: isSelected
-            ? theme.background.selected
-            : "transparent",
+          backgroundColor: isSelected ? theme.background.selected : undefined,
         },
       ]}
     >
       <Image source={logoImage} style={styles.logoImage} />
-      <ThemedText style={styles.label}>{label}</ThemedText>
+      <ThemedText variant="bodyMedium" style={styles.label}>
+        {label}
+      </ThemedText>
       {isSelected && (
         <Ionicons
           name="checkmark-done"
@@ -62,7 +62,6 @@ const styles = StyleSheet.create({
   },
   label: {
     textAlign: "center",
-    fontSize: 14,
   },
   checkmarkDone: {
     position: "absolute",

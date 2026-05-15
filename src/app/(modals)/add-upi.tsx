@@ -78,7 +78,10 @@ export default function AddUPIScreen() {
       {/* UPI Input Validation Error */}
       {!!error && (
         <ThemedView>
-          <ThemedText variant="small" style={{ color: theme.status.danger }}>
+          <ThemedText
+            variant="bodySmall"
+            style={{ color: theme.status.danger }}
+          >
             {error}
           </ThemedText>
         </ThemedView>
@@ -116,7 +119,7 @@ export default function AddUPIScreen() {
         onPress={handleSubmit}
       >
         <Ionicons name="save" size={18} color={theme.text.primary} />
-        <ThemedText>Save</ThemedText>
+        <ThemedText variant="button">Save</ThemedText>
       </Pressable>
     </ScrollView>
   );

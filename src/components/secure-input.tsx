@@ -30,7 +30,7 @@ export function SecureInput({
       </ThemedView>
       <ThemedView style={[styles.shared, styles.right]}>
         <ThemedText
-          variant="small"
+          variant="bodyMedium"
           style={[styles.label, { color: theme.text.secondary }]}
         >
           Password

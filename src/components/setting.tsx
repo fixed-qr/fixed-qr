@@ -33,7 +33,7 @@ export function Setting({
       ]}
     >
       <Ionicons name={leftIcon} size={18} color={theme.text.primary} />
-      <ThemedText>{label}</ThemedText>
+      <ThemedText variant="button">{label}</ThemedText>
       <Ionicons
         name={rightIcon || "arrow-forward"}
         size={18}

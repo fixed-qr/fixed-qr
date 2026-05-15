@@ -21,7 +21,9 @@ export default function HomeScreen() {
       <Header />
       <ScrollView>
         <ThemedText
-          style={[styles.greetingMessageText, { color: theme.text.secondary }]}
+          variant="headingSmall"
+          color="secondary"
+          style={styles.greetingMessageText}
         >
           Hi, {username}
         </ThemedText>
@@ -40,7 +42,7 @@ export default function HomeScreen() {
               size={24}
               color={theme.text.primary}
             />
-            <ThemedText style={styles.GenQRCodeText}>
+            <ThemedText variant="button" style={styles.GenQRCodeText}>
               Generate a QR Code
             </ThemedText>
           </ThemedView>

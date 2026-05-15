@@ -19,9 +19,10 @@ export function QuickActions() {
   return (
     <ThemedView>
       <ThemedText
-        variant="small"
-        weight="500"
-        style={[styles.quickActionsTitle, { color: theme.text.secondary }]}
+        variant="bodyMedium"
+        color="tertiary"
+        weight="600"
+        style={styles.quickActionsTitle}
       >
         Quick Actions
       </ThemedText>
@@ -67,8 +68,9 @@ export function QuickActions() {
             style={styles.notFoundImage}
           />
           <ThemedText
-            variant="small"
-            style={[styles.emptyText, { color: theme.text.secondary }]}
+            variant="bodyMedium"
+            color="secondary"
+            style={styles.emptyText}
           >
             Your quick actions will appear here.
           </ThemedText>
@@ -81,7 +83,7 @@ export function QuickActions() {
 const styles = StyleSheet.create({
   quickActionsTitle: {
     marginTop: 16,
-    paddingInline: 8,
+    paddingHorizontal: 8,
   },
   quickActions: {
     marginTop: 8,

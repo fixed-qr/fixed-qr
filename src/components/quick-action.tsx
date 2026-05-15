@@ -33,10 +33,7 @@ export function QuickAction({
       <Image source={logoImage} style={styles.logoImage} />
       <Amount amount={amount} />
       <ThemedView style={styles.provider}>
-        <ThemedText
-          variant="small"
-          style={[styles.providerText, { color: theme.text.secondary }]}
-        >
+        <ThemedText variant="bodyMedium" color="secondary">
           {label}
         </ThemedText>
         <Ionicons
@@ -69,5 +66,4 @@ const styles = StyleSheet.create({
     backgroundColor: "transparent",
     overflow: "hidden",
   },
-  providerText: {},
 });

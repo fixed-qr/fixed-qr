@@ -14,9 +14,10 @@ export function Settings({ onTransactionsButtonPress }: SettingsProps) {
   return (
     <ThemedView style={styles.container}>
       <ThemedText
-        variant="small"
-        weight="500"
-        style={[styles.settingsTitle, { color: theme.text.secondary }]}
+        variant="bodySmall"
+        color="tertiary"
+        weight="600"
+        style={styles.settingsTitle}
       >
         Settings
       </ThemedText>

@@ -145,7 +145,7 @@ export default function QRCodeFormScreen() {
                   />
                 </ThemedView>
                 <ThemedText
-                  variant="small"
+                  variant="bodySmall"
                   weight="500"
                   style={styles.providerLabel}
                 >

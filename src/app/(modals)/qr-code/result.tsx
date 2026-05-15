@@ -59,11 +59,7 @@ export default function GeneratedQRCodeScreen() {
             style={styles.image}
           />
           <ThemedText style={styles.message}>Scan to pay</ThemedText>
-          <ThemedText
-            variant="small"
-            weight="500"
-            style={{ color: theme.text.muted }}
-          >
+          <ThemedText variant="bodySmall" weight="500" color="tertiary">
             {upiId}
           </ThemedText>
         </ThemedView>

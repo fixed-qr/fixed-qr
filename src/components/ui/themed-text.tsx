@@ -13,7 +13,7 @@ export type ThemedTextProps = TextProps & {
 };
 
 export function ThemedText({
-  variant = "body",
+  variant = "bodyMedium",
   weight,
   color,
   backgroundColor,

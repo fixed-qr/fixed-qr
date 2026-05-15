@@ -26,7 +26,6 @@ export function UpiId({ logoImage, label, upiId, isLast }: UpiIdProps) {
   return (
     <ThemedView
       style={[
-        styles.shared,
         styles.upiId,
         {
           borderColor: theme.background.primary,
@@ -34,16 +33,16 @@ export function UpiId({ logoImage, label, upiId, isLast }: UpiIdProps) {
         },
       ]}
     >
-      <ThemedView style={[styles.shared, styles.left]}>
+      <ThemedView style={styles.left}>
         <Image source={logoImage} style={styles.logoImage} />
-        <ThemedView style={[styles.shared, styles.upiIdInfo]}>
-          <ThemedText>{label}</ThemedText>
-          <ThemedText variant="small" style={{ color: theme.text.primary }}>
+        <ThemedView style={styles.upiIdInfo}>
+          <ThemedText variant="button">{label}</ThemedText>
+          <ThemedText variant="bodySmall" color="tertiary">
             {upiId}
           </ThemedText>
         </ThemedView>
       </ThemedView>
-      <ThemedView style={[styles.shared, styles.right]}>
+      <ThemedView style={styles.right}>
         <Pressable onPress={() => handleRemoveUpiId(upiId)}>
           <Ionicons name="close" size={18} color={theme.text.primary} />
         </Pressable>
@@ -53,9 +52,6 @@ export function UpiId({ logoImage, label, upiId, isLast }: UpiIdProps) {
 }
 
 const styles = StyleSheet.create({
-  shared: {
-    backgroundColor: "transparent",
-  },
   upiId: {
     flex: 1,
     flexDirection: "row",
@@ -73,5 +69,7 @@ const styles = StyleSheet.create({
     width: 24,
     height: 24,
   },
-  upiIdInfo: {},
+  upiIdInfo: {
+    gap: 2,
+  },
 });

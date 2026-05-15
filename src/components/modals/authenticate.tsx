@@ -83,7 +83,10 @@ export function Authenticate() {
               { backgroundColor: theme.background.secondary },
             ]}
           >
-            <ThemedText variant="small" style={{ color: theme.status.danger }}>
+            <ThemedText
+              variant="bodySmall"
+              style={{ color: theme.status.danger }}
+            >
               {error}
             </ThemedText>
           </ThemedView>
@@ -100,7 +103,7 @@ export function Authenticate() {
             },
           ]}
         >
-          <ThemedText weight="600" style={{ color: theme.text.inverse }}>
+          <ThemedText variant="button" color="inverse">
             Authenticate
           </ThemedText>
           <Ionicons

@@ -54,8 +54,9 @@ export default function GetStartedScreen() {
         </ThemedView>
         <ThemedText style={styles.appName}>FixedQR</ThemedText>
         <ThemedText
-          variant="small"
-          style={[styles.screenDescription, { color: theme.text.muted }]}
+          variant="bodySmall"
+          color="muted"
+          style={styles.screenDescription}
         >
           Get started to begin your personalized journey with FixedQR.
         </ThemedText>
@@ -76,9 +77,10 @@ export default function GetStartedScreen() {
           </ThemedView>
           <ThemedView style={styles.right}>
             <ThemedText
-              variant="small"
+              variant="bodySmall"
               weight="500"
-              style={[styles.label, { color: theme.text.secondary }]}
+              color="secondary"
+              style={styles.label}
             >
               Name
             </ThemedText>
@@ -94,7 +96,10 @@ export default function GetStartedScreen() {
         </ThemedView>
         {!!errors.name && (
           <ThemedView style={styles.error}>
-            <ThemedText variant="small" style={{ color: theme.status.danger }}>
+            <ThemedText
+              variant="bodySmall"
+              style={{ color: theme.status.danger }}
+            >
               {errors.name}
             </ThemedText>
           </ThemedView>
@@ -107,7 +112,10 @@ export default function GetStartedScreen() {
         />
         {!!errors.password && (
           <ThemedView style={styles.error}>
-            <ThemedText variant="small" style={{ color: theme.status.danger }}>
+            <ThemedText
+              variant="bodySmall"
+              style={{ color: theme.status.danger }}
+            >
               {errors.password}
             </ThemedText>
           </ThemedView>
@@ -117,8 +125,9 @@ export default function GetStartedScreen() {
         <ThemedView style={styles.privacyPolicy}>
           <Switch />
           <ThemedText
-            variant="small"
-            style={[styles.privacyPolicyText, { color: theme.text.secondary }]}
+            variant="bodySmall"
+            color="secondary"
+            style={styles.privacyPolicyText}
           >
             I agree to the Terms of Services & Privacy Policy
           </ThemedText>

@@ -15,8 +15,9 @@ export function UpiIds() {
       <Link href={"/(modals)/add-upi"}>
         <ThemedView style={styles.upiIdTitle}>
           <ThemedText
-            variant="small"
-            weight="500"
+            variant="bodyMedium"
+            color="tertiary"
+            weight="600"
             style={styles.upiIdTitleText}
           >
             Saved UPI IDs
@@ -56,8 +57,9 @@ export function UpiIds() {
             style={styles.notFoundImage}
           />
           <ThemedText
-            variant="small"
-            style={[styles.emptyText, { color: theme.text.secondary }]}
+            variant="bodyMedium"
+            color="secondary"
+            style={styles.emptyText}
           >
             Your Saved UPI ID will appear here.
           </ThemedText>

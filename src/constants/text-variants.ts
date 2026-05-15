@@ -11,15 +11,15 @@ export const textVariants = {
     fontSize: 20,
     lineHeight: 28,
   },
-  body: {
+  bodyLarge: {
     fontSize: 16,
     lineHeight: 24,
   },
-  bodySmall: {
+  bodyMedium: {
     fontSize: 14,
     lineHeight: 20,
   },
-  caption: {
+  bodySmall: {
     fontSize: 12,
     lineHeight: 16,
   },

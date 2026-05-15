@@ -36,8 +36,8 @@ export function Transaction({
       </ThemedView>
       <ThemedView style={[styles.shared, styles.right]}>
         <ThemedView style={[styles.rightLeft, styles.shared]}>
-          <ThemedText>{label}</ThemedText>
-          <ThemedText variant="small" style={{ color: theme.text.secondary }}>
+          <ThemedText variant="button">{label}</ThemedText>
+          <ThemedText variant="bodySmall" color="tertiary">
             {timestamp}
           </ThemedText>
         </ThemedView>
@@ -82,6 +82,7 @@ const styles = StyleSheet.create({
   },
   rightLeft: {
     flex: 1,
+    gap: 4,
   },
   rightRight: {
     flexDirection: "row",
