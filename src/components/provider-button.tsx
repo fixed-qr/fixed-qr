@@ -27,7 +27,7 @@ export function ProviderButton({
         {
           width: size,
           borderColor: theme.border.primary,
-          backgroundColor: isSelected ? theme.background.selected : undefined,
+          backgroundColor: isSelected ? theme.accent.subtle : theme.accent.soft,
         },
       ]}
     >
@@ -48,12 +48,12 @@ export function ProviderButton({
 
 const styles = StyleSheet.create({
   provider: {
-    alignItems: "center",
+    borderRadius: 20,
     justifyContent: "center",
-    gap: 4,
-    padding: 12,
-    borderRadius: 24,
+    alignItems: "center",
     borderWidth: 1,
+    padding: 8,
+    paddingVertical: 16,
     position: "relative",
   },
   logoImage: {

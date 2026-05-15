@@ -61,16 +61,14 @@ export default function AddUPIScreen() {
             setIsFocused(false);
           }}
           placeholder="Enter UPI ID"
-          placeholderTextColor={theme.text.secondary}
+          placeholderTextColor={theme.text.tertiary}
           style={[
             styles.upiIdInput,
             {
               color: theme.text.primary,
               borderColor: error ? theme.status.danger : theme.border.secondary,
               backgroundColor:
-                isFocused || upiId
-                  ? theme.background.selected
-                  : theme.background.secondary,
+                isFocused || upiId ? theme.accent.subtle : theme.accent.soft,
             },
           ]}
         />
@@ -84,7 +82,17 @@ export default function AddUPIScreen() {
         </AppView>
       )}
       {/* Select UPI Provider */}
-      <AppView style={styles.selectListContainer}>
+      <AppScrollView
+        horizontal={true}
+        style={styles.selectListContainer}
+        contentContainerStyle={{
+          flexGrow: 1,
+          alignItems: "center",
+          paddingHorizontal: 0,
+          marginHorizontal: 0,
+          backgroundColor: theme.background.secondary,
+        }}
+      >
         <AppSelectList
           data={providers}
           selectedItem={selected}
@@ -100,7 +108,7 @@ export default function AddUPIScreen() {
             />
           )}
         />
-      </AppView>
+      </AppScrollView>
 
       {/* Handle Form Sublimation */}
       <Pressable
@@ -108,9 +116,7 @@ export default function AddUPIScreen() {
           styles.saveButton,
           {
             borderColor: theme.border.primary,
-            backgroundColor: pressed
-              ? theme.background.selected
-              : theme.background.secondary,
+            backgroundColor: pressed ? theme.accent.subtle : theme.accent.soft,
           },
         ]}
         onPress={handleSubmit}
@@ -130,13 +136,11 @@ const styles = StyleSheet.create({
   },
   upiIdInput: {
     fontSize: 16,
-    marginVertical: 8,
     paddingHorizontal: 16,
     borderWidth: 1,
-    borderRadius: 16,
-    height: 46,
-    fontWeight: 500,
+    borderRadius: 48,
   },
+
   selectListContainer: {
     flexDirection: "row",
     flexWrap: "wrap",
@@ -147,7 +151,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     flexDirection: "row",
     gap: 8,
-    marginTop: 16,
+    marginTop: "auto",
     padding: 12,
     borderWidth: 1,
     borderRadius: 48,
