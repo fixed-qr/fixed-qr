@@ -1,19 +1,16 @@
-import { QuickAction } from "@/components";
-import { AppImage, AppText, AppView } from "@/components/app-ui";
+import { NotFound, QuickAction } from "@/components";
+import { AppText, AppView } from "@/components/app-ui";
 import { screenWidth } from "@/constants/dimensions";
-import { useTheme } from "@/hooks/use-theme";
 import { useDataStore } from "@/store/data-store";
 import { getProviderLabel } from "@/utils/get-provider-label";
 import { getProviderLogo } from "@/utils/get-provider-logo";
 import { Link } from "expo-router";
-import React from "react";
 import { StyleSheet } from "react-native";
 
 const gap = 8;
 const width = (screenWidth - gap - 40 - 1) / 2;
 
 export function QuickActions() {
-  const theme = useTheme();
   const transactions = useDataStore((state) => state.transactions);
 
   return (
@@ -54,27 +51,7 @@ export function QuickActions() {
             ))}
         </AppView>
       ) : (
-        <AppView
-          style={[
-            styles.transactionEmpty,
-            {
-              backgroundColor: theme.background.secondary,
-              borderColor: theme.border.primary,
-            },
-          ]}
-        >
-          <AppImage
-            source={require("@/assets/images/icons/not-found.png")}
-            style={styles.notFoundImage}
-          />
-          <AppText
-            variant="bodyMedium"
-            color="secondary"
-            style={styles.emptyText}
-          >
-            Your quick actions will appear here.
-          </AppText>
-        </AppView>
+        <NotFound message="Your quick actions will appear here." />
       )}
     </AppView>
   );
@@ -90,23 +67,5 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     flexWrap: "wrap",
     gap: gap,
-  },
-  transactionEmpty: {
-    marginTop: 8,
-    paddingVertical: 32,
-    paddingHorizontal: 16,
-    alignItems: "center",
-    justifyContent: "center",
-    gap: 16,
-    borderRadius: 24,
-    borderWidth: 1,
-  },
-  notFoundImage: {
-    objectFit: "contain",
-    width: 120,
-    height: 120,
-  },
-  emptyText: {
-    textAlign: "center",
   },
 });

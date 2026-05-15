@@ -1,10 +1,5 @@
-import { Transaction } from "@/components";
-import {
-    AppBottomSheet,
-    AppImage,
-    AppText,
-    AppView,
-} from "@/components/app-ui";
+import { NotFound, Transaction } from "@/components";
+import { AppBottomSheet, AppView } from "@/components/app-ui";
 import { useTheme } from "@/hooks/use-theme";
 import { useDataStore } from "@/store/data-store";
 import { getProviderLabel } from "@/utils/get-provider-label";
@@ -53,26 +48,7 @@ export function Transactions({ ref }: TransactionsProps) {
             ))}
           </AppView>
         ) : (
-          <AppView
-            style={[
-              styles.transactionEmpty,
-              {
-                backgroundColor: theme.background.secondary,
-                borderColor: theme.border.primary,
-              },
-            ]}
-          >
-            <AppImage
-              source={require("@/assets/images/icons/not-found.png")}
-              style={styles.notFoundImage}
-            />
-            <AppText
-              variant="bodySmall"
-              style={[styles.emptyText, { color: theme.text.secondary }]}
-            >
-              Your recent transactions will appear here.
-            </AppText>
-          </AppView>
+          <NotFound message="Your recent transactions will appear here." />
         )}
       </BottomSheetScrollView>
     </AppBottomSheet>
@@ -91,23 +67,5 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingVertical: 8,
     borderRadius: 28,
-  },
-  transactionEmpty: {
-    marginTop: 8,
-    paddingVertical: 32,
-    paddingHorizontal: 16,
-    alignItems: "center",
-    justifyContent: "center",
-    gap: 16,
-    borderRadius: 24,
-    borderWidth: 1,
-  },
-  notFoundImage: {
-    objectFit: "contain",
-    width: 120,
-    height: 120,
-  },
-  emptyText: {
-    textAlign: "center",
   },
 });

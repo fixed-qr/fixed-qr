@@ -1,4 +1,5 @@
-import { AppIcon, AppImage, AppText, AppView } from "@/components/app-ui";
+import { NotFound } from "@/components";
+import { AppIcon, AppText, AppView } from "@/components/app-ui";
 import { UpiId } from "@/components/upi-id";
 import { useTheme } from "@/hooks/use-theme";
 import { useDataStore } from "@/store/data-store";
@@ -45,27 +46,7 @@ export function UpiIds() {
           ))}
         </AppView>
       ) : (
-        <AppView
-          style={[
-            styles.upiIdsEmpty,
-            {
-              backgroundColor: theme.background.secondary,
-              borderColor: theme.border.primary,
-            },
-          ]}
-        >
-          <AppImage
-            source={require("@/assets/images/icons/not-found.png")}
-            style={styles.notFoundImage}
-          />
-          <AppText
-            variant="bodyMedium"
-            color="secondary"
-            style={styles.emptyText}
-          >
-            Your Saved UPI ID will appear here.
-          </AppText>
-        </AppView>
+        <NotFound message="Your Saved UPI ID will appear here." />
       )}
     </AppView>
   );
@@ -85,23 +66,5 @@ const styles = StyleSheet.create({
     paddingVertical: 8,
     borderRadius: 28,
     borderWidth: 1,
-  },
-  upiIdsEmpty: {
-    marginTop: 8,
-    paddingVertical: 32,
-    paddingHorizontal: 16,
-    alignItems: "center",
-    justifyContent: "center",
-    gap: 16,
-    borderRadius: 24,
-    borderWidth: 1,
-  },
-  notFoundImage: {
-    objectFit: "contain",
-    width: 120,
-    height: 120,
-  },
-  emptyText: {
-    textAlign: "center",
   },
 });
