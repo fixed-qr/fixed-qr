@@ -24,7 +24,10 @@ export function Settings({ onTransactionsButtonPress }: SettingsProps) {
       <AppView
         style={[
           styles.settings,
-          { backgroundColor: theme.background.secondary },
+          {
+            backgroundColor: theme.background.secondary,
+            borderColor: theme.border.primary,
+          },
         ]}
       >
         <DeleteEverything />
@@ -53,5 +56,6 @@ const styles = StyleSheet.create({
     marginTop: 8,
     paddingVertical: 8,
     borderRadius: 28,
+    borderWidth: 1,
   },
 });

@@ -1,7 +1,6 @@
-import { AppIcon, AppText } from "@/components/app-ui";
+import { AppIcon, AppIconProps, AppText } from "@/components/app-ui";
 import { useTheme } from "@/hooks/use-theme";
 import { Pressable, StyleSheet } from "react-native";
-import { AppIconProps } from "./ui/app-icon";
 
 type IconName = AppIconProps["name"];
 
@@ -23,17 +22,7 @@ export function Setting({
   const theme = useTheme();
 
   return (
-    <Pressable
-      onPress={onPress}
-      style={[
-        styles.shared,
-        styles.setting,
-        {
-          borderBottomWidth: isLast ? 0 : 1,
-          borderColor: theme.background.primary,
-        },
-      ]}
-    >
+    <Pressable onPress={onPress} style={styles.setting}>
       <AppIcon name={leftIcon} size={18} color={theme.text.primary} />
       <AppText variant="button">{label}</AppText>
       <AppIcon
@@ -47,15 +36,11 @@ export function Setting({
 }
 
 const styles = StyleSheet.create({
-  shared: {
-    backgroundColor: "transparent",
-  },
   setting: {
     flexDirection: "row",
     alignItems: "center",
     gap: 8,
     paddingVertical: 12,
     paddingHorizontal: 12,
-    borderBottomWidth: 1,
   },
 });

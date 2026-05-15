@@ -24,15 +24,7 @@ export function UpiId({ logoImage, label, upiId, isLast }: UpiIdProps) {
   };
 
   return (
-    <AppView
-      style={[
-        styles.upiId,
-        {
-          borderColor: theme.background.primary,
-          borderBottomWidth: isLast ? 0 : 1,
-        },
-      ]}
-    >
+    <AppView style={[styles.upiId]}>
       <AppView style={styles.left}>
         <Image source={logoImage} style={styles.logoImage} />
         <AppView style={styles.upiIdInfo}>
@@ -57,7 +49,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     paddingVertical: 8,
     paddingHorizontal: 12,
-    borderBottomWidth: 1.5,
   },
   left: {
     flex: 1,

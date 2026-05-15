@@ -29,7 +29,10 @@ export function UpiIds() {
         <AppView
           style={[
             styles.upiIds,
-            { backgroundColor: theme.background.secondary },
+            {
+              backgroundColor: theme.background.secondary,
+              borderColor: theme.border.primary,
+            },
           ]}
         >
           {upiIds.map((u, index) => (
@@ -82,6 +85,7 @@ const styles = StyleSheet.create({
     marginTop: 8,
     paddingVertical: 8,
     borderRadius: 28,
+    borderWidth: 1,
   },
   upiIdsEmpty: {
     marginTop: 8,
