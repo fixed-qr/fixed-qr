@@ -32,14 +32,14 @@ export default function QRCodeFormScreen() {
     const pressableStyle = (key: string, pressed: boolean) => {
       let styles = {
         borderColor: theme.border.primary,
-        backgroundColor: theme.background.primary,
+        backgroundColor: theme.accent.subtle,
         flex: 0,
       };
 
       if (pressed) {
         styles.backgroundColor = theme.accent.soft as any;
       } else {
-        styles.backgroundColor = theme.background.primary;
+        styles.backgroundColor = theme.accent.subtle;
       }
 
       if (key === "0") {
@@ -96,23 +96,24 @@ export default function QRCodeFormScreen() {
         <Amount amount={value.length === 0 ? "0" : value} size={22} />
       </AppView>
 
+      {/* Numeric Key Pad */}
       {renderNumericKeyPad()}
-      {/* Providers */}
 
-      <AppScrollView
-        horizontal={true}
-        style={styles.providerContainer}
-        contentContainerStyle={{
-          flexGrow: 1,
-          justifyContent: "center",
-          alignItems: "center",
-          paddingHorizontal: 0,
-          marginHorizontal: 0,
-          backgroundColor: theme.background.secondary,
-        }}
-      >
-        {upiIds.length ? (
-          upiIds.map((upiId) => (
+      {/* Providers */}
+      {upiIds.length ? (
+        <AppScrollView
+          horizontal={true}
+          style={styles.providerContainer}
+          contentContainerStyle={{
+            flexGrow: 1,
+            justifyContent: "center",
+            alignItems: "center",
+            paddingHorizontal: 0,
+            marginHorizontal: 0,
+            backgroundColor: theme.background.secondary,
+          }}
+        >
+          {upiIds.map((upiId) => (
             <Link
               key={upiId.provider + upiId.upiId}
               href={{
@@ -149,11 +150,22 @@ export default function QRCodeFormScreen() {
                 </AppText>
               </AppView>
             </Link>
-          ))
-        ) : (
-          <AppText>Upi not added</AppText>
-        )}
-      </AppScrollView>
+          ))}
+        </AppScrollView>
+      ) : (
+        <AppView style={styles.upiIdNotFound}>
+          <Link href={"/(modals)/add-upi"}>
+            <AppText
+              style={[
+                styles.upiIdNotFoundLink,
+                { color: theme.accent.primary },
+              ]}
+            >
+              You haven't added a UPI ID yet. Please add one to continue.
+            </AppText>
+          </Link>
+        </AppView>
+      )}
     </AppScrollView>
   );
 }
@@ -221,5 +233,16 @@ const styles = StyleSheet.create({
   keyText: {
     fontSize: 28,
     fontWeight: "600",
+  },
+  upiIdNotFound: {
+    width: "100%",
+    minWidth: 0,
+    paddingVertical: 16,
+    paddingHorizontal: 16,
+  },
+  upiIdNotFoundLink: {
+    textAlign: "center",
+    lineHeight: 22,
+    flexShrink: 1,
   },
 });
