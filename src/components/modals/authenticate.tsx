@@ -65,7 +65,9 @@ export function Authenticate() {
           paddingHorizontal: 20,
         }}
       >
-        <AppText variant="headingMedium">Verify Your Identity</AppText>
+        <AppText variant="headingSmall" style={{ textAlign: "center" }}>
+          Verify Your Identity
+        </AppText>
         <SecureInput
           value={password}
           onChangeText={handlePasswordChange}

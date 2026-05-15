@@ -26,7 +26,7 @@ export function Transaction({
         styles.shared,
         styles.transaction,
         {
-          borderColor: theme.background.primary,
+          borderColor: theme.background.secondary,
           borderBottomWidth: isLast ? 0 : 1,
         },
       ]}
@@ -42,7 +42,7 @@ export function Transaction({
           </AppText>
         </AppView>
         <AppView style={[styles.shared, styles.rightRight]}>
-          <Amount amount={amount} size={12} />
+          <Amount amount={amount} size={10} />
           <AppIcon
             name="arrow-back"
             size={18}
