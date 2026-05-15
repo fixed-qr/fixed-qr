@@ -1,6 +1,6 @@
+import { AppIcon, AppText } from "@/components/app-ui";
 import { useTheme } from "@/hooks/use-theme";
 import { Pressable, StyleSheet } from "react-native";
-import { AppIcon, AppText } from "./ui";
 import { AppIconProps } from "./ui/app-icon";
 
 type IconName = AppIconProps["name"];

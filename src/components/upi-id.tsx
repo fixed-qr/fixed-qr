@@ -1,3 +1,4 @@
+import { AppIcon, AppText, AppView } from "@/components/app-ui";
 import { useTheme } from "@/hooks/use-theme";
 import { useDataStore } from "@/store/data-store";
 import {
@@ -6,7 +7,6 @@ import {
     Pressable,
     StyleSheet,
 } from "react-native";
-import { AppIcon, AppText, AppView } from "./ui";
 
 interface UpiIdProps {
   logoImage: ImageSourcePropType;

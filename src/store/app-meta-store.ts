@@ -26,7 +26,7 @@ export const useAppMetaStore = create<AppMetaStore>((set) => ({
         meta: data,
       });
     } catch (error) {
-      console.error("Error fetching Meta:", error);
+      console.log("Error fetching Meta:", error);
 
       set({
         meta: null,

@@ -1,6 +1,6 @@
+import { AppView } from "@/components/app-ui";
 import { useTheme } from "@/hooks/use-theme";
 import { StyleSheet } from "react-native";
-import { AppView } from "./ui";
 
 export function FormSheetHeader() {
   const theme = useTheme();

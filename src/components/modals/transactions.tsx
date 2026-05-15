@@ -1,5 +1,10 @@
 import { Transaction } from "@/components";
-import { AppBottomSheet, AppImage, AppText, AppView } from "@/components/ui";
+import {
+    AppBottomSheet,
+    AppImage,
+    AppText,
+    AppView,
+} from "@/components/app-ui";
 import { useTheme } from "@/hooks/use-theme";
 import { useDataStore } from "@/store/data-store";
 import { getProviderLabel } from "@/utils/get-provider-label";

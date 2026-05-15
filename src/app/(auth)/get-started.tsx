@@ -5,7 +5,7 @@ import {
     AppScrollView,
     AppText,
     AppView,
-} from "@/components/ui";
+} from "@/components/app-ui";
 import { useTheme } from "@/hooks/use-theme";
 import { useAuthStore } from "@/store/auth-store";
 import { useDataStore } from "@/store/data-store";

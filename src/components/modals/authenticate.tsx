@@ -1,5 +1,5 @@
 import { SecureInput } from "@/components";
-import { AppBottomSheet, AppText, AppView } from "@/components/ui";
+import { AppBottomSheet, AppText, AppView } from "@/components/app-ui";
 import { useTheme } from "@/hooks/use-theme";
 import { useAuthStore } from "@/store/auth-store";
 import { useDataStore } from "@/store/data-store";

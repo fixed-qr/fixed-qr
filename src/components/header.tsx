@@ -1,4 +1,4 @@
-import { AppText, AppView } from "@/components/ui";
+import { AppText, AppView } from "@/components/app-ui";
 import { useTheme } from "@/hooks/use-theme";
 import { Ionicons } from "@expo/vector-icons";
 import { Pressable, StyleSheet } from "react-native";

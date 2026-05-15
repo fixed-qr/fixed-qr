@@ -1,10 +1,10 @@
+import { AppIcon, AppImage, AppText, AppView } from "@/components/app-ui";
+import { UpiId } from "@/components/upi-id";
 import { useTheme } from "@/hooks/use-theme";
 import { useDataStore } from "@/store/data-store";
 import { getProviderLogo } from "@/utils/get-provider-logo";
 import { Link } from "expo-router";
 import { StyleSheet } from "react-native";
-import { AppIcon, AppImage, AppText, AppView } from "../ui";
-import { UpiId } from "../upi-id";
 
 export function UpiIds() {
   const theme = useTheme();

@@ -1,8 +1,8 @@
+import { AppImage, AppText, AppView } from "@/components/app-ui";
 import { ThemeColors } from "@/constants/theme-colors";
 import { useTheme } from "@/hooks/use-theme";
 import React from "react";
 import { StyleSheet } from "react-native";
-import { AppImage, AppText, AppView } from "./ui";
 
 const initialSize = 15.5;
 

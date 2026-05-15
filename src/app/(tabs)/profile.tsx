@@ -1,11 +1,11 @@
-import { Authenticate, Transactions } from "@/components/modals";
-import { Settings, UpiIds } from "@/components/sections";
 import {
     AppSafeAreaView,
     AppScrollView,
     AppText,
     AppView,
-} from "@/components/ui";
+} from "@/components/app-ui";
+import { Authenticate, Transactions } from "@/components/modals";
+import { Settings, UpiIds } from "@/components/sections";
 import { useTheme } from "@/hooks/use-theme";
 import { useDataStore } from "@/store/data-store";
 import BottomSheet from "@gorhom/bottom-sheet";

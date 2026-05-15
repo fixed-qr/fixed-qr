@@ -1,6 +1,6 @@
+import { AppIcon, AppText, AppView } from "@/components/app-ui";
 import { useTheme } from "@/hooks/use-theme";
 import { StyleSheet, TextInput } from "react-native";
-import { AppIcon, AppText, AppView } from "./ui";
 
 interface SecureInputProps {
   value: string;

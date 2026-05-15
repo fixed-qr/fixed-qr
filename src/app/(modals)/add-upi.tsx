@@ -5,7 +5,7 @@ import {
     AppSelectList,
     AppText,
     AppView,
-} from "@/components/ui";
+} from "@/components/app-ui";
 import { screenWidth } from "@/constants/dimensions";
 import { providers } from "@/constants/providers";
 import { useTheme } from "@/hooks/use-theme";

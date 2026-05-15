@@ -1,5 +1,5 @@
 import { Amount } from "@/components";
-import { AppScrollView, AppText, AppView } from "@/components/ui";
+import { AppScrollView, AppText, AppView } from "@/components/app-ui";
 import { screenWidth } from "@/constants/dimensions";
 import { useTheme } from "@/hooks/use-theme";
 import { useDataStore } from "@/store/data-store";

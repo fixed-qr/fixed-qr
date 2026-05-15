@@ -1,6 +1,6 @@
+import { AppIcon, AppImage, AppText } from "@/components/app-ui";
 import { useTheme } from "@/hooks/use-theme";
 import { ImageSourcePropType, Pressable, StyleSheet } from "react-native";
-import { AppIcon, AppImage, AppText } from "./ui";
 
 interface ProviderButtonProps {
   label: string;

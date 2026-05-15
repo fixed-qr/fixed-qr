@@ -1,3 +1,5 @@
+import { QuickAction } from "@/components";
+import { AppImage, AppText, AppView } from "@/components/app-ui";
 import { screenWidth } from "@/constants/dimensions";
 import { useTheme } from "@/hooks/use-theme";
 import { useDataStore } from "@/store/data-store";
@@ -6,8 +8,6 @@ import { getProviderLogo } from "@/utils/get-provider-logo";
 import { Link } from "expo-router";
 import React from "react";
 import { StyleSheet } from "react-native";
-import { QuickAction } from "../quick-action";
-import { AppImage, AppText, AppView } from "../ui";
 
 const gap = 8;
 const width = (screenWidth - gap - 40 - 1) / 2;

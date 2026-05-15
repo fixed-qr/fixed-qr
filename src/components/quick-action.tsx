@@ -1,7 +1,7 @@
+import { AppIcon, AppImage, AppText, AppView } from "@/components/app-ui";
 import { useTheme } from "@/hooks/use-theme";
 import { ImageSourcePropType, StyleSheet } from "react-native";
 import { Amount } from "./amount";
-import { AppIcon, AppImage, AppText, AppView } from "./ui";
 
 interface QuickActionProps {
   logoImage: ImageSourcePropType;

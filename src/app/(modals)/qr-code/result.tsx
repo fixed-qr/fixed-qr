@@ -1,5 +1,4 @@
-import { AppScrollView, AppText } from "@/components/ui";
-import { AppView } from "@/components/ui/app-view";
+import { AppScrollView, AppText, AppView } from "@/components/app-ui";
 import { screenWidth } from "@/constants/dimensions";
 import { useTheme } from "@/hooks/use-theme";
 import { useDataStore } from "@/store/data-store";

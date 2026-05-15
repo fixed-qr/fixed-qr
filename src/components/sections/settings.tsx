@@ -1,8 +1,8 @@
+import { AppText, AppView } from "@/components/app-ui";
+import { DeleteEverything } from "@/components/delete-everything";
+import { Setting } from "@/components/setting";
 import { useTheme } from "@/hooks/use-theme";
 import { StyleSheet } from "react-native";
-import { DeleteEverything } from "../delete-everything";
-import { Setting } from "../setting";
-import { AppText, AppView } from "../ui";
 
 interface SettingsProps {
   onTransactionsButtonPress: () => void;

@@ -1,12 +1,12 @@
 import { Header } from "@/components";
-import { QuickActions } from "@/components/sections";
 import {
     AppIcon,
     AppSafeAreaView,
     AppScrollView,
     AppText,
     AppView,
-} from "@/components/ui";
+} from "@/components/app-ui";
+import { QuickActions } from "@/components/sections";
 import { useTheme } from "@/hooks/use-theme";
 import { useDataStore } from "@/store/data-store";
 import { Link } from "expo-router";
@@ -21,7 +21,8 @@ export default function HomeScreen() {
       <Header />
       <AppScrollView>
         <AppText
-          variant="headingSmall"
+          variant="bodyLarge"
+          weight="600"
           color="secondary"
           style={styles.greetingMessageText}
         >
