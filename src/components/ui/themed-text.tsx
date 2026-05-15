@@ -1,6 +1,6 @@
 import { StyleSheet, Text, type TextProps } from "react-native";
 
-import { TextVariant } from "@/constants/text-variants";
+import { TextVariant, textVariants } from "@/constants/text-variants";
 import { BackgroundColors, TextColors } from "@/constants/theme-colors";
 import { useTheme } from "@/hooks/use-theme";
 import { FontWeight } from "@/types/font-weight";
@@ -28,11 +28,12 @@ export function ThemedText({
       style={[
         styles.base,
         {
-          color: color ? theme["text"][color] : theme.text.primary,
+          color: color ? theme.text[color] : theme.text.primary,
           backgroundColor: backgroundColor
-            ? theme["background"][backgroundColor]
+            ? theme.background[backgroundColor]
             : "transparent",
-          fontWeight: weight,
+          ...textVariants[variant || "body"],
+          ...(weight && { fontWeight: weight }),
         },
         style,
       ]}

@@ -1,32 +1,21 @@
-import { useTheme } from "@/hooks/use-theme";
-import { StyleSheet, TextStyle } from "react-native";
-import { ThemedText } from "./themed-text";
+import { StyleSheet } from "react-native";
+import { ThemedText, ThemedTextProps } from "./themed-text";
+import { ThemedView } from "./themed-view";
 
-interface TitleProps {
+interface TitleProps extends ThemedTextProps {
   children: string;
-  style?: TextStyle;
 }
 
-export function Title({ children, style }: TitleProps) {
-  const theme = useTheme();
+export function Title({ children, ...rest }: TitleProps) {
   return (
-    <ThemedText
-      style={[
-        styles.title,
-        { backgroundColor: theme.background.secondary },
-        style,
-      ]}
-    >
-      {children}
-    </ThemedText>
+    <ThemedView style={styles.container}>
+      <ThemedText {...rest}>{children}</ThemedText>
+    </ThemedView>
   );
 }
 
 const styles = StyleSheet.create({
-  title: {
+  container: {
     paddingVertical: 8,
-    textAlign: "center",
-    fontSize: 22,
-    fontWeight: "600",
   },
 });
