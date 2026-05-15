@@ -1,3 +1,4 @@
+import { borderRadius } from "@/constants/platform";
 import { useTheme } from "@/hooks/use-theme";
 import { useAppMetaStore } from "@/store/app-meta-store";
 import {
@@ -40,12 +41,9 @@ export default function RootLayout() {
               presentation: "formSheet",
               gestureDirection: "vertical",
               animation: "slide_from_bottom",
-              sheetGrabberVisible: false,
-              sheetExpandsWhenScrolledToEdge: true,
-              sheetInitialDetentIndex: 0,
-              sheetCornerRadius: 32,
+              sheetCornerRadius: borderRadius,
               sheetElevation: 24,
-              sheetAllowedDetents: [0.7],
+              sheetAllowedDetents: [0.75],
             }}
           />
         </Stack>
