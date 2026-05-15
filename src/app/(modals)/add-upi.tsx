@@ -90,7 +90,6 @@ export default function AddUPIScreen() {
           alignItems: "center",
           paddingHorizontal: 0,
           marginHorizontal: 0,
-          backgroundColor: theme.background.secondary,
         }}
       >
         <AppSelectList

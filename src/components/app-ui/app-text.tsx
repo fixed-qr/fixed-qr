@@ -13,7 +13,7 @@ export type AppTextProps = TextProps & {
 };
 
 export function AppText({
-  variant = "bodyMedium",
+  variant,
   weight,
   color,
   backgroundColor,
@@ -32,7 +32,7 @@ export function AppText({
           backgroundColor: backgroundColor
             ? theme.background[backgroundColor]
             : undefined,
-          ...textVariants[variant],
+          ...(variant && textVariants[variant]),
           ...(weight && {
             fontWeight: weight,
           }),
