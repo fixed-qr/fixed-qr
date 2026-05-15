@@ -1,11 +1,5 @@
 import { Transaction } from "@/components";
-import {
-    AppBottomSheet,
-    Image,
-    ThemedText,
-    ThemedView,
-    Title,
-} from "@/components/ui";
+import { AppBottomSheet, Image, ThemedText, ThemedView } from "@/components/ui";
 import { useTheme } from "@/hooks/use-theme";
 import { useDataStore } from "@/store/data-store";
 import { getProviderLabel } from "@/utils/get-provider-label";
@@ -31,12 +25,10 @@ export function Transactions({ ref }: TransactionsProps) {
       enablePanDownToClose={true}
     >
       <BottomSheetScrollView
-        stickyHeaderIndices={[0]}
         style={{
           backgroundColor: theme.background.secondary,
         }}
       >
-        <Title>Transactions</Title>
         {transactions.length ? (
           <ThemedView
             style={[
@@ -70,7 +62,7 @@ export function Transactions({ ref }: TransactionsProps) {
               style={styles.notFoundImage}
             />
             <ThemedText
-              variant="small"
+              variant="bodySmall"
               style={[styles.emptyText, { color: theme.text.secondary }]}
             >
               Your recent transactions will appear here.
@@ -83,13 +75,15 @@ export function Transactions({ ref }: TransactionsProps) {
 }
 
 const styles = StyleSheet.create({
-  transactionsTitle: {
-    marginTop: 16,
-    paddingInline: 8,
+  title: {
+    width: "100%",
+    minWidth: "100%",
+    paddingVertical: 8,
+    alignItems: "center",
+    justifyContent: "center",
   },
   transactions: {
     flex: 1,
-    marginTop: 8,
     paddingVertical: 8,
     borderRadius: 28,
   },

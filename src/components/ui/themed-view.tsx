@@ -11,21 +11,21 @@ export function ThemedView({
   style,
   children,
   backgroundColor,
-  ...props
+  ...rest
 }: ThemedViewProps) {
   const theme = useTheme();
 
   return (
     <View
+      {...rest}
       style={[
         {
           backgroundColor: backgroundColor
-            ? theme["background"][backgroundColor]
-            : "transparent",
+            ? theme.background[backgroundColor]
+            : undefined,
         },
         style,
       ]}
-      {...props}
     >
       {children}
     </View>
