@@ -1,24 +1,38 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-export default function useGoogleDriveJson<T>(publicFileId: string) {
+export function useGoogleDriveJson<T>(publicFileId: string) {
   const [data, setData] = useState<T | null>(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  const fetchData = async () => {
-    try {
-      const response = await fetch(
-        `https://drive.google.com/uc?id=${publicFileId}&export=download`,
-      );
+  useEffect(() => {
+    if (!publicFileId) return;
 
-      if (!response.ok) {
-        throw new Error(`HTTP ${response.status}`);
+    const fetchData = async () => {
+      try {
+        setLoading(true);
+
+        const response = await fetch(
+          `https://drive.google.com/uc?export=download&id=${publicFileId}`,
+        );
+
+        if (!response.ok) {
+          throw new Error(`HTTP ${response.status}`);
+        }
+
+        const data = JSON.parse(await response.text()) as T;
+        setData(data);
+      } catch (err) {
+        setError((err as string) || "Failed to fetch data");
+      } finally {
+        setLoading(false);
       }
+    };
 
-      const data = JSON.parse(await response.text()) as T;
-      setData(data);
-    } catch (error) {
-      console.log("Error fetching Meta:", error);
+    if (!data) {
+      fetchData();
     }
-  };
+  }, [publicFileId]);
 
-  return { data, fetchData };
+  return { data, loading, error };
 }
