@@ -1,10 +1,10 @@
-import { AppMeta } from "@/types/app-meta";
+import { AppMetaData } from "@/types/app-meta-data";
 import { create } from "zustand";
 
 const FILE_ID = "1aHei1cccqDJCa8vLhuJI4-7inImNUvki";
 
 interface AppMetaStore {
-  meta: AppMeta | null;
+  meta: AppMetaData | null;
   fetchAppMeta: () => Promise<void>;
 }
 

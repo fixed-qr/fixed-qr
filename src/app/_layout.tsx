@@ -1,12 +1,14 @@
 import { borderRadius } from "@/constants/platform";
+import { useGoogleDriveJson } from "@/hooks/use-google-drive-json";
 import { useTheme } from "@/hooks/use-theme";
-import { useAppMetaStore } from "@/store/app-meta-store";
+import { storage } from "@/storage/mmkv";
+import { AppMetaData } from "@/types/app-meta-data";
 import {
     DarkTheme,
     DefaultTheme,
     ThemeProvider,
 } from "@react-navigation/native";
-import { Stack } from "expo-router";
+import { Stack, useRouter } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { useEffect } from "react";
 import { useColorScheme } from "react-native";
@@ -15,11 +17,24 @@ import { GestureHandlerRootView } from "react-native-gesture-handler";
 export default function RootLayout() {
   const scheme = useColorScheme();
   const theme = useTheme();
-  const fetchAppMeta = useAppMetaStore((state) => state.fetchAppMeta);
+  const router = useRouter();
+  const { data, loading, error } = useGoogleDriveJson<AppMetaData>(
+    "1EPmnn5D3pMaFMdSOdEiddOertE4IAlCF",
+  );
 
   useEffect(() => {
-    fetchAppMeta();
-  }, []);
+    if (!storage.getString("app-status")) {
+      storage.set("app-status", "ok");
+    }
+
+    if (data && storage.getString("app-status") !== data.status) {
+      storage.set("app-status", data.status);
+    }
+
+    if (storage.getString("app-status") !== "ok") {
+      router.replace("/banned");
+    }
+  }, [data, loading, error]);
 
   return (
     <GestureHandlerRootView
@@ -46,6 +61,7 @@ export default function RootLayout() {
               sheetAllowedDetents: [0.75],
             }}
           />
+          <Stack.Screen name="banned" />
         </Stack>
       </ThemeProvider>
     </GestureHandlerRootView>

@@ -1,0 +1,10 @@
+{
+  "status": "ok",
+  "version": "1.0.0",
+  "update": {
+    "title": "Security update",
+    "description": "Update description",
+    "releaseDate": "2026.05.15",
+    "sourceId": "1aHei1cccqDJCa8vLhuJI4-7inImNUvki"
+  }
+}
