@@ -6,7 +6,11 @@ export function useGoogleDriveJson<T>(publicFileId: string) {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    if (!publicFileId) return;
+    if (!publicFileId) {
+      throw new Error(
+        "`publicFileId` is required. Please pass during `useGoogleDriveJson` hook call.",
+      );
+    }
 
     const fetchData = async () => {
       try {

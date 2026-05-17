@@ -8,33 +8,50 @@ import {
     DefaultTheme,
     ThemeProvider,
 } from "@react-navigation/native";
-import { Stack, useRouter } from "expo-router";
+import { Stack, useRouter, useSegments } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { useEffect } from "react";
 import { useColorScheme } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 
+if (!storage.getString("app-status")) {
+  storage.set(
+    "app-status",
+    JSON.stringify({
+      status: {
+        code: "ok",
+        title: "Service Available",
+        message: "Application is running normally.",
+      },
+      release: null,
+    }),
+  );
+}
+
 export default function RootLayout() {
   const scheme = useColorScheme();
   const theme = useTheme();
   const router = useRouter();
+  const segments = useSegments();
   const { data, loading, error } = useGoogleDriveJson<AppMetaData>(
     "1EPmnn5D3pMaFMdSOdEiddOertE4IAlCF",
   );
 
   useEffect(() => {
-    if (!storage.getString("app-status")) {
-      storage.set("app-status", "ok");
+    if (data) {
+      storage.set("app-status", JSON.stringify(data));
     }
+  }, [data]);
 
-    if (data && storage.getString("app-status") !== data.status) {
-      storage.set("app-status", data.status);
-    }
+  useEffect(() => {
+    const appData = JSON.parse(
+      storage.getString("app-status") as string,
+    ) as AppMetaData;
 
-    if (storage.getString("app-status") !== "ok") {
+    if (appData.status.code !== "ok") {
       router.replace("/banned");
     }
-  }, [data, loading, error]);
+  }, [data, segments]);
 
   return (
     <GestureHandlerRootView
@@ -61,7 +78,7 @@ export default function RootLayout() {
               sheetAllowedDetents: [0.75],
             }}
           />
-          <Stack.Screen name="banned" />
+          <Stack.Screen name="banned" options={{ animation: "fade" }} />
         </Stack>
       </ThemeProvider>
     </GestureHandlerRootView>
