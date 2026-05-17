@@ -2,6 +2,7 @@ import { borderRadius } from "@/constants/platform";
 import { useGoogleDriveJson } from "@/hooks/use-google-drive-json";
 import { useTheme } from "@/hooks/use-theme";
 import { storage } from "@/storage/mmkv";
+import { useDataStore } from "@/store/data-store";
 import { AppMetaData } from "@/types/app-meta-data";
 import {
     DarkTheme,
@@ -33,7 +34,9 @@ export default function RootLayout() {
   const theme = useTheme();
   const router = useRouter();
   const segments = useSegments();
-  const { data, loading, error } = useGoogleDriveJson<AppMetaData>(
+  const user = useDataStore((state) => state.user);
+
+  const { data } = useGoogleDriveJson<AppMetaData>(
     "1EPmnn5D3pMaFMdSOdEiddOertE4IAlCF",
   );
 
@@ -52,6 +55,12 @@ export default function RootLayout() {
       router.replace("/banned");
     }
   }, [data, segments]);
+
+  useEffect(() => {
+    if (!user) {
+      router.replace("/(auth)/get-started");
+    }
+  }, [segments]);
 
   return (
     <GestureHandlerRootView

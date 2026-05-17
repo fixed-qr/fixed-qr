@@ -1,15 +1,8 @@
 import { useTheme } from "@/hooks/use-theme";
-import { useDataStore } from "@/store/data-store";
-import { Redirect } from "expo-router";
 import { NativeTabs } from "expo-router/unstable-native-tabs";
 
 export default function TabLayout() {
   const theme = useTheme();
-  const user = useDataStore((state) => state.user);
-
-  if (!user) {
-    return <Redirect href={"/(auth)/get-started"} />;
-  }
 
   return (
     <NativeTabs
