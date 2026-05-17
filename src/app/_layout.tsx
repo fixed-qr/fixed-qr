@@ -3,7 +3,7 @@ import { useGoogleDriveJson } from "@/hooks/use-google-drive-json";
 import { useTheme } from "@/hooks/use-theme";
 import { storage } from "@/storage/mmkv";
 import { useDataStore } from "@/store/data-store";
-import { AppMetaData } from "@/types/app-meta-data";
+import { AppStatus } from "@/types/app-status";
 import {
     DarkTheme,
     DefaultTheme,
@@ -36,7 +36,7 @@ export default function RootLayout() {
   const segments = useSegments();
   const user = useDataStore((state) => state.user);
 
-  const { data } = useGoogleDriveJson<AppMetaData>(
+  const { data } = useGoogleDriveJson<AppStatus>(
     "1EPmnn5D3pMaFMdSOdEiddOertE4IAlCF",
   );
 
@@ -47,11 +47,11 @@ export default function RootLayout() {
   }, [data]);
 
   useEffect(() => {
-    const appData = JSON.parse(
+    const appStatus = JSON.parse(
       storage.getString("app-status") as string,
-    ) as AppMetaData;
+    ) as AppStatus;
 
-    if (appData.status.code !== "ok") {
+    if (appStatus.code !== "ok") {
       router.replace("/app-status");
     }
   }, [data, segments]);

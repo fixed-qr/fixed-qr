@@ -1,0 +1,12 @@
+{
+  "code": "ok",
+  "title": "Service Available",
+  "message": "Application is running normally.",
+  "release": {
+    "title": "",
+    "version": 100,
+    "apkFileId": "",
+    "dataTime": "",
+    "notes": []
+  }
+}
