@@ -1,10 +1,10 @@
 import { AppSafeAreaView, AppText } from "@/components/app-ui";
 import { StyleSheet } from "react-native";
 
-export default function Banned() {
+export default function AppStatusScreen() {
   return (
     <AppSafeAreaView style={styles.container}>
-      <AppText>Banned</AppText>
+      <AppText>AppStatus</AppText>
     </AppSafeAreaView>
   );
 }

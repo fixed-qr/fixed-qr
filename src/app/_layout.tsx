@@ -52,7 +52,7 @@ export default function RootLayout() {
     ) as AppMetaData;
 
     if (appData.status.code !== "ok") {
-      router.replace("/banned");
+      router.replace("/app-status");
     }
   }, [data, segments]);
 
@@ -75,6 +75,7 @@ export default function RootLayout() {
           }}
         >
           <Stack.Screen name="(auth)/get-started" />
+          <Stack.Screen name="app-status" />
           <Stack.Screen name="(tabs)" />
           <Stack.Screen
             name="(modals)"
@@ -87,7 +88,6 @@ export default function RootLayout() {
               sheetAllowedDetents: [0.75],
             }}
           />
-          <Stack.Screen name="banned" options={{ animation: "fade" }} />
         </Stack>
       </ThemeProvider>
     </GestureHandlerRootView>
