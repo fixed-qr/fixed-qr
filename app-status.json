@@ -3,10 +3,15 @@
   "title": "Service Available",
   "message": "Application is running normally.",
   "release": {
-    "title": "",
+    "title": "Security Update",
     "version": 100,
-    "apkFileId": "",
-    "dataTime": "",
-    "notes": []
+    "apkFileId": "MdSOdEiddOertE4",
+    "dataTime": "2026-05-20 03:20:56",
+    "notes": [
+      "Performance improvements",
+      "Improved security",
+      "New features added",
+      "Bug fixes"
+    ]
   }
 }

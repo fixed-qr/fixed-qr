@@ -51,7 +51,7 @@ export default function RootLayout() {
       storage.getString("app-status") as string,
     ) as AppStatus;
 
-    if (appStatus.code !== "ok") {
+    if (appStatus.code.toLowerCase() !== "okx") {
       router.replace("/app-status");
     }
   }, [data, segments]);

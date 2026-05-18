@@ -11,14 +11,15 @@ export function AppScrollView({
   return (
     <ScrollView
       {...rest}
-      style={[{ backgroundColor: undefined }, style]}
+      style={[{ backgroundColor: undefined, width: "100%" }, style]}
       contentInset={safeAreaInsets}
       contentContainerStyle={[
         {
           backgroundColor: undefined,
           paddingHorizontal: 20,
           justifyContent: "center",
-          gap: 8,
+          rowGap: 8,
+          width: "100%",
         },
         contentContainerStyle,
       ]}
