@@ -4,9 +4,9 @@
   "message": "Application is running normally.",
   "release": {
     "title": "Security Update",
-    "version": 100,
-    "apkFileId": "MdSOdEiddOertE4",
-    "dataTime": "2026-05-20 03:20:56",
+    "version": 102,
+    "webUrl": "https://expo.dev/",
+    "dateTime": "2026-05-20 03:20:56",
     "notes": [
       "Performance improvements",
       "Improved security",

@@ -12,12 +12,13 @@ import { useTheme } from "@/hooks/use-theme";
 import { useAppStatus } from "@/store/app-status-store";
 import { StatusCode } from "@/types/app-status";
 import { versionToNumber } from "@/utils/version-to-number";
-import { Pressable, StyleSheet } from "react-native";
+import { openURL } from "expo-linking";
+import { ActivityIndicator, Pressable, StyleSheet } from "react-native";
 
 export default function AppStatusScreen() {
   const theme = useTheme();
   const { version } = useAppVersion();
-  const appStatus = useAppStatus((state) => state.appStatus);
+  const { appStatus, loading } = useAppStatus();
 
   const dynamicTintColor = (code: StatusCode) => {
     if (code === "ok") {
@@ -28,6 +29,14 @@ export default function AppStatusScreen() {
       return theme.status.danger;
     }
   };
+
+  if (loading) {
+    return (
+      <AppSafeAreaView style={[styles.container, { justifyContent: "center" }]}>
+        <ActivityIndicator color={theme.text.primary} size={24} />
+      </AppSafeAreaView>
+    );
+  }
 
   return (
     <AppSafeAreaView style={styles.container}>
@@ -142,6 +151,11 @@ export default function AppStatusScreen() {
                 </AppView>
               </AppView>
               <Pressable
+                onPress={() => {
+                  if (appStatus.release) {
+                    openURL(appStatus.release?.webUrl);
+                  }
+                }}
                 style={({ pressed }) => [
                   styles.downloadButton,
                   {

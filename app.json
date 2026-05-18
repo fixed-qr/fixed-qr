@@ -27,6 +27,7 @@
     },
     "plugins": [
       "expo-router",
+      "expo-web-browser",
       [
         "expo-splash-screen",
         {
@@ -36,8 +37,7 @@
             "imageWidth": 76
           }
         }
-      ],
-      "expo-web-browser"
+      ]
     ],
     "experiments": {
       "typedRoutes": true,

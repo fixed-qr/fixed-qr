@@ -3,7 +3,7 @@ export type StatusCode = "ok" | "deprecated" | "maintenance" | "discontinued";
 export interface Release {
   version: number;
   title: string;
-  apkFileId: string;
+  webUrl: string;
   dateTime: string;
   notes: string[];
 }
