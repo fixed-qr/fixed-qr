@@ -1,15 +1,17 @@
 import { borderRadius } from "@/constants/platform";
-import { useGoogleDriveJson } from "@/hooks/use-google-drive-json";
+import { useAppVersion } from "@/hooks/use-app-version";
 import { useTheme } from "@/hooks/use-theme";
 import { storage } from "@/storage/mmkv";
+import { useAppStatus } from "@/store/app-status-store";
 import { useDataStore } from "@/store/data-store";
 import { AppStatus } from "@/types/app-status";
+import { versionToNumber } from "@/utils/version-to-number";
 import {
     DarkTheme,
     DefaultTheme,
     ThemeProvider,
 } from "@react-navigation/native";
-import { Stack, useRouter, useSegments } from "expo-router";
+import { Stack, usePathname, useRouter, useSegments } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { useEffect } from "react";
 import { useColorScheme } from "react-native";
@@ -19,13 +21,11 @@ if (!storage.getString("app-status")) {
   storage.set(
     "app-status",
     JSON.stringify({
-      status: {
-        code: "ok",
-        title: "Service Available",
-        message: "Application is running normally.",
-      },
+      code: "ok",
+      title: "Service Available",
+      message: "Application is running normally.",
       release: null,
-    }),
+    } satisfies AppStatus),
   );
 }
 
@@ -33,31 +33,47 @@ export default function RootLayout() {
   const scheme = useColorScheme();
   const theme = useTheme();
   const router = useRouter();
+  const { version } = useAppVersion();
   const segments = useSegments();
+  const pataname = usePathname();
   const user = useDataStore((state) => state.user);
-
-  const { data } = useGoogleDriveJson<AppStatus>(
-    "1EPmnn5D3pMaFMdSOdEiddOertE4IAlCF",
-  );
+  const { appStatus, fetchAppStatus } = useAppStatus();
 
   useEffect(() => {
-    if (data) {
-      storage.set("app-status", JSON.stringify(data));
+    fetchAppStatus();
+  }, []);
+
+  useEffect(() => {
+    if (appStatus) {
+      storage.set("app-status", JSON.stringify(appStatus));
     }
-  }, [data]);
 
-  useEffect(() => {
-    const appStatus = JSON.parse(
-      storage.getString("app-status") as string,
-    ) as AppStatus;
+    const cached = storage.getString("app-status");
+    if (!cached) return;
 
-    if (appStatus.code.toLowerCase() !== "okx") {
+    const status = JSON.parse(cached) as AppStatus;
+    const currentVersion = versionToNumber(version);
+
+    const shouldBlockApp =
+      status.code === "maintenance" ||
+      status.code === "discontinued" ||
+      (status.code === "deprecated" &&
+        currentVersion < (status.release?.version ?? 0));
+
+    // Redirect to app-status
+    if (shouldBlockApp && pataname !== "/app-status") {
       router.replace("/app-status");
+      return;
     }
-  }, [data, segments]);
+
+    // Leave app-status after update/fix
+    if (!shouldBlockApp && pataname === "/app-status") {
+      router.replace("/");
+    }
+  }, [appStatus, version, pataname]);
 
   useEffect(() => {
-    if (!user) {
+    if (!user && pataname !== "/(auth)/get-started") {
       router.replace("/(auth)/get-started");
     }
   }, [segments]);

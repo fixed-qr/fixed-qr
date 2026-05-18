@@ -6,124 +6,163 @@ import {
     AppText,
     AppView,
 } from "@/components/app-ui";
+import { AppStatusIcons } from "@/constants/app-status-icons";
+import { useAppVersion } from "@/hooks/use-app-version";
 import { useTheme } from "@/hooks/use-theme";
+import { useAppStatus } from "@/store/app-status-store";
+import { StatusCode } from "@/types/app-status";
+import { versionToNumber } from "@/utils/version-to-number";
 import { Pressable, StyleSheet } from "react-native";
 
 export default function AppStatusScreen() {
   const theme = useTheme();
+  const { version } = useAppVersion();
+  const appStatus = useAppStatus((state) => state.appStatus);
+
+  const dynamicTintColor = (code: StatusCode) => {
+    if (code === "ok") {
+      return theme.status.success;
+    } else if (code === "deprecated" || code === "maintenance") {
+      return theme.status.info;
+    } else if (code === "discontinued") {
+      return theme.status.danger;
+    }
+  };
 
   return (
     <AppSafeAreaView style={styles.container}>
       <AppScrollView>
         <AppView style={styles.appStatus}>
           <AppImage
-            source={require("@/assets/icons/app-status/ok.png")}
+            source={AppStatusIcons[appStatus?.code as StatusCode]}
             style={styles.appStatusImage}
-            tintColor={theme.status.success}
+            tintColor={dynamicTintColor(appStatus?.code as StatusCode)}
           />
           <AppText variant="bodyLarge" weight="500">
-            System Operational
+            {appStatus?.title}
           </AppText>
           <AppText
             variant="bodySmall"
             color="tertiary"
             style={styles.appStatusMessage}
           >
-            All service running smoothly. Enjoy the app!
+            {appStatus?.message}
           </AppText>
         </AppView>
-        <AppView style={styles.release}>
-          <AppText
-            variant="bodyMedium"
-            weight="500"
-            color="tertiary"
-            style={styles.releaseTitle}
-          >
-            Latest Release
-          </AppText>
-          <AppView
-            style={[
-              styles.releaseCard,
-              {
-                backgroundColor: theme.background.card,
-                borderColor: theme.border.primary,
-              },
-            ]}
-          >
-            <AppView
-              style={[styles.releaseRow, { borderColor: theme.border.primary }]}
-            >
-              <AppView style={styles.releaseInfo}>
+        {appStatus?.release &&
+          appStatus.release.version > versionToNumber(version) && (
+            <>
+              <AppView style={styles.release}>
+                <AppText
+                  variant="bodyMedium"
+                  weight="500"
+                  color="tertiary"
+                  style={styles.releaseTitle}
+                >
+                  Latest Release
+                </AppText>
+                <AppView
+                  style={[
+                    styles.releaseCard,
+                    {
+                      backgroundColor: theme.background.card,
+                      borderColor: theme.border.primary,
+                    },
+                  ]}
+                >
+                  <AppView
+                    style={[
+                      styles.releaseRow,
+                      { borderColor: theme.border.primary },
+                    ]}
+                  >
+                    <AppView style={styles.releaseInfo}>
+                      <AppIcon
+                        name="git-merge"
+                        color={theme.text.primary}
+                        size={14}
+                      />
+                      <AppText variant="bodyMedium">Version</AppText>
+                    </AppView>
+                    <AppText>{appStatus.release.version}</AppText>
+                  </AppView>
+                  <AppView
+                    style={[
+                      styles.releaseRow,
+                      { borderColor: theme.border.primary },
+                    ]}
+                  >
+                    <AppView style={styles.releaseInfo}>
+                      <AppIcon
+                        name="book"
+                        color={theme.text.primary}
+                        size={14}
+                      />
+                      <AppText variant="bodyMedium">Title</AppText>
+                    </AppView>
+                    <AppText>{appStatus.release.title}</AppText>
+                  </AppView>
+                  <AppView
+                    style={[
+                      styles.releaseRow,
+                      { borderColor: theme.border.primary },
+                    ]}
+                  >
+                    <AppView style={styles.releaseInfo}>
+                      <AppIcon
+                        name="watch"
+                        color={theme.text.primary}
+                        size={14}
+                      />
+                      <AppText variant="bodyMedium">Date Time</AppText>
+                    </AppView>
+                    <AppText>{appStatus.release.dateTime}</AppText>
+                  </AppView>
+                  <AppView style={[styles.releaseRow, styles.releaseNotes]}>
+                    <AppText variant="bodyMedium">Release Notes</AppText>
+                    <AppView>
+                      {appStatus.release.notes.map((note, index) => (
+                        <AppView
+                          style={styles.releaseNotesRow}
+                          key={note + index}
+                        >
+                          <AppView
+                            style={[
+                              styles.noteDot,
+                              { backgroundColor: theme.text.tertiary },
+                            ]}
+                          />
+                          <AppText variant="bodySmall" color="tertiary">
+                            {note}
+                          </AppText>
+                        </AppView>
+                      ))}
+                    </AppView>
+                  </AppView>
+                </AppView>
+              </AppView>
+              <Pressable
+                style={({ pressed }) => [
+                  styles.downloadButton,
+                  {
+                    backgroundColor: pressed
+                      ? theme.background.cardMuted
+                      : theme.background.card,
+                    borderColor: pressed
+                      ? theme.border.focus
+                      : theme.border.primary,
+                  },
+                ]}
+              >
                 <AppIcon
-                  name="git-merge"
+                  name="code-download"
                   color={theme.text.primary}
-                  size={14}
+                  size={16}
                 />
-                <AppText variant="bodyMedium">Version</AppText>
-              </AppView>
-              <AppText>1.0.0</AppText>
-            </AppView>
-            <AppView
-              style={[styles.releaseRow, { borderColor: theme.border.primary }]}
-            >
-              <AppView style={styles.releaseInfo}>
-                <AppIcon name="book" color={theme.text.primary} size={14} />
-                <AppText variant="bodyMedium">Title</AppText>
-              </AppView>
-              <AppText>Security Update</AppText>
-            </AppView>
-            <AppView
-              style={[styles.releaseRow, { borderColor: theme.border.primary }]}
-            >
-              <AppView style={styles.releaseInfo}>
-                <AppIcon name="watch" color={theme.text.primary} size={14} />
-                <AppText variant="bodyMedium">Data</AppText>
-              </AppView>
-              <AppText>2026-05-20 03:20:56</AppText>
-            </AppView>
-            <AppView style={[styles.releaseRow, styles.releaseNotes]}>
-              <AppText variant="bodyMedium">Release Notes</AppText>
-              <AppView>
-                <AppView style={styles.releaseNotesRow}>
-                  <AppView
-                    style={[
-                      styles.noteDot,
-                      { backgroundColor: theme.text.tertiary },
-                    ]}
-                  />
-                  <AppText variant="bodySmall" color="tertiary">
-                    Performance improvements
-                  </AppText>
-                </AppView>
-                <AppView style={styles.releaseNotesRow}>
-                  <AppView
-                    style={[
-                      styles.noteDot,
-                      { backgroundColor: theme.text.tertiary },
-                    ]}
-                  />
-                  <AppText variant="bodySmall" color="tertiary">
-                    Improved security
-                  </AppText>
-                </AppView>
-              </AppView>
-            </AppView>
-          </AppView>
-        </AppView>
-        <Pressable
-          style={({ pressed }) => [
-            styles.downloadButton,
-            {
-              backgroundColor: pressed
-                ? theme.background.cardMuted
-                : theme.background.card,
-              borderColor: pressed ? theme.border.focus : theme.border.primary,
-            },
-          ]}
-        >
-          <AppIcon name="code-download" color={theme.text.primary} size={16} />
-          <AppText variant="button">Download to Update</AppText>
-        </Pressable>
+                <AppText variant="button">Download to Update</AppText>
+              </Pressable>
+            </>
+          )}
       </AppScrollView>
     </AppSafeAreaView>
   );

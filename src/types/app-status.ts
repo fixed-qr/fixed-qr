@@ -1,4 +1,4 @@
-export type StatusCode = "ok" | "maintenance" | "deprecated" | "discontinued";
+export type StatusCode = "ok" | "deprecated" | "maintenance" | "discontinued";
 
 export interface Release {
   version: number;
