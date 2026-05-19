@@ -27,18 +27,28 @@ export default function GeneratedQRCodeScreen() {
   const addTransaction = useDataStore((state) => state.addTransaction);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      addTransaction({
-        transactionId: generateTransactionId(),
-        upiId: upiId,
-        provider: provider,
-        amount: amount,
-        date: getLocalDateTime(),
-      });
-    }, 1000 * 5);
+    if (amount) {
+      const timer = setTimeout(() => {
+        addTransaction({
+          transactionId: generateTransactionId(),
+          upiId: upiId,
+          provider: provider,
+          amount: amount,
+          date: getLocalDateTime(),
+        });
+      }, 1000 * 5);
 
-    return () => clearTimeout(timer);
+      return () => clearTimeout(timer);
+    }
   }, []);
+
+  const getUpiUrl = (amount: string) => {
+    if (amount) {
+      return `upi://pay?pa=${upiId}&pn=Shailesh%Pandit&am=${amount}&cu=INR`;
+    }
+
+    return `upi://pay?pa=${upiId}&pn=Shailesh%Pandit&&cu=INR`;
+  };
 
   return (
     <AppScrollView>
@@ -73,13 +83,13 @@ export default function GeneratedQRCodeScreen() {
           ]}
         >
           <QRCode
-            value={`upi://pay?pa=${upiId}&pn=Shailesh%Pandit&am=${amount}&cu=INR`}
+            value={getUpiUrl(amount)}
             color={theme.text.primary}
             backgroundColor="transparent"
             size={width - borderRadius}
           />
         </AppView>
-        <Amount value={amount} size={24} />
+        {!!amount && <Amount value={amount} size={24} />}
       </AppView>
     </AppScrollView>
   );

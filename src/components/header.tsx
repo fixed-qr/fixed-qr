@@ -1,10 +1,17 @@
 import { AppText, AppView } from "@/components/app-ui";
 import { useTheme } from "@/hooks/use-theme";
 import { Ionicons } from "@expo/vector-icons";
+import BottomSheet from "@gorhom/bottom-sheet";
+import { RefObject } from "react";
 import { Pressable, StyleSheet } from "react-native";
 
-export function Header() {
+interface HeaderProps {
+  bottomSheetRef?: RefObject<BottomSheet | null>;
+}
+
+export function Header({ bottomSheetRef }: HeaderProps) {
   const theme = useTheme();
+
   return (
     <AppView style={[styles.container]}>
       <AppView style={styles.leftContainer}>
@@ -17,7 +24,11 @@ export function Header() {
         </AppText>
       </AppView>
       <AppView style={styles.rightContainer}>
-        <Pressable>
+        <Pressable
+          onPress={() => {
+            bottomSheetRef?.current?.expand();
+          }}
+        >
           <Ionicons name="qr-code" size={28} color={theme.text.primary} />
         </Pressable>
       </AppView>
