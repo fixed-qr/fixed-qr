@@ -33,7 +33,7 @@ export default function ProfileScreen() {
               source={require("@/assets/icons/tab/user-profile.png")}
               style={[
                 styles.userProfileAvatar,
-                { tintColor: theme.accent.primary },
+                { tintColor: theme.text.primary },
               ]}
             />
           </AppView>
