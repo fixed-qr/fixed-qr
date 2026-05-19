@@ -14,7 +14,7 @@ import { Image, StyleSheet } from "react-native";
 import QRCode from "react-native-qrcode-svg";
 
 const width = (screenWidth - 40) / 1.6;
-const borderRadius = 32;
+const borderRadius = 24;
 
 type LocalSearchParams = {
   upiId: string;
@@ -63,15 +63,12 @@ export default function GeneratedQRCodeScreen() {
             style={styles.image}
           />
           <AppText style={styles.message}>Scan to pay</AppText>
-          <AppText variant="bodySmall" weight="500" color="tertiary">
-            {upiId}
-          </AppText>
         </AppView>
         <AppView
           style={[
             styles.qrCodeContainer,
             {
-              backgroundColor: theme.background.secondary,
+              backgroundColor: theme.background.card,
               borderColor: theme.border.primary,
             },
           ]}
@@ -94,6 +91,15 @@ export default function GeneratedQRCodeScreen() {
             size={width - borderRadius}
           />
         </AppView>
+
+        <AppText
+          variant="bodySmall"
+          weight="500"
+          color="tertiary"
+          style={{ marginBottom: 8 }}
+        >
+          UPI ID: {upiId}
+        </AppText>
         {!!amount && <Amount value={amount} size={24} />}
       </AppView>
     </AppScrollView>
@@ -115,8 +121,8 @@ const styles = StyleSheet.create({
     borderRadius: 16,
   },
   image: {
-    width: 48,
-    height: 48,
+    width: 32,
+    height: 32,
   },
   message: {
     fontSize: 18,
