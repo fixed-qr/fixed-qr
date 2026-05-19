@@ -7,6 +7,7 @@ import { ProviderEnum } from "@/types/provider";
 import { generateTransactionId } from "@/utils/generate-transaction-id";
 import { getLocalDateTime } from "@/utils/get-local-date-time";
 import { getProviderLogo } from "@/utils/get-provider-logo";
+import { generateUpiUrl } from "@/utils/upi-payment";
 import { useLocalSearchParams } from "expo-router";
 import { useEffect } from "react";
 import { Image, StyleSheet } from "react-native";
@@ -25,6 +26,7 @@ export default function GeneratedQRCodeScreen() {
   const theme = useTheme();
   const { upiId, amount, provider } = useLocalSearchParams<LocalSearchParams>();
   const addTransaction = useDataStore((state) => state.addTransaction);
+  const user = useDataStore((state) => state.user);
 
   useEffect(() => {
     if (amount) {
@@ -41,14 +43,6 @@ export default function GeneratedQRCodeScreen() {
       return () => clearTimeout(timer);
     }
   }, []);
-
-  const getUpiUrl = (amount: string) => {
-    if (amount) {
-      return `upi://pay?pa=${upiId}&pn=Shailesh%Pandit&am=${amount}&cu=INR`;
-    }
-
-    return `upi://pay?pa=${upiId}&pn=Shailesh%Pandit&&cu=INR`;
-  };
 
   return (
     <AppScrollView>
@@ -83,7 +77,18 @@ export default function GeneratedQRCodeScreen() {
           ]}
         >
           <QRCode
-            value={getUpiUrl(amount)}
+            value={generateUpiUrl(
+              amount
+                ? {
+                    pa: upiId,
+                    pn: user?.name as string,
+                  }
+                : {
+                    pa: upiId,
+                    pn: user?.name as string,
+                    am: amount,
+                  },
+            )}
             color={theme.text.primary}
             backgroundColor="transparent"
             size={width - borderRadius}
