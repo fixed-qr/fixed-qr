@@ -1,3 +1,3 @@
-export { QuickActions } from "./quick-actions";
-export { Settings } from "./settings";
-export { UpiIds } from "./upi-ids";
+export { QuickActionSection } from "./quick-action";
+export { SettingSection } from "./setting";
+export { UpiIdSection } from "./upi-id";

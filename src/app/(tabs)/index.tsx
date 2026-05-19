@@ -8,7 +8,7 @@ import {
 } from "@/components/app-ui";
 import { QRBottomSheet } from "@/components/bottom-sheets";
 import { DevBottomSheet } from "@/components/bottom-sheets/dev";
-import { QuickActions } from "@/components/sections";
+import { QuickActionSection } from "@/components/sections";
 import { useTheme } from "@/hooks/use-theme";
 import { useDataStore } from "@/store/data-store";
 import { Link } from "expo-router";
@@ -50,7 +50,7 @@ export default function HomeScreen() {
             </AppText>
           </AppView>
         </Link>
-        <QuickActions />
+        <QuickActionSection />
       </AppScrollView>
       <QRBottomSheet />
       <DevBottomSheet />

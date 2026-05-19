@@ -7,7 +7,7 @@ import { getProviderLogo } from "@/utils/get-provider-logo";
 import { Link } from "expo-router";
 import { StyleSheet } from "react-native";
 
-export function UpiIds() {
+export function UpiIdSection() {
   const theme = useTheme();
   const upiIds = useDataStore((state) => state.upiIds);
 

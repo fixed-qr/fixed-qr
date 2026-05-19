@@ -5,7 +5,7 @@ import { useTheme } from "@/hooks/use-theme";
 import { useBottomSheetStore } from "@/store/bottom-sheet-store";
 import { StyleSheet } from "react-native";
 
-export function Settings() {
+export function SettingSection() {
   const theme = useTheme();
   const expand = useBottomSheetStore((state) => state.expand);
 

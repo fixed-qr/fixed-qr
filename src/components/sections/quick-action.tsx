@@ -10,7 +10,7 @@ import { StyleSheet } from "react-native";
 const gap = 8;
 const width = (screenWidth - gap - 40 - 1) / 2;
 
-export function QuickActions() {
+export function QuickActionSection() {
   const transactions = useDataStore((state) => state.transactions);
 
   return (

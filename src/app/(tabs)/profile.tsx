@@ -8,7 +8,7 @@ import {
     AuthenticateBottomSheet,
     TransactionBottomSheet,
 } from "@/components/bottom-sheets";
-import { Settings, UpiIds } from "@/components/sections";
+import { SettingSection, UpiIdSection } from "@/components/sections";
 import { useTheme } from "@/hooks/use-theme";
 import { useDataStore } from "@/store/data-store";
 import { Image, StyleSheet } from "react-native";
@@ -39,8 +39,8 @@ export default function ProfileScreen() {
           </AppView>
           <AppText style={styles.userProfileName}>Hi, {name}</AppText>
         </AppView>
-        <Settings />
-        <UpiIds />
+        <SettingSection />
+        <UpiIdSection />
       </AppScrollView>
       <TransactionBottomSheet />
       <AuthenticateBottomSheet />
