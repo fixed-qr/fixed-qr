@@ -35,9 +35,8 @@ const styles = StyleSheet.create({
   emptyCard: {
     alignItems: "center",
     justifyContent: "center",
-    marginTop: 8,
     padding: 24,
-    borderRadius: 28,
+    borderRadius: 24,
     gap: 8,
   },
   emptyCardImage: {

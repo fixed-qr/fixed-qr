@@ -1,6 +1,7 @@
 import { EmptyCard, QuickAction } from "@/components";
 import { AppText, AppView } from "@/components/app-ui";
 import { screenWidth } from "@/constants/dimensions";
+import { useTheme } from "@/hooks/use-theme";
 import { useDataStore } from "@/store/data-store";
 import { getProviderLabel } from "@/utils/get-provider-label";
 import { getProviderLogo } from "@/utils/get-provider-logo";
@@ -11,6 +12,7 @@ const gap = 8;
 const width = (screenWidth - gap - 40 - 1) / 2;
 
 export function QuickActionSection() {
+  const theme = useTheme();
   const transactions = useDataStore((state) => state.transactions);
 
   return (
@@ -51,7 +53,16 @@ export function QuickActionSection() {
             ))}
         </AppView>
       ) : (
-        <EmptyCard message="Your quick actions will appear here." />
+        <AppView
+          style={{
+            borderWidth: 1,
+            borderColor: theme.border.primary,
+            borderRadius: 24,
+            marginTop: 8,
+          }}
+        >
+          <EmptyCard message="Your quick actions will appear here." />
+        </AppView>
       )}
     </AppView>
   );
