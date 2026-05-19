@@ -9,11 +9,11 @@ import { BottomSheetScrollView } from "@gorhom/bottom-sheet/src";
 import React, { Ref } from "react";
 import { StyleSheet } from "react-native";
 
-interface TransactionsProps {
+interface TransactionBottomSheet {
   ref?: Ref<BottomSheet>;
 }
 
-export function Transactions({ ref }: TransactionsProps) {
+export function TransactionBottomSheet({ ref }: TransactionBottomSheet) {
   const theme = useTheme();
   const transactions = useDataStore((state) => state.transactions);
 

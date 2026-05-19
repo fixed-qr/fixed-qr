@@ -4,7 +4,10 @@ import {
     AppText,
     AppView,
 } from "@/components/app-ui";
-import { Authenticate, Transactions } from "@/components/modals";
+import {
+    AuthenticateBottomSheet,
+    TransactionBottomSheet,
+} from "@/components/bottom-sheets";
 import { Settings, UpiIds } from "@/components/sections";
 import { useTheme } from "@/hooks/use-theme";
 import { useDataStore } from "@/store/data-store";
@@ -46,8 +49,8 @@ export default function ProfileScreen() {
         />
         <UpiIds />
       </AppScrollView>
-      <Transactions ref={bottomSheetRef} />
-      <Authenticate />
+      <TransactionBottomSheet ref={bottomSheetRef} />
+      <AuthenticateBottomSheet />
     </AppSafeAreaView>
   );
 }

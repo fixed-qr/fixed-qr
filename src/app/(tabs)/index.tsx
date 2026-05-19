@@ -6,24 +6,21 @@ import {
     AppText,
     AppView,
 } from "@/components/app-ui";
-import { QRCode } from "@/components/modals";
-import { Dev } from "@/components/modals/dev";
+import { QRBottomSheet } from "@/components/bottom-sheets";
+import { DevBottomSheet } from "@/components/bottom-sheets/dev";
 import { QuickActions } from "@/components/sections";
 import { useTheme } from "@/hooks/use-theme";
 import { useDataStore } from "@/store/data-store";
-import BottomSheet from "@gorhom/bottom-sheet";
 import { Link } from "expo-router";
-import { useRef } from "react";
 import { StyleSheet } from "react-native";
 
 export default function HomeScreen() {
   const theme = useTheme();
   const username = useDataStore((state) => state.user?.name);
-  const bottomSheetRef = useRef<BottomSheet>(null);
 
   return (
     <AppSafeAreaView>
-      <Header bottomSheetRef={bottomSheetRef} />
+      <Header />
       <AppScrollView>
         <AppText
           variant="bodyLarge"
@@ -55,8 +52,8 @@ export default function HomeScreen() {
         </Link>
         <QuickActions />
       </AppScrollView>
-      <QRCode ref={bottomSheetRef} />
-      <Dev />
+      <QRBottomSheet />
+      <DevBottomSheet />
     </AppSafeAreaView>
   );
 }

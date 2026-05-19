@@ -8,7 +8,7 @@ import { useEffect, useRef, useState } from "react";
 import { Keyboard, Pressable, StyleSheet } from "react-native";
 
 import { Ionicons } from "@expo/vector-icons";
-export function Authenticate() {
+export function AuthenticateBottomSheet() {
   const theme = useTheme();
   const bottomSheetRef = useRef<BottomSheet>(null);
   const [password, setPassword] = useState("");

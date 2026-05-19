@@ -18,7 +18,7 @@ import { Link } from "expo-router";
 const gap = 8;
 const boxWidth = (screenWidth - gap * 3 - 40) / 3;
 
-export function QRCode() {
+export function QRBottomSheet() {
   const theme = useTheme();
   const upiIds = useDataStore((states) => states.upiIds);
   const ref = useBottomSheetStore((state) => state.register("qr-code-sheet"));
