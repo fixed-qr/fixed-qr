@@ -28,7 +28,7 @@ export function Header() {
             expand("qr-sheet");
           }}
         >
-          <Ionicons name="qr-code" size={24} color={theme.text.primary} />
+          <Ionicons name="qr-code" size={26} color={theme.text.primary} />
         </Pressable>
       </AppView>
     </AppView>
@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
   },
   rightContainer: {
     flexDirection: "row",
-    alignItems: "flex-end",
+    alignItems: "center",
     justifyContent: "center",
     gap: 12,
   },
