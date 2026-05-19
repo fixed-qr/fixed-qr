@@ -1,20 +1,19 @@
 import { EmptyCard, Transaction } from "@/components";
 import { AppBottomSheet, AppView } from "@/components/app-ui";
 import { useTheme } from "@/hooks/use-theme";
+import { useBottomSheetStore } from "@/store/bottom-sheet-store";
 import { useDataStore } from "@/store/data-store";
 import { getProviderLabel } from "@/utils/get-provider-label";
 import { getProviderLogo } from "@/utils/get-provider-logo";
-import BottomSheet from "@gorhom/bottom-sheet";
 import { BottomSheetScrollView } from "@gorhom/bottom-sheet/src";
-import React, { Ref } from "react";
+import React from "react";
 import { StyleSheet } from "react-native";
 
-interface TransactionBottomSheet {
-  ref?: Ref<BottomSheet>;
-}
-
-export function TransactionBottomSheet({ ref }: TransactionBottomSheet) {
+export function TransactionBottomSheet() {
   const theme = useTheme();
+  const ref = useBottomSheetStore((state) =>
+    state.register("transaction-sheet"),
+  );
   const transactions = useDataStore((state) => state.transactions);
 
   return (

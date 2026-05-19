@@ -4,7 +4,8 @@ import { create } from "zustand";
 
 export const SHEETS = {
   DEV: "dev-sheet",
-  QRCODE: "qr-code-sheet",
+  QR: "qr-sheet",
+  TRANSACTION: "transaction-sheet",
 } as const;
 
 export type SheetKey = (typeof SHEETS)[keyof typeof SHEETS];

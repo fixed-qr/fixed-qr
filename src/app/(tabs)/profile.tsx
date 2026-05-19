@@ -11,14 +11,11 @@ import {
 import { Settings, UpiIds } from "@/components/sections";
 import { useTheme } from "@/hooks/use-theme";
 import { useDataStore } from "@/store/data-store";
-import BottomSheet from "@gorhom/bottom-sheet";
-import { useRef } from "react";
 import { Image, StyleSheet } from "react-native";
 
 export default function ProfileScreen() {
   const theme = useTheme();
   const name = useDataStore((state) => state.user?.name);
-  const bottomSheetRef = useRef<BottomSheet>(null);
 
   return (
     <AppSafeAreaView>
@@ -42,14 +39,10 @@ export default function ProfileScreen() {
           </AppView>
           <AppText style={styles.userProfileName}>Hi, {name}</AppText>
         </AppView>
-        <Settings
-          onTransactionsButtonPress={() => {
-            bottomSheetRef.current?.snapToIndex(0);
-          }}
-        />
+        <Settings />
         <UpiIds />
       </AppScrollView>
-      <TransactionBottomSheet ref={bottomSheetRef} />
+      <TransactionBottomSheet />
       <AuthenticateBottomSheet />
     </AppSafeAreaView>
   );

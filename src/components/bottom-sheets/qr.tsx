@@ -21,7 +21,7 @@ const boxWidth = (screenWidth - gap * 3 - 40) / 3;
 export function QRBottomSheet() {
   const theme = useTheme();
   const upiIds = useDataStore((states) => states.upiIds);
-  const ref = useBottomSheetStore((state) => state.register("qr-code-sheet"));
+  const ref = useBottomSheetStore((state) => state.register("qr-sheet"));
 
   return (
     <AppBottomSheet

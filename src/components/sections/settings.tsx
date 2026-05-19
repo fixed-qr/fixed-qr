@@ -2,14 +2,12 @@ import { AppText, AppView } from "@/components/app-ui";
 import { DeleteEverything } from "@/components/delete-everything";
 import { Setting } from "@/components/setting";
 import { useTheme } from "@/hooks/use-theme";
+import { useBottomSheetStore } from "@/store/bottom-sheet-store";
 import { StyleSheet } from "react-native";
 
-interface SettingsProps {
-  onTransactionsButtonPress: () => void;
-}
-
-export function Settings({ onTransactionsButtonPress }: SettingsProps) {
+export function Settings() {
   const theme = useTheme();
+  const expand = useBottomSheetStore((state) => state.expand);
 
   return (
     <AppView style={styles.container}>
@@ -36,7 +34,7 @@ export function Settings({ onTransactionsButtonPress }: SettingsProps) {
           label="Transactions"
           isLast={true}
           onPress={() => {
-            onTransactionsButtonPress();
+            expand("transaction-sheet");
           }}
         />
       </AppView>
