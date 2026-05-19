@@ -1,18 +1,13 @@
 import { AppText, AppView } from "@/components/app-ui";
 import { useTheme } from "@/hooks/use-theme";
+import { useBottomSheetStore } from "@/store/bottom-sheet-store";
 import { Ionicons } from "@expo/vector-icons";
-import BottomSheet from "@gorhom/bottom-sheet";
-import { RefObject } from "react";
 import { Pressable, StyleSheet } from "react-native";
 import { DevButton } from "./dev-button";
 
-interface HeaderProps {
-  bottomSheetRef?: RefObject<BottomSheet | null>;
-  devSheetRef?: RefObject<BottomSheet | null>;
-}
-
-export function Header({ bottomSheetRef, devSheetRef }: HeaderProps) {
+export function Header() {
   const theme = useTheme();
+  const expand = useBottomSheetStore((state) => state.expand);
 
   return (
     <AppView style={[styles.container]}>
@@ -29,12 +24,12 @@ export function Header({ bottomSheetRef, devSheetRef }: HeaderProps) {
         <Pressable
           style={styles.button}
           onPress={() => {
-            bottomSheetRef?.current?.expand();
+            expand("qr-code-sheet");
           }}
         >
           <Ionicons name="qr-code" size={24} color={theme.text.primary} />
         </Pressable>
-        <DevButton onPress={devSheetRef?.current?.expand} />
+        <DevButton />
       </AppView>
     </AppView>
   );

@@ -6,11 +6,11 @@ import {
     AppView,
 } from "@/components/app-ui";
 import { useTheme } from "@/hooks/use-theme";
-import BottomSheet, { BottomSheetView } from "@gorhom/bottom-sheet";
-import { Ref } from "react";
+import { BottomSheetView } from "@gorhom/bottom-sheet";
 import { StyleSheet } from "react-native";
 
 import { screenWidth } from "@/constants/dimensions";
+import { useBottomSheetStore } from "@/store/bottom-sheet-store";
 import { useDataStore } from "@/store/data-store";
 import { getProviderLogo } from "@/utils/get-provider-logo";
 import { Link } from "expo-router";
@@ -18,12 +18,10 @@ import { Link } from "expo-router";
 const gap = 8;
 const boxWidth = (screenWidth - gap * 3 - 40) / 3;
 
-interface QRCodeProps {
-  ref?: Ref<BottomSheet>;
-}
-export function QRCode({ ref }: QRCodeProps) {
+export function QRCode() {
   const theme = useTheme();
   const upiIds = useDataStore((states) => states.upiIds);
+  const ref = useBottomSheetStore((state) => state.register("qr-code-sheet"));
 
   return (
     <AppBottomSheet

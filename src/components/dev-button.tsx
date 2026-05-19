@@ -1,16 +1,17 @@
 import { AppImage } from "@/components/app-ui";
-import { useDevStore } from "@/store/dev-store";
+import { useBottomSheetStore } from "@/store/bottom-sheet-store";
 import { Pressable, StyleSheet } from "react-native";
 
-interface DevButtonProps {
-  onPress?: () => void;
-}
-
-export function DevButton({ onPress }: DevButtonProps) {
-  const expand = useDevStore((state) => state.expand);
+export function DevButton() {
+  const expand = useBottomSheetStore((state) => state.expand);
 
   return (
-    <Pressable style={styles.devButton} onPress={expand}>
+    <Pressable
+      style={styles.devButton}
+      onPress={() => {
+        expand("dev-sheet");
+      }}
+    >
       <AppImage
         source={require("@/assets/icons/developer/developer.png")}
         style={styles.devImage}

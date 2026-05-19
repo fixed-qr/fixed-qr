@@ -1,6 +1,6 @@
 import { AppBottomSheet, AppText } from "@/components/app-ui";
 import { useTheme } from "@/hooks/use-theme";
-import { useDevStore } from "@/store/dev-store";
+import { useBottomSheetStore } from "@/store/bottom-sheet-store";
 import BottomSheet, { BottomSheetScrollView } from "@gorhom/bottom-sheet";
 import { RefObject } from "react";
 import { StyleSheet } from "react-native";
@@ -11,7 +11,7 @@ interface DevProps {
 
 export function Dev() {
   const theme = useTheme();
-  const ref = useDevStore((state) => state.ref);
+  const ref = useBottomSheetStore((state) => state.register("dev-sheet"));
 
   return (
     <AppBottomSheet
