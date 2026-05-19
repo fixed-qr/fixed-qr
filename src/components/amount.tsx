@@ -6,17 +6,17 @@ import { StyleSheet } from "react-native";
 const initialSize = 15.5;
 
 interface AmountProps {
-  amount: string;
+  value: string;
   size?: number;
 }
 
-export function Amount({ amount, size }: AmountProps) {
+export function Amount({ value, size }: AmountProps) {
   const theme = useTheme();
 
   return (
     <AppView style={styles.amount}>
       <AppImage
-        source={require("@/assets/images/icons/rupee-64.png")}
+        source={require("@/assets/icons/other/rupee.png")}
         tintColor={theme.text.primary}
         style={[
           styles.unitImage,
@@ -31,7 +31,7 @@ export function Amount({ amount, size }: AmountProps) {
           fontSize: size ? size + 8 : initialSize + 8,
         }}
       >
-        {amount}
+        {value}
       </AppText>
     </AppView>
   );

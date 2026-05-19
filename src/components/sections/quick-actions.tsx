@@ -1,4 +1,4 @@
-import { NotFound, QuickAction } from "@/components";
+import { EmptyCard, QuickAction } from "@/components";
 import { AppText, AppView } from "@/components/app-ui";
 import { screenWidth } from "@/constants/dimensions";
 import { useDataStore } from "@/store/data-store";
@@ -51,7 +51,7 @@ export function QuickActions() {
             ))}
         </AppView>
       ) : (
-        <NotFound message="Your quick actions will appear here." />
+        <EmptyCard message="Your quick actions will appear here." />
       )}
     </AppView>
   );

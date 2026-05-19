@@ -30,7 +30,7 @@ export default function ProfileScreen() {
             ]}
           >
             <Image
-              source={require("@/assets/images/tabIcons/user.png")}
+              source={require("@/assets/icons/tab/user-profile.png")}
               style={[
                 styles.userProfileAvatar,
                 { tintColor: theme.accent.primary },

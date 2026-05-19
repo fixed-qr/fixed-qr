@@ -1,3 +1,4 @@
+import { Amount } from "@/components";
 import { AppScrollView, AppText, AppView } from "@/components/app-ui";
 import { screenWidth } from "@/constants/dimensions";
 import { useTheme } from "@/hooks/use-theme";
@@ -78,28 +79,7 @@ export default function GeneratedQRCodeScreen() {
             size={width - borderRadius}
           />
         </AppView>
-        <AppView
-          style={[
-            styles.amountContainer,
-            { backgroundColor: theme.background.secondary },
-          ]}
-        >
-          <Image
-            source={require("@/assets/images/icons/rupee-64.png")}
-            style={[styles.amountUnit, { tintColor: theme.accent.primary }]}
-          />
-          <AppText
-            style={[
-              styles.amount,
-              {
-                color: theme.accent.primary,
-                backgroundColor: theme.background.secondary,
-              },
-            ]}
-          >
-            {amount}
-          </AppText>
-        </AppView>
+        <Amount value={amount} size={24} />
       </AppView>
     </AppScrollView>
   );
@@ -134,34 +114,6 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     alignItems: "center",
     justifyContent: "center",
-  },
-  qrCode: {},
-  amountContainer: {
-    flex: 1,
-    flexWrap: "wrap",
-    marginTop: 12,
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
-    padding: 8,
-  },
-  amountUnit: {
-    height: 22,
-    width: 22,
-  },
-  amount: {
-    textAlign: "center",
-    fontSize: 32,
-    fontWeight: 600,
-  },
-  saveToHistory: {
-    width: width,
-    paddingBlock: 12,
-    paddingInline: 16,
-    marginTop: 12,
-    alignItems: "center",
-    justifyContent: "center",
-    borderRadius: 99,
-    borderWidth: 1,
+    marginBottom: 16,
   },
 });

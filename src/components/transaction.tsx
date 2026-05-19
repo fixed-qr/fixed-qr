@@ -42,7 +42,7 @@ export function Transaction({
           </AppText>
         </AppView>
         <AppView style={[styles.shared, styles.rightRight]}>
-          <Amount amount={amount} size={10} />
+          <Amount value={amount} size={10} />
           <AppIcon
             name="arrow-back"
             size={18}

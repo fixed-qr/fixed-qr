@@ -1,8 +1,8 @@
 export { Amount } from "./amount";
 export { DeleteEverything } from "./delete-everything";
+export { EmptyCard } from "./empty-card";
 export { FormSheetHeader } from "./form-sheet-header";
 export { Header } from "./header";
-export { NotFound } from "./not-found";
 export { ProviderButton } from "./provider-button";
 export { QuickAction } from "./quick-action";
 export { SecureInput } from "./secure-input";

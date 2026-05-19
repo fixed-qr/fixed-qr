@@ -1,4 +1,4 @@
-import { NotFound, Transaction } from "@/components";
+import { EmptyCard, Transaction } from "@/components";
 import { AppBottomSheet, AppView } from "@/components/app-ui";
 import { useTheme } from "@/hooks/use-theme";
 import { useDataStore } from "@/store/data-store";
@@ -48,7 +48,7 @@ export function Transactions({ ref }: TransactionsProps) {
             ))}
           </AppView>
         ) : (
-          <NotFound message="Your recent transactions will appear here." />
+          <EmptyCard message="Your recent transactions will appear here." />
         )}
       </BottomSheetScrollView>
     </AppBottomSheet>

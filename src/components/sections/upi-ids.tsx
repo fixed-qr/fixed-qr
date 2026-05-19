@@ -1,4 +1,4 @@
-import { NotFound } from "@/components";
+import { EmptyCard } from "@/components";
 import { AppIcon, AppText, AppView } from "@/components/app-ui";
 import { UpiId } from "@/components/upi-id";
 import { useTheme } from "@/hooks/use-theme";
@@ -46,7 +46,7 @@ export function UpiIds() {
           ))}
         </AppView>
       ) : (
-        <NotFound message="Your Saved UPI ID will appear here." />
+        <EmptyCard message="Your Saved UPI ID will appear here." />
       )}
     </AppView>
   );

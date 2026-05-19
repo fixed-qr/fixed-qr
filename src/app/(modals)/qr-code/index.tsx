@@ -93,7 +93,7 @@ export default function QRCodeFormScreen() {
           { backgroundColor: theme.background.secondary },
         ]}
       >
-        <Amount amount={value.length === 0 ? "0" : value} size={22} />
+        <Amount value={value.length === 0 ? "0" : value} size={22} />
       </AppView>
 
       {/* Numeric Key Pad */}
@@ -154,7 +154,7 @@ export default function QRCodeFormScreen() {
         </AppScrollView>
       ) : (
         <AppView style={styles.upiIdNotFound}>
-          <Link href={"/(modals)/add-upi"}>
+          <Link href={"/(tabs)/profile"}>
             <AppText
               style={[
                 styles.upiIdNotFoundLink,

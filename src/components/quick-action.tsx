@@ -31,7 +31,7 @@ export function QuickAction({
       ]}
     >
       <AppImage source={logoImage} style={styles.logoImage} />
-      <Amount amount={amount} />
+      <Amount value={amount} />
       <AppView style={styles.provider}>
         <AppText variant="bodyMedium" color="secondary">
           {label}

@@ -2,18 +2,18 @@ import { AppImage, AppText, AppView } from "@/components/app-ui";
 import { useTheme } from "@/hooks/use-theme";
 import { ImageSourcePropType, StyleSheet } from "react-native";
 
-interface NotFoundProps {
+interface EmptyCardProps {
   message: string;
   image?: ImageSourcePropType;
 }
 
-export function NotFound({ message, image }: NotFoundProps) {
+export function EmptyCard({ message, image }: EmptyCardProps) {
   const theme = useTheme();
 
   return (
     <AppView
       style={[
-        styles.notFound,
+        styles.emptyCard,
         {
           backgroundColor: theme.background.secondary,
           borderColor: theme.border.primary,
@@ -21,8 +21,8 @@ export function NotFound({ message, image }: NotFoundProps) {
       ]}
     >
       <AppImage
-        source={image || require("@/assets/images/icons/not-found.png")}
-        style={styles.notFoundImage}
+        source={image || require("@/assets/icons/other/empty.png")}
+        style={styles.emptyCardImage}
       />
       <AppText variant="bodySmall" color="secondary" style={styles.message}>
         {message}
@@ -32,7 +32,7 @@ export function NotFound({ message, image }: NotFoundProps) {
 }
 
 const styles = StyleSheet.create({
-  notFound: {
+  emptyCard: {
     alignItems: "center",
     justifyContent: "center",
     marginTop: 8,
@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     gap: 8,
   },
-  notFoundImage: {
+  emptyCardImage: {
     objectFit: "contain",
     width: 75,
     height: 75,
