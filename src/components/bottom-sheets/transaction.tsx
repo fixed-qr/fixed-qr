@@ -65,6 +65,6 @@ const styles = StyleSheet.create({
   transactions: {
     flex: 1,
     paddingVertical: 8,
-    borderRadius: 28,
+    borderRadius: 24,
   },
 });

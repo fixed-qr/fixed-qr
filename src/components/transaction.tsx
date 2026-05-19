@@ -23,7 +23,6 @@ export function Transaction({
   return (
     <AppView
       style={[
-        styles.shared,
         styles.transaction,
         {
           borderColor: theme.background.secondary,
@@ -31,17 +30,17 @@ export function Transaction({
         },
       ]}
     >
-      <AppView style={[styles.shared, styles.left]}>
+      <AppView style={styles.left}>
         <AppImage source={logoImage} style={styles.logoImage} />
       </AppView>
-      <AppView style={[styles.shared, styles.right]}>
-        <AppView style={[styles.rightLeft, styles.shared]}>
+      <AppView style={styles.right}>
+        <AppView style={styles.rightLeft}>
           <AppText variant="button">{label}</AppText>
           <AppText variant="bodySmall" color="tertiary">
             {timestamp}
           </AppText>
         </AppView>
-        <AppView style={[styles.shared, styles.rightRight]}>
+        <AppView style={styles.rightRight}>
           <Amount value={amount} size={10} />
           <AppIcon
             name="arrow-back"
@@ -61,9 +60,6 @@ export function Transaction({
 }
 
 const styles = StyleSheet.create({
-  shared: {
-    backgroundColor: "transparent",
-  },
   transaction: {
     flexDirection: "row",
     paddingVertical: 8,
