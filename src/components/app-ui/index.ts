@@ -1,4 +1,5 @@
 export { AppBottomSheet } from "./app-bottom-sheet";
+export { AppGroup } from "./app-group";
 export { AppIcon, AppIconProps } from "./app-icon";
 export { AppImage } from "./app-image";
 export { AppSafeAreaView } from "./app-safe-area-view";

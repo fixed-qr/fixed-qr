@@ -38,7 +38,6 @@ const styles = StyleSheet.create({
     marginTop: 8,
     padding: 24,
     borderRadius: 28,
-    borderWidth: 1,
     gap: 8,
   },
   emptyCardImage: {

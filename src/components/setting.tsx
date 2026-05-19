@@ -22,7 +22,16 @@ export function Setting({
   const theme = useTheme();
 
   return (
-    <Pressable onPress={onPress} style={styles.setting}>
+    <Pressable
+      onPress={onPress}
+      style={[
+        styles.setting,
+        {
+          borderColor: theme.border.primary,
+          borderBottomWidth: isLast ? 0 : 1,
+        },
+      ]}
+    >
       <AppIcon name={leftIcon} size={18} color={theme.text.primary} />
       <AppText variant="button">{label}</AppText>
       <AppIcon
@@ -39,8 +48,7 @@ const styles = StyleSheet.create({
   setting: {
     flexDirection: "row",
     alignItems: "center",
-    gap: 8,
     paddingVertical: 12,
-    paddingHorizontal: 12,
+    gap: 8,
   },
 });

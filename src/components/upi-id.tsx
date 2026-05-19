@@ -12,9 +12,10 @@ interface UpiIdProps {
   logoImage: ImageSourcePropType;
   label: string;
   upiId: string;
+  isLast?: boolean;
 }
 
-export function UpiId({ logoImage, label, upiId }: UpiIdProps) {
+export function UpiId({ logoImage, label, upiId, isLast }: UpiIdProps) {
   const theme = useTheme();
   const removeUpiId = useDataStore((state) => state.removeUpiId);
 
@@ -23,7 +24,15 @@ export function UpiId({ logoImage, label, upiId }: UpiIdProps) {
   };
 
   return (
-    <AppView style={[styles.upiId]}>
+    <AppView
+      style={[
+        styles.upiId,
+        {
+          borderColor: theme.border.primary,
+          borderBottomWidth: isLast ? 0 : 1,
+        },
+      ]}
+    >
       <AppView style={styles.left}>
         <Image source={logoImage} style={styles.logoImage} />
         <AppView style={styles.upiIdInfo}>
@@ -44,10 +53,10 @@ export function UpiId({ logoImage, label, upiId }: UpiIdProps) {
 
 const styles = StyleSheet.create({
   upiId: {
-    flex: 1,
     flexDirection: "row",
-    paddingVertical: 8,
-    paddingHorizontal: 12,
+    alignItems: "center",
+    paddingVertical: 12,
+    gap: 8,
   },
   left: {
     flex: 1,
