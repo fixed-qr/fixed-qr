@@ -17,9 +17,7 @@ export function AppScrollView({
         {
           backgroundColor: undefined,
           paddingHorizontal: 20,
-          justifyContent: "center",
-          rowGap: 8,
-          width: "100%",
+          gap: 8,
         },
         contentContainerStyle,
       ]}
