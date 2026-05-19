@@ -4,12 +4,14 @@ import { Ionicons } from "@expo/vector-icons";
 import BottomSheet from "@gorhom/bottom-sheet";
 import { RefObject } from "react";
 import { Pressable, StyleSheet } from "react-native";
+import { DevButton } from "./dev-button";
 
 interface HeaderProps {
   bottomSheetRef?: RefObject<BottomSheet | null>;
+  devSheetRef?: RefObject<BottomSheet | null>;
 }
 
-export function Header({ bottomSheetRef }: HeaderProps) {
+export function Header({ bottomSheetRef, devSheetRef }: HeaderProps) {
   const theme = useTheme();
 
   return (
@@ -25,12 +27,14 @@ export function Header({ bottomSheetRef }: HeaderProps) {
       </AppView>
       <AppView style={styles.rightContainer}>
         <Pressable
+          style={styles.button}
           onPress={() => {
             bottomSheetRef?.current?.expand();
           }}
         >
-          <Ionicons name="qr-code" size={28} color={theme.text.primary} />
+          <Ionicons name="qr-code" size={24} color={theme.text.primary} />
         </Pressable>
+        <DevButton onPress={devSheetRef?.current?.expand} />
       </AppView>
     </AppView>
   );
@@ -53,6 +57,11 @@ const styles = StyleSheet.create({
   rightContainer: {
     flexDirection: "row",
     alignItems: "flex-end",
+    justifyContent: "center",
+    gap: 12,
+  },
+  button: {
+    alignItems: "center",
     justifyContent: "center",
   },
 });

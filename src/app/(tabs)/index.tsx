@@ -7,6 +7,7 @@ import {
     AppView,
 } from "@/components/app-ui";
 import { QRCode } from "@/components/modals";
+import { Dev } from "@/components/modals/dev";
 import { QuickActions } from "@/components/sections";
 import { useTheme } from "@/hooks/use-theme";
 import { useDataStore } from "@/store/data-store";
@@ -55,6 +56,7 @@ export default function HomeScreen() {
         <QuickActions />
       </AppScrollView>
       <QRCode ref={bottomSheetRef} />
+      <Dev />
     </AppSafeAreaView>
   );
 }
