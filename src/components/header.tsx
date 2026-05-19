@@ -21,6 +21,7 @@ export function Header() {
         </AppText>
       </AppView>
       <AppView style={styles.rightContainer}>
+        <DevButton />
         <Pressable
           style={styles.button}
           onPress={() => {
@@ -29,7 +30,6 @@ export function Header() {
         >
           <Ionicons name="qr-code" size={24} color={theme.text.primary} />
         </Pressable>
-        <DevButton />
       </AppView>
     </AppView>
   );
