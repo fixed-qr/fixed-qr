@@ -6,7 +6,7 @@ export const SHEETS = {
   DEV: "dev-info-sheet",
   QR: "qr-code-sheet",
   TRANSACTION: "transaction-sheet",
-  POLICY: "policy-bottom-sheet",
+  Legal: "legal-information-bottom-sheet",
 } as const;
 
 export type SheetKey = (typeof SHEETS)[keyof typeof SHEETS];

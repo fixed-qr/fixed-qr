@@ -8,7 +8,7 @@ import {
 } from "@/components/app-ui";
 import {
     DevInfoBottomSheet,
-    PolicyBottomSheet,
+    LegalInformationBottomSheet,
 } from "@/components/bottom-sheets";
 import { useTheme } from "@/hooks/use-theme";
 import { useAuthStore } from "@/store/auth-store";
@@ -37,7 +37,7 @@ export default function GetStartedScreen() {
 
   const handleExpand = () => {
     if (!isChecked) {
-      expand("policy-bottom-sheet");
+      expand("legal-information-bottom-sheet");
     }
   };
 
@@ -215,7 +215,7 @@ export default function GetStartedScreen() {
         </AppView>
       </AppScrollView>
       <DevInfoBottomSheet />
-      <PolicyBottomSheet />
+      <LegalInformationBottomSheet />
     </AppSafeAreaView>
   );
 }
