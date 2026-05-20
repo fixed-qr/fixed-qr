@@ -2,7 +2,7 @@ import { borderRadius } from "@/constants/platform";
 import { useAppVersion } from "@/hooks/use-app-version";
 import { useTheme } from "@/hooks/use-theme";
 import { storage } from "@/storage/mmkv";
-import { useAppStatus } from "@/store/app-status-store";
+import { useAppStatusStore } from "@/store/app-status-store";
 import { useDataStore } from "@/store/data-store";
 import { AppStatus } from "@/types/app-status";
 import { versionToNumber } from "@/utils/version-to-number";
@@ -37,7 +37,7 @@ export default function RootLayout() {
   const segments = useSegments();
   const pataname = usePathname();
   const user = useDataStore((state) => state.user);
-  const { appStatus, fetchAppStatus } = useAppStatus();
+  const { appStatus, fetchAppStatus } = useAppStatusStore();
 
   useEffect(() => {
     fetchAppStatus();

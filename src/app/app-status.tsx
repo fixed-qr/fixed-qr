@@ -9,7 +9,7 @@ import {
 import { AppStatusIcons } from "@/constants/app-status-icons";
 import { useAppVersion } from "@/hooks/use-app-version";
 import { useTheme } from "@/hooks/use-theme";
-import { useAppStatus } from "@/store/app-status-store";
+import { useAppStatusStore } from "@/store/app-status-store";
 import { StatusCode } from "@/types/app-status";
 import { versionToNumber } from "@/utils/version-to-number";
 import { openURL } from "expo-linking";
@@ -18,7 +18,7 @@ import { ActivityIndicator, Pressable, StyleSheet } from "react-native";
 export default function AppStatusScreen() {
   const theme = useTheme();
   const { version } = useAppVersion();
-  const { appStatus, loading } = useAppStatus();
+  const { appStatus, loading } = useAppStatusStore();
 
   const dynamicTintColor = (code: StatusCode) => {
     if (code === "ok") {

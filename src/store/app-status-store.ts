@@ -10,7 +10,7 @@ interface AppStatusState {
   fetchAppStatus: () => Promise<void>;
 }
 
-export const useAppStatus = create<AppStatusState>((set) => ({
+export const useAppStatusStore = create<AppStatusState>((set) => ({
   appStatus: null,
   loading: false,
   error: null,
