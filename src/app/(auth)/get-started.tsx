@@ -6,9 +6,13 @@ import {
     AppText,
     AppView,
 } from "@/components/app-ui";
-import { DevInfoBottomSheet } from "@/components/bottom-sheets";
+import {
+    DevInfoBottomSheet,
+    PolicyBottomSheet,
+} from "@/components/bottom-sheets";
 import { useTheme } from "@/hooks/use-theme";
 import { useAuthStore } from "@/store/auth-store";
+import { useBottomSheetStore } from "@/store/bottom-sheet-store";
 import { useDataStore } from "@/store/data-store";
 import { User } from "@/types/user";
 import { validateUser } from "@/utils/validators";
@@ -29,6 +33,13 @@ export default function GetStartedScreen() {
   const [errors, setErrors] = useState<Partial<User>>({});
   const [isChecked, setChecked] = useState(false);
   const [isCheckedError, setCheckedError] = useState(false);
+  const expand = useBottomSheetStore((state) => state.expand);
+
+  const handleExpand = () => {
+    if (!isChecked) {
+      expand("policy-bottom-sheet");
+    }
+  };
 
   const handleInputChange = (field: keyof User, value: string) => {
     setUser((prev) => ({
@@ -144,6 +155,7 @@ export default function GetStartedScreen() {
               onValueChange={(value) => {
                 setChecked(value);
                 setCheckedError(false);
+                handleExpand();
               }}
               color={
                 isChecked
@@ -157,6 +169,7 @@ export default function GetStartedScreen() {
             <Pressable
               onPress={() => {
                 setChecked((prev) => !prev);
+                handleExpand();
               }}
             >
               <AppText
@@ -202,6 +215,7 @@ export default function GetStartedScreen() {
         </AppView>
       </AppScrollView>
       <DevInfoBottomSheet />
+      <PolicyBottomSheet />
     </AppSafeAreaView>
   );
 }
