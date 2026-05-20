@@ -1,20 +1,31 @@
 {
   "name": "Shailesh Pandit",
-  "title": "Full Stack Developer",
-  "tagline": "Building scalable AI-powered applications",
-  "bio": "Full Stack Developer focused on AI, cloud-native systems, and scalable backend architectures.",
-  "profile_image": "https://example.com/profile.jpg",
-  "website": "https://yourwebsite.com",
-  "email": "support@yourapp.com",
-  "location": "Bihar, India",
-  "languages": ["English", "Hindi"],
-  "social_links": {
-    "github": "url",
-    "linkedin": "url",
-    "instagram": "url"
-  },
-  "app_support": {
-    "email": "support@yourapp.com",
-    "phone": "+917896541230"
-  }
+  "bio": "Building scalable AI-powered applications",
+  "about": "Full Stack Developer focused on AI, cloud-native systems, and scalable backend architectures.",
+  "profile_image": "https://drive.usercontent.google.com/download?id=10p20TBP_0mGqumN6cMLeHoZ6UQY2a7aU&export=view&authuser=0",
+  "website": "https://fixed-qr.com",
+  "social_links": [
+    {
+      "platform": "github",
+      "url": "https://github.com/shaileshpandit141"
+    },
+    {
+      "platform": "linkedin",
+      "url": "https://www.linkedin.com/in/shaileshpandit141/"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/shaileshpandit141/"
+    }
+  ],
+  "support": [
+    {
+      "type": "email",
+      "value": "shaileshpandit141@gmail.com"
+    },
+    {
+      "type": "phone",
+      "value": "+917970367918"
+    }
+  ]
 }
