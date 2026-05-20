@@ -6,8 +6,10 @@ import {
     AppText,
     AppView,
 } from "@/components/app-ui";
-import { QRBottomSheet } from "@/components/bottom-sheets";
-import { DevBottomSheet } from "@/components/bottom-sheets/dev";
+import {
+    DevInfoBottomSheet,
+    QRCodeBottomSheet,
+} from "@/components/bottom-sheets";
 import { QuickActionSection } from "@/components/sections";
 import { useTheme } from "@/hooks/use-theme";
 import { useDataStore } from "@/store/data-store";
@@ -52,8 +54,8 @@ export default function HomeScreen() {
         </Link>
         <QuickActionSection />
       </AppScrollView>
-      <QRBottomSheet />
-      <DevBottomSheet />
+      <QRCodeBottomSheet />
+      <DevInfoBottomSheet />
     </AppSafeAreaView>
   );
 }

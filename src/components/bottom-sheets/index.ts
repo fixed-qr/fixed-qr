@@ -1,3 +1,4 @@
 export { AuthenticateBottomSheet } from "./authenticate";
-export { QRBottomSheet } from "./qr";
+export { DevInfoBottomSheet } from "./dev-info";
+export { QRCodeBottomSheet } from "./qr-code";
 export { TransactionBottomSheet } from "./transaction";

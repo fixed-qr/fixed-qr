@@ -2,14 +2,14 @@ import { AppImage } from "@/components/app-ui";
 import { useBottomSheetStore } from "@/store/bottom-sheet-store";
 import { Pressable, StyleSheet } from "react-native";
 
-export function DevButton() {
+export function DevInfoButton() {
   const expand = useBottomSheetStore((state) => state.expand);
 
   return (
     <Pressable
       style={styles.devButton}
       onPress={() => {
-        expand("dev-sheet");
+        expand("dev-info-sheet");
       }}
     >
       <AppImage

@@ -3,8 +3,8 @@ import { createRef, RefObject } from "react";
 import { create } from "zustand";
 
 export const SHEETS = {
-  DEV: "dev-sheet",
-  QR: "qr-sheet",
+  DEV: "dev-info-sheet",
+  QR: "qr-code-sheet",
   TRANSACTION: "transaction-sheet",
 } as const;
 

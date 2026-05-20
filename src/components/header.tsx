@@ -3,7 +3,7 @@ import { useTheme } from "@/hooks/use-theme";
 import { useBottomSheetStore } from "@/store/bottom-sheet-store";
 import { Ionicons } from "@expo/vector-icons";
 import { Pressable, StyleSheet } from "react-native";
-import { DevButton } from "./dev-button";
+import { DevInfoButton } from "./dev-info-button";
 
 export function Header() {
   const theme = useTheme();
@@ -21,11 +21,11 @@ export function Header() {
         </AppText>
       </AppView>
       <AppView style={styles.rightContainer}>
-        <DevButton />
+        <DevInfoButton />
         <Pressable
           style={styles.button}
           onPress={() => {
-            expand("qr-sheet");
+            expand("qr-code-sheet");
           }}
         >
           <Ionicons name="qr-code" size={26} color={theme.text.primary} />

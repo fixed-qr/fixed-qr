@@ -4,9 +4,9 @@ import { useBottomSheetStore } from "@/store/bottom-sheet-store";
 import { BottomSheetScrollView } from "@gorhom/bottom-sheet";
 import { StyleSheet } from "react-native";
 
-export function DevBottomSheet() {
+export function DevInfoBottomSheet() {
   const theme = useTheme();
-  const ref = useBottomSheetStore((state) => state.register("dev-sheet"));
+  const ref = useBottomSheetStore((state) => state.register("dev-info-sheet"));
 
   return (
     <AppBottomSheet
