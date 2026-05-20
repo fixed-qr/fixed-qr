@@ -64,8 +64,10 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     gap: 8,
-    padding: 12,
+    paddingTop: 8,
+    paddingHorizontal: 12,
     borderBottomWidth: 1,
+    borderRadius: 8,
   },
   left: {},
   right: {

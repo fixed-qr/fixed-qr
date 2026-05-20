@@ -12,9 +12,10 @@ import { useAuthStore } from "@/store/auth-store";
 import { useDataStore } from "@/store/data-store";
 import { User } from "@/types/user";
 import { validateUser } from "@/utils/validators";
+import { Checkbox } from "expo-checkbox";
 import { useRouter } from "expo-router";
 import { useState } from "react";
-import { Image, Pressable, StyleSheet, Switch, TextInput } from "react-native";
+import { Image, Pressable, StyleSheet, TextInput } from "react-native";
 
 export default function GetStartedScreen() {
   const theme = useTheme();
@@ -26,6 +27,8 @@ export default function GetStartedScreen() {
     password: "",
   });
   const [errors, setErrors] = useState<Partial<User>>({});
+  const [isChecked, setChecked] = useState(false);
+  const [isCheckedError, setCheckedError] = useState(false);
 
   const handleInputChange = (field: keyof User, value: string) => {
     setUser((prev) => ({
@@ -38,7 +41,12 @@ export default function GetStartedScreen() {
     const validationErrors = validateUser(user);
     setErrors(validationErrors);
 
-    if (Object.keys(validationErrors).length === 0) {
+    if (!isChecked) {
+      setCheckedError(true);
+      return;
+    }
+
+    if (Object.keys(validationErrors).length === 0 && isChecked) {
       createUser(user);
       setIsAuthenticated(true);
       router.replace("/");
@@ -85,16 +93,11 @@ export default function GetStartedScreen() {
               },
             ]}
           >
-            <AppView style={styles.left}>
+            <AppView>
               <AppIcon name="person" size={24} color={theme.text.secondary} />
             </AppView>
             <AppView style={styles.right}>
-              <AppText
-                variant="bodySmall"
-                weight="500"
-                color="secondary"
-                style={styles.label}
-              >
+              <AppText variant="bodySmall" weight="500" color="secondary">
                 Name
               </AppText>
               <TextInput
@@ -136,14 +139,40 @@ export default function GetStartedScreen() {
 
           {/* Privacy Policy */}
           <AppView style={styles.privacyPolicy}>
-            <Switch />
-            <AppText
-              variant="bodySmall"
-              color="secondary"
-              style={styles.privacyPolicyText}
+            <Checkbox
+              value={isChecked}
+              onValueChange={(value) => {
+                setChecked(value);
+                setCheckedError(false);
+              }}
+              color={
+                isChecked
+                  ? theme.border.focus
+                  : isCheckedError
+                    ? theme.status.danger
+                    : theme.text.muted
+              }
+              style={{ borderWidth: 1.5, borderRadius: 4 }}
+            />
+            <Pressable
+              onPress={() => {
+                setChecked((prev) => !prev);
+              }}
             >
-              I agree to the Terms of Services & Privacy Policy
-            </AppText>
+              <AppText
+                variant="bodySmall"
+                style={[
+                  styles.privacyPolicyText,
+                  {
+                    color: isCheckedError
+                      ? theme.status.danger
+                      : theme.text.secondary,
+                  },
+                ]}
+              >
+                I agree to the Terms of Service and Privacy Policy.
+              </AppText>
+            </Pressable>
           </AppView>
 
           {/* Action */}
@@ -212,18 +241,13 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     gap: 8,
-    padding: 12,
+    paddingTop: 8,
+    paddingHorizontal: 12,
     borderBottomWidth: 1,
-  },
-  left: {
-    backgroundColor: "transparent",
+    borderRadius: 8,
   },
   right: {
     flex: 1,
-    backgroundColor: "transparent",
-  },
-  label: {
-    backgroundColor: "transparent",
   },
   inputField: {
     backgroundColor: "transparent",
@@ -234,10 +258,11 @@ const styles = StyleSheet.create({
     width: "90%",
   },
   privacyPolicy: {
-    width: "90%",
     marginTop: 12,
     paddingInline: 12,
     flexDirection: "row",
+    alignItems: "center",
+    gap: 8,
   },
   privacyPolicyText: {
     width: "90%",
