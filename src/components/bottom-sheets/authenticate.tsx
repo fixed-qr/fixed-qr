@@ -1,4 +1,4 @@
-import { SecureInput } from "@/components";
+import { PasswordInput } from "@/components";
 import { AppBottomSheet, AppText, AppView } from "@/components/app-ui";
 import { useTheme } from "@/hooks/use-theme";
 import { useAuthStore } from "@/store/auth-store";
@@ -68,7 +68,7 @@ export function AuthenticateBottomSheet() {
         <AppText variant="headingSmall" style={{ textAlign: "center" }}>
           Verify Your Identity
         </AppText>
-        <SecureInput
+        <PasswordInput
           value={password}
           onChangeText={handlePasswordChange}
           onSubmitEditing={handleOnSubmit}

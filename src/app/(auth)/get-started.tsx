@@ -1,4 +1,4 @@
-import { DevInfoButton, SecureInput } from "@/components";
+import { DevInfoButton, PasswordInput } from "@/components";
 import {
     AppIcon,
     AppSafeAreaView,
@@ -122,7 +122,7 @@ export default function GetStartedScreen() {
           )}
 
           {/* Password */}
-          <SecureInput
+          <PasswordInput
             value={user.password}
             onChangeText={(text) => handleInputChange("password", text)}
           />

@@ -8,7 +8,7 @@ interface SecureInputProps {
   onSubmitEditing?: () => void;
 }
 
-export function SecureInput({
+export function PasswordInput({
   value,
   onChangeText,
   onSubmitEditing,
