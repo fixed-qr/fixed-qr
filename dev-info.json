@@ -1,7 +1,7 @@
 {
   "name": "Shailesh Pandit",
   "bio": "Building scalable AI-powered applications",
-  "about": "Full Stack Developer focused on AI, cloud-native systems, and scalable backend architectures.",
+  "about": "Full Stack Developer building scalable AI-powered applications with Python, FastAPI, Django, React, and AWS.",
   "profile_image": "https://drive.usercontent.google.com/download?id=10p20TBP_0mGqumN6cMLeHoZ6UQY2a7aU&export=view&authuser=0",
   "website": "https://fixed-qr.com",
   "social_links": [
@@ -21,11 +21,13 @@
   "support": [
     {
       "type": "email",
-      "value": "shaileshpandit141@gmail.com"
+      "value": "shaileshpandit141@gmail.com",
+      "url": "mailto:shaileshpandit141@gmail.com"
     },
     {
       "type": "phone",
-      "value": "+917970367918"
+      "value": "+917970367918",
+      "url": "tel:+197970367915"
     }
   ]
 }

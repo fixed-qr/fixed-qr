@@ -6,6 +6,7 @@ export interface SocialLink {
 export interface SupportItem {
   type: string;
   value: string;
+  url: string;
 }
 
 export interface DevInfo {
