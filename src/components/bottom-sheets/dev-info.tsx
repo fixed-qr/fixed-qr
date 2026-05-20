@@ -27,8 +27,9 @@ export function DevInfoBottomSheet() {
     <AppBottomSheet
       ref={ref}
       index={-1}
-      enableDynamicSizing={true}
+      enableDynamicSizing={false}
       enablePanDownToClose={true}
+      snapPoints={["50%", "75%", "90%"]}
     >
       <BottomSheetScrollView
         style={{

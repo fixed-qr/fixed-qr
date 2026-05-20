@@ -1,4 +1,4 @@
-import { SecureInput } from "@/components";
+import { DevInfoButton, SecureInput } from "@/components";
 import {
     AppIcon,
     AppSafeAreaView,
@@ -6,6 +6,7 @@ import {
     AppText,
     AppView,
 } from "@/components/app-ui";
+import { DevInfoBottomSheet } from "@/components/bottom-sheets";
 import { useTheme } from "@/hooks/use-theme";
 import { useAuthStore } from "@/store/auth-store";
 import { useDataStore } from "@/store/data-store";
@@ -46,6 +47,16 @@ export default function GetStartedScreen() {
 
   return (
     <AppSafeAreaView>
+      <AppView
+        style={{
+          flexDirection: "row",
+          justifyContent: "flex-end",
+          paddingHorizontal: 20,
+          paddingVertical: 8,
+        }}
+      >
+        <DevInfoButton />
+      </AppView>
       <AppScrollView>
         <AppView style={styles.header}>
           <AppView style={styles.appLogo}>
@@ -161,6 +172,7 @@ export default function GetStartedScreen() {
           </Pressable>
         </AppView>
       </AppScrollView>
+      <DevInfoBottomSheet />
     </AppSafeAreaView>
   );
 }
@@ -168,7 +180,7 @@ export default function GetStartedScreen() {
 const styles = StyleSheet.create({
   header: {
     alignItems: "center",
-    marginTop: 64,
+    marginTop: 32,
     marginBottom: 16,
   },
   appLogo: {
