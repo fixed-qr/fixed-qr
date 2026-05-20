@@ -111,8 +111,8 @@ These services may have their own privacy policies.
 
 We may update this Privacy Policy from time to time. Continued use of the app means you accept the updated policy.
 
-### 7. Contact
+## . Contact
 
-For privacy-related questions:
+For terms and privacy-related questions:
 
 **Email:** [shaileshpandit141@gmail.com](mailto:shaileshpandit141@gmail.com)
