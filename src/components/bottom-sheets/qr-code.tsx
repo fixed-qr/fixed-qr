@@ -1,7 +1,6 @@
 import {
     AppBottomSheet,
     AppImage,
-    AppScrollView,
     AppText,
     AppView,
 } from "@/components/app-ui";
@@ -37,18 +36,7 @@ export function QRCodeBottomSheet() {
         }}
       >
         {upiIds.length ? (
-          <AppScrollView
-            horizontal={true}
-            style={styles.providerContainer}
-            contentContainerStyle={{
-              flexGrow: 1,
-              justifyContent: "center",
-              alignItems: "center",
-              paddingHorizontal: 0,
-              marginHorizontal: 0,
-              backgroundColor: theme.background.secondary,
-            }}
-          >
+          <AppView style={styles.providerContainer}>
             {upiIds.map((upiId) => (
               <Link
                 key={upiId.provider + upiId.upiId}
@@ -85,7 +73,7 @@ export function QRCodeBottomSheet() {
                 </AppView>
               </Link>
             ))}
-          </AppScrollView>
+          </AppView>
         ) : (
           <AppView style={styles.upiIdNotFound}>
             <Link href={"/(tabs)/profile"}>
@@ -123,7 +111,10 @@ const styles = StyleSheet.create({
     borderWidth: 1,
   },
   providerContainer: {
+    flexGrow: 1,
     flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
     flexWrap: "wrap",
     gap: gap,
   },
