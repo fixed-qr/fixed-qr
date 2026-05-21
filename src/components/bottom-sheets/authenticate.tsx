@@ -65,9 +65,11 @@ export function AuthenticateBottomSheet() {
           paddingHorizontal: 20,
         }}
       >
-        <AppText variant="headingSmall" style={{ textAlign: "center" }}>
-          Verify Your Identity
-        </AppText>
+        <AppView style={{ alignItems: "center", marginBottom: 16 }}>
+          <AppText variant="headingSmall" weight="600">
+            Verify Your Identity
+          </AppText>
+        </AppView>
         <PasswordInput
           value={password}
           onChangeText={handlePasswordChange}
