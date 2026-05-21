@@ -1,4 +1,4 @@
-## Terms of Service — FixedQR
+## Terms of Service
 
 **Effective Date:** May 20, 2026
 
@@ -60,9 +60,7 @@ We are not responsible for:
 
 We may update these Terms at any time. Continued use of the app means you accept the updated Terms.
 
----
-
-## Privacy Policy — FixedQR
+## Privacy Policy
 
 **Effective Date:** May 20, 2026
 
@@ -111,7 +109,7 @@ These services may have their own privacy policies.
 
 We may update this Privacy Policy from time to time. Continued use of the app means you accept the updated policy.
 
-## . Contact
+## Contact
 
 For terms and privacy-related questions:
 
