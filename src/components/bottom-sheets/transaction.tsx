@@ -1,5 +1,5 @@
 import { EmptyCard, Transaction } from "@/components";
-import { AppBottomSheet, AppView } from "@/components/app-ui";
+import { AppBottomSheet, AppText, AppView } from "@/components/app-ui";
 import { useTheme } from "@/hooks/use-theme";
 import { useBottomSheetStore } from "@/store/bottom-sheet-store";
 import { useDataStore } from "@/store/data-store";
@@ -27,7 +27,13 @@ export function TransactionBottomSheet() {
         style={{
           backgroundColor: theme.background.secondary,
         }}
+        contentContainerStyle={{ paddingHorizontal: 20 }}
       >
+        <AppView style={{ alignItems: "center", marginBottom: 16 }}>
+          <AppText variant="headingSmall" weight="600">
+            Transactions
+          </AppText>
+        </AppView>
         {transactions.length ? (
           <AppView
             style={[
