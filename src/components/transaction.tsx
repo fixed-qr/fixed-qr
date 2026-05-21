@@ -1,5 +1,6 @@
 import { AppIcon, AppImage, AppText, AppView } from "@/components/app-ui";
 import { useTheme } from "@/hooks/use-theme";
+import { AppDateTime } from "@/utils/app-date-time";
 import { ImageSourcePropType, StyleSheet } from "react-native";
 import { Amount } from "./amount";
 
@@ -37,7 +38,7 @@ export function Transaction({
         <AppView style={styles.rightLeft}>
           <AppText variant="button">{label}</AppText>
           <AppText variant="bodySmall" color="tertiary">
-            {timestamp}
+            {new AppDateTime(timestamp).formatTo("datetime")}
           </AppText>
         </AppView>
         <AppView style={styles.rightRight}>

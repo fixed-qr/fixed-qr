@@ -4,8 +4,8 @@ import { screenWidth } from "@/constants/dimensions";
 import { useTheme } from "@/hooks/use-theme";
 import { useDataStore } from "@/store/data-store";
 import { ProviderEnum } from "@/types/provider";
+import { AppDateTime } from "@/utils/app-date-time";
 import { generateTransactionId } from "@/utils/generate-transaction-id";
-import { getLocalDateTime } from "@/utils/get-local-date-time";
 import { getProviderLogo } from "@/utils/get-provider-logo";
 import { generateUpiUrl } from "@/utils/upi-payment";
 import { useLocalSearchParams } from "expo-router";
@@ -30,17 +30,13 @@ export default function GeneratedQRCodeScreen() {
 
   useEffect(() => {
     if (amount) {
-      const timer = setTimeout(() => {
-        addTransaction({
-          transactionId: generateTransactionId(),
-          upiId: upiId,
-          provider: provider,
-          amount: amount,
-          date: getLocalDateTime(),
-        });
-      }, 1000 * 5);
-
-      return () => clearTimeout(timer);
+      addTransaction({
+        transactionId: generateTransactionId(),
+        upiId: upiId,
+        provider: provider,
+        amount: amount,
+        date: new AppDateTime().formatTo("iso"),
+      });
     }
   }, []);
 
