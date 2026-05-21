@@ -15,7 +15,7 @@ import { getProviderLogo } from "@/utils/get-provider-logo";
 import { Link } from "expo-router";
 
 const gap = 8;
-const boxWidth = (screenWidth - gap * 3 - 40) / 3;
+const width = (screenWidth - gap * 3 - 40) / 3;
 
 export function QRCodeBottomSheet() {
   const theme = useTheme();
@@ -35,6 +35,11 @@ export function QRCodeBottomSheet() {
           paddingHorizontal: 20,
         }}
       >
+        <AppView style={{ alignItems: "center", marginBottom: 16 }}>
+          <AppText variant="headingSmall" weight="600">
+            All QR Code
+          </AppText>
+        </AppView>
         {upiIds.length ? (
           <AppView style={styles.providerContainer}>
             {upiIds.map((upiId) => (
@@ -119,7 +124,7 @@ const styles = StyleSheet.create({
     gap: gap,
   },
   providerLink: {
-    width: boxWidth,
+    width: width,
     borderRadius: 20,
     justifyContent: "center",
     alignItems: "center",

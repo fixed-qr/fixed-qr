@@ -82,16 +82,7 @@ export default function AddUPIScreen() {
         </AppView>
       )}
       {/* Select UPI Provider */}
-      <AppScrollView
-        horizontal={true}
-        style={styles.selectListContainer}
-        contentContainerStyle={{
-          flexGrow: 1,
-          alignItems: "center",
-          paddingHorizontal: 0,
-          marginHorizontal: 0,
-        }}
-      >
+      <AppView style={styles.selectListContainer}>
         <AppSelectList
           data={providers}
           selectedItem={selected}
@@ -107,7 +98,7 @@ export default function AddUPIScreen() {
             />
           )}
         />
-      </AppScrollView>
+      </AppView>
 
       {/* Handle Form Sublimation */}
       <Pressable
@@ -141,7 +132,10 @@ const styles = StyleSheet.create({
   },
 
   selectListContainer: {
+    flexGrow: 1,
     flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
     flexWrap: "wrap",
     gap: gap,
   },

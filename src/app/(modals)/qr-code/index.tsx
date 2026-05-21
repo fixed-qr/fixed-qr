@@ -11,7 +11,7 @@ import { Pressable, StyleSheet } from "react-native";
 
 const numericKeys = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "⌫"];
 const gap = 8;
-const boxWidth = (screenWidth - gap * 3 - 40) / 3;
+const width = (screenWidth - gap * 3 - 40) / 3;
 
 export default function QRCodeFormScreen() {
   const theme = useTheme();
@@ -101,18 +101,7 @@ export default function QRCodeFormScreen() {
 
       {/* Providers */}
       {upiIds.length ? (
-        <AppScrollView
-          horizontal={true}
-          style={styles.providerContainer}
-          contentContainerStyle={{
-            flexGrow: 1,
-            justifyContent: "center",
-            alignItems: "center",
-            paddingHorizontal: 0,
-            marginHorizontal: 0,
-            backgroundColor: theme.background.secondary,
-          }}
-        >
+        <AppView style={styles.providerContainer}>
           {upiIds.map((upiId) => (
             <Link
               key={upiId.provider + upiId.upiId}
@@ -151,7 +140,7 @@ export default function QRCodeFormScreen() {
               </AppView>
             </Link>
           ))}
-        </AppScrollView>
+        </AppView>
       ) : (
         <AppView style={styles.upiIdNotFound}>
           <Link href={"/(tabs)/profile"}>
@@ -190,12 +179,15 @@ const styles = StyleSheet.create({
     fontWeight: 600,
   },
   providerContainer: {
+    flexGrow: 1,
     flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
     flexWrap: "wrap",
     gap: gap,
   },
   providerLink: {
-    width: boxWidth,
+    width: width,
     borderRadius: 20,
     justifyContent: "center",
     alignItems: "center",
@@ -223,7 +215,7 @@ const styles = StyleSheet.create({
     gap: gap,
   },
   key: {
-    width: boxWidth,
+    width: width,
     height: 60,
     borderRadius: 20,
     justifyContent: "center",
