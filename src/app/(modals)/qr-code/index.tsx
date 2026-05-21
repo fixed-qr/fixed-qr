@@ -87,6 +87,11 @@ export default function QRCodeFormScreen() {
         backgroundColor: theme.background.secondary,
       }}
     >
+      <AppView style={{ alignItems: "center", marginBottom: 16 }}>
+        <AppText variant="headingSmall" weight="600">
+          Generate a QR Code
+        </AppText>
+      </AppView>
       <AppView
         style={[
           styles.amountInput,
@@ -165,9 +170,9 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-    padding: 8,
     paddingHorizontal: 32,
-    marginVertical: 16,
+    marginTop: 8,
+    marginBottom: 24,
   },
   rupeeUintImage: {
     height: 22,
