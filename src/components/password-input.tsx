@@ -36,7 +36,7 @@ export function PasswordInput({
           Password
         </AppText>
         <TextInput
-          // secureTextEntry
+          secureTextEntry
           textContentType="password"
           autoCorrect={false}
           autoCapitalize="none"
