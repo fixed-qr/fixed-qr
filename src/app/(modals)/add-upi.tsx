@@ -87,7 +87,7 @@ export default function AddUPIScreen() {
       )}
       {/* Select UPI Provider */}
       <AppView style={{ marginTop: 16 }}>
-        <AppText variant="headingSmall">Select once</AppText>
+        <AppText variant="bodyLarge">Select to Continue</AppText>
       </AppView>
       <AppView style={styles.selectListContainer}>
         <AppSelectList
