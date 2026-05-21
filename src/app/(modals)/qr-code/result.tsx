@@ -75,11 +75,11 @@ export default function GeneratedQRCodeScreen() {
                 ? {
                     pa: upiId,
                     pn: user?.name as string,
+                    am: amount,
                   }
                 : {
                     pa: upiId,
                     pn: user?.name as string,
-                    am: amount,
                   },
             )}
             color={theme.text.primary}
