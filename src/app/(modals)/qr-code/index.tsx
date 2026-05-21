@@ -172,7 +172,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     paddingHorizontal: 32,
     marginTop: 8,
-    marginBottom: 24,
+    marginBottom: 28,
   },
   rupeeUintImage: {
     height: 22,

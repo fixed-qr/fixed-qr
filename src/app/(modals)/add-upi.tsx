@@ -86,6 +86,9 @@ export default function AddUPIScreen() {
         </AppView>
       )}
       {/* Select UPI Provider */}
+      <AppView style={{ marginTop: 16 }}>
+        <AppText variant="headingSmall">Select once</AppText>
+      </AppView>
       <AppView style={styles.selectListContainer}>
         <AppSelectList
           data={providers}
@@ -138,10 +141,10 @@ const styles = StyleSheet.create({
   selectListContainer: {
     flexGrow: 1,
     flexDirection: "row",
-    justifyContent: "center",
     alignItems: "center",
     flexWrap: "wrap",
     gap: gap,
+    marginBottom: 16,
   },
   saveButton: {
     justifyContent: "center",
