@@ -84,10 +84,12 @@ export default function GetStartedScreen() {
               style={[styles.logoImage, { tintColor: theme.text.primary }]}
             />
           </AppView>
-          <AppText style={styles.appName}>FixedQR</AppText>
+          <AppText variant="bodyLarge" weight="600" style={styles.appName}>
+            FixedQR
+          </AppText>
           <AppText
             variant="bodySmall"
-            color="muted"
+            color="secondary"
             style={styles.screenDescription}
           >
             Get started to begin your personalized journey with FixedQR.

@@ -10,7 +10,7 @@ export function Header() {
   const expand = useBottomSheetStore((state) => state.expand);
 
   return (
-    <AppView style={[styles.container]}>
+    <AppView style={styles.container}>
       <AppView style={styles.leftContainer}>
         <AppText
           variant="headingMedium"
