@@ -1,15 +1,15 @@
 import { Text, type TextProps } from "react-native";
 
 import { TextVariant, textVariants } from "@/constants/text-variants";
-import { BackgroundColors, TextColors } from "@/constants/theme-colors";
+import { BackgroundToken, TextToken } from "@/constants/theme-colors";
 import { useTheme } from "@/hooks/use-theme";
 import { FontWeight } from "@/types/font-weight";
 
 export type AppTextProps = TextProps & {
   variant?: TextVariant;
   weight?: FontWeight;
-  color?: TextColors;
-  backgroundColor?: BackgroundColors;
+  color?: TextToken;
+  backgroundColor?: BackgroundToken;
 };
 
 export function AppText({

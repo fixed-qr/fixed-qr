@@ -92,36 +92,46 @@
 export const themeColors = {
   light: {
     background: {
-      primary: "#FCFCFD",
-      secondary: "#F8F8FA",
-      tertiary: "#F1F3F5",
+      primary: "#FAFAFB",
+      secondary: "#F6F7F9",
+      tertiary: "#EEF1F4",
+
       surface: "#FFFFFF",
       surfaceElevated: "#FFFFFF",
-      card: "#FEFEFE",
-      cardMuted: "#F6F7F9",
-      selected: "#F3F0FF",
-      disabled: "#ECEEF2",
+
+      card: "#FFFFFF",
+      cardMuted: "#F8F9FB",
+
+      selected: "#F4F0FF",
+      disabled: "#ECEFF3",
     },
+
     text: {
-      primary: "#111827",
-      secondary: "#4B5563",
-      tertiary: "#6B7280",
-      muted: "#9CA3AF",
-      disabled: "#C7CDD4",
+      primary: "#0F172A",
+      secondary: "#475569",
+      tertiary: "#64748B",
+
+      muted: "#94A3B8",
+      disabled: "#CBD5E1",
+
       inverse: "#FFFFFF",
     },
+
     accent: {
       primary: "#7C3AED",
       pressed: "#6D28D9",
-      soft: "#F5F3FF",
-      subtle: "#EDE9FE",
+
+      soft: "#F5F1FF",
+      subtle: "#EDE7FF",
     },
+
     status: {
       success: "#059669",
       warning: "#D97706",
       danger: "#DC2626",
       info: "#2563EB",
     },
+
     border: {
       primary: "rgba(15, 23, 42, 0.08)",
       secondary: "rgba(15, 23, 42, 0.05)",
@@ -129,90 +139,105 @@ export const themeColors = {
 
       focus: "#7C3AED",
     },
+
     icon: {
-      primary: "#374151",
-      secondary: "#6B7280",
-      muted: "#9CA3AF",
+      primary: "#334155",
+      secondary: "#64748B",
+      muted: "#94A3B8",
+
       inverse: "#FFFFFF",
     },
+
     overlay: {
-      primary: "rgba(15, 23, 42, 0.40)",
-      strong: "rgba(15, 23, 42, 0.68)",
+      primary: "rgba(15, 23, 42, 0.42)",
+      strong: "rgba(15, 23, 42, 0.72)",
     },
+
     shadow: {
       primary: "rgba(15, 23, 42, 0.06)",
-      strong: "rgba(15, 23, 42, 0.12)",
+      strong: "rgba(15, 23, 42, 0.14)",
     },
   },
+
   dark: {
     background: {
       primary: "#09090B",
-      secondary: "#111113",
-      tertiary: "#18181B",
-      surface: "#111113",
-      surfaceElevated: "#1C1C21",
-      card: "#18181B",
-      cardMuted: "#202027",
-      selected: "rgba(124, 58, 237, 0.18)",
-      disabled: "#27272A",
+      secondary: "#111114",
+      tertiary: "#18181C",
+
+      surface: "#121216",
+      surfaceElevated: "#1A1A21",
+
+      card: "#16161B",
+      cardMuted: "#1D1D24",
+
+      selected: "rgba(124, 58, 237, 0.20)",
+      disabled: "#25252D",
     },
+
     text: {
       primary: "#FAFAFA",
       secondary: "#D4D4D8",
       tertiary: "#A1A1AA",
+
       muted: "#71717A",
       disabled: "#52525B",
+
       inverse: "#09090B",
     },
+
     accent: {
       primary: "#8B5CF6",
       pressed: "#7C3AED",
 
-      soft: "rgba(139, 92, 246, 0.16)",
+      soft: "rgba(139, 92, 246, 0.18)",
       subtle: "rgba(139, 92, 246, 0.10)",
     },
+
     status: {
       success: "#22C55E",
       warning: "#F59E0B",
       danger: "#F87171",
       info: "#60A5FA",
     },
+
     border: {
-      primary: "rgba(255,255,255,0.08)",
-      secondary: "rgba(255,255,255,0.06)",
-      subtle: "rgba(255,255,255,0.04)",
+      primary: "rgba(255,255,255,0.07)",
+      secondary: "rgba(255,255,255,0.05)",
+      subtle: "rgba(255,255,255,0.03)",
+
       focus: "#8B5CF6",
     },
+
     icon: {
       primary: "#F4F4F5",
       secondary: "#A1A1AA",
       muted: "#71717A",
+
       inverse: "#09090B",
     },
+
     overlay: {
-      primary: "rgba(0,0,0,0.50)",
-      strong: "rgba(0,0,0,0.75)",
+      primary: "rgba(0,0,0,0.55)",
+      strong: "rgba(0,0,0,0.78)",
     },
+
     shadow: {
-      primary: "rgba(0,0,0,0.25)",
-      strong: "rgba(0,0,0,0.45)",
+      primary: "rgba(0,0,0,0.28)",
+      strong: "rgba(0,0,0,0.50)",
     },
   },
 } as const;
 
-// Types
-// ============================================================
 export type ThemeMode = keyof typeof themeColors;
-export type ThemeColors = typeof themeColors.light;
-export type ThemeGroup = keyof ThemeColors;
+export type ThemePalette = typeof themeColors.light;
+export type ThemeSection = keyof ThemePalette;
 
-// Section Key Types
-// ============================================================
-export type BackgroundColors = keyof ThemeColors["background"];
-export type TextColors = keyof ThemeColors["text"];
-export type AccentColors = keyof ThemeColors["accent"];
-export type StatusColors = keyof ThemeColors["status"];
-export type BorderColors = keyof ThemeColors["border"];
-export type IconColors = keyof ThemeColors["icon"];
-export type OverlayColors = keyof ThemeColors["overlay"];
-export type ShadowColors = keyof ThemeColors["shadow"];
+export type BackgroundToken = keyof ThemePalette["background"];
+export type TextToken = keyof ThemePalette["text"];
+export type AccentToken = keyof ThemePalette["accent"];
+export type StatusToken = keyof ThemePalette["status"];
+export type BorderToken = keyof ThemePalette["border"];
+export type IconToken = keyof ThemePalette["icon"];
+export type OverlayToken = keyof ThemePalette["overlay"];
+export type ShadowToken = keyof ThemePalette["shadow"];

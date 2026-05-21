@@ -1,10 +1,10 @@
-import { BackgroundColors } from "@/constants/theme-colors";
+import { BackgroundToken } from "@/constants/theme-colors";
 import { useTheme } from "@/hooks/use-theme";
 import { PropsWithChildren } from "react";
 import { View, type ViewProps } from "react-native";
 
 type AppViewProps = PropsWithChildren<ViewProps> & {
-  backgroundColor?: BackgroundColors;
+  backgroundColor?: BackgroundToken;
 };
 
 export function AppView({
