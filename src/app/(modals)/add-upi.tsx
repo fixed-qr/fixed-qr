@@ -72,7 +72,9 @@ export default function AddUPIScreen() {
               color: theme.text.primary,
               borderColor: error ? theme.status.danger : theme.border.secondary,
               backgroundColor:
-                isFocused || upiId ? theme.accent.subtle : theme.accent.soft,
+                isFocused || upiId
+                  ? theme.background.cardMuted
+                  : theme.background.card,
             },
           ]}
         />
@@ -112,8 +114,10 @@ export default function AddUPIScreen() {
         style={({ pressed }) => [
           styles.saveButton,
           {
-            borderColor: theme.border.primary,
-            backgroundColor: pressed ? theme.accent.subtle : theme.accent.soft,
+            borderColor: pressed ? theme.border.focus : theme.border.primary,
+            backgroundColor: pressed
+              ? theme.background.cardMuted
+              : theme.background.card,
           },
         ]}
         onPress={handleSubmit}

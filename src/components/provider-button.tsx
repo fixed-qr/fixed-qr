@@ -27,7 +27,9 @@ export function ProviderButton({
         {
           width: size,
           borderColor: theme.border.primary,
-          backgroundColor: isSelected ? theme.accent.subtle : theme.accent.soft,
+          backgroundColor: isSelected
+            ? theme.background.cardMuted
+            : theme.background.card,
         },
       ]}
     >
