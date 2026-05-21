@@ -2,7 +2,7 @@ import { Amount } from "@/components";
 import { AppScrollView, AppText, AppView } from "@/components/app-ui";
 import { screenWidth } from "@/constants/dimensions";
 import { useTheme } from "@/hooks/use-theme";
-import { useDataStore } from "@/store/data-store";
+import { useUserDataStore } from "@/store/user-data-store";
 import { ProviderEnum } from "@/types/provider";
 import { AppDateTime } from "@/utils/app-date-time";
 import { generateTransactionId } from "@/utils/generate-transaction-id";
@@ -25,8 +25,8 @@ type LocalSearchParams = {
 export default function GeneratedQRCodeScreen() {
   const theme = useTheme();
   const { upiId, amount, provider } = useLocalSearchParams<LocalSearchParams>();
-  const addTransaction = useDataStore((state) => state.addTransaction);
-  const user = useDataStore((state) => state.user);
+  const addTransaction = useUserDataStore((state) => state.addTransaction);
+  const user = useUserDataStore((state) => state.user);
 
   useEffect(() => {
     if (amount) {

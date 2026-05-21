@@ -13,7 +13,7 @@ import {
 import { useTheme } from "@/hooks/use-theme";
 import { useAuthStore } from "@/store/auth-store";
 import { useBottomSheetStore } from "@/store/bottom-sheet-store";
-import { useDataStore } from "@/store/data-store";
+import { useUserDataStore } from "@/store/user-data-store";
 import { User } from "@/types/user";
 import { validateUser } from "@/utils/validators";
 import { Checkbox } from "expo-checkbox";
@@ -25,7 +25,7 @@ export default function GetStartedScreen() {
   const theme = useTheme();
   const router = useRouter();
   const setIsAuthenticated = useAuthStore((state) => state.setIsAuthenticated);
-  const createUser = useDataStore((state) => state.setUser);
+  const createUser = useUserDataStore((state) => state.setUser);
   const [user, setUser] = useState<User>({
     name: "",
     password: "",

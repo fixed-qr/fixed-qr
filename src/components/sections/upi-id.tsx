@@ -1,14 +1,14 @@
 import { EmptyCard } from "@/components";
 import { AppGroup, AppView } from "@/components/app-ui";
 import { UpiId } from "@/components/upi-id";
-import { useDataStore } from "@/store/data-store";
+import { useUserDataStore } from "@/store/user-data-store";
 import { getProviderLogo } from "@/utils/get-provider-logo";
 import { useRouter } from "expo-router";
 import { StyleSheet } from "react-native";
 
 export function UpiIdSection() {
   const router = useRouter();
-  const upiIds = useDataStore((state) => state.upiIds);
+  const upiIds = useUserDataStore((state) => state.upiIds);
 
   return (
     <AppView style={styles.container}>

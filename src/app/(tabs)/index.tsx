@@ -12,13 +12,13 @@ import {
 } from "@/components/bottom-sheets";
 import { QuickActionSection } from "@/components/sections";
 import { useTheme } from "@/hooks/use-theme";
-import { useDataStore } from "@/store/data-store";
+import { useUserDataStore } from "@/store/user-data-store";
 import { Link } from "expo-router";
 import { StyleSheet } from "react-native";
 
 export default function HomeScreen() {
   const theme = useTheme();
-  const username = useDataStore((state) => state.user?.name);
+  const username = useUserDataStore((state) => state.user?.name);
 
   return (
     <AppSafeAreaView>

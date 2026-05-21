@@ -3,7 +3,7 @@ import { useAppVersion } from "@/hooks/use-app-version";
 import { useTheme } from "@/hooks/use-theme";
 import { storage } from "@/storage/mmkv";
 import { useAppStatusStore } from "@/store/app-status-store";
-import { useDataStore } from "@/store/data-store";
+import { useUserDataStore } from "@/store/user-data-store";
 import { AppStatus } from "@/types/app-status";
 import { versionToNumber } from "@/utils/version-to-number";
 import {
@@ -36,7 +36,7 @@ export default function RootLayout() {
   const { version } = useAppVersion();
   const segments = useSegments();
   const pataname = usePathname();
-  const user = useDataStore((state) => state.user);
+  const user = useUserDataStore((state) => state.user);
   const { appStatus, fetchAppStatus } = useAppStatusStore();
 
   useEffect(() => {

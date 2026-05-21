@@ -2,7 +2,7 @@ import { EmptyCard, Transaction } from "@/components";
 import { AppBottomSheet, AppText, AppView } from "@/components/app-ui";
 import { useTheme } from "@/hooks/use-theme";
 import { useBottomSheetStore } from "@/store/bottom-sheet-store";
-import { useDataStore } from "@/store/data-store";
+import { useUserDataStore } from "@/store/user-data-store";
 import { getProviderLabel } from "@/utils/get-provider-label";
 import { getProviderLogo } from "@/utils/get-provider-logo";
 import { BottomSheetScrollView } from "@gorhom/bottom-sheet/src";
@@ -14,7 +14,7 @@ export function TransactionBottomSheet() {
   const ref = useBottomSheetStore((state) =>
     state.register("transaction-sheet"),
   );
-  const transactions = useDataStore((state) => state.transactions);
+  const transactions = useUserDataStore((state) => state.transactions);
 
   return (
     <AppBottomSheet

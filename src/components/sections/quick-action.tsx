@@ -2,7 +2,7 @@ import { EmptyCard, QuickAction } from "@/components";
 import { AppText, AppView } from "@/components/app-ui";
 import { screenWidth } from "@/constants/dimensions";
 import { useTheme } from "@/hooks/use-theme";
-import { useDataStore } from "@/store/data-store";
+import { useUserDataStore } from "@/store/user-data-store";
 import { getProviderLabel } from "@/utils/get-provider-label";
 import { getProviderLogo } from "@/utils/get-provider-logo";
 import { Link } from "expo-router";
@@ -14,7 +14,7 @@ const width = (screenWidth - gap - 40 - 1) / 2;
 
 export function QuickActionSection() {
   const theme = useTheme();
-  const transactions = useDataStore((state) => state.transactions);
+  const transactions = useUserDataStore((state) => state.transactions);
 
   const suggestedTransactions = useMemo(() => {
     const seen = new Set<string>();

@@ -10,7 +10,7 @@ import { StyleSheet } from "react-native";
 
 import { screenWidth } from "@/constants/dimensions";
 import { useBottomSheetStore } from "@/store/bottom-sheet-store";
-import { useDataStore } from "@/store/data-store";
+import { useUserDataStore } from "@/store/user-data-store";
 import { getProviderLogo } from "@/utils/get-provider-logo";
 import { Link } from "expo-router";
 
@@ -19,7 +19,7 @@ const width = (screenWidth - gap * 3 - 40) / 3;
 
 export function QRCodeBottomSheet() {
   const theme = useTheme();
-  const upiIds = useDataStore((states) => states.upiIds);
+  const upiIds = useUserDataStore((states) => states.upiIds);
   const ref = useBottomSheetStore((state) => state.register("qr-code-sheet"));
 
   return (

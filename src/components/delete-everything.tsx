@@ -1,5 +1,5 @@
 import { useAuthStore } from "@/store/auth-store";
-import { useDataStore } from "@/store/data-store";
+import { useUserDataStore } from "@/store/user-data-store";
 import { useRouter } from "expo-router";
 import { Alert, StyleSheet } from "react-native";
 import { Setting } from "./setting";
@@ -7,7 +7,7 @@ import { Setting } from "./setting";
 export function DeleteEverything() {
   const router = useRouter();
   const setIsAuthenticated = useAuthStore((state) => state.setIsAuthenticated);
-  const clearAll = useDataStore((state) => state.clearAll);
+  const clearAll = useUserDataStore((state) => state.clearAll);
 
   const handelOnPress = () => {
     Alert.alert(

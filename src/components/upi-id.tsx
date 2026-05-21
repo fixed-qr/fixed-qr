@@ -1,6 +1,6 @@
 import { AppIcon, AppText, AppView } from "@/components/app-ui";
 import { useTheme } from "@/hooks/use-theme";
-import { useDataStore } from "@/store/data-store";
+import { useUserDataStore } from "@/store/user-data-store";
 import {
     Image,
     ImageSourcePropType,
@@ -17,7 +17,7 @@ interface UpiIdProps {
 
 export function UpiId({ logoImage, label, upiId, isLast }: UpiIdProps) {
   const theme = useTheme();
-  const removeUpiId = useDataStore((state) => state.removeUpiId);
+  const removeUpiId = useUserDataStore((state) => state.removeUpiId);
 
   const handleRemoveUpiId = (upiId: string) => {
     removeUpiId(upiId);

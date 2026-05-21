@@ -2,7 +2,7 @@ import { PasswordInput } from "@/components";
 import { AppBottomSheet, AppText, AppView } from "@/components/app-ui";
 import { useTheme } from "@/hooks/use-theme";
 import { useAuthStore } from "@/store/auth-store";
-import { useDataStore } from "@/store/data-store";
+import { useUserDataStore } from "@/store/user-data-store";
 import BottomSheet, { BottomSheetView } from "@gorhom/bottom-sheet";
 import { useEffect, useRef, useState } from "react";
 import { Keyboard, Pressable, StyleSheet } from "react-native";
@@ -13,7 +13,7 @@ export function AuthenticateBottomSheet() {
   const bottomSheetRef = useRef<BottomSheet>(null);
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const storedPassword = useDataStore((state) => state.user?.password);
+  const storedPassword = useUserDataStore((state) => state.user?.password);
   const { isAuthenticated, setIsAuthenticated } = useAuthStore();
 
   useEffect(() => {

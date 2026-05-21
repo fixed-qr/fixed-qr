@@ -2,7 +2,7 @@ import { Amount } from "@/components";
 import { AppScrollView, AppText, AppView } from "@/components/app-ui";
 import { screenWidth } from "@/constants/dimensions";
 import { useTheme } from "@/hooks/use-theme";
-import { useDataStore } from "@/store/data-store";
+import { useUserDataStore } from "@/store/user-data-store";
 import { getProviderLogo } from "@/utils/get-provider-logo";
 import { Image } from "expo-image";
 import { Link } from "expo-router";
@@ -16,7 +16,7 @@ const width = (screenWidth - gap * 3 - 40) / 3;
 export default function QRCodeFormScreen() {
   const theme = useTheme();
   const [value, setValue] = useState("");
-  const upiIds = useDataStore((states) => states.upiIds);
+  const upiIds = useUserDataStore((states) => states.upiIds);
 
   const renderNumericKeyPad = () => {
     const handlePress = (num: any) => {

@@ -9,7 +9,7 @@ import {
 import { screenWidth } from "@/constants/dimensions";
 import { providers } from "@/constants/providers";
 import { useTheme } from "@/hooks/use-theme";
-import { useDataStore } from "@/store/data-store";
+import { useUserDataStore } from "@/store/user-data-store";
 import { Provider } from "@/types/provider";
 import { validateUpi } from "@/utils/validators";
 import { useRouter } from "expo-router";
@@ -25,7 +25,7 @@ export default function AddUPIScreen() {
   const [error, setError] = useState<string | null>(null);
   const [isFocused, setIsFocused] = useState(false);
   const [selected, setSelected] = useState<Provider | null>(null);
-  const addUpiId = useDataStore((state) => state.addUpiId);
+  const addUpiId = useUserDataStore((state) => state.addUpiId);
   const router = useRouter();
 
   const handleUPIIdChange = (value: string) => {

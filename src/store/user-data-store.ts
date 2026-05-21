@@ -16,7 +16,7 @@ interface DataStore {
   clearAll: () => void;
 }
 
-export const useDataStore = create<DataStore>()(
+export const useUserDataStore = create<DataStore>()(
   persist(
     (set, get) => ({
       user: null,
