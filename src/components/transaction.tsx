@@ -25,7 +25,7 @@ export function Transaction({
       style={[
         styles.transaction,
         {
-          borderColor: theme.background.secondary,
+          borderColor: theme.border.primary,
           borderBottomWidth: isLast ? 0 : 1,
         },
       ]}

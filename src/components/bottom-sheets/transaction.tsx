@@ -38,7 +38,10 @@ export function TransactionBottomSheet() {
           <AppView
             style={[
               styles.transactions,
-              { backgroundColor: theme.background.card },
+              {
+                backgroundColor: theme.background.card,
+                borderColor: theme.border.primary,
+              },
             ]}
           >
             {transactions.map((tsx, index) => (
@@ -72,5 +75,6 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingVertical: 8,
     borderRadius: 24,
+    borderWidth: 1,
   },
 });
