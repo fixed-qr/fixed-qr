@@ -137,7 +137,6 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 48,
   },
-
   selectListContainer: {
     flexGrow: 1,
     flexDirection: "row",
