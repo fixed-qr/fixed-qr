@@ -8,7 +8,7 @@
     "lint": "expo lint",
     "android": "expo run:android",
     "ios": "expo run:ios",
-    "build:apk": " eas build --platform android --profile production --local --output ./local/build/android/app-release.apk"
+    "build:apk": " eas build --platform android --profile production --local --output ./local-builds/android/app-release.apk"
   },
   "dependencies": {
     "@gorhom/bottom-sheet": "^5.2.14",
