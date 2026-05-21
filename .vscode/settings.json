@@ -1,7 +1,9 @@
 {
   "files.exclude": {
     "**/node_modules": true,
-    "**/.expo": true
+    "**/.expo": true,
+    "android": true,
+    "ios": true
   },
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "prettier.printWidth": 80,
