@@ -50,7 +50,11 @@ export default function AddUPIScreen() {
     <AppScrollView>
       {/* UPI Input */}
       <AppView>
-        <AppText style={styles.title}>Add UPI ID</AppText>
+        <AppView style={{ alignItems: "center", marginBottom: 16 }}>
+          <AppText variant="headingSmall" weight="600">
+            Add New UPI ID
+          </AppText>
+        </AppView>
         <TextInput
           value={upiId}
           onChangeText={handleUPIIdChange}
