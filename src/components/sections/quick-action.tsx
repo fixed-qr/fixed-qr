@@ -6,6 +6,7 @@ import { useDataStore } from "@/store/data-store";
 import { getProviderLabel } from "@/utils/get-provider-label";
 import { getProviderLogo } from "@/utils/get-provider-logo";
 import { Link } from "expo-router";
+import { useMemo } from "react";
 import { StyleSheet } from "react-native";
 
 const gap = 8;
@@ -14,6 +15,22 @@ const width = (screenWidth - gap - 40 - 1) / 2;
 export function QuickActionSection() {
   const theme = useTheme();
   const transactions = useDataStore((state) => state.transactions);
+
+  const suggestedTransactions = useMemo(() => {
+    const seen = new Set<string>();
+
+    return transactions.filter((transaction) => {
+      const key = `${transaction.amount}-${transaction.provider}`;
+
+      if (seen.has(key)) {
+        return false;
+      }
+
+      seen.add(key);
+
+      return true;
+    });
+  }, [transactions]).slice(0, 4);
 
   return (
     <AppView>
@@ -25,32 +42,28 @@ export function QuickActionSection() {
       >
         Quick Actions
       </AppText>
-      {transactions.length ? (
+      {suggestedTransactions.length ? (
         <AppView style={[styles.quickActions]}>
-          {Array.from(
-            new Map(transactions.map((item) => [item.amount, item])).values(),
-          )
-            .slice(0, 6)
-            .map((tsx) => (
-              <Link
-                key={tsx.transactionId}
-                href={{
-                  pathname: "/(modals)/qr-code/result",
-                  params: {
-                    upiId: tsx.upiId,
-                    amount: tsx.amount,
-                    provider: tsx.provider,
-                  },
-                }}
-              >
-                <QuickAction
-                  logoImage={getProviderLogo(tsx.provider)}
-                  label={getProviderLabel(tsx.provider)}
-                  amount={tsx.amount}
-                  size={width}
-                />
-              </Link>
-            ))}
+          {suggestedTransactions.map((tsx) => (
+            <Link
+              key={tsx.transactionId}
+              href={{
+                pathname: "/(modals)/qr-code/result",
+                params: {
+                  upiId: tsx.upiId,
+                  amount: tsx.amount,
+                  provider: tsx.provider,
+                },
+              }}
+            >
+              <QuickAction
+                logoImage={getProviderLogo(tsx.provider)}
+                label={getProviderLabel(tsx.provider)}
+                amount={tsx.amount}
+                size={width}
+              />
+            </Link>
+          ))}
         </AppView>
       ) : (
         <AppView
