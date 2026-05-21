@@ -144,7 +144,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     flexWrap: "wrap",
     gap: gap,
-    marginBottom: 16,
+    marginBottom: 28,
   },
   saveButton: {
     justifyContent: "center",
