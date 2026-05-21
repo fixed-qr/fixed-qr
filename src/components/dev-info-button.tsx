@@ -9,7 +9,7 @@ export function DevInfoButton() {
     <Pressable
       style={styles.devButton}
       onPress={() => {
-        expand("dev-info-sheet");
+        expand("dev-info-bottom-sheet");
       }}
     >
       <AppImage

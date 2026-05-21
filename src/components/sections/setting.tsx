@@ -14,7 +14,7 @@ export function SettingSection() {
         label="Transactions"
         isLast={true}
         onPress={() => {
-          snapToIndex("transaction-sheet", 0);
+          snapToIndex("transaction-bottom-sheet", 0);
         }}
       />
     </AppGroup>

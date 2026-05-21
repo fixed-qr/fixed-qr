@@ -16,7 +16,9 @@ import { ActivityIndicator, Pressable, StyleSheet } from "react-native";
 
 export function DevInfoBottomSheet() {
   const theme = useTheme();
-  const ref = useBottomSheetStore((state) => state.register("dev-info-sheet"));
+  const ref = useBottomSheetStore((state) =>
+    state.register("dev-info-bottom-sheet"),
+  );
   const { devInfo, loading, fetchDevInfo } = useDevInfoStore();
 
   useEffect(() => {

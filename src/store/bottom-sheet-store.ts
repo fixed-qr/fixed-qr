@@ -3,9 +3,9 @@ import { createRef, RefObject } from "react";
 import { create } from "zustand";
 
 export const SHEETS = {
-  DEV: "dev-info-sheet",
-  QR: "qr-code-sheet",
-  TRANSACTION: "transaction-sheet",
+  DEV: "dev-info-bottom-sheet",
+  QR: "qr-code-bottom-sheet",
+  TRANSACTION: "transaction-bottom-sheet",
   Legal: "legal-information-bottom-sheet",
 } as const;
 

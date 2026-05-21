@@ -25,7 +25,7 @@ export function Header() {
         <Pressable
           style={styles.button}
           onPress={() => {
-            expand("qr-code-sheet");
+            expand("qr-code-bottom-sheet");
           }}
         >
           <Ionicons name="qr-code" size={26} color={theme.text.primary} />
