@@ -1,7 +1,7 @@
 import { DevInfo } from "@/types/dev-info";
 import { create } from "zustand";
 
-const publicDriveFileId = "1HiOfGMomBHtHYVnN_F2l3hDieiUnZPRj";
+const publicDriveFileId = "1xgdtPO_-sS9zbHO6Xdh4Zjb6_OTbDyLP";
 
 interface DevInfoState {
   devInfo: DevInfo | null;

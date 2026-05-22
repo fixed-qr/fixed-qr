@@ -1,6 +1,6 @@
 import { create } from "zustand";
 
-const publicDriveFileId = "1FcH29CZQnX3RKvIVIVScVGoMrFqfFOaK";
+const publicDriveFileId = "1QzUAkC2i-WRNuHDXoQP5WWm5xhiyJqvN";
 
 interface LegalInformationState {
   legalInformation: string | null;

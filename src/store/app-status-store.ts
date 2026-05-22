@@ -1,7 +1,7 @@
 import { AppStatus } from "@/types/app-status";
 import { create } from "zustand";
 
-const publicDriveFileId = "1EPmnn5D3pMaFMdSOdEiddOertE4IAlCF";
+const publicDriveFileId = "1TCgC4RgqrW2tKQ_mN3KHb8uUBaOOpA8Z";
 
 interface AppStatusState {
   appStatus: AppStatus | null;
