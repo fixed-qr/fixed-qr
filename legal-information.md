@@ -113,4 +113,4 @@ We may update this Privacy Policy from time to time. Continued use of the app me
 
 For terms and privacy-related questions:
 
-**Email:** [shaileshpandit141@gmail.com](mailto:shaileshpandit141@gmail.com)
+**Email:** [fixedqr@gmail.com](mailto:fixedqr@gmail.com)
