@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "FixedQR",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "slug": "fixed-qr",
     "scheme": "fixedqr",
     "orientation": "portrait",
