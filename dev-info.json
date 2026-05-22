@@ -2,20 +2,20 @@
   "name": "Shailesh Pandit",
   "bio": "Building scalable AI-powered applications",
   "about": "Full Stack Developer building scalable AI-powered applications with Python, FastAPI, Django, React, and AWS.",
-  "profile_image": "https://drive.usercontent.google.com/download?id=10p20TBP_0mGqumN6cMLeHoZ6UQY2a7aU&export=view&authuser=0",
-  "website": "https://fixed-qr.com",
+  "profile_image": "https://drive.usercontent.google.com/download?id=148dm-DjcS57eGfgiZF8WsL9dm49MGnPo&export=view&authuser=0",
+  "website": "https://fixed-qr.netlify.com",
   "social_links": [
     {
       "platform": "github",
-      "url": "https://github.com/shailesio"
+      "url": "https://github.com/shaileshio"
     },
     {
       "platform": "linkedin",
-      "url": "https://www.linkedin.com/in/shailesio/"
+      "url": "https://www.linkedin.com/in/shaileshio/"
     },
     {
       "platform": "instagram",
-      "url": "https://www.instagram.com/shailesio/"
+      "url": "https://www.instagram.com/shaileshio/"
     }
   ],
   "support": [
