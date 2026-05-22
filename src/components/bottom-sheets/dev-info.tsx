@@ -39,13 +39,13 @@ export function DevInfoBottomSheet() {
           paddingHorizontal: 20,
         }}
       >
+        <AppView style={{ alignItems: "center", marginBottom: 16 }}>
+          <AppText variant="headingSmall" weight="600">
+            Developer Profile
+          </AppText>
+        </AppView>
         {!loading && devInfo ? (
           <AppView>
-            <AppView style={styles.titleContainer}>
-              <AppText variant="headingSmall" weight="600">
-                Developer Profile
-              </AppText>
-            </AppView>
             <AppView
               backgroundColor="card"
               style={[
