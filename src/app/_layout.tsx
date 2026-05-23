@@ -83,7 +83,6 @@ export default function RootLayout() {
           }}
         >
           <Stack.Screen name="(auth)/get-started" />
-          <Stack.Screen name="app-status" />
           <Stack.Screen name="(tabs)" />
           <Stack.Screen name="app" />
           <Stack.Screen
