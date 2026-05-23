@@ -1,0 +1,17 @@
+{
+  "status": "online",
+  "release": {
+    "versionCode": 100,
+    "versionName": "1.0.0",
+    "title": "Performance improvements and new features",
+    "websiteUrl": "https://fixed-qr.netlify.com",
+    "downloadUrl": "https://raw.githubusercontent.com/fixed-qr/fixed-qr/refs/heads/main/app-config.json",
+    "publishedAt": "2026-05-20T03:20:56Z",
+    "notes": [
+      "Performance improvements",
+      "Improved security",
+      "New features added",
+      "Bug fixes"
+    ]
+  }
+}
