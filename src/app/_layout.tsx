@@ -1,82 +1,71 @@
 import { borderRadius } from "@/constants/platform";
 import { useAppVersion } from "@/hooks/use-app-version";
 import { useTheme } from "@/hooks/use-theme";
-import { storage } from "@/storage/mmkv";
-import { useAppStatusStore } from "@/store/app-status-store";
+import { useAppConfigStore } from "@/store/app-config-store";
 import { useUserDataStore } from "@/store/user-data-store";
-import { AppStatus } from "@/types/app-status";
+import { AppConfig } from "@/types/app-config";
 import { versionToNumber } from "@/utils/version-to-number";
 import {
     DarkTheme,
     DefaultTheme,
     ThemeProvider,
 } from "@react-navigation/native";
-import { Stack, usePathname, useRouter, useSegments } from "expo-router";
+import { Href, Stack, usePathname, useRouter } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { useEffect } from "react";
 import { useColorScheme } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 
-if (!storage.getString("app-status")) {
-  storage.set(
-    "app-status",
-    JSON.stringify({
-      code: "ok",
-      title: "Service Available",
-      message: "Application is running normally.",
-      release: null,
-    } satisfies AppStatus),
-  );
+function getRedirectPath(
+  config: AppConfig,
+  currentVersion: number,
+): Href | null {
+  const { status, release } = config;
+
+  if (status === "online" && currentVersion < release.versionCode) {
+    return "/app/update";
+  }
+
+  if (status === "maintenance") {
+    return "/app/maintenance";
+  }
+
+  if (status !== "online") {
+    return "/app/discontinued";
+  }
+
+  return null;
 }
 
 export default function RootLayout() {
   const scheme = useColorScheme();
   const theme = useTheme();
   const router = useRouter();
+  const pathname = usePathname();
   const { version } = useAppVersion();
-  const segments = useSegments();
-  const pataname = usePathname();
   const user = useUserDataStore((state) => state.user);
-  const { appStatus, fetchAppStatus } = useAppStatusStore();
+  const { appConfig, fetchAppConfig } = useAppConfigStore();
 
+  // Fetch app config on mount
   useEffect(() => {
-    fetchAppStatus();
+    fetchAppConfig();
   }, []);
 
+  // Version and maintenance redirect
   useEffect(() => {
-    if (appStatus) {
-      storage.set("app-status", JSON.stringify(appStatus));
+    const redirectPath = getRedirectPath(appConfig, versionToNumber(version));
+
+    if (redirectPath && pathname !== redirectPath) {
+      router.replace(redirectPath);
     }
+  }, [appConfig, version, pathname]);
 
-    const cached = storage.getString("app-status");
-    if (!cached) return;
-
-    const status = JSON.parse(cached) as AppStatus;
-    const currentVersion = versionToNumber(version);
-
-    const shouldBlockApp =
-      status.code === "maintenance" ||
-      status.code === "discontinued" ||
-      (status.code === "deprecated" &&
-        currentVersion < (status.release?.version ?? 0));
-
-    // Redirect to app-status
-    if (shouldBlockApp && pataname !== "/app-status") {
-      router.replace("/app-status");
-      return;
-    }
-
-    // Leave app-status after update/fix
-    if (!shouldBlockApp && pataname === "/app-status") {
-      router.replace("/");
-    }
-  }, [appStatus, version, pataname]);
-
+  // Auth guard
   useEffect(() => {
-    if (!user && pataname !== "/(auth)/get-started") {
+    if (!user && pathname !== "/(auth)/get-started") {
       router.replace("/(auth)/get-started");
     }
-  }, [segments]);
+  }, [user, pathname]);
 
   return (
     <GestureHandlerRootView
@@ -84,15 +73,19 @@ export default function RootLayout() {
     >
       <ThemeProvider value={scheme === "dark" ? DarkTheme : DefaultTheme}>
         <StatusBar style={scheme === "dark" ? "light" : "dark"} />
+
         <Stack
           screenOptions={{
             headerShown: false,
-            contentStyle: { backgroundColor: theme.background.primary },
+            contentStyle: {
+              backgroundColor: theme.background.primary,
+            },
           }}
         >
           <Stack.Screen name="(auth)/get-started" />
           <Stack.Screen name="app-status" />
           <Stack.Screen name="(tabs)" />
+          <Stack.Screen name="app" />
           <Stack.Screen
             name="(modals)"
             options={{
