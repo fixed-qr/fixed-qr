@@ -1,8 +1,6 @@
 import { DevInfo } from "@/types/dev-info";
 import { create } from "zustand";
 
-const publicDriveFileId = "1xgdtPO_-sS9zbHO6Xdh4Zjb6_OTbDyLP";
-
 interface DevInfoState {
   devInfo: DevInfo | null;
   loading: boolean;
@@ -22,14 +20,14 @@ export const useDevInfoStore = create<DevInfoState>((set) => ({
       });
 
       const response = await fetch(
-        `https://drive.google.com/uc?export=download&id=${publicDriveFileId}`,
+        "https://raw.githubusercontent.com/fixed-qr/fixed-qr/refs/heads/main/dev-info.json",
       );
 
       if (!response.ok) {
         throw new Error(`HTTP ${response.status}`);
       }
 
-      const data = JSON.parse(await response.text()) as DevInfo;
+      const data = (await response.json()) as DevInfo;
 
       set({
         devInfo: data,
