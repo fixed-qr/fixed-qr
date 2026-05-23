@@ -1,14 +1,14 @@
 {
   "name": "fixed-qr",
   "main": "expo-router/entry",
-  "version": "1.0.4",
+  "version": "1.0.0",
   "scripts": {
     "start": "expo start",
     "web": "expo start --web",
     "lint": "expo lint",
     "android": "expo run:android",
     "ios": "expo run:ios",
-    "build:apk": " eas build --platform android --profile production --local --output ./local-builds/android/app-release.apk"
+    "build:apk": " eas build --platform android --profile production --local --output ./local-builds/android/FixedQR-v1.0.0-release.apk"
   },
   "dependencies": {
     "@gorhom/bottom-sheet": "^5.2.14",
