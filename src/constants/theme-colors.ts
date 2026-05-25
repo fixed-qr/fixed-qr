@@ -118,11 +118,11 @@ export const themeColors = {
     },
 
     accent: {
-      primary: "#7C3AED",
-      pressed: "#6D28D9",
+      primary: "#2563EB",
+      pressed: "#1D4ED8",
 
-      soft: "#F5F1FF",
-      subtle: "#EDE7FF",
+      soft: "#EFF6FF",
+      subtle: "#DBEAFE",
     },
 
     status: {
@@ -187,11 +187,11 @@ export const themeColors = {
     },
 
     accent: {
-      primary: "#8B5CF6",
-      pressed: "#7C3AED",
+      primary: "#60A5FA",
+      pressed: "#3B82F6",
 
-      soft: "rgba(139, 92, 246, 0.18)",
-      subtle: "rgba(139, 92, 246, 0.10)",
+      soft: "rgba(96, 165, 250, 0.18)",
+      subtle: "rgba(96, 165, 250, 0.10)",
     },
 
     status: {
