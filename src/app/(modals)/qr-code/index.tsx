@@ -5,7 +5,7 @@ import { useTheme } from "@/hooks/use-theme";
 import { useUserDataStore } from "@/store/user-data-store";
 import { getProviderLogo } from "@/utils/get-provider-logo";
 import { Image } from "expo-image";
-import { Link } from "expo-router";
+import { Link, useRouter } from "expo-router";
 import { useState } from "react";
 import { Pressable, StyleSheet } from "react-native";
 
@@ -15,6 +15,7 @@ const width = (screenWidth - gap * 3 - 40) / 3;
 
 export default function QRCodeFormScreen() {
   const theme = useTheme();
+  const router = useRouter();
   const [value, setValue] = useState("");
   const upiIds = useUserDataStore((states) => states.upiIds);
 
@@ -47,10 +48,12 @@ export default function QRCodeFormScreen() {
               style={({ pressed }) => [
                 styles.key,
                 {
-                  borderColor: theme.border.primary,
+                  borderColor: pressed
+                    ? theme.border.focus
+                    : theme.border.primary,
                   backgroundColor: pressed
-                    ? theme.background.cardMuted
-                    : theme.background.card,
+                    ? theme.background.selected
+                    : theme.background.tertiary,
                   flex: key === "0" ? 2 : 0,
                 },
               ]}
@@ -98,31 +101,38 @@ export default function QRCodeFormScreen() {
       {upiIds.length ? (
         <AppView style={styles.providerContainer}>
           {upiIds.map((upiId) => (
-            <Link
+            <Pressable
               key={upiId.provider + upiId.upiId}
-              href={{
-                pathname: "/(modals)/qr-code/result",
-                params: {
-                  amount: value,
-                  upiId: upiId.upiId,
-                  provider: upiId.provider,
-                },
-              }}
-              disabled={!Number(value)}
-            >
-              <AppView
-                style={[
-                  styles.providerLink,
-                  {
-                    borderColor: theme.border.primary,
-                    backgroundColor: theme.accent.soft,
+              onPress={() => {
+                if (!Number(value)) return;
+
+                router.push({
+                  pathname: "/(modals)/qr-code/result",
+                  params: {
+                    amount: value,
+                    upiId: upiId.upiId,
+                    provider: upiId.provider,
                   },
-                ]}
-              >
+                });
+              }}
+              style={({ pressed }) => [
+                styles.providerLink,
+                {
+                  borderColor: pressed
+                    ? theme.border.focus
+                    : theme.border.primary,
+                  backgroundColor: pressed
+                    ? theme.background.selected
+                    : theme.background.tertiary,
+                },
+              ]}
+            >
+              <AppView style={{ alignItems: "center", gap: 4 }}>
                 <AppView style={styles.providerLogoContainer}>
                   <Image
                     source={getProviderLogo(upiId.provider)}
                     style={styles.providerLogo}
+                    cachePolicy="memory-disk"
                   />
                 </AppView>
                 <AppText
@@ -133,7 +143,7 @@ export default function QRCodeFormScreen() {
                   {upiId.label}
                 </AppText>
               </AppView>
-            </Link>
+            </Pressable>
           ))}
         </AppView>
       ) : (
@@ -183,12 +193,11 @@ const styles = StyleSheet.create({
   },
   providerLink: {
     width: width,
-    borderRadius: 20,
     justifyContent: "center",
     alignItems: "center",
     borderWidth: 1,
     padding: 8,
-    paddingVertical: 16,
+    borderRadius: 99,
   },
   providerLogoContainer: {
     width: 24,
