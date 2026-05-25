@@ -29,26 +29,6 @@ export default function QRCodeFormScreen() {
       setValue((prev) => prev.slice(0, -1));
     };
 
-    const pressableStyle = (key: string, pressed: boolean) => {
-      let styles = {
-        borderColor: theme.border.primary,
-        backgroundColor: theme.accent.subtle,
-        flex: 0,
-      };
-
-      if (pressed) {
-        styles.backgroundColor = theme.accent.soft as any;
-      } else {
-        styles.backgroundColor = theme.accent.subtle;
-      }
-
-      if (key === "0") {
-        styles.flex = 2;
-      }
-
-      return styles;
-    };
-
     return (
       <AppView
         style={[
@@ -66,11 +46,21 @@ export default function QRCodeFormScreen() {
               key={key}
               style={({ pressed }) => [
                 styles.key,
-                pressableStyle(key, pressed),
+                {
+                  borderColor: theme.border.primary,
+                  backgroundColor: pressed
+                    ? theme.background.cardMuted
+                    : theme.background.card,
+                  flex: key === "0" ? 2 : 0,
+                },
               ]}
               onPress={() => (key === "⌫" ? handleDelete() : handlePress(key))}
             >
-              <AppText style={styles.keyText}>{key}</AppText>
+              <AppText
+                style={[styles.keyText, { fontSize: key === "⌫" ? 18 : 28 }]}
+              >
+                {key}
+              </AppText>
             </Pressable>
           );
         })}
@@ -222,7 +212,7 @@ const styles = StyleSheet.create({
   key: {
     width: width,
     height: 60,
-    borderRadius: 20,
+    borderRadius: 99,
     justifyContent: "center",
     alignItems: "center",
     borderWidth: 1,
