@@ -22,7 +22,7 @@ export const useLegalInformationStore = create<LegalInformationState>(
         });
 
         const response = await fetch(
-          `https://drive.google.com/uc?export=download&id=${publicDriveFileId}`,
+          "https://raw.githubusercontent.com/fixed-qr/fixed-qr/refs/heads/main/legal-information.md",
         );
 
         if (!response.ok) {
