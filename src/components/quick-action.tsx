@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
   logoImage: {
     width: 36,
     height: 36,
-    marginBottom: "auto",
+    marginBottom: 6,
   },
   provider: {
     marginTop: 2,

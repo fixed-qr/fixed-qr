@@ -39,7 +39,7 @@ export function TransactionBottomSheet() {
             style={[
               styles.transactions,
               {
-                backgroundColor: theme.background.card,
+                backgroundColor: theme.background.tertiary,
                 borderColor: theme.border.primary,
               },
             ]}

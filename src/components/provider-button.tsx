@@ -28,8 +28,8 @@ export function ProviderButton({
           width: size,
           borderColor: theme.border.primary,
           backgroundColor: isSelected
-            ? theme.background.cardMuted
-            : theme.background.card,
+            ? theme.background.selected
+            : theme.background.tertiary,
         },
       ]}
     >

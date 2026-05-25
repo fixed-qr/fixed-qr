@@ -73,8 +73,8 @@ export default function AddUPIScreen() {
               borderColor: error ? theme.status.danger : theme.border.secondary,
               backgroundColor:
                 isFocused || upiId
-                  ? theme.background.cardMuted
-                  : theme.background.card,
+                  ? theme.background.selected
+                  : theme.background.tertiary,
             },
           ]}
         />
@@ -116,8 +116,8 @@ export default function AddUPIScreen() {
           {
             borderColor: pressed ? theme.border.focus : theme.border.primary,
             backgroundColor: pressed
-              ? theme.background.cardMuted
-              : theme.background.card,
+              ? theme.background.selected
+              : theme.background.tertiary,
           },
         ]}
         onPress={handleSubmit}
