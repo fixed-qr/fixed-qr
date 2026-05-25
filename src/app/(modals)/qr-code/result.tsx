@@ -64,7 +64,7 @@ export default function GeneratedQRCodeScreen() {
           style={[
             styles.qrCodeContainer,
             {
-              backgroundColor: theme.background.card,
+              backgroundColor: theme.background.tertiary,
               borderColor: theme.border.primary,
             },
           ]}
@@ -92,9 +92,18 @@ export default function GeneratedQRCodeScreen() {
           variant="bodySmall"
           weight="500"
           color="tertiary"
+          style={{ marginBottom: 2 }}
+        >
+          UPI ID
+        </AppText>
+
+        <AppText
+          variant="bodySmall"
+          weight="500"
+          color="tertiary"
           style={{ marginBottom: 8 }}
         >
-          UPI ID: {upiId}
+          {upiId}
         </AppText>
         {!!amount && <Amount value={amount} size={24} />}
       </AppView>
