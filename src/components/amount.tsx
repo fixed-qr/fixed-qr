@@ -16,7 +16,7 @@ export function Amount({ value, size }: AmountProps) {
   return (
     <AppView style={styles.amount}>
       <AppImage
-        source={require("@/assets/icons/other/rupee.png")}
+        source={require("@/assets/icons/others/rupee.png")}
         tintColor={theme.text.primary}
         style={[
           styles.unitImage,

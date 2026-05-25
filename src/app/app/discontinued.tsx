@@ -15,7 +15,7 @@ export default function Discontinued() {
     <AppSafeAreaView style={styles.container}>
       <AppView style={styles.maintenance}>
         <AppImage
-          source={require("@/assets/icons/other/discontinued.png")}
+          source={require("@/assets/icons/others/discontinued.png")}
           style={styles.maintenanceImage}
           tintColor={theme.status.danger}
         />

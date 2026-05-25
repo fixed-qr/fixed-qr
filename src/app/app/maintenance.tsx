@@ -15,7 +15,7 @@ export default function Maintenance() {
     <AppSafeAreaView style={styles.container}>
       <AppView style={styles.maintenance}>
         <AppImage
-          source={require("@/assets/icons/other/maintenance.png")}
+          source={require("@/assets/icons/others/maintenance.png")}
           style={styles.maintenanceImage}
           tintColor={theme.status.info}
         />

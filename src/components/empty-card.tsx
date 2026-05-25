@@ -21,7 +21,7 @@ export function EmptyCard({ message, image }: EmptyCardProps) {
       ]}
     >
       <AppImage
-        source={image || require("@/assets/icons/other/empty.png")}
+        source={image || require("@/assets/icons/others/empty.png")}
         style={styles.emptyCardImage}
       />
       <AppText variant="bodySmall" color="secondary" style={styles.message}>

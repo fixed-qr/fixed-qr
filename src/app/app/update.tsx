@@ -28,7 +28,7 @@ export default function Update() {
       <AppScrollView>
         <AppView style={styles.update}>
           <AppImage
-            source={require("@/assets/icons/other/update.png")}
+            source={require("@/assets/icons/others/update.png")}
             style={styles.updateImage}
             tintColor={theme.status.info}
           />
