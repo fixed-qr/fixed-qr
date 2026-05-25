@@ -1,4 +1,4 @@
-import { AppText, AppView } from "@/components/app-ui";
+import { AppImage, AppText, AppView } from "@/components/app-ui";
 import { useTheme } from "@/hooks/use-theme";
 import { useBottomSheetStore } from "@/store/bottom-sheet-store";
 import { Ionicons } from "@expo/vector-icons";
@@ -12,11 +12,14 @@ export function Header() {
   return (
     <AppView style={styles.container}>
       <AppView style={styles.leftContainer}>
-        <AppText
-          variant="headingMedium"
-          weight="600"
-          style={{ color: theme.accent.primary }}
-        >
+        <AppView style={[styles.appLogoImageContainer]}>
+          <AppImage
+            source={require("@/assets/images/splash-icon.png")}
+            style={styles.appLogoImage}
+            tintColor={theme.text.primary}
+          />
+        </AppView>
+        <AppText variant="headingSmall" weight="600" color="primary">
           FixedQR
         </AppText>
       </AppView>
@@ -46,8 +49,19 @@ const styles = StyleSheet.create({
   },
   leftContainer: {
     flexDirection: "row",
-    alignItems: "flex-start",
+    alignItems: "center",
     justifyContent: "center",
+    gap: 8,
+  },
+  appLogoImageContainer: {
+    width: 32,
+    height: 32,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  appLogoImage: {
+    width: "100%",
+    height: "100%",
   },
   rightContainer: {
     flexDirection: "row",
