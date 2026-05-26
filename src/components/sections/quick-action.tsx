@@ -5,15 +5,16 @@ import { useTheme } from "@/hooks/use-theme";
 import { useUserDataStore } from "@/store/user-data-store";
 import { getProviderLabel } from "@/utils/get-provider-label";
 import { getProviderLogo } from "@/utils/get-provider-logo";
-import { Link } from "expo-router";
+import { useRouter } from "expo-router";
 import { useMemo } from "react";
-import { StyleSheet } from "react-native";
+import { Pressable, StyleSheet } from "react-native";
 
 const gap = 8;
 const width = (screenWidth - gap - 40 - 1) / 2;
 
 export function QuickActionSection() {
   const theme = useTheme();
+  const router = useRouter();
   const transactions = useUserDataStore((state) => state.transactions);
 
   const suggestedTransactions = useMemo(() => {
@@ -45,46 +46,49 @@ export function QuickActionSection() {
       {suggestedTransactions.length ? (
         <AppView style={[styles.quickActions]}>
           {suggestedTransactions.map((tsx) => (
-            <Link
+            <Pressable
               key={tsx.transactionId}
-              href={{
-                pathname: "/(modals)/qr-code/result",
-                params: {
-                  upiId: tsx.upiId,
-                  amount: tsx.amount,
-                  provider: tsx.provider,
-                },
-              }}
-            >
-              <AppView
-                style={[
-                  styles.quickAction,
-                  {
-                    backgroundColor: theme.background.secondary,
-                    borderColor: theme.border.primary,
-                    width: width,
-                    height: width / 1.25,
+              onPress={() => {
+                router.push({
+                  pathname: "/(modals)/qr-code/result",
+                  params: {
+                    upiId: tsx.upiId,
+                    amount: tsx.amount,
+                    provider: tsx.provider,
                   },
-                ]}
-              >
-                <AppImage
-                  source={getProviderLogo(tsx.provider)}
-                  style={styles.logoImage}
+                });
+              }}
+              style={({ pressed }) => [
+                styles.quickAction,
+                {
+                  backgroundColor: pressed
+                    ? theme.background.cardMuted
+                    : theme.background.card,
+                  borderColor: pressed
+                    ? theme.border.focus
+                    : theme.border.primary,
+                  width: width,
+                  height: width / 1.25,
+                },
+              ]}
+            >
+              <AppImage
+                source={getProviderLogo(tsx.provider)}
+                style={styles.logoImage}
+              />
+              <Amount value={tsx.amount} />
+              <AppView style={styles.provider}>
+                <AppText variant="bodyMedium" color="secondary">
+                  {getProviderLabel(tsx.provider)}
+                </AppText>
+                <AppIcon
+                  name="arrow-forward"
+                  size={16}
+                  style={{ transform: "rotate(-45deg)" }}
+                  color={theme.text.secondary}
                 />
-                <Amount value={tsx.amount} />
-                <AppView style={styles.provider}>
-                  <AppText variant="bodyMedium" color="secondary">
-                    {getProviderLabel(tsx.provider)}
-                  </AppText>
-                  <AppIcon
-                    name="arrow-forward"
-                    size={16}
-                    style={{ transform: "rotate(-45deg)" }}
-                    color={theme.text.secondary}
-                  />
-                </AppView>
               </AppView>
-            </Link>
+            </Pressable>
           ))}
         </AppView>
       ) : (
