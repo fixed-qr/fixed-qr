@@ -8,7 +8,7 @@ export type MapRowStateArgs<T> = {
 export function mapRowState<T, R>(
   items: T[],
   mapper: (args: MapRowStateArgs<T>) => R,
-  rowSize: number = 3,
+  rowSize: number,
 ): R[] {
   const remainder = items.length % rowSize;
   const incompleteRowStart = items.length - remainder;

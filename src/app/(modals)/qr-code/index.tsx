@@ -101,56 +101,57 @@ export default function QRCodeFormScreen() {
       {/* Providers */}
       {upiIds.length ? (
         <AppView style={styles.providerContainer}>
-          {mapRowState(upiIds, ({ item, columnIndex, isIncompleteRow }) => (
-            <Pressable
-              key={item.provider + item.upiId}
-              onPress={() => {
-                if (!Number(value)) return;
+          {mapRowState(
+            upiIds,
+            ({ item, columnIndex, isIncompleteRow }) => (
+              <Pressable
+                key={item.provider + item.upiId}
+                onPress={() => {
+                  if (!Number(value)) return;
 
-                router.push({
-                  pathname: "/(modals)/qr-code/result",
-                  params: {
-                    amount: value,
-                    upiId: item.upiId,
-                    provider: item.provider,
+                  router.push({
+                    pathname: "/(modals)/qr-code/result",
+                    params: {
+                      amount: value,
+                      upiId: item.upiId,
+                      provider: item.provider,
+                    },
+                  });
+                }}
+                style={({ pressed }) => [
+                  styles.providerLink,
+                  {
+                    borderColor: pressed
+                      ? theme.border.focus
+                      : theme.border.primary,
+                    backgroundColor: pressed
+                      ? theme.background.selected
+                      : theme.background.tertiary,
+
+                    flex: isIncompleteRow ? 1 : 0,
                   },
-                });
-              }}
-              style={({ pressed }) => [
-                styles.providerLink,
-                {
-                  borderColor: pressed
-                    ? theme.border.focus
-                    : theme.border.primary,
-                  backgroundColor: pressed
-                    ? theme.background.selected
-                    : theme.background.tertiary,
-
-                  flex: isIncompleteRow ? 1 : 0,
-                },
-              ]}
-            >
-              <AppView style={{ alignItems: "center", gap: 4 }}>
-                <AppView style={styles.providerLogoContainer}>
-                  <Image
-                    source={getProviderLogo(item.provider)}
-                    style={styles.providerLogo}
-                    cachePolicy="memory-disk"
-                  />
+                ]}
+              >
+                <AppView style={{ alignItems: "center", gap: 4 }}>
+                  <AppView style={styles.providerLogoContainer}>
+                    <Image
+                      source={getProviderLogo(item.provider)}
+                      style={styles.providerLogo}
+                      cachePolicy="memory-disk"
+                    />
+                  </AppView>
+                  <AppText
+                    variant="bodySmall"
+                    weight="500"
+                    style={styles.providerLabel}
+                  >
+                    {item.label}
+                  </AppText>
                 </AppView>
-                <AppText
-                  variant="bodySmall"
-                  weight="500"
-                  style={styles.providerLabel}
-                >
-                  {item.label}
-                </AppText>
-              </AppView>
-            </Pressable>
-          ))}
-          {/* {upiIds.map((upiId) => (
-            
-          ))} */}
+              </Pressable>
+            ),
+            3,
+          )}
         </AppView>
       ) : (
         <AppView style={styles.upiIdNotFound}>

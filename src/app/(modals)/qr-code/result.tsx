@@ -18,7 +18,7 @@ const borderRadius = 24;
 
 type LocalSearchParams = {
   upiId: string;
-  amount: string;
+  amount?: string;
   provider: ProviderEnum;
 };
 

@@ -6,13 +6,14 @@ import {
 } from "@/components/app-ui";
 import { useTheme } from "@/hooks/use-theme";
 import { BottomSheetView } from "@gorhom/bottom-sheet";
-import { StyleSheet } from "react-native";
+import { Pressable, StyleSheet } from "react-native";
 
 import { screenWidth } from "@/constants/dimensions";
 import { useBottomSheetStore } from "@/store/bottom-sheet-store";
 import { useUserDataStore } from "@/store/user-data-store";
 import { getProviderLogo } from "@/utils/get-provider-logo";
-import { Link } from "expo-router";
+import { mapRowState } from "@/utils/map-row-state";
+import { Link, useRouter } from "expo-router";
 
 const gap = 8;
 const width = (screenWidth - gap * 3 - 40) / 3;
@@ -20,6 +21,7 @@ const width = (screenWidth - gap * 3 - 40) / 3;
 export function QRCodeBottomSheet() {
   const theme = useTheme();
   const upiIds = useUserDataStore((states) => states.upiIds);
+  const router = useRouter();
   const ref = useBottomSheetStore((state) =>
     state.register("qr-code-bottom-sheet"),
   );
@@ -44,42 +46,53 @@ export function QRCodeBottomSheet() {
         </AppView>
         {upiIds.length ? (
           <AppView style={styles.providerContainer}>
-            {upiIds.map((upiId) => (
-              <Link
-                key={upiId.provider + upiId.upiId}
-                href={{
-                  pathname: "/(modals)/qr-code/result",
-                  params: {
-                    upiId: upiId.upiId,
-                    provider: upiId.provider,
-                  },
-                }}
-              >
-                <AppView
-                  style={[
+            {mapRowState(
+              upiIds,
+              ({ item, columnIndex, isIncompleteRow }) => (
+                <Pressable
+                  key={item.provider + item.upiId}
+                  onPress={() => {
+                    router.push({
+                      pathname: "/(modals)/qr-code/result",
+                      params: {
+                        upiId: item.upiId,
+                        provider: item.provider,
+                      },
+                    });
+                  }}
+                  style={({ pressed }) => [
                     styles.providerLink,
                     {
-                      borderColor: theme.border.primary,
-                      backgroundColor: theme.accent.soft,
+                      borderColor: pressed
+                        ? theme.border.focus
+                        : theme.border.primary,
+                      backgroundColor: pressed
+                        ? theme.background.selected
+                        : theme.background.tertiary,
+
+                      flex: isIncompleteRow ? 1 : 0,
                     },
                   ]}
                 >
-                  <AppView style={styles.providerLogoContainer}>
-                    <AppImage
-                      source={getProviderLogo(upiId.provider)}
-                      style={styles.providerLogo}
-                    />
+                  <AppView style={{ alignItems: "center", gap: 4 }}>
+                    <AppView style={styles.providerLogoContainer}>
+                      <AppImage
+                        source={getProviderLogo(item.provider)}
+                        style={styles.providerLogo}
+                      />
+                    </AppView>
+                    <AppText
+                      variant="bodySmall"
+                      weight="500"
+                      style={styles.providerLabel}
+                    >
+                      {item.label}
+                    </AppText>
                   </AppView>
-                  <AppText
-                    variant="bodySmall"
-                    weight="500"
-                    style={styles.providerLabel}
-                  >
-                    {upiId.label}
-                  </AppText>
-                </AppView>
-              </Link>
-            ))}
+                </Pressable>
+              ),
+              3,
+            )}
           </AppView>
         ) : (
           <AppView style={styles.upiIdNotFound}>
@@ -127,12 +140,11 @@ const styles = StyleSheet.create({
   },
   providerLink: {
     width: width,
-    borderRadius: 20,
     justifyContent: "center",
     alignItems: "center",
     borderWidth: 1,
     padding: 8,
-    paddingVertical: 16,
+    borderRadius: 99,
   },
   providerLogoContainer: {
     width: 24,
