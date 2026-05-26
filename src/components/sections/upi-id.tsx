@@ -10,13 +10,36 @@ import { useTheme } from "@/hooks/use-theme";
 import { useUserDataStore } from "@/store/user-data-store";
 import { getProviderLogo } from "@/utils/get-provider-logo";
 import { useRouter } from "expo-router";
-import { Pressable, StyleSheet } from "react-native";
+import { Alert, Pressable, StyleSheet } from "react-native";
 
 export function UpiIdSection() {
   const theme = useTheme();
   const router = useRouter();
   const upiIds = useUserDataStore((state) => state.upiIds);
   const removeUpiId = useUserDataStore((state) => state.removeUpiId);
+
+  const handleRemoveUpiId = (upiId: string) => {
+    Alert.alert(
+      "Remove UPI ID",
+      `Are you sure you want to remove this UPI ID (${upiId})?`,
+      [
+        {
+          text: "Cancel",
+          style: "cancel",
+        },
+        {
+          text: "Remove",
+          style: "destructive",
+          onPress: () => {
+            removeUpiId(upiId);
+          },
+        },
+      ],
+      {
+        cancelable: true,
+      },
+    );
+  };
 
   return (
     <AppView style={styles.container}>
@@ -54,7 +77,7 @@ export function UpiIdSection() {
               <AppView style={styles.right}>
                 <Pressable
                   onPress={() => {
-                    removeUpiId(upiId.upiId);
+                    handleRemoveUpiId(upiId.upiId);
                   }}
                 >
                   <AppIcon name="close" size={18} color={theme.text.primary} />
