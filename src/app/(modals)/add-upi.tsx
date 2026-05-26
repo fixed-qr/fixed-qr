@@ -1,6 +1,6 @@
-import { ProviderButton } from "@/components";
 import {
     AppIcon,
+    AppImage,
     AppScrollView,
     AppSelectList,
     AppText,
@@ -98,13 +98,33 @@ export default function AddUPIScreen() {
           onSelect={setSelected}
           keyExtractor={(item) => item.provider}
           renderItem={({ item, isSelected, onPress }) => (
-            <ProviderButton
-              label={item.label}
-              logoImage={item.logoImage}
-              isSelected={isSelected}
+            <Pressable
               onPress={onPress}
-              size={width}
-            />
+              style={[
+                styles.provider,
+                {
+                  width: width,
+                  backgroundColor: isSelected
+                    ? theme.background.selected
+                    : theme.background.tertiary,
+                  borderColor: isSelected
+                    ? theme.border.focus
+                    : theme.border.primary,
+                },
+              ]}
+            >
+              <AppImage source={item.logoImage} style={styles.logoImage} />
+              <AppText variant="bodyMedium" style={styles.label}>
+                {item.label}
+              </AppText>
+              {isSelected && (
+                <AppIcon
+                  name="checkmark-done"
+                  size={20}
+                  style={[styles.checkmarkDone, { color: theme.status.info }]}
+                />
+              )}
+            </Pressable>
           )}
         />
       </AppView>
@@ -158,5 +178,28 @@ const styles = StyleSheet.create({
     padding: 12,
     borderWidth: 1,
     borderRadius: 48,
+  },
+  provider: {
+    borderRadius: 20,
+    justifyContent: "center",
+    alignItems: "center",
+    borderWidth: 1,
+    padding: 8,
+    paddingVertical: 16,
+    position: "relative",
+  },
+  logoImage: {
+    width: 38,
+    height: 38,
+  },
+  label: {
+    textAlign: "center",
+  },
+  checkmarkDone: {
+    position: "absolute",
+    top: 2,
+    right: 2,
+    padding: 4,
+    borderRadius: 99,
   },
 });
