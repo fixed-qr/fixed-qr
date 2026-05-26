@@ -92,7 +92,7 @@ export function AuthenticateBottomSheet() {
           style={({ pressed }) => [
             styles.authenticateButton,
             {
-              borderColor: theme.border.primary,
+              borderColor: pressed ? theme.border.focus : theme.border.primary,
               backgroundColor: pressed
                 ? theme.accent.pressed
                 : theme.accent.primary,
