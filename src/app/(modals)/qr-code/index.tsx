@@ -10,7 +10,20 @@ import { Link, useRouter } from "expo-router";
 import { useState } from "react";
 import { Pressable, StyleSheet } from "react-native";
 
-const numericKeys = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "⌫"];
+const numericKeys = [
+  "1",
+  "2",
+  "3",
+  "4",
+  "5",
+  "6",
+  "7",
+  "8",
+  "9",
+  ".",
+  "0",
+  "⌫",
+];
 const gap = 8;
 const width = (screenWidth - gap * 3 - 40) / 3;
 
@@ -55,7 +68,6 @@ export default function QRCodeFormScreen() {
                   backgroundColor: pressed
                     ? theme.background.selected
                     : theme.background.tertiary,
-                  flex: key === "0" ? 2 : 0,
                 },
               ]}
               onPress={() => (key === "⌫" ? handleDelete() : handlePress(key))}
