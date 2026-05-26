@@ -4,7 +4,6 @@ import {
     AppSafeAreaView,
     AppScrollView,
     AppText,
-    AppView,
 } from "@/components/app-ui";
 import {
     DevInfoBottomSheet,
@@ -13,11 +12,12 @@ import {
 import { QuickActionSection } from "@/components/sections";
 import { useTheme } from "@/hooks/use-theme";
 import { useUserDataStore } from "@/store/user-data-store";
-import { Link } from "expo-router";
-import { StyleSheet } from "react-native";
+import { useRouter } from "expo-router";
+import { Pressable, StyleSheet } from "react-native";
 
 export default function HomeScreen() {
   const theme = useTheme();
+  const router = useRouter();
   const username = useUserDataStore((state) => state.user?.name);
 
   return (
@@ -32,26 +32,32 @@ export default function HomeScreen() {
         >
           Hi, {username}
         </AppText>
-        <Link href={"/(modals)/qr-code"}>
-          <AppView
-            style={[
-              styles.GenQRCode,
-              {
-                backgroundColor: theme.accent.soft,
-                borderColor: theme.border.primary,
-              },
-            ]}
-          >
-            <AppIcon
-              name="qr-code-outline"
-              size={24}
-              color={theme.text.primary}
-            />
-            <AppText variant="button" style={styles.GenQRCodeText}>
-              Generate a QR Code
-            </AppText>
-          </AppView>
-        </Link>
+
+        {/* Generate QR Code Button */}
+        <Pressable
+          onPress={() => {
+            router.push("/(modals)/qr-code");
+          }}
+          style={({ pressed }) => [
+            styles.GenQRCode,
+            {
+              backgroundColor: pressed
+                ? theme.accent.subtle
+                : theme.accent.soft,
+              borderColor: pressed ? theme.border.focus : theme.border.primary,
+            },
+          ]}
+        >
+          <AppIcon
+            name="qr-code-outline"
+            size={24}
+            color={theme.text.primary}
+          />
+          <AppText variant="button" style={styles.GenQRCodeText}>
+            Generate QR Code
+          </AppText>
+        </Pressable>
+
         <QuickActionSection />
       </AppScrollView>
       <QRCodeBottomSheet />
