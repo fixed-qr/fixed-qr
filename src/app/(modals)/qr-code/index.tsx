@@ -4,6 +4,7 @@ import { screenWidth } from "@/constants/dimensions";
 import { useTheme } from "@/hooks/use-theme";
 import { useUserDataStore } from "@/store/user-data-store";
 import { getProviderLogo } from "@/utils/get-provider-logo";
+import { mapRowState } from "@/utils/map-row-state";
 import { Image } from "expo-image";
 import { Link, useRouter } from "expo-router";
 import { useState } from "react";
@@ -100,9 +101,9 @@ export default function QRCodeFormScreen() {
       {/* Providers */}
       {upiIds.length ? (
         <AppView style={styles.providerContainer}>
-          {upiIds.map((upiId) => (
+          {mapRowState(upiIds, ({ item, columnIndex, isIncompleteRow }) => (
             <Pressable
-              key={upiId.provider + upiId.upiId}
+              key={item.provider + item.upiId}
               onPress={() => {
                 if (!Number(value)) return;
 
@@ -110,8 +111,8 @@ export default function QRCodeFormScreen() {
                   pathname: "/(modals)/qr-code/result",
                   params: {
                     amount: value,
-                    upiId: upiId.upiId,
-                    provider: upiId.provider,
+                    upiId: item.upiId,
+                    provider: item.provider,
                   },
                 });
               }}
@@ -124,13 +125,15 @@ export default function QRCodeFormScreen() {
                   backgroundColor: pressed
                     ? theme.background.selected
                     : theme.background.tertiary,
+
+                  flex: isIncompleteRow ? 1 : 0,
                 },
               ]}
             >
               <AppView style={{ alignItems: "center", gap: 4 }}>
                 <AppView style={styles.providerLogoContainer}>
                   <Image
-                    source={getProviderLogo(upiId.provider)}
+                    source={getProviderLogo(item.provider)}
                     style={styles.providerLogo}
                     cachePolicy="memory-disk"
                   />
@@ -140,11 +143,14 @@ export default function QRCodeFormScreen() {
                   weight="500"
                   style={styles.providerLabel}
                 >
-                  {upiId.label}
+                  {item.label}
                 </AppText>
               </AppView>
             </Pressable>
           ))}
+          {/* {upiIds.map((upiId) => (
+            
+          ))} */}
         </AppView>
       ) : (
         <AppView style={styles.upiIdNotFound}>
