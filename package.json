@@ -8,7 +8,7 @@
     "lint": "expo lint",
     "android": "expo run:android",
     "ios": "expo run:ios",
-    "build:apk": " eas build --platform android --profile production --local --output ./local-builds/android/FixedQR-v1.0.0-release.apk"
+    "build:apk": " eas build --platform android --profile production --local --output ./local-builds/android/FixedQR-1.0.0-release.apk"
   },
   "dependencies": {
     "@gorhom/bottom-sheet": "^5.2.14",
