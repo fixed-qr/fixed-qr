@@ -1,5 +1,5 @@
-import { EmptyCard, QuickAction } from "@/components";
-import { AppText, AppView } from "@/components/app-ui";
+import { Amount, EmptyCard } from "@/components";
+import { AppIcon, AppImage, AppText, AppView } from "@/components/app-ui";
 import { screenWidth } from "@/constants/dimensions";
 import { useTheme } from "@/hooks/use-theme";
 import { useUserDataStore } from "@/store/user-data-store";
@@ -56,12 +56,34 @@ export function QuickActionSection() {
                 },
               }}
             >
-              <QuickAction
-                logoImage={getProviderLogo(tsx.provider)}
-                label={getProviderLabel(tsx.provider)}
-                amount={tsx.amount}
-                size={width}
-              />
+              <AppView
+                style={[
+                  styles.quickAction,
+                  {
+                    backgroundColor: theme.background.secondary,
+                    borderColor: theme.border.primary,
+                    width: width,
+                    height: width / 1.25,
+                  },
+                ]}
+              >
+                <AppImage
+                  source={getProviderLogo(tsx.provider)}
+                  style={styles.logoImage}
+                />
+                <Amount value={tsx.amount} />
+                <AppView style={styles.provider}>
+                  <AppText variant="bodyMedium" color="secondary">
+                    {getProviderLabel(tsx.provider)}
+                  </AppText>
+                  <AppIcon
+                    name="arrow-forward"
+                    size={16}
+                    style={{ transform: "rotate(-45deg)" }}
+                    color={theme.text.secondary}
+                  />
+                </AppView>
+              </AppView>
             </Link>
           ))}
         </AppView>
@@ -91,5 +113,23 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     flexWrap: "wrap",
     gap: gap,
+  },
+  quickAction: {
+    padding: 16,
+    borderWidth: 1,
+    borderRadius: 28,
+  },
+  logoImage: {
+    width: 36,
+    height: 36,
+    marginBottom: 6,
+  },
+  provider: {
+    marginTop: 2,
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 2,
+    backgroundColor: "transparent",
+    overflow: "hidden",
   },
 });
