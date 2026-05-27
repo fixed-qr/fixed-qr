@@ -20,7 +20,7 @@ export const useDevInfoStore = create<DevInfoState>((set) => ({
       });
 
       const response = await fetch(
-        "https://raw.githubusercontent.com/fixed-qr/fixed-qr/refs/heads/main/dev-info.json",
+        "https://gist.githubusercontent.com/fixed-qr/32d520be4de453727c020d93f2f87b45/raw/21926cf089c6d5c6f7dde7fe8c4e97166d15853e/developer-information.json",
       );
 
       if (!response.ok) {
