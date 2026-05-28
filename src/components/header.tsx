@@ -1,8 +1,9 @@
-import { AppImage, AppText, AppView } from "@/components/app-ui";
+import { AppImage, AppView } from "@/components/app-ui";
 import { useTheme } from "@/hooks/use-theme";
 import { useBottomSheetStore } from "@/store/bottom-sheet-store";
 import { Ionicons } from "@expo/vector-icons";
 import { Pressable, StyleSheet } from "react-native";
+import { AppName } from "./app-name";
 import { DevInfoButton } from "./dev-info-button";
 
 export function Header() {
@@ -14,14 +15,11 @@ export function Header() {
       <AppView style={styles.leftContainer}>
         <AppView style={[styles.appLogoImageContainer]}>
           <AppImage
-            source={require("@/assets/images/splash-icon.png")}
+            source={require("@/assets/images/expo-logo.png")}
             style={styles.appLogoImage}
-            tintColor={theme.text.primary}
           />
         </AppView>
-        <AppText variant="headingSmall" weight="600" color="primary">
-          FixedQR
-        </AppText>
+        <AppName />
       </AppView>
       <AppView style={styles.rightContainer}>
         <DevInfoButton />

@@ -102,7 +102,7 @@ export default function Update() {
         </AppView>
         <Pressable
           onPress={() => {
-            openURL(appConfig.release.downloadUrl);
+            openURL(appConfig.release.websiteUrl);
           }}
           style={({ pressed }) => [
             styles.downloadButton,
@@ -114,8 +114,7 @@ export default function Update() {
             },
           ]}
         >
-          <AppIcon name="code-download" color={theme.text.primary} size={16} />
-          <AppText variant="button">Download</AppText>
+          <AppText variant="button">Update</AppText>
         </Pressable>
       </AppScrollView>
     </AppSafeAreaView>
@@ -185,7 +184,7 @@ const styles = StyleSheet.create({
     borderRadius: 4.5,
   },
   downloadButton: {
-    marginTop: 16,
+    marginTop: 8,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",

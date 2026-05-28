@@ -1,4 +1,4 @@
-import { DevInfoButton, PasswordInput } from "@/components";
+import { AppName, DevInfoButton, PasswordInput } from "@/components";
 import {
     AppIcon,
     AppSafeAreaView,
@@ -81,12 +81,10 @@ export default function GetStartedScreen() {
           <AppView style={styles.appLogo}>
             <Image
               source={require("@/assets/images/expo-logo.png")}
-              style={[styles.logoImage, { tintColor: theme.text.primary }]}
+              style={styles.logoImage}
             />
           </AppView>
-          <AppText variant="bodyLarge" weight="600" style={styles.appName}>
-            FixedQR
-          </AppText>
+          <AppName />
           <AppText
             variant="bodySmall"
             color="secondary"
@@ -233,18 +231,15 @@ const styles = StyleSheet.create({
     height: 48,
     alignItems: "center",
     justifyContent: "center",
+    marginBottom: 8,
   },
   logoImage: {
     objectFit: "contain",
     height: "100%",
     width: "100%",
   },
-  appName: {
-    textAlign: "center",
-    marginTop: 12,
-    marginBottom: 6,
-  },
   screenDescription: {
+    marginTop: 6,
     textAlign: "center",
     maxWidth: "75%",
   },
