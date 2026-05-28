@@ -10,6 +10,7 @@ const defaultConfig: AppConfig = {
     version: "1.0.0",
     versionCode: 100,
     title: "FixedQR Initial Release",
+    websiteUrl: "https://fixed-qr.netlify.com",
     downloadUrl: "",
     publishedAt: "2026-05-20T03:20:56Z",
     notes: ["Initial release", "Welcome to FixedQR!"],
@@ -52,7 +53,7 @@ export const useAppConfigStore = create<AppConfigState>((set) => ({
       });
 
       const response = await fetch(
-        "https://gist.githubusercontent.com/fixed-qr/32d520be4de453727c020d93f2f87b45/raw/2808842b5ada89195358a43695b6481972f13ed2/app-config.json",
+        "https://gist.githubusercontent.com/fixed-qr/32d520be4de453727c020d93f2f87b45/raw/app-config.json",
       );
 
       if (!response.ok) {
