@@ -1,4 +1,4 @@
-import { AppName, DevInfoButton, PasswordInput } from "@/components";
+import { AppLogo, AppName, DevInfoButton, PasswordInput } from "@/components";
 import {
     AppIcon,
     AppSafeAreaView,
@@ -19,7 +19,7 @@ import { validateUser } from "@/utils/validators";
 import { Checkbox } from "expo-checkbox";
 import { useRouter } from "expo-router";
 import { useState } from "react";
-import { Image, Pressable, StyleSheet, TextInput } from "react-native";
+import { Pressable, StyleSheet, TextInput } from "react-native";
 
 export default function GetStartedScreen() {
   const theme = useTheme();
@@ -78,12 +78,7 @@ export default function GetStartedScreen() {
       </AppView>
       <AppScrollView>
         <AppView style={styles.header}>
-          <AppView style={styles.appLogo}>
-            <Image
-              source={require("@/assets/images/expo-logo.png")}
-              style={styles.logoImage}
-            />
-          </AppView>
+          <AppLogo size={48} />
           <AppName />
           <AppText
             variant="bodySmall"
@@ -225,18 +220,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginTop: 32,
     marginBottom: 16,
-  },
-  appLogo: {
-    width: 48,
-    height: 48,
-    alignItems: "center",
-    justifyContent: "center",
-    marginBottom: 8,
-  },
-  logoImage: {
-    objectFit: "contain",
-    height: "100%",
-    width: "100%",
   },
   screenDescription: {
     marginTop: 6,

@@ -1,8 +1,9 @@
-import { AppImage, AppView } from "@/components/app-ui";
+import { AppView } from "@/components/app-ui";
 import { useTheme } from "@/hooks/use-theme";
 import { useBottomSheetStore } from "@/store/bottom-sheet-store";
 import { Ionicons } from "@expo/vector-icons";
 import { Pressable, StyleSheet } from "react-native";
+import { AppLogo } from "./app-logo";
 import { AppName } from "./app-name";
 import { DevInfoButton } from "./dev-info-button";
 
@@ -13,12 +14,7 @@ export function Header() {
   return (
     <AppView style={styles.container}>
       <AppView style={styles.leftContainer}>
-        <AppView style={[styles.appLogoImageContainer]}>
-          <AppImage
-            source={require("@/assets/images/expo-logo.png")}
-            style={styles.appLogoImage}
-          />
-        </AppView>
+        <AppLogo />
         <AppName />
       </AppView>
       <AppView style={styles.rightContainer}>
@@ -50,16 +46,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     gap: 8,
-  },
-  appLogoImageContainer: {
-    width: 32,
-    height: 32,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  appLogoImage: {
-    width: "100%",
-    height: "100%",
   },
   rightContainer: {
     flexDirection: "row",

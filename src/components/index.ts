@@ -1,4 +1,5 @@
 export { Amount } from "./amount";
+export { AppLogo } from "./app-logo";
 export { AppName } from "./app-name";
 export { DevInfoButton } from "./dev-info-button";
 export { EmptyCard } from "./empty-card";
