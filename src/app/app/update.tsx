@@ -102,7 +102,7 @@ export default function Update() {
         </AppView>
         <Pressable
           onPress={() => {
-            openURL(appConfig.release.websiteUrl);
+            openURL(appConfig.release.downloadUrl);
           }}
           style={({ pressed }) => [
             styles.downloadButton,
@@ -115,6 +115,22 @@ export default function Update() {
           ]}
         >
           <AppText variant="button">Update</AppText>
+        </Pressable>
+        <Pressable
+          onPress={() => {
+            openURL(appConfig.release.websiteUrl);
+          }}
+          style={({ pressed }) => [
+            styles.downloadButton,
+            {
+              backgroundColor: pressed
+                ? theme.background.cardMuted
+                : theme.background.card,
+              borderColor: pressed ? theme.border.focus : theme.border.primary,
+            },
+          ]}
+        >
+          <AppText variant="button">Open Website</AppText>
         </Pressable>
       </AppScrollView>
     </AppSafeAreaView>
