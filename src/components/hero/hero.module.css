@@ -1,13 +1,16 @@
 .hero {
   padding: 7rem 0 6rem;
+  height: 100dvh;
 }
 
 .content {
   max-width: 760px;
+  display: flex;
+  flex-direction: column;
 }
 
 .badge {
-  display: inline-flex;
+  width: fit-content;
   align-items: center;
 
   padding: 0.5rem 1rem;
@@ -90,8 +93,8 @@
 
 .stats {
   display: flex;
-  gap: 3rem;
   flex-wrap: wrap;
+  gap: 3rem;
 }
 
 .stats div {
@@ -114,6 +117,11 @@
     padding: 5rem 0;
   }
 
+  .content {
+    align-items: center;
+    text-align: center;
+  }
+
   .title {
     font-size: 2.8rem;
     letter-spacing: -1px;
@@ -125,6 +133,7 @@
 
   .actions {
     flex-direction: column;
+    width: 100%;
   }
 
   .primaryButton,
@@ -135,5 +144,7 @@
 
   .stats {
     gap: 2rem;
+    align-items: center;
+    justify-content: center;
   }
 }
