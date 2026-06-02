@@ -1,4 +1,4 @@
-import { storage } from "@/storage/mmkv";
+import { mmkvStorage } from "@/storage/mmkv-storage";
 import { AppConfig } from "@/types/app-config";
 import { create } from "zustand";
 
@@ -27,10 +27,10 @@ interface AppConfigState {
 
 const getCachedConfig = (): AppConfig => {
   try {
-    const cached = storage.getString(APP_CONFIG_KEY);
+    const cached = mmkvStorage.getString(APP_CONFIG_KEY);
 
     if (!cached) {
-      storage.set(APP_CONFIG_KEY, JSON.stringify(defaultConfig));
+      mmkvStorage.set(APP_CONFIG_KEY, JSON.stringify(defaultConfig));
       return defaultConfig;
     }
 
@@ -63,7 +63,7 @@ export const useAppConfigStore = create<AppConfigState>((set) => ({
       const data = (await response.json()) as AppConfig;
 
       // persist cache
-      storage.set(APP_CONFIG_KEY, JSON.stringify(data));
+      mmkvStorage.set(APP_CONFIG_KEY, JSON.stringify(data));
 
       set({
         appConfig: data,

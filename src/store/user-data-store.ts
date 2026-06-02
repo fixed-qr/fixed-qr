@@ -1,4 +1,4 @@
-import { storage } from "@/storage/mmkv";
+import { mmkvStorage } from "@/storage/mmkv-storage";
 import { Transaction } from "@/types/transaction";
 import { UpiId } from "@/types/upi";
 import { User } from "@/types/user";
@@ -50,14 +50,14 @@ export const useUserDataStore = create<DataStore>()(
       name: "app-storage",
       storage: createJSONStorage(() => ({
         getItem: (name) => {
-          const value = storage.getString(name);
+          const value = mmkvStorage.getString(name);
           return value ?? null;
         },
         setItem: (name, value) => {
-          storage.set(name, value);
+          mmkvStorage.set(name, value);
         },
         removeItem: (name) => {
-          storage.remove(name);
+          mmkvStorage.remove(name);
         },
       })),
     },
