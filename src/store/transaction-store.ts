@@ -5,6 +5,7 @@ import { createPersistOptions } from "./zustand/persist";
 
 interface TransactionStore {
   transactions: Transaction[];
+
   addTransaction: (txn: Transaction) => void;
   clearTransaction: () => void;
 }
@@ -13,6 +14,7 @@ export const useTransactionStore = create<TransactionStore>()(
   persist(
     (set) => ({
       transactions: [],
+
       addTransaction: (txn) =>
         set((state) => {
           const updated = [txn, ...state.transactions];

@@ -5,6 +5,7 @@ import { createPersistOptions } from "./zustand/persist";
 
 interface UpiAppStore {
   upiApp: UpiApp[];
+
   addUpiApp: (upiApp: UpiApp) => void;
   removeUpiApp: (upiId: string) => void;
   clearUpiApp: () => void;
@@ -14,6 +15,7 @@ export const useUpiAppStore = create<UpiAppStore>()(
   persist(
     (set) => ({
       upiApp: [],
+
       addUpiApp: (upiApp) =>
         set((state) => ({ upiApp: [upiApp, ...state.upiApp] })),
       removeUpiApp: (upiId) =>

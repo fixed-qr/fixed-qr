@@ -6,6 +6,7 @@ interface LegalInformationState {
   legalInformation: string | null;
   loading: boolean;
   error: string | null;
+
   fetchLegalInformation: () => Promise<void>;
 }
 

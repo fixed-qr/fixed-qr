@@ -15,6 +15,7 @@ type SheetRef = RefObject<BottomSheet | null>;
 
 interface BottomSheetStore {
   refs: Partial<Record<SheetKey, SheetRef>>;
+
   register: (key: SheetKey) => SheetRef;
   expand: (key: SheetKey) => void;
   close: (key: SheetKey) => void;

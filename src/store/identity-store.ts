@@ -15,16 +15,8 @@ interface IdentityStore {
 export const useIdentityStore = create<IdentityStore>((set, get) => ({
   verifiedAt: null,
 
-  verify: () =>
-    set({
-      verifiedAt: Date.now(),
-    }),
-
-  reset: () =>
-    set({
-      verifiedAt: null,
-    }),
-
+  verify: () => set({ verifiedAt: Date.now() }),
+  reset: () => set({ verifiedAt: null }),
   hasValidSession: () => {
     const { verifiedAt } = get();
 
