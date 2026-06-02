@@ -1,9 +1,8 @@
-import { ProviderEnum } from "./provider";
+import { UpiAppName } from "./upi-app";
 
 export interface Transaction {
-  transactionId: string;
-  upiId: string;
-  provider: ProviderEnum;
-  amount: string;
+  id: string;
+  upiApp: UpiAppName;
+  amount: number;
   date: string;
 }
