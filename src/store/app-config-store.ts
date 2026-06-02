@@ -1,10 +1,9 @@
-import { mmkvStorage } from "@/storage/mmkv-storage";
 import { AppConfig } from "@/types/app-config";
 import { create } from "zustand";
+import { persist } from "zustand/middleware";
+import { createPersistOptions } from "./zustand/persist";
 
-const APP_CONFIG_KEY = "app-config";
-
-const defaultConfig: AppConfig = {
+const DEFAULT_APP_CONFIG: AppConfig = {
   status: "online",
   release: {
     version: "1.0.0",
@@ -17,64 +16,53 @@ const defaultConfig: AppConfig = {
   },
 };
 
-interface AppConfigState {
+interface AppConfigStore {
   appConfig: AppConfig;
-  loading: boolean;
+  isLoading: boolean;
   error: string | null;
 
   fetchAppConfig: () => Promise<void>;
 }
 
-const getCachedConfig = (): AppConfig => {
-  try {
-    const cached = mmkvStorage.getString(APP_CONFIG_KEY);
+export const useAppConfigStore = create<AppConfigStore>()(
+  persist(
+    (set) => ({
+      appConfig: DEFAULT_APP_CONFIG,
+      isLoading: false,
+      error: null,
 
-    if (!cached) {
-      mmkvStorage.set(APP_CONFIG_KEY, JSON.stringify(defaultConfig));
-      return defaultConfig;
-    }
+      fetchAppConfig: async () => {
+        try {
+          set({
+            isLoading: true,
+            error: null,
+          });
 
-    return JSON.parse(cached) as AppConfig;
-  } catch {
-    return defaultConfig;
-  }
-};
+          const response = await fetch(
+            "https://gist.githubusercontent.com/fixed-qr/32d520be4de453727c020d93f2f87b45/raw/app-config.json",
+          );
 
-export const useAppConfigStore = create<AppConfigState>((set) => ({
-  appConfig: getCachedConfig(),
-  loading: false,
-  error: null,
+          if (!response.ok) {
+            throw new Error(`HTTP ${response.status}`);
+          }
 
-  fetchAppConfig: async () => {
-    try {
-      set({
-        loading: true,
-        error: null,
-      });
+          const appConfig = (await response.json()) as AppConfig;
 
-      const response = await fetch(
-        "https://gist.githubusercontent.com/fixed-qr/32d520be4de453727c020d93f2f87b45/raw/app-config.json",
-      );
-
-      if (!response.ok) {
-        throw new Error(`HTTP ${response.status}`);
-      }
-
-      const data = (await response.json()) as AppConfig;
-
-      // persist cache
-      mmkvStorage.set(APP_CONFIG_KEY, JSON.stringify(data));
-
-      set({
-        appConfig: data,
-        loading: false,
-      });
-    } catch (err) {
-      set({
-        error: err instanceof Error ? err.message : "Failed to fetch data",
-
-        loading: false,
-      });
-    }
-  },
-}));
+          set({
+            appConfig,
+            isLoading: false,
+          });
+        } catch (error) {
+          set({
+            error:
+              error instanceof Error
+                ? error.message
+                : "Failed to fetch app config",
+            isLoading: false,
+          });
+        }
+      },
+    }),
+    createPersistOptions<AppConfigStore>("app-config-store"),
+  ),
+);
