@@ -1,6 +1,6 @@
 import { UpiPaymentParams } from "@/types/upi-payment-params";
 
-function toQueryString(
+function buildQueryString(
   params: Record<string, string | number | undefined>,
 ): string {
   return new URLSearchParams(
@@ -10,11 +10,11 @@ function toQueryString(
   ).toString();
 }
 
-export function generateUpiUrl({
+export function buildUpiPaymentUrl({
   cu = "INR",
   ...params
 }: UpiPaymentParams): string {
-  return `upi://pay?${toQueryString({
+  return `upi://pay?${buildQueryString({
     ...params,
     cu,
   })}`;

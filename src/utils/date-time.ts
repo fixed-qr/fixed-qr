@@ -1,6 +1,6 @@
 type DateFormat = "datetime" | "date" | "time" | "iso" | "ago";
 
-export class AppDateTime {
+export class DateTime {
   private readonly date: Date;
 
   constructor(date?: Date | string | number) {
