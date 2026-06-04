@@ -1,8 +1,8 @@
 import { borderRadius } from "@/constants/platform";
 import { useTheme } from "@/hooks/use-theme";
 import BottomSheet, {
-    BottomSheetBackdrop,
-    BottomSheetBackdropProps,
+  BottomSheetBackdrop,
+  BottomSheetBackdropProps,
 } from "@gorhom/bottom-sheet";
 import React, { ReactNode, forwardRef, useCallback, useMemo } from "react";
 import { useSafeAreaInsets } from "react-native-safe-area-context";

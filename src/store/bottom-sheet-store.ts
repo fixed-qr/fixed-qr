@@ -3,10 +3,10 @@ import { createRef, RefObject } from "react";
 import { create } from "zustand";
 
 export const SHEETS = {
-  DEV: "dev-info-bottom-sheet",
-  QR: "qr-code-bottom-sheet",
-  TRANSACTION: "transaction-bottom-sheet",
   Legal: "legal-information-bottom-sheet",
+  IDENTITY: "identity-bottom-sheet",
+  TRANSACTION: "transaction-bottom-sheet",
+  QR: "qr-code-bottom-sheet",
 } as const;
 
 export type SheetKey = (typeof SHEETS)[keyof typeof SHEETS];

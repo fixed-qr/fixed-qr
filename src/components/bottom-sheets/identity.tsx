@@ -1,27 +1,23 @@
 import { PasswordInput } from "@/components";
 import { AppBottomSheet, AppText, AppView } from "@/components/app-ui";
 import { useTheme } from "@/hooks/use-theme";
-import BottomSheet, { BottomSheetView } from "@gorhom/bottom-sheet";
-import { useEffect, useRef, useState } from "react";
+import { BottomSheetView } from "@gorhom/bottom-sheet";
+import { useState } from "react";
 import { Keyboard, Pressable, StyleSheet } from "react-native";
 
+import { useBottomSheetStore } from "@/store/bottom-sheet-store";
 import { useIdentityStore } from "@/store/identity-store";
 import { useUserStore } from "@/store/user-store";
 import { Ionicons } from "@expo/vector-icons";
 export function IdentityBottomSheet() {
   const theme = useTheme();
-  const bottomSheetRef = useRef<BottomSheet>(null);
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const ref = useBottomSheetStore((state) =>
+    state.register("identity-bottom-sheet"),
+  );
   const storedPassword = useUserStore((state) => state.user?.password);
-  const isSessionValid = useIdentityStore((state) => state.isSessionValid);
   const verifyIdentity = useIdentityStore((state) => state.verifyIdentity);
-
-  useEffect(() => {
-    if (isSessionValid()) {
-      bottomSheetRef.current?.close();
-    }
-  }, [isSessionValid]);
 
   const handlePasswordChange = (value: string) => {
     setError("");
@@ -43,18 +39,14 @@ export function IdentityBottomSheet() {
 
     setError("");
 
-    Keyboard.dismiss();
     verifyIdentity();
-    bottomSheetRef.current?.close();
+    ref.current?.close();
+    Keyboard.dismiss();
   };
-
-  if (isSessionValid()) {
-    return null;
-  }
 
   return (
     <AppBottomSheet
-      ref={bottomSheetRef}
+      ref={ref}
       index={0}
       enableDynamicSizing={true}
       enablePanDownToClose={false}

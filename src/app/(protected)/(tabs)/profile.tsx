@@ -10,12 +10,23 @@ import {
 } from "@/components/bottom-sheets";
 import { SavedUpiAppSection, SettingSection } from "@/components/sections";
 import { useTheme } from "@/hooks/use-theme";
+import { useBottomSheetStore } from "@/store/bottom-sheet-store";
+import { useIdentityStore } from "@/store/identity-store";
 import { useUserStore } from "@/store/user-store";
+import { useEffect } from "react";
 import { Image, StyleSheet } from "react-native";
 
 export default function ProfileScreen() {
   const theme = useTheme();
   const name = useUserStore((state) => state.user?.name);
+  const expand = useBottomSheetStore((state) => state.expand);
+  const isSessionValid = useIdentityStore((state) => state.isSessionValid);
+
+  useEffect(() => {
+    if (!isSessionValid()) {
+      expand("identity-bottom-sheet");
+    }
+  }, [isSessionValid, expand]);
 
   return (
     <AppSafeAreaView>
