@@ -19,7 +19,7 @@ export function AppSelectList<T>({
   onSelect,
   keyExtractor,
   renderItem,
-}: AppSelectListProps<T>) {
+}: Readonly<AppSelectListProps<T>>) {
   const items = useMemo(() => {
     return data.map((item, index) => {
       const isSelected = selectedItem === item;

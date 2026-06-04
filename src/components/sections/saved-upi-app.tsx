@@ -1,27 +1,28 @@
 import { EmptyCard } from "@/components";
 import {
-    AppGroup,
-    AppIcon,
-    AppImage,
-    AppText,
-    AppView,
+  AppGroup,
+  AppIcon,
+  AppImage,
+  AppText,
+  AppView,
 } from "@/components/app-ui";
+import { upiAppLogo } from "@/constants/upi-app-logo";
 import { useTheme } from "@/hooks/use-theme";
-import { useUserDataStore } from "@/store/user-data-store";
-import { getProviderLogo } from "@/utils/get-provider-logo";
+import { useSavedUpiAppStore } from "@/store/saved-upi-app-store";
+import { UpiAppName } from "@/types/upi-app-name";
 import { useRouter } from "expo-router";
 import { Alert, Pressable, StyleSheet } from "react-native";
 
-export function UpiIdSection() {
+export function SavedUpiAppSection() {
   const theme = useTheme();
   const router = useRouter();
-  const upiIds = useUserDataStore((state) => state.upiIds);
-  const removeUpiId = useUserDataStore((state) => state.removeUpiId);
+  const savedUpiApps = useSavedUpiAppStore((state) => state.savedUpiApps);
+  const removeUpiApp = useSavedUpiAppStore((state) => state.removeUpiApp);
 
-  const handleRemoveUpiId = (upiId: string) => {
+  const handleRemoveUpiApp = (appName: UpiAppName) => {
     Alert.alert(
       "Remove UPI ID",
-      `Are you sure you want to remove this UPI ID (${upiId})?`,
+      `Are you sure you want to remove this UPI ID (${appName})?`,
       [
         {
           text: "Cancel",
@@ -31,7 +32,7 @@ export function UpiIdSection() {
           text: "Remove",
           style: "destructive",
           onPress: () => {
-            removeUpiId(upiId);
+            removeUpiApp(appName);
           },
         },
       ],
@@ -47,37 +48,38 @@ export function UpiIdSection() {
         title="Saved UPI IDs"
         titleIconName="add-circle"
         onTitlePress={() => {
-          router.navigate("/(modals)/add-upi");
+          router.navigate("/(protected)/(modals)/upi/add");
         }}
       >
-        {upiIds.length ? (
-          upiIds.map((upiId, index) => (
+        {Object.keys(savedUpiApps).length ? (
+          Object.values(savedUpiApps).map((upiApp, index) => (
             <AppView
-              key={upiId.provider + index}
+              key={upiApp.appName}
               style={[
                 styles.upiId,
                 {
                   borderColor: theme.border.primary,
-                  borderBottomWidth: upiIds.length - 1 == index ? 0 : 1,
+                  borderBottomWidth:
+                    Object.keys(savedUpiApps).length - 1 == index ? 0 : 1,
                 },
               ]}
             >
               <AppView style={styles.left}>
                 <AppImage
-                  source={getProviderLogo(upiId.provider)}
+                  source={upiAppLogo[upiApp.appName]}
                   style={styles.logoImage}
                 />
                 <AppView style={styles.upiIdInfo}>
-                  <AppText variant="button">{upiId.label}</AppText>
+                  <AppText variant="button">{upiApp.appName}</AppText>
                   <AppText variant="bodySmall" color="tertiary">
-                    {upiId.upiId}
+                    {upiApp.upiId}
                   </AppText>
                 </AppView>
               </AppView>
               <AppView style={styles.right}>
                 <Pressable
                   onPress={() => {
-                    handleRemoveUpiId(upiId.upiId);
+                    handleRemoveUpiApp(upiApp.appName);
                   }}
                 >
                   <AppIcon name="close" size={18} color={theme.text.primary} />

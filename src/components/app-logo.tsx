@@ -6,7 +6,7 @@ interface AppLogoProps {
   size?: number;
 }
 
-export function AppLogo({ size = 32 }: AppLogoProps) {
+export function AppLogo({ size = 32 }: Readonly<AppLogoProps>) {
   const theme = useTheme();
 
   return (

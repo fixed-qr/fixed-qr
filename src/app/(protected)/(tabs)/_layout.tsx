@@ -13,14 +13,14 @@ export default function TabLayout() {
       <NativeTabs.Trigger name="index">
         <NativeTabs.Trigger.Label>Home</NativeTabs.Trigger.Label>
         <NativeTabs.Trigger.Icon
-          src={require("@/assets/icons/tab/home.png")}
+          src={require("@/assets/images/icons/tab/home.png")}
           renderingMode="template"
         />
       </NativeTabs.Trigger>
       <NativeTabs.Trigger name="profile">
         <NativeTabs.Trigger.Label>Profile</NativeTabs.Trigger.Label>
         <NativeTabs.Trigger.Icon
-          src={require("@/assets/icons/tab/user-profile.png")}
+          src={require("@/assets/images/icons/tab/user-profile.png")}
           renderingMode="template"
         />
       </NativeTabs.Trigger>

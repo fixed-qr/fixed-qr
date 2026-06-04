@@ -1,21 +1,18 @@
-import { AppLogo, AppName, DevInfoButton, PasswordInput } from "@/components";
+import { AppLogo, AppName, PasswordInput } from "@/components";
 import {
-    AppIcon,
-    AppSafeAreaView,
-    AppScrollView,
-    AppText,
-    AppView,
+  AppIcon,
+  AppSafeAreaView,
+  AppScrollView,
+  AppText,
+  AppView,
 } from "@/components/app-ui";
-import {
-    DevInfoBottomSheet,
-    LegalInformationBottomSheet,
-} from "@/components/bottom-sheets";
+import { LegalInformationBottomSheet } from "@/components/bottom-sheets";
 import { useTheme } from "@/hooks/use-theme";
-import { useAuthStore } from "@/store/auth-store";
 import { useBottomSheetStore } from "@/store/bottom-sheet-store";
-import { useUserDataStore } from "@/store/user-data-store";
+import { useIdentityStore } from "@/store/identity-store";
+import { useUserStore } from "@/store/user-store";
 import { User } from "@/types/user";
-import { validateUser } from "@/utils/validators";
+import { validateUser } from "@/validators/user-validator";
 import { Checkbox } from "expo-checkbox";
 import { useRouter } from "expo-router";
 import { useState } from "react";
@@ -24,8 +21,8 @@ import { Pressable, StyleSheet, TextInput } from "react-native";
 export default function GetStartedScreen() {
   const theme = useTheme();
   const router = useRouter();
-  const setIsAuthenticated = useAuthStore((state) => state.setIsAuthenticated);
-  const createUser = useUserDataStore((state) => state.setUser);
+  const verifyIdentity = useIdentityStore((state) => state.verifyIdentity);
+  const createUser = useUserStore((state) => state.createUser);
   const [user, setUser] = useState<User>({
     name: "",
     password: "",
@@ -39,6 +36,16 @@ export default function GetStartedScreen() {
     if (!isChecked) {
       expand("legal-information-bottom-sheet");
     }
+  };
+
+  const getCheckboxColor = () => {
+    if (isChecked) {
+      return theme.border.focus;
+    }
+    if (isCheckedError) {
+      return theme.status.danger;
+    }
+    return theme.text.muted;
   };
 
   const handleInputChange = (field: keyof User, value: string) => {
@@ -59,23 +66,13 @@ export default function GetStartedScreen() {
 
     if (Object.keys(validationErrors).length === 0 && isChecked) {
       createUser(user);
-      setIsAuthenticated(true);
+      verifyIdentity();
       router.replace("/");
     }
   };
 
   return (
     <AppSafeAreaView>
-      <AppView
-        style={{
-          flexDirection: "row",
-          justifyContent: "flex-end",
-          paddingHorizontal: 20,
-          paddingVertical: 8,
-        }}
-      >
-        <DevInfoButton />
-      </AppView>
       <AppScrollView>
         <AppView style={styles.header}>
           <AppLogo size={48} />
@@ -152,13 +149,7 @@ export default function GetStartedScreen() {
                 setCheckedError(false);
                 handleExpand();
               }}
-              color={
-                isChecked
-                  ? theme.border.focus
-                  : isCheckedError
-                    ? theme.status.danger
-                    : theme.text.muted
-              }
+              color={getCheckboxColor()}
               style={{ borderWidth: 1.5, borderRadius: 4 }}
             />
             <Pressable
@@ -209,7 +200,6 @@ export default function GetStartedScreen() {
           </Pressable>
         </AppView>
       </AppScrollView>
-      <DevInfoBottomSheet />
       <LegalInformationBottomSheet />
     </AppSafeAreaView>
   );

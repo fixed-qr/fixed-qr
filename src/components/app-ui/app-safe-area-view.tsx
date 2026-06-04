@@ -2,8 +2,8 @@ import { screenWidth } from "@/constants/dimensions";
 import { useTheme } from "@/hooks/use-theme";
 import { StyleProp, StyleSheet, ViewStyle } from "react-native";
 import {
-    SafeAreaView,
-    SafeAreaViewProps,
+  SafeAreaView,
+  SafeAreaViewProps,
 } from "react-native-safe-area-context";
 
 export interface AppSafeAreaViewProps extends SafeAreaViewProps {
@@ -19,7 +19,7 @@ export function AppSafeAreaView({
   style,
   fullWidth = false,
   ...props
-}: AppSafeAreaViewProps) {
+}: Readonly<AppSafeAreaViewProps>) {
   const theme = useTheme();
 
   return (

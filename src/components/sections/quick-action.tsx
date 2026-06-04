@@ -1,10 +1,10 @@
 import { Amount, EmptyCard } from "@/components";
 import { AppIcon, AppImage, AppText, AppView } from "@/components/app-ui";
 import { screenWidth } from "@/constants/dimensions";
+import { upiAppLogo } from "@/constants/upi-app-logo";
 import { useTheme } from "@/hooks/use-theme";
-import { useUserDataStore } from "@/store/user-data-store";
-import { getProviderLabel } from "@/utils/get-provider-label";
-import { getProviderLogo } from "@/utils/get-provider-logo";
+import { useSavedUpiAppStore } from "@/store/saved-upi-app-store";
+import { useTransactionStore } from "@/store/transaction-store";
 import { useRouter } from "expo-router";
 import { useMemo } from "react";
 import { Pressable, StyleSheet } from "react-native";
@@ -15,13 +15,14 @@ const width = (screenWidth - gap - 40 - 1) / 2;
 export function QuickActionSection() {
   const theme = useTheme();
   const router = useRouter();
-  const transactions = useUserDataStore((state) => state.transactions);
+  const transactions = useTransactionStore((state) => state.transactions);
+  const savedUpiApps = useSavedUpiAppStore((state) => state.savedUpiApps);
 
   const suggestedTransactions = useMemo(() => {
     const seen = new Set<string>();
 
     return transactions.filter((transaction) => {
-      const key = `${transaction.amount}-${transaction.provider}`;
+      const key = `${transaction.amount}-${transaction.appName}`;
 
       if (seen.has(key)) {
         return false;
@@ -47,14 +48,14 @@ export function QuickActionSection() {
         <AppView style={[styles.quickActions]}>
           {suggestedTransactions.map((tsx) => (
             <Pressable
-              key={tsx.transactionId}
+              key={tsx.id}
               onPress={() => {
                 router.push({
-                  pathname: "/(modals)/qr-code/result",
+                  pathname: "/(protected)/(modals)/qr-code/result",
                   params: {
-                    upiId: tsx.upiId,
+                    upiId: savedUpiApps[tsx.appName]?.upiId,
                     amount: tsx.amount,
-                    provider: tsx.provider,
+                    appName: tsx.appName,
                   },
                 });
               }}
@@ -73,13 +74,13 @@ export function QuickActionSection() {
               ]}
             >
               <AppImage
-                source={getProviderLogo(tsx.provider)}
+                source={upiAppLogo[tsx.appName]}
                 style={styles.logoImage}
               />
               <Amount value={tsx.amount} />
               <AppView style={styles.provider}>
                 <AppText variant="bodyMedium" color="secondary">
-                  {getProviderLabel(tsx.provider)}
+                  {tsx.appName}
                 </AppText>
                 <AppIcon
                   name="arrow-forward"

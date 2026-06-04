@@ -1,13 +1,15 @@
 import { Amount } from "@/components";
 import { AppScrollView, AppText, AppView } from "@/components/app-ui";
 import { screenWidth } from "@/constants/dimensions";
+import { upiAppLogo } from "@/constants/upi-app-logo";
 import { useTheme } from "@/hooks/use-theme";
-import { useUserDataStore } from "@/store/user-data-store";
-import { ProviderEnum } from "@/types/provider";
-import { AppDateTime } from "@/utils/app-date-time";
-import { generateTransactionId } from "@/utils/generate-transaction-id";
-import { getProviderLogo } from "@/utils/get-provider-logo";
-import { generateUpiUrl } from "@/utils/upi-payment";
+import { useTransactionStore } from "@/store/transaction-store";
+import { useUserStore } from "@/store/user-store";
+import { QrCodeResultParams } from "@/types/qr-code-result-params";
+import { Transaction } from "@/types/transaction";
+import { buildUpiPaymentUrl } from "@/utils/build-upi-payment-url";
+import { createTransactionId } from "@/utils/create-transaction-id";
+import { DateTime } from "@/utils/date-time";
 import { useLocalSearchParams } from "expo-router";
 import { useEffect } from "react";
 import { Image, StyleSheet } from "react-native";
@@ -16,28 +18,23 @@ import QRCode from "react-native-qrcode-svg";
 const width = (screenWidth - 40) / 1.6;
 const borderRadius = 24;
 
-type LocalSearchParams = {
-  upiId: string;
-  amount?: string;
-  provider: ProviderEnum;
-};
-
 export default function GeneratedQRCodeScreen() {
   const theme = useTheme();
-  const { upiId, amount, provider } = useLocalSearchParams<LocalSearchParams>();
-  const addTransaction = useUserDataStore((state) => state.addTransaction);
-  const user = useUserDataStore((state) => state.user);
+  const { upiId, amount, appName } = useLocalSearchParams<QrCodeResultParams>();
+  const addTransaction = useTransactionStore((state) => state.addTransaction);
+  const user = useUserStore((state) => state.user);
 
   useEffect(() => {
-    if (amount) {
-      addTransaction({
-        transactionId: generateTransactionId(),
-        upiId: upiId,
-        provider: provider,
-        amount: amount,
-        date: new AppDateTime().formatTo("iso"),
-      });
+    if (!upiId || !amount || !appName) {
+      return;
     }
+
+    addTransaction({
+      id: createTransactionId(),
+      appName: appName,
+      amount: amount,
+      date: new DateTime().formatTo("iso"),
+    } as Transaction);
   }, []);
 
   return (
@@ -54,10 +51,7 @@ export default function GeneratedQRCodeScreen() {
             { backgroundColor: theme.background.secondary },
           ]}
         >
-          <Image
-            source={getProviderLogo(provider as any)}
-            style={styles.image}
-          />
+          <Image source={upiAppLogo[appName]} style={styles.image} />
           <AppText style={styles.message}>Scan to pay</AppText>
         </AppView>
         <AppView
@@ -70,7 +64,7 @@ export default function GeneratedQRCodeScreen() {
           ]}
         >
           <QRCode
-            value={generateUpiUrl(
+            value={buildUpiPaymentUrl(
               amount
                 ? {
                     pa: upiId,

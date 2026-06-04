@@ -7,7 +7,7 @@ interface EmptyCardProps {
   image?: ImageSourcePropType;
 }
 
-export function EmptyCard({ message, image }: EmptyCardProps) {
+export function EmptyCard({ message, image }: Readonly<EmptyCardProps>) {
   const theme = useTheme();
 
   return (
@@ -21,7 +21,7 @@ export function EmptyCard({ message, image }: EmptyCardProps) {
       ]}
     >
       <AppImage
-        source={image || require("@/assets/icons/others/empty.png")}
+        source={image || require("@/assets/images/icons/others/empty.png")}
         style={styles.emptyCardImage}
       />
       <AppText variant="bodySmall" color="secondary" style={styles.message}>

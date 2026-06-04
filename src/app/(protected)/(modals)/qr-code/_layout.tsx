@@ -1,7 +1,7 @@
 import { useTheme } from "@/hooks/use-theme";
 import { Stack } from "expo-router";
 
-export default function QRCodeLayout() {
+export default function QrcodeLayout() {
   const theme = useTheme();
 
   return (

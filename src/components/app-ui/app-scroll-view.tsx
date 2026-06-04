@@ -5,7 +5,7 @@ export function AppScrollView({
   contentContainerStyle,
   style,
   ...rest
-}: ScrollViewProps) {
+}: Readonly<ScrollViewProps>) {
   const safeAreaInsets = useSafeAreaInsets();
 
   return (

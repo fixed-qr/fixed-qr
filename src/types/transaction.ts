@@ -1,8 +1,8 @@
-import { UpiAppName } from "./upi-app";
+import { UpiAppName } from "./upi-app-name";
 
 export interface Transaction {
   id: string;
-  upiAppName: UpiAppName;
-  amount: number;
+  appName: UpiAppName;
+  amount: string;
   date: string;
 }

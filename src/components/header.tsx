@@ -5,7 +5,6 @@ import { Ionicons } from "@expo/vector-icons";
 import { Pressable, StyleSheet } from "react-native";
 import { AppLogo } from "./app-logo";
 import { AppName } from "./app-name";
-import { DevInfoButton } from "./dev-info-button";
 
 export function Header() {
   const theme = useTheme();
@@ -18,7 +17,6 @@ export function Header() {
         <AppName />
       </AppView>
       <AppView style={styles.rightContainer}>
-        <DevInfoButton />
         <Pressable
           style={styles.button}
           onPress={() => {

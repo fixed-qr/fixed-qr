@@ -1,14 +1,13 @@
-import { borderRadius } from "@/constants/platform";
 import { useAppVersion } from "@/hooks/use-app-version";
 import { useTheme } from "@/hooks/use-theme";
 import { useAppConfigStore } from "@/store/app-config-store";
-import { useUserDataStore } from "@/store/user-data-store";
+import { useUserStore } from "@/store/user-store";
 import { AppConfig } from "@/types/app-config";
-import { versionToNumber } from "@/utils/version-to-number";
+import { versionToVersionCode } from "@/utils/version-to-version-code";
 import {
-    DarkTheme,
-    DefaultTheme,
-    ThemeProvider,
+  DarkTheme,
+  DefaultTheme,
+  ThemeProvider,
 } from "@react-navigation/native";
 import { Href, Stack, usePathname, useRouter } from "expo-router";
 import { StatusBar } from "expo-status-bar";
@@ -43,7 +42,7 @@ export default function RootLayout() {
   const router = useRouter();
   const pathname = usePathname();
   const { version } = useAppVersion();
-  const user = useUserDataStore((state) => state.user);
+  const user = useUserStore((state) => state.user);
   const { appConfig, fetchAppConfig } = useAppConfigStore();
 
   // Fetch app config on mount
@@ -53,7 +52,10 @@ export default function RootLayout() {
 
   // Version and maintenance redirect
   useEffect(() => {
-    const redirectPath = getRedirectPath(appConfig, versionToNumber(version));
+    const redirectPath = getRedirectPath(
+      appConfig,
+      versionToVersionCode(version),
+    );
 
     if (redirectPath && pathname !== redirectPath) {
       router.replace(redirectPath);
@@ -83,19 +85,8 @@ export default function RootLayout() {
           }}
         >
           <Stack.Screen name="(auth)/get-started" />
-          <Stack.Screen name="(tabs)" />
+          <Stack.Screen name="(protected)" />
           <Stack.Screen name="app" />
-          <Stack.Screen
-            name="(modals)"
-            options={{
-              presentation: "formSheet",
-              gestureDirection: "vertical",
-              animation: "slide_from_bottom",
-              sheetCornerRadius: borderRadius,
-              sheetElevation: 24,
-              sheetAllowedDetents: [0.75],
-            }}
-          />
         </Stack>
       </ThemeProvider>
     </GestureHandlerRootView>

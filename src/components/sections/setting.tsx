@@ -1,8 +1,9 @@
 import { AppGroup, AppIcon, AppText } from "@/components/app-ui";
 import { useTheme } from "@/hooks/use-theme";
-import { useAuthStore } from "@/store/auth-store";
 import { useBottomSheetStore } from "@/store/bottom-sheet-store";
-import { useUserDataStore } from "@/store/user-data-store";
+import { useIdentityStore } from "@/store/identity-store";
+import { useTransactionStore } from "@/store/transaction-store";
+import { useUserStore } from "@/store/user-store";
 import { useRouter } from "expo-router";
 import { Alert, Pressable, StyleSheet } from "react-native";
 
@@ -11,8 +12,11 @@ export function SettingSection() {
   const snapToIndex = useBottomSheetStore((state) => state.snapToIndex);
 
   const router = useRouter();
-  const setIsAuthenticated = useAuthStore((state) => state.setIsAuthenticated);
-  const clearAll = useUserDataStore((state) => state.clearAll);
+  const resetIdentity = useIdentityStore((state) => state.verifyIdentity);
+  const removeUser = useUserStore((state) => state.removeUser);
+  const clearTransactions = useTransactionStore(
+    (state) => state.clearTransactions,
+  );
 
   const handelOnPress = () => {
     Alert.alert(
@@ -27,8 +31,9 @@ export function SettingSection() {
           text: "Delete Account",
           style: "destructive",
           onPress: () => {
-            clearAll();
-            setIsAuthenticated(false);
+            removeUser();
+            clearTransactions();
+            resetIdentity();
             router.replace("/(auth)/get-started");
           },
         },
@@ -93,3 +98,6 @@ const styles = StyleSheet.create({
     gap: 8,
   },
 });
+function useTransActionStore(arg0: (state: any) => any) {
+  throw new Error("Function not implemented.");
+}

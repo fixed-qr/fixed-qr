@@ -7,7 +7,7 @@ interface TransactionStore {
   transactions: Transaction[];
 
   addTransaction: (txn: Transaction) => void;
-  clearTransaction: () => void;
+  clearTransactions: () => void;
 }
 
 export const useTransactionStore = create<TransactionStore>()(
@@ -23,7 +23,7 @@ export const useTransactionStore = create<TransactionStore>()(
             transactions: updated.slice(0, 20), // keep only latest 20
           };
         }),
-      clearTransaction: () => set({ transactions: [] }),
+      clearTransactions: () => set({ transactions: [] }),
     }),
     createPersistOptions<TransactionStore>("transaction-store"),
   ),

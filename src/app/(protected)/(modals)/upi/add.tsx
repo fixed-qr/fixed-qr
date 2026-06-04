@@ -1,17 +1,18 @@
 import {
-    AppIcon,
-    AppImage,
-    AppScrollView,
-    AppSelectList,
-    AppText,
-    AppView,
+  AppIcon,
+  AppImage,
+  AppScrollView,
+  AppSelectList,
+  AppText,
+  AppView,
 } from "@/components/app-ui";
 import { screenWidth } from "@/constants/dimensions";
-import { providers } from "@/constants/providers";
+import { supportedUpiApps } from "@/constants/supported-upi-apps";
+import { upiAppLogo } from "@/constants/upi-app-logo";
 import { useTheme } from "@/hooks/use-theme";
-import { useUserDataStore } from "@/store/user-data-store";
-import { Provider } from "@/types/provider";
-import { validateUpi } from "@/utils/validators";
+import { useSavedUpiAppStore } from "@/store/saved-upi-app-store";
+import { UpiAppName } from "@/types/upi-app-name";
+import { validateUpiId } from "@/validators/upi-id-validator";
 import { useRouter } from "expo-router";
 import { useState } from "react";
 import { Pressable, StyleSheet, TextInput } from "react-native";
@@ -24,8 +25,10 @@ export default function AddUPIScreen() {
   const [upiId, setUpiId] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [isFocused, setIsFocused] = useState(false);
-  const [selected, setSelected] = useState<Provider | null>(null);
-  const addUpiId = useUserDataStore((state) => state.addUpiId);
+  const [selectedAppName, setSelectedAppName] = useState<UpiAppName | null>(
+    null,
+  );
+  const addUpiApp = useSavedUpiAppStore((state) => state.addUpiApp);
   const router = useRouter();
 
   const handleUPIIdChange = (value: string) => {
@@ -33,14 +36,13 @@ export default function AddUPIScreen() {
   };
 
   const handleSubmit = () => {
-    const validationError = validateUpi(upiId);
+    const validationError = validateUpiId(upiId);
     setError(validationError);
 
-    if (!validationError && selected) {
-      addUpiId({
+    if (!validationError && selectedAppName) {
+      addUpiApp(selectedAppName, {
+        appName: selectedAppName,
         upiId: upiId,
-        provider: selected.provider,
-        label: selected.label,
       });
       router.back();
     }
@@ -93,10 +95,10 @@ export default function AddUPIScreen() {
       </AppView>
       <AppView style={styles.selectListContainer}>
         <AppSelectList
-          data={providers}
-          selectedItem={selected}
-          onSelect={setSelected}
-          keyExtractor={(item) => item.provider}
+          data={supportedUpiApps}
+          selectedItem={selectedAppName}
+          onSelect={setSelectedAppName}
+          keyExtractor={(item) => item}
           renderItem={({ item, isSelected, onPress }) => (
             <Pressable
               onPress={onPress}
@@ -113,9 +115,9 @@ export default function AddUPIScreen() {
                 },
               ]}
             >
-              <AppImage source={item.logoImage} style={styles.logoImage} />
+              <AppImage source={upiAppLogo[item]} style={styles.logoImage} />
               <AppText variant="bodyMedium" style={styles.label}>
-                {item.label}
+                {item}
               </AppText>
               {isSelected && (
                 <AppIcon

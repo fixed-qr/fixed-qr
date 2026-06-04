@@ -1,24 +1,21 @@
 import { Header } from "@/components";
 import {
-    AppIcon,
-    AppSafeAreaView,
-    AppScrollView,
-    AppText,
+  AppIcon,
+  AppSafeAreaView,
+  AppScrollView,
+  AppText,
 } from "@/components/app-ui";
-import {
-    DevInfoBottomSheet,
-    QRCodeBottomSheet,
-} from "@/components/bottom-sheets";
+import { SavedUpiAppQrCodeBottomSheet } from "@/components/bottom-sheets";
 import { QuickActionSection } from "@/components/sections";
 import { useTheme } from "@/hooks/use-theme";
-import { useUserDataStore } from "@/store/user-data-store";
+import { useUserStore } from "@/store/user-store";
 import { useRouter } from "expo-router";
 import { Pressable, StyleSheet } from "react-native";
 
 export default function HomeScreen() {
   const theme = useTheme();
   const router = useRouter();
-  const username = useUserDataStore((state) => state.user?.name);
+  const name = useUserStore((state) => state.user?.name);
 
   return (
     <AppSafeAreaView>
@@ -30,13 +27,13 @@ export default function HomeScreen() {
           color="secondary"
           style={styles.greetingMessageText}
         >
-          Hi, {username}
+          Hi, {name}
         </AppText>
 
         {/* Generate QR Code Button */}
         <Pressable
           onPress={() => {
-            router.push("/(modals)/qr-code");
+            router.push("/(protected)/(modals)/qr-code");
           }}
           style={({ pressed }) => [
             styles.GenQRCode,
@@ -54,14 +51,13 @@ export default function HomeScreen() {
             color={theme.text.primary}
           />
           <AppText variant="button" style={styles.GenQRCodeText}>
-            Generate QR Code
+            New QR Code
           </AppText>
         </Pressable>
 
         <QuickActionSection />
       </AppScrollView>
-      <QRCodeBottomSheet />
-      <DevInfoBottomSheet />
+      <SavedUpiAppQrCodeBottomSheet />
     </AppSafeAreaView>
   );
 }

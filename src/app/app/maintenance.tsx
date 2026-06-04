@@ -1,9 +1,9 @@
 import {
-    AppIcon,
-    AppImage,
-    AppSafeAreaView,
-    AppText,
-    AppView,
+  AppIcon,
+  AppImage,
+  AppSafeAreaView,
+  AppText,
+  AppView,
 } from "@/components/app-ui";
 import { useTheme } from "@/hooks/use-theme";
 import { Pressable, StyleSheet } from "react-native";
@@ -15,7 +15,7 @@ export default function Maintenance() {
     <AppSafeAreaView style={styles.container}>
       <AppView style={styles.maintenance}>
         <AppImage
-          source={require("@/assets/icons/others/maintenance.png")}
+          source={require("@/assets/images/icons/others/maintenance.png")}
           style={styles.maintenanceImage}
           tintColor={theme.status.info}
         />

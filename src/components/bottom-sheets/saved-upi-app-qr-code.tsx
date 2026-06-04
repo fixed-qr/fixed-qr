@@ -1,27 +1,27 @@
 import {
-    AppBottomSheet,
-    AppImage,
-    AppText,
-    AppView,
+  AppBottomSheet,
+  AppImage,
+  AppText,
+  AppView,
 } from "@/components/app-ui";
 import { useTheme } from "@/hooks/use-theme";
 import { BottomSheetView } from "@gorhom/bottom-sheet";
 import { Pressable, StyleSheet } from "react-native";
 
 import { screenWidth } from "@/constants/dimensions";
+import { upiAppLogo } from "@/constants/upi-app-logo";
 import { useBottomSheetStore } from "@/store/bottom-sheet-store";
-import { useUserDataStore } from "@/store/user-data-store";
-import { getProviderLogo } from "@/utils/get-provider-logo";
+import { useSavedUpiAppStore } from "@/store/saved-upi-app-store";
 import { mapRowState } from "@/utils/map-row-state";
 import { Link, useRouter } from "expo-router";
 
 const gap = 8;
 const width = (screenWidth - gap * 3 - 40) / 3;
 
-export function QRCodeBottomSheet() {
+export function SavedUpiAppQrCodeBottomSheet() {
   const theme = useTheme();
-  const upiIds = useUserDataStore((states) => states.upiIds);
   const router = useRouter();
+  const savedUpiApps = useSavedUpiAppStore((state) => state.savedUpiApps);
   const ref = useBottomSheetStore((state) =>
     state.register("qr-code-bottom-sheet"),
   );
@@ -44,19 +44,19 @@ export function QRCodeBottomSheet() {
             All QR Code
           </AppText>
         </AppView>
-        {upiIds.length ? (
+        {Object.keys(savedUpiApps).length ? (
           <AppView style={styles.providerContainer}>
             {mapRowState(
-              upiIds,
+              Object.values(savedUpiApps),
               ({ item, columnIndex, isIncompleteRow }) => (
                 <Pressable
-                  key={item.provider + item.upiId}
+                  key={item.upiId}
                   onPress={() => {
                     router.push({
-                      pathname: "/(modals)/qr-code/result",
+                      pathname: "/(protected)/(modals)/qr-code/result",
                       params: {
                         upiId: item.upiId,
-                        provider: item.provider,
+                        appName: item.appName,
                       },
                     });
                   }}
@@ -77,7 +77,7 @@ export function QRCodeBottomSheet() {
                   <AppView style={{ alignItems: "center", gap: 4 }}>
                     <AppView style={styles.providerLogoContainer}>
                       <AppImage
-                        source={getProviderLogo(item.provider)}
+                        source={upiAppLogo[item.appName]}
                         style={styles.providerLogo}
                       />
                     </AppView>
@@ -86,7 +86,7 @@ export function QRCodeBottomSheet() {
                       weight="500"
                       style={styles.providerLabel}
                     >
-                      {item.label}
+                      {item.appName}
                     </AppText>
                   </AppView>
                 </Pressable>
@@ -96,7 +96,7 @@ export function QRCodeBottomSheet() {
           </AppView>
         ) : (
           <AppView style={styles.upiIdNotFound}>
-            <Link href={"/(tabs)/profile"}>
+            <Link href={"/(protected)/(tabs)/profile"}>
               <AppText
                 style={[
                   styles.upiIdNotFoundLink,
@@ -171,3 +171,6 @@ const styles = StyleSheet.create({
     flexShrink: 1,
   },
 });
+function useUpiAppStore(arg0: (states: any) => any) {
+  throw new Error("Function not implemented.");
+}

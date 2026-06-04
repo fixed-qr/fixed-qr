@@ -1,9 +1,10 @@
 import { Amount } from "@/components";
 import { AppScrollView, AppText, AppView } from "@/components/app-ui";
 import { screenWidth } from "@/constants/dimensions";
+import { upiAppLogo } from "@/constants/upi-app-logo";
 import { useTheme } from "@/hooks/use-theme";
-import { useUserDataStore } from "@/store/user-data-store";
-import { getProviderLogo } from "@/utils/get-provider-logo";
+import { useSavedUpiAppStore } from "@/store/saved-upi-app-store";
+import { QrCodeResultParams } from "@/types/qr-code-result-params";
 import { mapRowState } from "@/utils/map-row-state";
 import { Image } from "expo-image";
 import { Link, useRouter } from "expo-router";
@@ -27,11 +28,11 @@ const numericKeys = [
 const gap = 8;
 const width = (screenWidth - gap * 3 - 40) / 3;
 
-export default function QRCodeFormScreen() {
+export default function QrCodeScreen() {
   const theme = useTheme();
   const router = useRouter();
   const [value, setValue] = useState("");
-  const upiIds = useUserDataStore((states) => states.upiIds);
+  const savedUpiApps = useSavedUpiAppStore((states) => states.savedUpiApps);
 
   const renderNumericKeyPad = () => {
     const handlePress = (num: any) => {
@@ -95,7 +96,7 @@ export default function QRCodeFormScreen() {
     >
       <AppView style={{ alignItems: "center", marginBottom: 16 }}>
         <AppText variant="headingSmall" weight="600">
-          Generate a QR Code
+          Create QR Code
         </AppText>
       </AppView>
       <AppView
@@ -111,23 +112,23 @@ export default function QRCodeFormScreen() {
       {renderNumericKeyPad()}
 
       {/* Providers */}
-      {upiIds.length ? (
+      {Object.keys(savedUpiApps).length ? (
         <AppView style={styles.providerContainer}>
           {mapRowState(
-            upiIds,
+            Object.values(savedUpiApps),
             ({ item, columnIndex, isIncompleteRow }) => (
               <Pressable
-                key={item.provider + item.upiId}
+                key={item.upiId}
                 onPress={() => {
                   if (!Number(value)) return;
 
                   router.push({
-                    pathname: "/(modals)/qr-code/result",
+                    pathname: "/(protected)/(modals)/qr-code/result",
                     params: {
                       amount: value,
                       upiId: item.upiId,
-                      provider: item.provider,
-                    },
+                      appName: item.appName,
+                    } as QrCodeResultParams,
                   });
                 }}
                 style={({ pressed }) => [
@@ -147,7 +148,7 @@ export default function QRCodeFormScreen() {
                 <AppView style={{ alignItems: "center", gap: 4 }}>
                   <AppView style={styles.providerLogoContainer}>
                     <Image
-                      source={getProviderLogo(item.provider)}
+                      source={upiAppLogo[item.appName]}
                       style={styles.providerLogo}
                       cachePolicy="memory-disk"
                     />
@@ -157,7 +158,7 @@ export default function QRCodeFormScreen() {
                     weight="500"
                     style={styles.providerLabel}
                   >
-                    {item.label}
+                    {item.appName}
                   </AppText>
                 </AppView>
               </Pressable>
@@ -167,7 +168,7 @@ export default function QRCodeFormScreen() {
         </AppView>
       ) : (
         <AppView style={styles.upiIdNotFound}>
-          <Link href={"/(tabs)/profile"}>
+          <Link href={"/(protected)/(tabs)/profile"}>
             <AppText
               style={[
                 styles.upiIdNotFoundLink,

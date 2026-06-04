@@ -2,22 +2,22 @@ import { create } from "zustand";
 
 const MINUTE_MS = 60 * 1000;
 
-const SESSION_DURATION_MS = 5 * MINUTE_MS;
+const SESSION_DURATION_MS = MINUTE_MS * 5; // 5 minutes
 
 interface IdentityStore {
   verifiedAt: number | null;
 
-  verify: () => void;
-  reset: () => void;
-  hasValidSession: () => boolean;
+  verifyIdentity: () => void;
+  resetIdentity: () => void;
+  isSessionValid: () => boolean;
 }
 
 export const useIdentityStore = create<IdentityStore>((set, get) => ({
   verifiedAt: null,
 
-  verify: () => set({ verifiedAt: Date.now() }),
-  reset: () => set({ verifiedAt: null }),
-  hasValidSession: () => {
+  verifyIdentity: () => set({ verifiedAt: Date.now() }),
+  resetIdentity: () => set({ verifiedAt: null }),
+  isSessionValid: () => {
     const { verifiedAt } = get();
 
     return verifiedAt !== null && Date.now() - verifiedAt < SESSION_DURATION_MS;

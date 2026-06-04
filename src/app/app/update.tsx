@@ -1,10 +1,10 @@
 import {
-    AppIcon,
-    AppImage,
-    AppSafeAreaView,
-    AppScrollView,
-    AppText,
-    AppView,
+  AppIcon,
+  AppImage,
+  AppSafeAreaView,
+  AppScrollView,
+  AppText,
+  AppView,
 } from "@/components/app-ui";
 import { useTheme } from "@/hooks/use-theme";
 import { useAppConfigStore } from "@/store/app-config-store";
@@ -13,9 +13,9 @@ import { ActivityIndicator, Pressable, StyleSheet } from "react-native";
 
 export default function Update() {
   const theme = useTheme();
-  const { appConfig, loading } = useAppConfigStore();
+  const { appConfig, isLoading } = useAppConfigStore();
 
-  if (loading) {
+  if (isLoading) {
     return (
       <AppSafeAreaView style={[styles.container, { justifyContent: "center" }]}>
         <ActivityIndicator color={theme.text.primary} size={24} />
@@ -28,7 +28,7 @@ export default function Update() {
       <AppScrollView>
         <AppView style={styles.update}>
           <AppImage
-            source={require("@/assets/icons/others/update.png")}
+            source={require("@/assets/images/icons/others/update.png")}
             style={styles.updateImage}
             tintColor={theme.status.info}
           />

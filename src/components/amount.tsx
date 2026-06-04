@@ -10,13 +10,13 @@ interface AmountProps {
   size?: number;
 }
 
-export function Amount({ value, size }: AmountProps) {
+export function Amount({ value, size }: Readonly<AmountProps>) {
   const theme = useTheme();
 
   return (
     <AppView style={styles.amount}>
       <AppImage
-        source={require("@/assets/icons/others/rupee.png")}
+        source={require("@/assets/images/icons/others/rupee.png")}
         tintColor={theme.text.primary}
         style={[
           styles.unitImage,

@@ -12,7 +12,7 @@ export function PasswordInput({
   value,
   onChangeText,
   onSubmitEditing,
-}: SecureInputProps) {
+}: Readonly<SecureInputProps>) {
   const theme = useTheme();
 
   return (

@@ -1,17 +1,16 @@
 import { Amount, EmptyCard } from "@/components";
 import {
-    AppBottomSheet,
-    AppIcon,
-    AppImage,
-    AppText,
-    AppView,
+  AppBottomSheet,
+  AppIcon,
+  AppImage,
+  AppText,
+  AppView,
 } from "@/components/app-ui";
+import { upiAppLogo } from "@/constants/upi-app-logo";
 import { useTheme } from "@/hooks/use-theme";
 import { useBottomSheetStore } from "@/store/bottom-sheet-store";
-import { useUserDataStore } from "@/store/user-data-store";
-import { AppDateTime } from "@/utils/app-date-time";
-import { getProviderLabel } from "@/utils/get-provider-label";
-import { getProviderLogo } from "@/utils/get-provider-logo";
+import { useTransactionStore } from "@/store/transaction-store";
+import { DateTime } from "@/utils/date-time";
 import { BottomSheetScrollView } from "@gorhom/bottom-sheet/src";
 import { StyleSheet } from "react-native";
 
@@ -20,7 +19,7 @@ export function TransactionBottomSheet() {
   const ref = useBottomSheetStore((state) =>
     state.register("transaction-bottom-sheet"),
   );
-  const transactions = useUserDataStore((state) => state.transactions);
+  const transactions = useTransactionStore((state) => state.transactions);
 
   return (
     <AppBottomSheet
@@ -52,7 +51,7 @@ export function TransactionBottomSheet() {
           >
             {transactions.map((tsx, index) => (
               <AppView
-                key={tsx.transactionId + index}
+                key={tsx.id + index}
                 style={[
                   styles.transaction,
                   {
@@ -64,17 +63,15 @@ export function TransactionBottomSheet() {
               >
                 <AppView style={styles.left}>
                   <AppImage
-                    source={getProviderLogo(tsx.provider)}
+                    source={upiAppLogo[tsx.appName]}
                     style={styles.logoImage}
                   />
                 </AppView>
                 <AppView style={styles.right}>
                   <AppView style={styles.rightLeft}>
-                    <AppText variant="button">
-                      {getProviderLabel(tsx.provider)}
-                    </AppText>
+                    <AppText variant="button">{tsx.appName}</AppText>
                     <AppText variant="bodySmall" color="tertiary">
-                      {new AppDateTime(tsx.date).formatTo("datetime")}
+                      {new DateTime(tsx.date).formatTo("datetime")}
                     </AppText>
                   </AppView>
                   <AppView style={styles.rightRight}>

@@ -1,6 +1,6 @@
 import { useTheme } from "@/hooks/use-theme";
 import React, { ReactNode } from "react";
-import { Pressable, StyleSheet, TextStyle, ViewStyle } from "react-native";
+import { Pressable, StyleSheet, ViewStyle } from "react-native";
 import { AppIcon, AppIconProps } from "./app-icon";
 import { AppText } from "./app-text";
 import { AppView } from "./app-view";
@@ -11,7 +11,6 @@ export interface AppGroupProps {
   onTitlePress?: () => void;
   titleIconName?: AppIconProps["name"];
   containerStyle?: ViewStyle;
-  titleStyle?: TextStyle;
 }
 
 export const AppGroup = ({
@@ -19,7 +18,6 @@ export const AppGroup = ({
   children,
   onTitlePress,
   titleIconName,
-  titleStyle,
   containerStyle,
 }: AppGroupProps) => {
   const theme = useTheme();

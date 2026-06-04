@@ -3,6 +3,6 @@ import { ComponentProps } from "react";
 
 export type AppIconProps = ComponentProps<typeof Ionicons>;
 
-export function AppIcon(props: AppIconProps) {
+export function AppIcon(props: Readonly<AppIconProps>) {
   return <Ionicons {...props} />;
 }

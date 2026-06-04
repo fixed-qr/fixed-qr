@@ -6,7 +6,7 @@ import { createPersistOptions } from "./zustand/persist";
 interface UserStore {
   user: User | null;
 
-  addUser: (data: User) => void;
+  createUser: (data: User) => void;
   removeUser: () => void;
 }
 
@@ -15,7 +15,7 @@ export const useUserStore = create<UserStore>()(
     (set) => ({
       user: null,
 
-      addUser: (data) => set({ user: data }),
+      createUser: (data) => set({ user: data }),
       removeUser: () => set({ user: null }),
     }),
     createPersistOptions<UserStore>("user-store"),

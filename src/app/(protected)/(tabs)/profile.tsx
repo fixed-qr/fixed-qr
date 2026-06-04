@@ -1,21 +1,21 @@
 import {
-    AppSafeAreaView,
-    AppScrollView,
-    AppText,
-    AppView,
+  AppSafeAreaView,
+  AppScrollView,
+  AppText,
+  AppView,
 } from "@/components/app-ui";
 import {
-    AuthenticateBottomSheet,
-    TransactionBottomSheet,
+  IdentityBottomSheet,
+  TransactionBottomSheet,
 } from "@/components/bottom-sheets";
-import { SettingSection, UpiIdSection } from "@/components/sections";
+import { SavedUpiAppSection, SettingSection } from "@/components/sections";
 import { useTheme } from "@/hooks/use-theme";
-import { useUserDataStore } from "@/store/user-data-store";
+import { useUserStore } from "@/store/user-store";
 import { Image, StyleSheet } from "react-native";
 
 export default function ProfileScreen() {
   const theme = useTheme();
-  const name = useUserDataStore((state) => state.user?.name);
+  const name = useUserStore((state) => state.user?.name);
 
   return (
     <AppSafeAreaView>
@@ -30,7 +30,7 @@ export default function ProfileScreen() {
             ]}
           >
             <Image
-              source={require("@/assets/icons/tab/user-profile.png")}
+              source={require("@/assets/images/icons/tab/user-profile.png")}
               style={[
                 styles.userProfileAvatar,
                 { tintColor: theme.text.primary },
@@ -40,10 +40,10 @@ export default function ProfileScreen() {
           <AppText style={styles.userProfileName}>Hi, {name}</AppText>
         </AppView>
         <SettingSection />
-        <UpiIdSection />
+        <SavedUpiAppSection />
       </AppScrollView>
       <TransactionBottomSheet />
-      <AuthenticateBottomSheet />
+      <IdentityBottomSheet />
     </AppSafeAreaView>
   );
 }

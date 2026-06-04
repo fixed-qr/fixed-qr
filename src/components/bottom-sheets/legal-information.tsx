@@ -25,7 +25,7 @@ export function LegalInformationBottomSheet() {
       index={-1}
       enableDynamicSizing={false}
       enablePanDownToClose={true}
-      snapPoints={["50%", "75%", "90%"]}
+      snapPoints={["50%"]}
     >
       <BottomSheetScrollView
         style={{
