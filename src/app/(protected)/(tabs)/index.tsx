@@ -1,5 +1,6 @@
 import { Header } from "@/components";
 import {
+  AppAnimatedPressable,
   AppIcon,
   AppSafeAreaView,
   AppScrollView,
@@ -10,7 +11,7 @@ import { QuickActionSection } from "@/components/sections";
 import { useTheme } from "@/hooks/use-theme";
 import { useUserStore } from "@/store/user-store";
 import { useRouter } from "expo-router";
-import { Pressable, StyleSheet } from "react-native";
+import { StyleSheet } from "react-native";
 
 export default function HomeScreen() {
   const theme = useTheme();
@@ -31,7 +32,7 @@ export default function HomeScreen() {
         </AppText>
 
         {/* Generate QR Code Button */}
-        <Pressable
+        <AppAnimatedPressable
           onPress={() => {
             router.push("/(protected)/(modals)/qr-code");
           }}
@@ -53,7 +54,7 @@ export default function HomeScreen() {
           <AppText variant="button" style={styles.GenQRCodeText}>
             New QR Code
           </AppText>
-        </Pressable>
+        </AppAnimatedPressable>
 
         <QuickActionSection />
       </AppScrollView>

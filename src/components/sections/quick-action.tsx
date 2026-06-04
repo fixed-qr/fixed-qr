@@ -1,5 +1,11 @@
 import { Amount, EmptyCard } from "@/components";
-import { AppIcon, AppImage, AppText, AppView } from "@/components/app-ui";
+import {
+  AppAnimatedPressable,
+  AppIcon,
+  AppImage,
+  AppText,
+  AppView,
+} from "@/components/app-ui";
 import { screenWidth } from "@/constants/dimensions";
 import { upiAppLogo } from "@/constants/upi-app-logo";
 import { useTheme } from "@/hooks/use-theme";
@@ -7,7 +13,7 @@ import { useSavedUpiAppStore } from "@/store/saved-upi-app-store";
 import { useTransactionStore } from "@/store/transaction-store";
 import { useRouter } from "expo-router";
 import { useMemo } from "react";
-import { Pressable, StyleSheet } from "react-native";
+import { StyleSheet } from "react-native";
 
 const gap = 8;
 const width = (screenWidth - gap - 40 - 1) / 2;
@@ -47,7 +53,7 @@ export function QuickActionSection() {
       {suggestedTransactions.length ? (
         <AppView style={[styles.quickActions]}>
           {suggestedTransactions.map((tsx) => (
-            <Pressable
+            <AppAnimatedPressable
               key={tsx.id}
               onPress={() => {
                 router.push({
@@ -89,7 +95,7 @@ export function QuickActionSection() {
                   color={theme.text.secondary}
                 />
               </AppView>
-            </Pressable>
+            </AppAnimatedPressable>
           ))}
         </AppView>
       ) : (

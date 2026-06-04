@@ -1,4 +1,5 @@
 import {
+  AppAnimatedPressable,
   AppIcon,
   AppImage,
   AppScrollView,
@@ -15,7 +16,7 @@ import { UpiAppName } from "@/types/upi-app-name";
 import { validateUpiId } from "@/validators/upi-id-validator";
 import { useRouter } from "expo-router";
 import { useState } from "react";
-import { Pressable, StyleSheet, TextInput } from "react-native";
+import { StyleSheet, TextInput } from "react-native";
 
 const gap = 8;
 const width = (screenWidth - gap * 2 - 40) / 3;
@@ -100,7 +101,7 @@ export default function AddUPIScreen() {
           onSelect={setSelectedAppName}
           keyExtractor={(item) => item}
           renderItem={({ item, isSelected, onPress }) => (
-            <Pressable
+            <AppAnimatedPressable
               onPress={onPress}
               style={[
                 styles.provider,
@@ -126,13 +127,13 @@ export default function AddUPIScreen() {
                   style={[styles.checkmarkDone, { color: theme.status.info }]}
                 />
               )}
-            </Pressable>
+            </AppAnimatedPressable>
           )}
         />
       </AppView>
 
       {/* Handle Form Sublimation */}
-      <Pressable
+      <AppAnimatedPressable
         style={({ pressed }) => [
           styles.saveButton,
           {
@@ -146,7 +147,7 @@ export default function AddUPIScreen() {
       >
         <AppIcon name="save" size={18} color={theme.text.primary} />
         <AppText variant="button">Save</AppText>
-      </Pressable>
+      </AppAnimatedPressable>
     </AppScrollView>
   );
 }

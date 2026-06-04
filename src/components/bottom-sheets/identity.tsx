@@ -1,9 +1,14 @@
 import { PasswordInput } from "@/components";
-import { AppBottomSheet, AppText, AppView } from "@/components/app-ui";
+import {
+  AppAnimatedPressable,
+  AppBottomSheet,
+  AppText,
+  AppView,
+} from "@/components/app-ui";
 import { useTheme } from "@/hooks/use-theme";
 import { BottomSheetView } from "@gorhom/bottom-sheet";
 import { useState } from "react";
-import { Keyboard, Pressable, StyleSheet } from "react-native";
+import { Keyboard, StyleSheet } from "react-native";
 
 import { useBottomSheetStore } from "@/store/bottom-sheet-store";
 import { useIdentityStore } from "@/store/identity-store";
@@ -80,7 +85,7 @@ export function IdentityBottomSheet() {
             </AppText>
           </AppView>
         )}
-        <Pressable
+        <AppAnimatedPressable
           onPress={handleOnSubmit}
           style={({ pressed }) => [
             styles.authenticateButton,
@@ -103,7 +108,7 @@ export function IdentityBottomSheet() {
               transform: [{ rotate: "45deg" }],
             }}
           />
-        </Pressable>
+        </AppAnimatedPressable>
       </BottomSheetView>
     </AppBottomSheet>
   );

@@ -67,7 +67,7 @@ export function SettingSection() {
       </Pressable>
       <Pressable
         onPress={() => {
-          snapToIndex("transaction-bottom-sheet", 0);
+          snapToIndex("TRANSACTION", 0);
         }}
         style={[
           styles.setting,

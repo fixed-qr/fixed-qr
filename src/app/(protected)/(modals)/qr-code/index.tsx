@@ -1,5 +1,10 @@
 import { Amount } from "@/components";
-import { AppScrollView, AppText, AppView } from "@/components/app-ui";
+import {
+  AppAnimatedPressable,
+  AppScrollView,
+  AppText,
+  AppView,
+} from "@/components/app-ui";
 import { screenWidth } from "@/constants/dimensions";
 import { upiAppLogo } from "@/constants/upi-app-logo";
 import { useTheme } from "@/hooks/use-theme";
@@ -58,7 +63,7 @@ export default function QrCodeScreen() {
           }
 
           return (
-            <Pressable
+            <AppAnimatedPressable
               key={key}
               style={({ pressed }) => [
                 styles.key,
@@ -78,7 +83,7 @@ export default function QrCodeScreen() {
               >
                 {key}
               </AppText>
-            </Pressable>
+            </AppAnimatedPressable>
           );
         })}
       </AppView>
