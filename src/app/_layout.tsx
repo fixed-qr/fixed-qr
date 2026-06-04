@@ -23,9 +23,9 @@ export default function RootLayout() {
   const router = useRouter();
   const pathname = usePathname();
   const { version } = useAppVersion();
+  const [isReady, setIsReady] = useState(false);
   const appConfig = useAppConfigStore((state) => state.appConfig);
   const fetchAppConfig = useAppConfigStore((state) => state.fetchAppConfig);
-  const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
     async function prepare() {
@@ -78,7 +78,10 @@ export default function RootLayout() {
             },
           }}
         >
-          <Stack.Screen name="(auth)/get-started" />
+          <Stack.Screen
+            name="(auth)/get-started"
+            options={{ animation: "fade" }}
+          />
           <Stack.Screen name="(protected)" />
           <Stack.Screen name="app" />
         </Stack>
