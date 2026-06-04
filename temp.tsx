@@ -1,12 +1,14 @@
+import { borderRadius } from "@/constants/platform";
 import { useAppVersion } from "@/hooks/use-app-version";
 import { useTheme } from "@/hooks/use-theme";
 import { useAppConfigStore } from "@/store/app-config-store";
+import { useUserDataStore } from "@/store/user-data-store";
 import { AppConfig } from "@/types/app-config";
-import { versionToVersionCode } from "@/utils/version-to-version-code";
+import { versionToNumber } from "@/utils/version-to-number";
 import {
-  DarkTheme,
-  DefaultTheme,
-  ThemeProvider,
+    DarkTheme,
+    DefaultTheme,
+    ThemeProvider,
 } from "@react-navigation/native";
 import { Href, Stack, usePathname, useRouter } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
@@ -16,76 +18,6 @@ import { useColorScheme } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 SplashScreen.preventAutoHideAsync();
-
-export default function RootLayout() {
-  const scheme = useColorScheme();
-  const theme = useTheme();
-  const router = useRouter();
-  const pathname = usePathname();
-  const { version } = useAppVersion();
-  const appConfig = useAppConfigStore((state) => state.appConfig);
-  const fetchAppConfig = useAppConfigStore((state) => state.fetchAppConfig);
-  const [isReady, setIsReady] = useState(false);
-
-  useEffect(() => {
-    async function prepare() {
-      try {
-        await useAppConfigStore.persist.rehydrate();
-
-        await fetchAppConfig();
-      } catch (error) {
-        console.error(error);
-      } finally {
-        setIsReady(true);
-      }
-    }
-
-    prepare();
-  }, [fetchAppConfig]);
-
-  useEffect(() => {
-    if (!isReady) return;
-
-    const redirectPath = getRedirectPath(
-      appConfig,
-      versionToVersionCode(version),
-    );
-
-    if (redirectPath && pathname !== redirectPath) {
-      router.replace(redirectPath);
-      return;
-    }
-
-    SplashScreen.hideAsync();
-  }, [isReady, appConfig, version]);
-
-  if (!isReady) {
-    return null;
-  }
-
-  return (
-    <GestureHandlerRootView
-      style={{ flex: 1, backgroundColor: theme.background.primary }}
-    >
-      <ThemeProvider value={scheme === "dark" ? DarkTheme : DefaultTheme}>
-        <StatusBar style={scheme === "dark" ? "light" : "dark"} />
-
-        <Stack
-          screenOptions={{
-            headerShown: false,
-            contentStyle: {
-              backgroundColor: theme.background.primary,
-            },
-          }}
-        >
-          <Stack.Screen name="(auth)/get-started" />
-          <Stack.Screen name="(protected)" />
-          <Stack.Screen name="app" />
-        </Stack>
-      </ThemeProvider>
-    </GestureHandlerRootView>
-  );
-}
 
 function getRedirectPath(
   config: AppConfig,
@@ -106,4 +38,94 @@ function getRedirectPath(
   }
 
   return null;
+}
+
+export default function RootLayout() {
+  const scheme = useColorScheme();
+  const theme = useTheme();
+  const router = useRouter();
+  const pathname = usePathname();
+
+  const { version } = useAppVersion();
+  const user = useUserDataStore((state) => state.user);
+
+  const { appConfig, fetchAppConfig } = useAppConfigStore();
+
+  const [isReady, setIsReady] = useState(false);
+
+  useEffect(() => {
+    async function prepare() {
+      try {
+        await fetchAppConfig();
+
+        // If you have Zustand persistence:
+        // await useUserDataStore.persist.rehydrate();
+        // await useAppConfigStore.persist.rehydrate();
+      } finally {
+        setIsReady(true);
+      }
+    }
+
+    prepare();
+  }, []);
+
+  useEffect(() => {
+    if (!isReady) return;
+
+    const redirectPath = getRedirectPath(appConfig, versionToNumber(version));
+
+    if (redirectPath && pathname !== redirectPath) {
+      router.replace(redirectPath);
+      return;
+    }
+
+    if (!user && pathname !== "/(auth)/get-started") {
+      router.replace("/(auth)/get-started");
+      return;
+    }
+
+    SplashScreen.hideAsync();
+  }, [isReady, appConfig, version, pathname, user]);
+
+  if (!isReady) {
+    return null;
+  }
+
+  return (
+    <GestureHandlerRootView
+      style={{
+        flex: 1,
+        backgroundColor: theme.background.primary,
+      }}
+    >
+      <ThemeProvider value={scheme === "dark" ? DarkTheme : DefaultTheme}>
+        <StatusBar style={scheme === "dark" ? "light" : "dark"} />
+
+        <Stack
+          screenOptions={{
+            headerShown: false,
+            contentStyle: {
+              backgroundColor: theme.background.primary,
+            },
+          }}
+        >
+          <Stack.Screen name="(auth)/get-started" />
+          <Stack.Screen name="(tabs)" />
+          <Stack.Screen name="app" />
+
+          <Stack.Screen
+            name="(modals)"
+            options={{
+              presentation: "formSheet",
+              gestureDirection: "vertical",
+              animation: "slide_from_bottom",
+              sheetCornerRadius: borderRadius,
+              sheetElevation: 24,
+              sheetAllowedDetents: [0.75],
+            }}
+          />
+        </Stack>
+      </ThemeProvider>
+    </GestureHandlerRootView>
+  );
 }
