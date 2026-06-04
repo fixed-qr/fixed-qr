@@ -24,7 +24,7 @@ export default function ProfileScreen() {
 
   useEffect(() => {
     if (!isSessionValid()) {
-      expand("identity-bottom-sheet");
+      expand("IDENTITY");
     }
   }, [isSessionValid, expand]);
 

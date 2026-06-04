@@ -20,7 +20,7 @@ export function Header() {
         <Pressable
           style={styles.button}
           onPress={() => {
-            expand("qr-code-bottom-sheet");
+            expand("SAVED_UPI_APP_QR_CODE");
           }}
         >
           <Ionicons name="qr-code" size={26} color={theme.text.primary} />

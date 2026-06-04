@@ -14,7 +14,7 @@ export function IdentityBottomSheet() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const ref = useBottomSheetStore((state) =>
-    state.register("identity-bottom-sheet"),
+    state.register("LEGAL_INFORMATION"),
   );
   const storedPassword = useUserStore((state) => state.user?.password);
   const verifyIdentity = useIdentityStore((state) => state.verifyIdentity);

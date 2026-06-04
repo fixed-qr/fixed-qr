@@ -1,25 +1,17 @@
+import { BottomSheetKey } from "@/types/bottom-sheets-keys";
 import BottomSheet from "@gorhom/bottom-sheet";
 import { createRef, RefObject } from "react";
 import { create } from "zustand";
 
-export const SHEETS = {
-  Legal: "legal-information-bottom-sheet",
-  IDENTITY: "identity-bottom-sheet",
-  TRANSACTION: "transaction-bottom-sheet",
-  QR: "qr-code-bottom-sheet",
-} as const;
-
-export type SheetKey = (typeof SHEETS)[keyof typeof SHEETS];
-
 type SheetRef = RefObject<BottomSheet | null>;
 
 interface BottomSheetStore {
-  refs: Partial<Record<SheetKey, SheetRef>>;
+  refs: Partial<Record<BottomSheetKey, SheetRef>>;
 
-  register: (key: SheetKey) => SheetRef;
-  expand: (key: SheetKey) => void;
-  close: (key: SheetKey) => void;
-  snapToIndex: (key: SheetKey, index: number) => void;
+  register: (key: BottomSheetKey) => SheetRef;
+  expand: (key: BottomSheetKey) => void;
+  close: (key: BottomSheetKey) => void;
+  snapToIndex: (key: BottomSheetKey, index: number) => void;
 }
 
 export const useBottomSheetStore = create<BottomSheetStore>((set, get) => ({

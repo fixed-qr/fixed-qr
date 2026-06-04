@@ -23,7 +23,7 @@ export function SavedUpiAppQrCodeBottomSheet() {
   const router = useRouter();
   const savedUpiApps = useSavedUpiAppStore((state) => state.savedUpiApps);
   const ref = useBottomSheetStore((state) =>
-    state.register("qr-code-bottom-sheet"),
+    state.register("SAVED_UPI_APP_QR_CODE"),
   );
 
   return (

@@ -10,7 +10,7 @@ import Markdown from "react-native-markdown-display";
 export function LegalInformationBottomSheet() {
   const theme = useTheme();
   const ref = useBottomSheetStore((state) =>
-    state.register("legal-information-bottom-sheet"),
+    state.register("LEGAL_INFORMATION"),
   );
   const { legalInformation, loading, fetchLegalInformation } =
     useLegalInformationStore();

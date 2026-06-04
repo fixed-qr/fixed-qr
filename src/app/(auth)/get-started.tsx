@@ -34,7 +34,7 @@ export default function GetStartedScreen() {
 
   const handleExpand = () => {
     if (!isChecked) {
-      expand("legal-information-bottom-sheet");
+      expand("LEGAL_INFORMATION");
     }
   };
 

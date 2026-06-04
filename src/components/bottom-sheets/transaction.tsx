@@ -16,9 +16,7 @@ import { StyleSheet } from "react-native";
 
 export function TransactionBottomSheet() {
   const theme = useTheme();
-  const ref = useBottomSheetStore((state) =>
-    state.register("transaction-bottom-sheet"),
-  );
+  const ref = useBottomSheetStore((state) => state.register("TRANSACTION"));
   const transactions = useTransactionStore((state) => state.transactions);
 
   return (
