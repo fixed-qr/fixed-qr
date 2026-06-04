@@ -1,5 +1,5 @@
-import { Image, ImageProps } from "react-native";
+import { Image, ImageProps } from "expo-image";
 
 export function AppImage(props: Readonly<ImageProps>) {
-  return <Image {...props} />;
+  return <Image transition={200} contentFit="cover" {...props} />;
 }
