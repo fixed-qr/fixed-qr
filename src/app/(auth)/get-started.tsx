@@ -73,7 +73,11 @@ export default function GetStartedScreen() {
 
   return (
     <AppSafeAreaView>
-      <AppScrollView>
+      <AppScrollView
+        contentContainerStyle={{
+          flex: 1,
+        }}
+      >
         <AppView style={styles.header}>
           <AppLogo size={48} />
           <AppName />

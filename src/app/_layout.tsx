@@ -14,6 +14,10 @@ import { StatusBar } from "expo-status-bar";
 import { useEffect, useState } from "react";
 import { useColorScheme } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
+import {
+  SafeAreaProvider,
+  initialWindowMetrics,
+} from "react-native-safe-area-context";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -64,29 +68,34 @@ export default function RootLayout() {
   }
 
   return (
-    <GestureHandlerRootView
+    <SafeAreaProvider
+      initialMetrics={initialWindowMetrics}
       style={{ flex: 1, backgroundColor: theme.background.primary }}
     >
-      <ThemeProvider value={scheme === "dark" ? DarkTheme : DefaultTheme}>
-        <StatusBar style={scheme === "dark" ? "light" : "dark"} />
+      <GestureHandlerRootView
+        style={{ flex: 1, backgroundColor: theme.background.primary }}
+      >
+        <ThemeProvider value={scheme === "dark" ? DarkTheme : DefaultTheme}>
+          <StatusBar style={scheme === "dark" ? "light" : "dark"} />
 
-        <Stack
-          screenOptions={{
-            headerShown: false,
-            contentStyle: {
-              backgroundColor: theme.background.primary,
-            },
-          }}
-        >
-          <Stack.Screen
-            name="(auth)/get-started"
-            options={{ animation: "fade" }}
-          />
-          <Stack.Screen name="(protected)" />
-          <Stack.Screen name="app" />
-        </Stack>
-      </ThemeProvider>
-    </GestureHandlerRootView>
+          <Stack
+            screenOptions={{
+              headerShown: false,
+              contentStyle: {
+                backgroundColor: theme.background.primary,
+              },
+            }}
+          >
+            <Stack.Screen
+              name="(auth)/get-started"
+              options={{ animation: "fade" }}
+            />
+            <Stack.Screen name="(protected)" />
+            <Stack.Screen name="app" />
+          </Stack>
+        </ThemeProvider>
+      </GestureHandlerRootView>
+    </SafeAreaProvider>
   );
 }
 
