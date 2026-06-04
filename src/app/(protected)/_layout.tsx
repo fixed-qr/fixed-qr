@@ -1,9 +1,16 @@
 import { borderRadius } from "@/constants/platform";
 import { useTheme } from "@/hooks/use-theme";
-import { Stack } from "expo-router";
+import { useUserStore } from "@/store/user-store";
+import { Redirect, Stack, usePathname } from "expo-router";
 
 export default function ProtectedLayout() {
   const theme = useTheme();
+  const pathname = usePathname();
+  const user = useUserStore((state) => state.user);
+
+  if (!user && pathname !== "/(auth)/get-started") {
+    return <Redirect href="/(auth)/get-started" />;
+  }
 
   return (
     <Stack
