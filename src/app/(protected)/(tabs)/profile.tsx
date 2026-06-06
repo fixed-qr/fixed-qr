@@ -4,9 +4,7 @@ import {
   AppText,
   AppView,
 } from "@/components/app-ui";
-import {
-  IdentityBottomSheet
-} from "@/components/bottom-sheets";
+import { IdentityBottomSheet } from "@/components/bottom-sheets";
 import { SavedUpiAppSection, SettingSection } from "@/components/sections";
 import { useTheme } from "@/hooks/use-theme";
 import { useBottomSheetStore } from "@/store/bottom-sheet-store";
@@ -47,7 +45,7 @@ export default function ProfileScreen() {
               ]}
             />
           </AppView>
-          <AppText style={styles.userProfileName}>Hi, {name}</AppText>
+          <AppText style={styles.userProfileName}>{name}</AppText>
         </AppView>
         <SettingSection />
         <SavedUpiAppSection />
