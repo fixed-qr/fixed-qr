@@ -1,3 +1,7 @@
+import {
+  SavedUpiAppQrCodeBottomSheet,
+  TransactionBottomSheet,
+} from "@/components/bottom-sheets";
 import { borderRadius } from "@/constants/platform";
 import { useTheme } from "@/hooks/use-theme";
 import { useUserStore } from "@/store/user-store";
@@ -13,24 +17,28 @@ export default function ProtectedLayout() {
   }
 
   return (
-    <Stack
-      screenOptions={{
-        headerShown: false,
-        contentStyle: { backgroundColor: theme.background.secondary },
-      }}
-    >
-      <Stack.Screen name="(tabs)" />
-      <Stack.Screen
-        name="(modals)"
-        options={{
-          presentation: "formSheet",
-          gestureDirection: "vertical",
-          animation: "slide_from_bottom",
-          sheetCornerRadius: borderRadius,
-          sheetElevation: 24,
-          sheetAllowedDetents: [0.75],
+    <>
+      <Stack
+        screenOptions={{
+          headerShown: false,
+          contentStyle: { backgroundColor: theme.background.secondary },
         }}
-      />
-    </Stack>
+      >
+        <Stack.Screen name="(tabs)" />
+        <Stack.Screen
+          name="(modals)"
+          options={{
+            presentation: "formSheet",
+            gestureDirection: "vertical",
+            animation: "slide_from_bottom",
+            sheetCornerRadius: borderRadius,
+            sheetElevation: 24,
+            sheetAllowedDetents: [0.75],
+          }}
+        />
+      </Stack>
+      <SavedUpiAppQrCodeBottomSheet />
+      <TransactionBottomSheet />
+    </>
   );
 }

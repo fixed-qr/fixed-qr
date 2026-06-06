@@ -30,7 +30,7 @@ export function TransactionBottomSheet() {
         style={{
           backgroundColor: theme.background.secondary,
         }}
-        contentContainerStyle={{ paddingHorizontal: 20 }}
+        contentContainerStyle={{ paddingHorizontal: 20, paddingBottom: 20 }}
       >
         <AppView style={{ alignItems: "center", marginBottom: 16 }}>
           <AppText variant="headingSmall" weight="600">

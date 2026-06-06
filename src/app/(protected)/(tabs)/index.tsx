@@ -6,7 +6,6 @@ import {
   AppScrollView,
   AppText,
 } from "@/components/app-ui";
-import { SavedUpiAppQrCodeBottomSheet } from "@/components/bottom-sheets";
 import { QuickActionSection } from "@/components/sections";
 import { useTheme } from "@/hooks/use-theme";
 import { useUserStore } from "@/store/user-store";
@@ -58,7 +57,6 @@ export default function HomeScreen() {
 
         <QuickActionSection />
       </AppScrollView>
-      <SavedUpiAppQrCodeBottomSheet />
     </AppSafeAreaView>
   );
 }

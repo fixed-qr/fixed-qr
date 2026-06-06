@@ -5,8 +5,7 @@ import {
   AppView,
 } from "@/components/app-ui";
 import {
-  IdentityBottomSheet,
-  TransactionBottomSheet,
+  IdentityBottomSheet
 } from "@/components/bottom-sheets";
 import { SavedUpiAppSection, SettingSection } from "@/components/sections";
 import { useTheme } from "@/hooks/use-theme";
@@ -53,7 +52,6 @@ export default function ProfileScreen() {
         <SettingSection />
         <SavedUpiAppSection />
       </AppScrollView>
-      <TransactionBottomSheet />
       <IdentityBottomSheet />
     </AppSafeAreaView>
   );

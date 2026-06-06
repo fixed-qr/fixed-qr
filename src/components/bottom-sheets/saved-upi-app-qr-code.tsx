@@ -37,11 +37,12 @@ export function SavedUpiAppQrCodeBottomSheet() {
         style={{
           backgroundColor: theme.background.secondary,
           paddingHorizontal: 20,
+          paddingBottom: 20,
         }}
       >
         <AppView style={{ alignItems: "center", marginBottom: 16 }}>
           <AppText variant="headingSmall" weight="600">
-            All QR Code
+            Saved UPI QR Codes
           </AppText>
         </AppView>
         {Object.keys(savedUpiApps).length ? (
@@ -59,6 +60,7 @@ export function SavedUpiAppQrCodeBottomSheet() {
                         appName: item.appName,
                       },
                     });
+                    ref.current?.close();
                   }}
                   style={({ pressed }) => [
                     styles.providerLink,
