@@ -29,11 +29,7 @@ export const AppGroup = ({
           {title}
         </AppText>
         {titleIconName && (
-          <AppIcon
-            name={titleIconName}
-            size={18}
-            color={theme.text.secondary}
-          />
+          <AppIcon name={titleIconName} size={18} color={theme.text.tertiary} />
         )}
       </Pressable>
       <AppView
