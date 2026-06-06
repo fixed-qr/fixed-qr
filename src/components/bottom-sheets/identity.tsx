@@ -72,6 +72,7 @@ export function IdentityBottomSheet() {
           value={password}
           onChangeText={handlePasswordChange}
           onSubmitEditing={handleOnSubmit}
+          hasError={!!error}
         />
         {!!error && (
           <AppView
