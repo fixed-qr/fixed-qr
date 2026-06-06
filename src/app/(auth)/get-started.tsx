@@ -85,6 +85,7 @@ export default function GetStartedScreen() {
       <AppScrollView
         contentContainerStyle={{
           flex: 1,
+          gap: 16,
         }}
       >
         <AppView style={styles.header}>
@@ -112,14 +113,25 @@ export default function GetStartedScreen() {
             ]}
           >
             <AppView style={styles.left}>
-              <AppIcon name="person" size={22} color={theme.text.secondary} />
+              <AppIcon
+                name="person"
+                size={22}
+                color={errors.name ? theme.status.danger : theme.text.secondary}
+              />
             </AppView>
             <AppView style={styles.right}>
               <AppText
                 variant="bodySmall"
                 weight="500"
                 color="secondary"
-                style={styles.label}
+                style={[
+                  styles.label,
+                  {
+                    color: errors.name
+                      ? theme.status.danger
+                      : theme.text.secondary,
+                  },
+                ]}
               >
                 Name
               </AppText>
@@ -250,7 +262,7 @@ const styles = StyleSheet.create({
   },
   form: {
     alignItems: "center",
-    gap: 6,
+    gap: 16,
   },
   input: {
     width: "100%",
@@ -283,7 +295,6 @@ const styles = StyleSheet.create({
   error: {
     alignSelf: "flex-start",
     paddingLeft: 4,
-    marginTop: 2,
   },
   privacyPolicy: {
     width: "100%",
@@ -297,7 +308,7 @@ const styles = StyleSheet.create({
   },
   getStartedButton: {
     width: "100%",
-    marginTop: 32,
+    marginTop: 16,
     height: 64,
     flexDirection: "row",
     alignItems: "center",

@@ -3,7 +3,7 @@ import { useTheme } from "@/hooks/use-theme";
 import { useState } from "react";
 import { Pressable, StyleSheet, TextInput } from "react-native";
 
-interface SecureInputProps {
+interface PasswordInputProps {
   value: string;
   onChangeText: (value: string) => void;
   onSubmitEditing?: () => void;
@@ -15,7 +15,7 @@ export function PasswordInput({
   onChangeText,
   onSubmitEditing,
   hasError = false,
-}: Readonly<SecureInputProps>) {
+}: Readonly<PasswordInputProps>) {
   const theme = useTheme();
   const [isVisible, setIsVisible] = useState(false);
 
@@ -30,12 +30,19 @@ export function PasswordInput({
       ]}
     >
       <AppView style={styles.left}>
-        <AppIcon name="lock-closed" size={22} color={theme.text.secondary} />
+        <AppIcon
+          name="lock-closed"
+          size={22}
+          color={hasError ? theme.status.danger : theme.text.secondary}
+        />
       </AppView>
       <AppView style={styles.right}>
         <AppText
           variant="bodyMedium"
-          style={[styles.label, { color: theme.text.secondary }]}
+          style={[
+            styles.label,
+            { color: hasError ? theme.status.danger : theme.text.secondary },
+          ]}
         >
           Password
         </AppText>
