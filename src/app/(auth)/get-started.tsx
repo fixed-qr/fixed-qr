@@ -91,21 +91,28 @@ export default function GetStartedScreen() {
           </AppText>
         </AppView>
         <AppView style={styles.form}>
-          {/* Username */}
+          {/* User Name */}
           <AppView
             style={[
               styles.input,
               {
                 backgroundColor: theme.background.secondary,
-                borderColor: theme.border.primary,
+                borderColor: errors.name
+                  ? theme.status.danger
+                  : theme.border.primary,
               },
             ]}
           >
-            <AppView>
-              <AppIcon name="person" size={24} color={theme.text.secondary} />
+            <AppView style={styles.left}>
+              <AppIcon name="person" size={22} color={theme.text.secondary} />
             </AppView>
             <AppView style={styles.right}>
-              <AppText variant="bodySmall" weight="500" color="secondary">
+              <AppText
+                variant="bodySmall"
+                weight="500"
+                color="secondary"
+                style={styles.label}
+              >
                 Name
               </AppText>
               <TextInput
@@ -133,6 +140,7 @@ export default function GetStartedScreen() {
           <PasswordInput
             value={user.password}
             onChangeText={(text) => handleInputChange("password", text)}
+            hasError={!!errors.name}
           />
           {!!errors.password && (
             <AppView style={styles.error}>
@@ -155,7 +163,12 @@ export default function GetStartedScreen() {
                 handleExpand();
               }}
               color={getCheckboxColor()}
-              style={{ borderWidth: 1.5, borderRadius: 4 }}
+              style={{
+                borderWidth: 1.5,
+                borderRadius: 4,
+                width: 18,
+                height: 18,
+              }}
             />
             <Pressable
               onPress={() => {
@@ -234,26 +247,38 @@ const styles = StyleSheet.create({
     width: "100%",
     flexDirection: "row",
     alignItems: "center",
-    gap: 8,
+    gap: 12,
     paddingTop: 8,
-    paddingHorizontal: 12,
+    paddingLeft: 12,
+    paddingRight: 12,
     borderBottomWidth: 1,
     borderRadius: 8,
   },
+  left: {
+    justifyContent: "center",
+    alignItems: "center",
+  },
   right: {
     flex: 1,
+  },
+  label: {
+    marginBottom: 2,
   },
   inputField: {
     backgroundColor: "transparent",
     margin: 0,
     fontSize: 16,
+    height: 40,
+    paddingVertical: 4,
   },
   error: {
-    width: "90%",
+    alignSelf: "flex-start",
+    paddingLeft: 4,
+    marginTop: 2,
   },
   privacyPolicy: {
-    marginTop: 12,
-    paddingInline: 12,
+    width: "100%",
+    marginTop: 8,
     flexDirection: "row",
     alignItems: "center",
     gap: 8,
