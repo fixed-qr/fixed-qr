@@ -54,6 +54,14 @@ export default function GetStartedScreen() {
       ...prev,
       [field]: value,
     }));
+
+    if (errors[field]) {
+      setErrors((prev) => {
+        const updatedErrors = { ...prev };
+        delete updatedErrors[field];
+        return updatedErrors;
+      });
+    }
   };
 
   const handleGetStartedPress = () => {
@@ -140,7 +148,7 @@ export default function GetStartedScreen() {
           <PasswordInput
             value={user.password}
             onChangeText={(text) => handleInputChange("password", text)}
-            hasError={!!errors.name}
+            hasError={!!errors.password}
           />
           {!!errors.password && (
             <AppView style={styles.error}>
