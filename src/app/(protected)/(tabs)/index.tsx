@@ -38,10 +38,10 @@ export default function HomeScreen() {
           style={({ pressed }) => [
             styles.GenQRCode,
             {
+              borderColor: theme.border.primary,
               backgroundColor: pressed
                 ? theme.accent.subtle
                 : theme.accent.soft,
-              borderColor: pressed ? theme.border.focus : theme.border.primary,
             },
           ]}
         >

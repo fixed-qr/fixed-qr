@@ -68,9 +68,7 @@ export default function QrCodeScreen() {
               style={({ pressed }) => [
                 styles.key,
                 {
-                  borderColor: pressed
-                    ? theme.border.focus
-                    : theme.border.primary,
+                  borderColor: theme.border.primary,
                   backgroundColor: pressed
                     ? theme.background.selected
                     : theme.background.tertiary,

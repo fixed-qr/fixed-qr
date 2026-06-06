@@ -1,5 +1,6 @@
 import { AppLogo, AppName, PasswordInput } from "@/components";
 import {
+  AppAnimatedPressable,
   AppIcon,
   AppSafeAreaView,
   AppScrollView,
@@ -179,8 +180,11 @@ export default function GetStartedScreen() {
           </AppView>
 
           {/* Action */}
-          <Pressable
+          <AppAnimatedPressable
             onPress={handleGetStartedPress}
+            containerStyle={{
+              width: "100%",
+            }}
             style={({ pressed }) => [
               styles.getStartedButton,
               {
@@ -191,7 +195,9 @@ export default function GetStartedScreen() {
               },
             ]}
           >
-            <AppText style={{ color: theme.text.inverse }}>Get Started</AppText>
+            <AppText variant="button" style={{ color: theme.text.inverse }}>
+              Get Started
+            </AppText>
             <AppIcon
               name="arrow-up"
               size={18}
@@ -201,7 +207,7 @@ export default function GetStartedScreen() {
                 fontWeight: 600,
               }}
             />
-          </Pressable>
+          </AppAnimatedPressable>
         </AppView>
       </AppScrollView>
       <LegalInformationBottomSheet />
@@ -256,7 +262,7 @@ const styles = StyleSheet.create({
     width: "90%",
   },
   getStartedButton: {
-    width: "90%",
+    width: "100%",
     marginTop: 32,
     height: 64,
     flexDirection: "row",

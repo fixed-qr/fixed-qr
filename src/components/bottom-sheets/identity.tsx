@@ -90,7 +90,7 @@ export function IdentityBottomSheet() {
           style={({ pressed }) => [
             styles.authenticateButton,
             {
-              borderColor: pressed ? theme.border.focus : theme.border.primary,
+              borderColor: theme.border.primary,
               backgroundColor: pressed
                 ? theme.accent.pressed
                 : theme.accent.primary,
