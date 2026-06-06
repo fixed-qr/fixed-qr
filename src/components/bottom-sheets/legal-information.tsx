@@ -30,7 +30,10 @@ export function LegalInformationBottomSheet() {
       <BottomSheetScrollView
         style={{
           backgroundColor: theme.background.secondary,
+        }}
+        contentContainerStyle={{
           paddingHorizontal: 20,
+          paddingBottom: 10,
         }}
       >
         <AppView style={{ alignItems: "center", marginBottom: 16 }}>
