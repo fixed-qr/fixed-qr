@@ -39,16 +39,6 @@ export default function GetStartedScreen() {
     }
   };
 
-  const getCheckboxColor = () => {
-    if (isChecked) {
-      return theme.border.focus;
-    }
-    if (isCheckedError) {
-      return theme.status.danger;
-    }
-    return theme.text.muted;
-  };
-
   const handleInputChange = (field: keyof User, value: string) => {
     setUser((prev) => ({
       ...prev,
@@ -78,6 +68,16 @@ export default function GetStartedScreen() {
       verifyIdentity();
       router.replace("/");
     }
+  };
+
+  const getCheckboxColor = () => {
+    if (isChecked) {
+      return theme.border.focus;
+    }
+    if (isCheckedError) {
+      return theme.status.danger;
+    }
+    return theme.text.muted;
   };
 
   return (
@@ -181,6 +181,7 @@ export default function GetStartedScreen() {
             <Pressable
               onPress={() => {
                 setChecked((prev) => !prev);
+                setCheckedError(false);
                 handleExpand();
               }}
             >
