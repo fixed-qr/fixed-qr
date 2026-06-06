@@ -27,7 +27,7 @@ export default function HomeScreen() {
           color="secondary"
           style={styles.greetingMessageText}
         >
-          Hi, {name}
+          👋 Hi, {name}!
         </AppText>
 
         {/* Generate QR Code Button */}
