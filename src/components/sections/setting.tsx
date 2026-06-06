@@ -5,12 +5,16 @@ import { useIdentityStore } from "@/store/identity-store";
 import { useTransactionStore } from "@/store/transaction-store";
 import { useUserStore } from "@/store/user-store";
 import { useRouter } from "expo-router";
+import { useState } from "react";
 import { Alert, Pressable, StyleSheet } from "react-native";
 
 export function SettingSection() {
   const theme = useTheme();
   const snapToIndex = useBottomSheetStore((state) => state.snapToIndex);
-
+  const [pressed, setPressed] = useState<{
+    deleteAccount: boolean;
+    transactions: boolean;
+  }>({ deleteAccount: false, transactions: false });
   const router = useRouter();
   const resetIdentity = useIdentityStore((state) => state.verifyIdentity);
   const removeUser = useUserStore((state) => state.removeUser);
@@ -44,10 +48,16 @@ export function SettingSection() {
     );
   };
 
+  const onPressColor = (state: boolean) => {
+    return state ? theme.text.tertiary : theme.text.primary;
+  };
+
   return (
     <AppGroup title="Settings">
       <Pressable
         onPress={handelOnPress}
+        onPressIn={() => setPressed({ ...pressed, deleteAccount: true })}
+        onPressOut={() => setPressed({ ...pressed, deleteAccount: false })}
         style={[
           styles.setting,
           {
@@ -56,12 +66,21 @@ export function SettingSection() {
           },
         ]}
       >
-        <AppIcon name="trash" size={18} color={theme.text.primary} />
-        <AppText variant="button">Delete Account</AppText>
+        <AppIcon
+          name="trash"
+          size={18}
+          color={onPressColor(pressed.deleteAccount)}
+        />
+        <AppText
+          variant="button"
+          style={{ color: onPressColor(pressed.deleteAccount) }}
+        >
+          Delete Account
+        </AppText>
         <AppIcon
           name={"arrow-forward"}
           size={18}
-          color={theme.text.primary}
+          color={onPressColor(pressed.deleteAccount)}
           style={{ marginLeft: "auto" }}
         />
       </Pressable>
@@ -69,6 +88,8 @@ export function SettingSection() {
         onPress={() => {
           snapToIndex("TRANSACTION", 0);
         }}
+        onPressIn={() => setPressed({ ...pressed, transactions: true })}
+        onPressOut={() => setPressed({ ...pressed, transactions: false })}
         style={[
           styles.setting,
           {
@@ -77,12 +98,21 @@ export function SettingSection() {
           },
         ]}
       >
-        <AppIcon name="snow" size={18} color={theme.text.primary} />
-        <AppText variant="button">Transactions</AppText>
+        <AppIcon
+          name="snow"
+          size={18}
+          color={onPressColor(pressed.transactions)}
+        />
+        <AppText
+          variant="button"
+          style={{ color: onPressColor(pressed.transactions) }}
+        >
+          Transactions
+        </AppText>
         <AppIcon
           name={"arrow-forward"}
           size={18}
-          color={theme.text.primary}
+          color={onPressColor(pressed.transactions)}
           style={{ marginLeft: "auto" }}
         />
       </Pressable>
@@ -98,6 +128,3 @@ const styles = StyleSheet.create({
     gap: 8,
   },
 });
-function useTransActionStore(arg0: (state: any) => any) {
-  throw new Error("Function not implemented.");
-}
