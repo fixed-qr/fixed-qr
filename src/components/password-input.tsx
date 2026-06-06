@@ -17,6 +17,7 @@ export function PasswordInput({
   hasError = false,
 }: Readonly<PasswordInputProps>) {
   const theme = useTheme();
+  const [isFocused, setIsFocused] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
 
   return (
@@ -24,7 +25,9 @@ export function PasswordInput({
       style={[
         styles.input,
         {
-          backgroundColor: theme.background.secondary,
+          backgroundColor: isFocused
+            ? theme.background.selected
+            : theme.background.tertiary,
           borderColor: hasError ? theme.status.danger : theme.border.primary,
         },
       ]}
@@ -61,6 +64,8 @@ export function PasswordInput({
               onChangeText(text);
             }}
             onSubmitEditing={onSubmitEditing}
+            onFocus={() => setIsFocused(true)}
+            onBlur={() => setIsFocused(false)}
           />
           <Pressable
             onPress={() => setIsVisible((prev) => !prev)}

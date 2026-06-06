@@ -22,6 +22,7 @@ import { Pressable, StyleSheet, TextInput } from "react-native";
 export default function GetStartedScreen() {
   const theme = useTheme();
   const router = useRouter();
+  const [isFocused, setIsFocused] = useState(false);
   const verifyIdentity = useIdentityStore((state) => state.verifyIdentity);
   const createUser = useUserStore((state) => state.createUser);
   const [user, setUser] = useState<User>({
@@ -105,7 +106,9 @@ export default function GetStartedScreen() {
             style={[
               styles.input,
               {
-                backgroundColor: theme.background.secondary,
+                backgroundColor: isFocused
+                  ? theme.background.selected
+                  : theme.background.tertiary,
                 borderColor: errors.name
                   ? theme.status.danger
                   : theme.border.primary,
@@ -142,6 +145,8 @@ export default function GetStartedScreen() {
                 style={[styles.inputField, { color: theme.text.primary }]}
                 value={user.name}
                 onChangeText={(text) => handleInputChange("name", text)}
+                onFocus={() => setIsFocused(true)}
+                onBlur={() => setIsFocused(false)}
               />
             </AppView>
           </AppView>
