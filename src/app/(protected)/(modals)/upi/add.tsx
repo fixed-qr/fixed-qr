@@ -34,6 +34,7 @@ export default function AddUPIScreen() {
 
   const handleUPIIdChange = (value: string) => {
     setUpiId(value);
+    setError(null);
   };
 
   const handleSubmit = () => {
@@ -50,50 +51,74 @@ export default function AddUPIScreen() {
   };
 
   return (
-    <AppScrollView>
-      {/* UPI Input */}
+    <AppScrollView contentContainerStyle={styles.scrollContent}>
       <AppView>
         <AppView style={{ alignItems: "center", marginBottom: 16 }}>
           <AppText variant="headingSmall" weight="600">
             Add New UPI ID
           </AppText>
         </AppView>
-        <TextInput
-          value={upiId}
-          onChangeText={handleUPIIdChange}
-          onFocus={() => {
-            setIsFocused(true);
-          }}
-          onBlur={() => {
-            setIsFocused(false);
-          }}
-          placeholder="Enter UPI ID"
-          placeholderTextColor={theme.text.tertiary}
+
+        {/* Unified Input Structure to match Name/Password designs */}
+        <AppView
           style={[
-            styles.upiIdInput,
+            styles.input,
             {
-              color: theme.text.primary,
-              borderColor: error ? theme.status.danger : theme.border.secondary,
               backgroundColor:
                 isFocused || upiId
                   ? theme.background.selected
                   : theme.background.tertiary,
+              borderColor: error ? theme.status.danger : theme.border.primary,
             },
           ]}
-        />
+        >
+          <AppView style={styles.left}>
+            <AppIcon
+              name="card"
+              size={22}
+              color={error ? theme.status.danger : theme.text.secondary}
+            />
+          </AppView>
+          <AppView style={styles.right}>
+            <AppText
+              variant="bodySmall"
+              weight="500"
+              color="secondary"
+              style={[styles.label, error && { color: theme.status.danger }]}
+            >
+              UPI ID
+            </AppText>
+            <TextInput
+              autoCorrect={false}
+              autoCapitalize="none"
+              placeholder="Enter your UPI ID here"
+              placeholderTextColor={theme.text.secondary}
+              style={[styles.inputField, { color: theme.text.primary }]}
+              value={upiId}
+              onChangeText={handleUPIIdChange}
+              onFocus={() => setIsFocused(true)}
+              onBlur={() => setIsFocused(false)}
+            />
+          </AppView>
+        </AppView>
       </AppView>
+
       {/* UPI Input Validation Error */}
       {!!error && (
-        <AppView>
+        <AppView style={styles.errorContainer}>
           <AppText variant="bodySmall" style={{ color: theme.status.danger }}>
             {error}
           </AppText>
         </AppView>
       )}
+
       {/* Select UPI Provider */}
-      <AppView style={{ marginTop: 16 }}>
-        <AppText variant="bodyLarge">Select to Continue</AppText>
+      <AppView style={{ marginTop: 24, marginBottom: 12 }}>
+        <AppText variant="bodyLarge" weight="600">
+          Select App to Continue
+        </AppText>
       </AppView>
+
       <AppView style={styles.selectListContainer}>
         <AppSelectList
           data={supportedUpiApps}
@@ -107,23 +132,21 @@ export default function AddUPIScreen() {
                 styles.provider,
                 {
                   width: width,
+                  borderColor: theme.border.primary,
                   backgroundColor: isSelected
                     ? theme.background.selected
                     : theme.background.tertiary,
-                  borderColor: isSelected
-                    ? theme.border.focus
-                    : theme.border.primary,
                 },
               ]}
             >
               <AppImage source={upiAppLogo[item]} style={styles.logoImage} />
-              <AppText variant="bodyMedium" style={styles.label}>
+              <AppText variant="bodyMedium" style={styles.providerLabel}>
                 {item}
               </AppText>
               {isSelected && (
                 <AppIcon
                   name="checkmark-done"
-                  size={20}
+                  size={16}
                   style={[styles.checkmarkDone, { color: theme.status.info }]}
                 />
               )}
@@ -132,40 +155,66 @@ export default function AddUPIScreen() {
         />
       </AppView>
 
-      {/* Handle Form Sublimation */}
+      {/* Handle Form Save Action */}
       <AppAnimatedPressable
         style={({ pressed }) => [
           styles.saveButton,
           {
-            borderColor: pressed ? theme.border.focus : theme.border.primary,
+            borderColor: theme.border.primary,
             backgroundColor: pressed
-              ? theme.background.selected
-              : theme.background.tertiary,
+              ? theme.accent.pressed
+              : theme.accent.primary,
           },
         ]}
         onPress={handleSubmit}
       >
-        <AppIcon name="save" size={18} color={theme.text.primary} />
-        <AppText variant="button">Save</AppText>
+        <AppIcon name="save" size={18} color={theme.text.inverse} />
+        <AppText variant="button" style={{ color: theme.text.inverse }}>
+          Save
+        </AppText>
       </AppAnimatedPressable>
     </AppScrollView>
   );
 }
 
 const styles = StyleSheet.create({
-  title: {
-    fontSize: 22,
-    textAlign: "center",
-    marginVertical: 16,
+  scrollContent: {
+    paddingBottom: 40,
   },
-  upiIdInput: {
+  input: {
+    width: "100%",
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 12,
+    paddingTop: 8,
+    paddingLeft: 12,
+    paddingRight: 12,
+    borderBottomWidth: 1,
+    borderRadius: 8,
+  },
+  left: {
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  right: {
+    flex: 1,
+  },
+  label: {
+    marginBottom: 2,
+  },
+  inputField: {
+    backgroundColor: "transparent",
+    margin: 0,
     fontSize: 16,
-    paddingHorizontal: 16,
-    borderWidth: 1,
-    borderRadius: 48,
+    height: 40,
+    paddingVertical: 4,
+  },
+  errorContainer: {
+    alignSelf: "flex-start",
+    paddingLeft: 4,
+    marginTop: 4,
   },
   selectListContainer: {
-    flexGrow: 1,
     flexDirection: "row",
     alignItems: "center",
     flexWrap: "wrap",
@@ -177,9 +226,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
     flexDirection: "row",
     gap: 8,
-    marginTop: "auto",
-    padding: 12,
-    borderWidth: 1,
+    marginTop: 16,
+    height: 54,
     borderRadius: 48,
   },
   provider: {
@@ -194,15 +242,15 @@ const styles = StyleSheet.create({
   logoImage: {
     width: 38,
     height: 38,
+    marginBottom: 6,
   },
-  label: {
+  providerLabel: {
     textAlign: "center",
+    fontSize: 13,
   },
   checkmarkDone: {
     position: "absolute",
-    top: 2,
-    right: 2,
-    padding: 4,
-    borderRadius: 99,
+    top: 6,
+    right: 6,
   },
 });
