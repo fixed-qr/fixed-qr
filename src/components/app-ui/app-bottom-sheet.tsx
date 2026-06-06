@@ -5,6 +5,7 @@ import BottomSheet, {
   BottomSheetBackdropProps,
 } from "@gorhom/bottom-sheet";
 import React, { ReactNode, forwardRef, useCallback, useMemo } from "react";
+import { StyleProp, StyleSheet, ViewStyle } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 interface AppBottomSheetProps {
@@ -14,6 +15,7 @@ interface AppBottomSheetProps {
   enableDynamicSizing?: boolean;
   enablePanDownToClose?: boolean;
   backdropPressBehavior?: "none" | "close" | "collapse";
+  containerStyle?: StyleProp<ViewStyle>;
 }
 
 export const AppBottomSheet = forwardRef<BottomSheet, AppBottomSheetProps>(
@@ -25,6 +27,7 @@ export const AppBottomSheet = forwardRef<BottomSheet, AppBottomSheetProps>(
       enableDynamicSizing,
       enablePanDownToClose,
       backdropPressBehavior,
+      containerStyle,
     },
     ref,
   ) => {
@@ -66,6 +69,7 @@ export const AppBottomSheet = forwardRef<BottomSheet, AppBottomSheetProps>(
           borderTopLeftRadius: borderRadius,
           borderTopRightRadius: borderRadius,
         }}
+        containerStyle={[StyleSheet.absoluteFill, containerStyle]}
       >
         {children}
       </BottomSheet>
