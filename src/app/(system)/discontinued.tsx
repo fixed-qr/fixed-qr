@@ -1,4 +1,5 @@
 import {
+  AppAnimatedPressable,
   AppIcon,
   AppImage,
   AppSafeAreaView,
@@ -6,7 +7,7 @@ import {
   AppView,
 } from "@/components/app-ui";
 import { useTheme } from "@/hooks/use-theme";
-import { Pressable, StyleSheet } from "react-native";
+import { StyleSheet } from "react-native";
 
 export default function DiscontinuedScreen() {
   const theme = useTheme();
@@ -15,12 +16,11 @@ export default function DiscontinuedScreen() {
     <AppSafeAreaView style={styles.container}>
       <AppView style={styles.maintenance}>
         <AppImage
-          source={require("@/assets/images/icons/others/discontinued.png")}
+          source={require("@/assets/images/icons/system/discontinued.png")}
           style={styles.maintenanceImage}
-          tintColor={theme.status.danger}
         />
         <AppText variant="bodyLarge" weight="500">
-          App Discontinued
+          Discontinued
         </AppText>
         <AppText
           variant="bodySmall"
@@ -32,15 +32,19 @@ export default function DiscontinuedScreen() {
           website.
         </AppText>
       </AppView>
-      <Pressable
+      <AppAnimatedPressable
         onPress={() => {}}
+        containerStyle={{
+          width: "100%",
+          height: 48,
+        }}
         style={({ pressed }) => [
-          styles.downloadButton,
+          styles.button,
           {
+            borderColor: theme.border.primary,
             backgroundColor: pressed
               ? theme.background.cardMuted
               : theme.background.card,
-            borderColor: pressed ? theme.border.focus : theme.border.primary,
           },
         ]}
       >
@@ -51,7 +55,7 @@ export default function DiscontinuedScreen() {
           size={16}
           style={{ transform: "rotate(45deg)" }}
         />
-      </Pressable>
+      </AppAnimatedPressable>
     </AppSafeAreaView>
   );
 }
@@ -75,9 +79,9 @@ const styles = StyleSheet.create({
   maintenanceMessage: {
     marginTop: 4,
     textAlign: "center",
+    marginBottom: 32,
   },
-  downloadButton: {
-    marginTop: 32,
+  button: {
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",

@@ -38,9 +38,8 @@ export default function UpdateScreen() {
       <AppScrollView>
         <AppView style={styles.update}>
           <AppImage
-            source={require("@/assets/images/icons/others/update.png")}
+            source={require("@/assets/images/icons/system/update.png")}
             style={styles.updateImage}
-            tintColor={theme.status.info}
           />
           <AppText
             variant="bodyLarge"
