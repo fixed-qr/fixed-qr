@@ -86,9 +86,9 @@ export default function RootLayout() {
               },
             }}
           >
-            <Stack.Screen name="(auth)" />
+            <Stack.Screen name="(auth)" options={{ animation: "fade" }} />
+            <Stack.Screen name="(system)" options={{ animation: "fade" }} />
             <Stack.Screen name="(protected)" />
-            <Stack.Screen name="(system)" />
           </Stack>
         </ThemeProvider>
       </GestureHandlerRootView>
