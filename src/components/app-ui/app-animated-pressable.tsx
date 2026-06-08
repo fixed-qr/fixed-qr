@@ -1,5 +1,10 @@
-import React from "react";
-import { Pressable, PressableProps, StyleProp, ViewStyle } from "react-native";
+import {
+  Pressable,
+  PressableProps,
+  StyleProp,
+  StyleSheet,
+  ViewStyle,
+} from "react-native";
 import Animated, {
   useAnimatedStyle,
   useSharedValue,
@@ -47,7 +52,10 @@ export function AppAnimatedPressable({
     <Animated.View style={[containerStyle, animatedStyle]}>
       <Pressable
         {...props}
-        style={style}
+        style={(state) => [
+          styles.base,
+          typeof style === "function" ? style(state) : style,
+        ]}
         onPressIn={handlePressIn}
         onPressOut={handlePressOut}
       >
@@ -56,3 +64,12 @@ export function AppAnimatedPressable({
     </Animated.View>
   );
 }
+
+const styles = StyleSheet.create({
+  base: {
+    flex: 1,
+    flexDirection: "row",
+    width: "100%",
+    height: "100%",
+  },
+});
