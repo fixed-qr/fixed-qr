@@ -86,12 +86,9 @@ export default function RootLayout() {
               },
             }}
           >
-            <Stack.Screen
-              name="(auth)/get-started"
-              options={{ animation: "fade" }}
-            />
+            <Stack.Screen name="(auth)" />
             <Stack.Screen name="(protected)" />
-            <Stack.Screen name="app" />
+            <Stack.Screen name="(system)" />
           </Stack>
         </ThemeProvider>
       </GestureHandlerRootView>
@@ -106,15 +103,15 @@ function getRedirectPath(
   const { status, release } = config;
 
   if (status === "online" && currentVersion < release.versionCode) {
-    return "/app/update";
+    return "/(system)/update";
   }
 
   if (status === "maintenance") {
-    return "/app/maintenance";
+    return "/(system)/maintenance";
   }
 
   if (status !== "online") {
-    return "/app/discontinued";
+    return "/(system)/discontinued";
   }
 
   return null;

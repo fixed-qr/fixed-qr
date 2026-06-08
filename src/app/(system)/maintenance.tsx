@@ -1,35 +1,35 @@
 import {
-  AppIcon,
-  AppImage,
-  AppSafeAreaView,
-  AppText,
-  AppView,
+    AppIcon,
+    AppImage,
+    AppSafeAreaView,
+    AppText,
+    AppView,
 } from "@/components/app-ui";
 import { useTheme } from "@/hooks/use-theme";
 import { Pressable, StyleSheet } from "react-native";
 
-export default function Discontinued() {
+export default function MaintenanceScreen() {
   const theme = useTheme();
 
   return (
     <AppSafeAreaView style={styles.container}>
       <AppView style={styles.maintenance}>
         <AppImage
-          source={require("@/assets/images/icons/others/discontinued.png")}
+          source={require("@/assets/images/icons/others/maintenance.png")}
           style={styles.maintenanceImage}
-          tintColor={theme.status.danger}
+          tintColor={theme.status.info}
         />
         <AppText variant="bodyLarge" weight="500">
-          App Discontinued
+          Under Maintenance
         </AppText>
         <AppText
           variant="bodySmall"
           color="tertiary"
           style={styles.maintenanceMessage}
         >
-          This app has been discontinued and is no longer available for download
-          and use. for more information, please contact support or visit our
-          website.
+          The app is currently under maintenance. We are working hard to get
+          everything back up and running as soon as possible. Thank you for your
+          patience and understanding.
         </AppText>
       </AppView>
       <Pressable
@@ -44,13 +44,8 @@ export default function Discontinued() {
           },
         ]}
       >
-        <AppText variant="button">Visit Our Website</AppText>
-        <AppIcon
-          name="arrow-up"
-          color={theme.text.primary}
-          size={16}
-          style={{ transform: "rotate(45deg)" }}
-        />
+        <AppIcon name="refresh" color={theme.text.primary} size={16} />
+        <AppText variant="button">Refresh</AppText>
       </Pressable>
     </AppSafeAreaView>
   );

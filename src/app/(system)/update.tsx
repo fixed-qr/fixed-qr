@@ -1,17 +1,17 @@
 import {
-  AppIcon,
-  AppImage,
-  AppSafeAreaView,
-  AppScrollView,
-  AppText,
-  AppView,
+    AppIcon,
+    AppImage,
+    AppSafeAreaView,
+    AppScrollView,
+    AppText,
+    AppView,
 } from "@/components/app-ui";
 import { useTheme } from "@/hooks/use-theme";
 import { useAppConfigStore } from "@/store/app-config-store";
 import { openURL } from "expo-linking";
 import { ActivityIndicator, Pressable, StyleSheet } from "react-native";
 
-export default function Update() {
+export default function UpdateScreen() {
   const theme = useTheme();
   const { appConfig, isLoading } = useAppConfigStore();
 
