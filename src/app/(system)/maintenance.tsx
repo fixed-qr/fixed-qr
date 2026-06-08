@@ -1,9 +1,9 @@
 import {
-    AppIcon,
-    AppImage,
-    AppSafeAreaView,
-    AppText,
-    AppView,
+  AppIcon,
+  AppImage,
+  AppSafeAreaView,
+  AppText,
+  AppView,
 } from "@/components/app-ui";
 import { useTheme } from "@/hooks/use-theme";
 import { Pressable, StyleSheet } from "react-native";
@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
   },
   maintenance: {
     alignItems: "center",
-    marginTop: 64,
+    marginTop: 20,
   },
   maintenanceImage: {
     width: 100,
