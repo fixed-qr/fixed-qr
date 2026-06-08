@@ -1,15 +1,25 @@
 import {
-    AppIcon,
-    AppImage,
-    AppSafeAreaView,
-    AppScrollView,
-    AppText,
-    AppView,
+  AppAnimatedPressable,
+  AppIcon,
+  AppImage,
+  AppSafeAreaView,
+  AppScrollView,
+  AppText,
+  AppView,
 } from "@/components/app-ui";
 import { useTheme } from "@/hooks/use-theme";
 import { useAppConfigStore } from "@/store/app-config-store";
 import { openURL } from "expo-linking";
-import { ActivityIndicator, Pressable, StyleSheet } from "react-native";
+import { ActivityIndicator, StyleSheet } from "react-native";
+
+const updateGuide: string[] = [
+  "Tap the `Download APK` or `Website` button.",
+  "Download the latest version of the APK.",
+  "Open the downloaded APK file.",
+  "If prompted, allow installation from unknown sources.",
+  "Tap `Update` and wait for the process to complete.",
+  "Open the app and continue using the latest version.",
+];
 
 export default function UpdateScreen() {
   const theme = useTheme();
@@ -100,38 +110,66 @@ export default function UpdateScreen() {
             </AppView>
           </AppView>
         </AppView>
-        <Pressable
-          onPress={() => {
-            openURL(appConfig.release.downloadUrl);
-          }}
-          style={({ pressed }) => [
-            styles.downloadButton,
-            {
-              backgroundColor: pressed
-                ? theme.background.cardMuted
-                : theme.background.card,
-              borderColor: pressed ? theme.border.focus : theme.border.primary,
-            },
-          ]}
-        >
-          <AppText variant="button">Update</AppText>
-        </Pressable>
-        <Pressable
-          onPress={() => {
-            openURL(appConfig.release.websiteUrl);
-          }}
-          style={({ pressed }) => [
-            styles.downloadButton,
-            {
-              backgroundColor: pressed
-                ? theme.background.cardMuted
-                : theme.background.card,
-              borderColor: pressed ? theme.border.focus : theme.border.primary,
-            },
-          ]}
-        >
-          <AppText variant="button">Open Website</AppText>
-        </Pressable>
+
+        {/* Action buttons */}
+        <AppView>
+          <AppAnimatedPressable
+            onPress={() => {
+              openURL(appConfig.release.downloadUrl);
+            }}
+            style={({ pressed }) => [
+              styles.button,
+              {
+                borderColor: theme.border.primary,
+                backgroundColor: pressed
+                  ? theme.background.cardMuted
+                  : theme.background.card,
+              },
+            ]}
+          >
+            <AppText variant="button">Download APK</AppText>
+          </AppAnimatedPressable>
+          <AppAnimatedPressable
+            onPress={() => {
+              openURL(appConfig.release.websiteUrl);
+            }}
+            style={({ pressed }) => [
+              styles.button,
+              {
+                borderColor: theme.border.primary,
+                backgroundColor: pressed
+                  ? theme.background.cardMuted
+                  : theme.background.card,
+              },
+            ]}
+          >
+            <AppText variant="button">Website</AppText>
+          </AppAnimatedPressable>
+        </AppView>
+
+        {/* How to update guide */}
+        <AppView>
+          <AppText
+            variant="bodyMedium"
+            weight="500"
+            color="tertiary"
+            style={styles.releaseTitle}
+          >
+            How to update
+          </AppText>
+          <AppView style={styles.guideRowContainer}>
+            {updateGuide.map((guide: string, index: number) => (
+              <AppView style={styles.guideRow} key={guide + index}>
+                <AppText variant="bodySmall" color="secondary">
+                  {index + 1}.
+                </AppText>
+                <AppText variant="bodySmall" color="secondary">
+                  {guide}
+                </AppText>
+              </AppView>
+            ))}
+          </AppView>
+        </AppView>
       </AppScrollView>
     </AppSafeAreaView>
   );
@@ -144,7 +182,7 @@ const styles = StyleSheet.create({
   },
   update: {
     alignItems: "center",
-    marginTop: 48,
+    marginTop: 20,
   },
   updateImage: {
     width: 100,
@@ -199,15 +237,25 @@ const styles = StyleSheet.create({
     width: 4.5,
     borderRadius: 4.5,
   },
-  downloadButton: {
-    marginTop: 8,
+  button: {
+    height: 48,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
     gap: 8,
+    marginTop: 8,
     paddingVertical: 8,
     paddingHorizontal: 16,
     borderRadius: 99,
     borderWidth: 1,
+  },
+  guideRowContainer: {
+    paddingLeft: 8,
+    gap: 8,
+  },
+  guideRow: {
+    flexDirection: "row",
+    alignItems: "flex-start",
+    gap: 4,
   },
 });
