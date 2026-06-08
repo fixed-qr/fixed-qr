@@ -44,7 +44,7 @@ export default function DiscontinuedScreen() {
           },
         ]}
       >
-        <AppText variant="button">Visit Our Website</AppText>
+        <AppText variant="button">Website</AppText>
         <AppIcon
           name="arrow-up"
           color={theme.text.primary}
@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
   },
   maintenance: {
     alignItems: "center",
-    marginTop: 64,
+    marginTop: 20,
   },
   maintenanceImage: {
     width: 100,
