@@ -14,15 +14,15 @@ import { useBottomSheetStore } from "@/store/bottom-sheet-store";
 import { useIdentityStore } from "@/store/identity-store";
 import { useUserStore } from "@/store/user-store";
 import { Ionicons } from "@expo/vector-icons";
+
 export function IdentityBottomSheet() {
   const theme = useTheme();
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const ref = useBottomSheetStore((state) =>
-    state.register("LEGAL_INFORMATION"),
-  );
-  const storedPassword = useUserStore((state) => state.user?.password);
   const verifyIdentity = useIdentityStore((state) => state.verifyIdentity);
+  const isSessionValid = useIdentityStore((state) => state.isSessionValid);
+  const ref = useBottomSheetStore((state) => state.register("IDENTITY"));
+  const storedPassword = useUserStore((state) => state.user?.password);
 
   const handlePasswordChange = (value: string) => {
     setError("");
@@ -48,6 +48,10 @@ export function IdentityBottomSheet() {
     ref.current?.close();
     Keyboard.dismiss();
   };
+
+  if (isSessionValid()) {
+    return null;
+  }
 
   return (
     <AppBottomSheet
