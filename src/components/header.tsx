@@ -1,4 +1,4 @@
-import { AppAnimatedPressable, AppView } from "@/components/app-ui";
+import { AppPressable, AppView } from "@/components/app-ui";
 import { useTheme } from "@/hooks/use-theme";
 import { useBottomSheetStore } from "@/store/bottom-sheet-store";
 import { Ionicons } from "@expo/vector-icons";
@@ -17,14 +17,14 @@ export function Header() {
         <AppName />
       </AppView>
       <AppView style={styles.rightContainer}>
-        <AppAnimatedPressable
+        <AppPressable
           style={styles.button}
           onPress={() => {
             expand("SAVED_UPI_APP_QR_CODE");
           }}
         >
           <Ionicons name="qr-code" size={26} color={theme.text.primary} />
-        </AppAnimatedPressable>
+        </AppPressable>
       </AppView>
     </AppView>
   );

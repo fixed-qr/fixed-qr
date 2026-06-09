@@ -1,7 +1,7 @@
 import {
-  AppAnimatedPressable,
   AppIcon,
   AppImage,
+  AppPressable,
   AppScrollView,
   AppSelectList,
   AppText,
@@ -112,7 +112,7 @@ export default function AddUPIScreen() {
         </AppView>
       )}
 
-      {/* Select UPI Provider */}
+      {/* Select UPI upiApp */}
       <AppView style={{ marginTop: 24, marginBottom: 12 }}>
         <AppText variant="bodyLarge" weight="600">
           Select App to Continue
@@ -126,12 +126,11 @@ export default function AddUPIScreen() {
           onSelect={setSelectedAppName}
           keyExtractor={(item) => item}
           renderItem={({ item, isSelected, onPress }) => (
-            <AppAnimatedPressable
+            <AppPressable
               onPress={onPress}
               style={[
-                styles.provider,
+                styles.upiAppCard,
                 {
-                  width: width,
                   borderColor: theme.border.primary,
                   backgroundColor: isSelected
                     ? theme.background.selected
@@ -140,7 +139,7 @@ export default function AddUPIScreen() {
               ]}
             >
               <AppImage source={upiAppLogo[item]} style={styles.logoImage} />
-              <AppText variant="bodyMedium" style={styles.providerLabel}>
+              <AppText variant="bodyMedium" style={styles.upiAppLabel}>
                 {item}
               </AppText>
               {isSelected && (
@@ -150,13 +149,13 @@ export default function AddUPIScreen() {
                   style={[styles.checkmarkDone, { color: theme.status.info }]}
                 />
               )}
-            </AppAnimatedPressable>
+            </AppPressable>
           )}
         />
       </AppView>
 
       {/* Handle Form Save Action */}
-      <AppAnimatedPressable
+      <AppPressable
         style={({ pressed }) => [
           styles.saveButton,
           {
@@ -172,7 +171,7 @@ export default function AddUPIScreen() {
         <AppText variant="button" style={{ color: theme.text.inverse }}>
           Save
         </AppText>
-      </AppAnimatedPressable>
+      </AppPressable>
     </AppScrollView>
   );
 }
@@ -230,8 +229,10 @@ const styles = StyleSheet.create({
     height: 54,
     borderRadius: 48,
   },
-  provider: {
+  upiAppCard: {
+    width: width,
     borderRadius: 20,
+    flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
     borderWidth: 1,
@@ -244,7 +245,7 @@ const styles = StyleSheet.create({
     height: 38,
     marginBottom: 6,
   },
-  providerLabel: {
+  upiAppLabel: {
     textAlign: "center",
     fontSize: 13,
   },

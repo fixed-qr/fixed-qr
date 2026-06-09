@@ -1,7 +1,7 @@
 import { Header } from "@/components";
 import {
-  AppAnimatedPressable,
   AppIcon,
+  AppPressable,
   AppSafeAreaView,
   AppScrollView,
   AppText,
@@ -31,7 +31,7 @@ export default function HomeScreen() {
         </AppText>
 
         {/* Generate QR Code Button */}
-        <AppAnimatedPressable
+        <AppPressable
           onPress={() => {
             router.push("/(protected)/(modals)/qr-code");
           }}
@@ -53,7 +53,7 @@ export default function HomeScreen() {
           <AppText variant="button" style={styles.GenQRCodeText}>
             New QR Code
           </AppText>
-        </AppAnimatedPressable>
+        </AppPressable>
 
         <QuickActionSection />
       </AppScrollView>
@@ -69,7 +69,6 @@ const styles = StyleSheet.create({
   },
   GenQRCode: {
     width: "100%",
-    height: 68,
     padding: 16,
     flexDirection: "row",
     alignItems: "center",

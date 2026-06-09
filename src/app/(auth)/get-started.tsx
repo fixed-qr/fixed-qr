@@ -1,7 +1,7 @@
 import { AppLogo, AppName, PasswordInput } from "@/components";
 import {
-  AppAnimatedPressable,
   AppIcon,
+  AppPressable,
   AppSafeAreaView,
   AppScrollView,
   AppText,
@@ -219,11 +219,8 @@ export default function GetStartedScreen() {
           </AppView>
 
           {/* Action */}
-          <AppAnimatedPressable
+          <AppPressable
             onPress={handleGetStartedPress}
-            containerStyle={{
-              width: "100%",
-            }}
             style={({ pressed }) => [
               styles.getStartedButton,
               {
@@ -246,7 +243,7 @@ export default function GetStartedScreen() {
                 fontWeight: 600,
               }}
             />
-          </AppAnimatedPressable>
+          </AppPressable>
         </AppView>
       </AppScrollView>
       <LegalInformationBottomSheet />

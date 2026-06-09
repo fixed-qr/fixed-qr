@@ -1,9 +1,9 @@
 import { PasswordInput } from "@/components";
 import {
-  AppAnimatedPressable,
-  AppBottomSheet,
-  AppText,
-  AppView,
+    AppBottomSheet,
+    AppPressable,
+    AppText,
+    AppView,
 } from "@/components/app-ui";
 import { useTheme } from "@/hooks/use-theme";
 import { BottomSheetView } from "@gorhom/bottom-sheet";
@@ -90,7 +90,7 @@ export function IdentityBottomSheet() {
             </AppText>
           </AppView>
         )}
-        <AppAnimatedPressable
+        <AppPressable
           onPress={handleOnSubmit}
           style={({ pressed }) => [
             styles.authenticateButton,
@@ -113,7 +113,7 @@ export function IdentityBottomSheet() {
               transform: [{ rotate: "45deg" }],
             }}
           />
-        </AppAnimatedPressable>
+        </AppPressable>
       </BottomSheetView>
     </AppBottomSheet>
   );

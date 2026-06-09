@@ -1,6 +1,6 @@
 import { Amount } from "@/components";
 import {
-  AppAnimatedPressable,
+  AppPressable,
   AppScrollView,
   AppText,
   AppView,
@@ -14,7 +14,7 @@ import { mapRowState } from "@/utils/map-row-state";
 import { Image } from "expo-image";
 import { Link, useRouter } from "expo-router";
 import { useState } from "react";
-import { Pressable, StyleSheet } from "react-native";
+import { StyleSheet } from "react-native";
 
 const numericKeys = [
   "1",
@@ -63,7 +63,7 @@ export default function QrCodeScreen() {
           }
 
           return (
-            <AppAnimatedPressable
+            <AppPressable
               key={key}
               style={({ pressed }) => [
                 styles.key,
@@ -81,7 +81,7 @@ export default function QrCodeScreen() {
               >
                 {key}
               </AppText>
-            </AppAnimatedPressable>
+            </AppPressable>
           );
         })}
       </AppView>
@@ -120,7 +120,7 @@ export default function QrCodeScreen() {
           {mapRowState(
             Object.values(savedUpiApps),
             ({ item, columnIndex, isIncompleteRow }) => (
-              <Pressable
+              <AppPressable
                 key={item.upiId}
                 onPress={() => {
                   if (!Number(value)) return;
@@ -137,9 +137,7 @@ export default function QrCodeScreen() {
                 style={({ pressed }) => [
                   styles.providerLink,
                   {
-                    borderColor: pressed
-                      ? theme.border.focus
-                      : theme.border.primary,
+                    borderColor: theme.border.primary,
                     backgroundColor: pressed
                       ? theme.background.selected
                       : theme.background.tertiary,
@@ -164,7 +162,7 @@ export default function QrCodeScreen() {
                     {item.appName}
                   </AppText>
                 </AppView>
-              </Pressable>
+              </AppPressable>
             ),
             3,
           )}

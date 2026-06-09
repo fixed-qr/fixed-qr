@@ -1,10 +1,9 @@
 import {
-  AppAnimatedPressable,
-  AppIcon,
   AppImage,
+  AppPressable,
   AppSafeAreaView,
   AppText,
-  AppView,
+  AppView
 } from "@/components/app-ui";
 import { useTheme } from "@/hooks/use-theme";
 import { StyleSheet } from "react-native";
@@ -21,7 +20,7 @@ export default function MaintenanceScreen() {
           tintColor={theme.status.info}
         />
         <AppText variant="bodyLarge" weight="500">
-          Under Maintenance
+          Maintenance
         </AppText>
         <AppText
           variant="bodySmall"
@@ -35,12 +34,8 @@ export default function MaintenanceScreen() {
       </AppView>
 
       {/* Refresh button. */}
-      <AppAnimatedPressable
+      <AppPressable
         onPress={() => {}}
-        containerStyle={{
-          width: "100%",
-          height: 48,
-        }}
         style={({ pressed }) => [
           styles.button,
           {
@@ -51,14 +46,8 @@ export default function MaintenanceScreen() {
           },
         ]}
       >
-        <AppText variant="button">Refresh</AppText>
-        <AppIcon
-          name="arrow-up"
-          color={theme.text.primary}
-          size={16}
-          style={{ transform: "rotate(45deg)" }}
-        />
-      </AppAnimatedPressable>
+        <AppText variant="button">Check</AppText>
+      </AppPressable>
     </AppSafeAreaView>
   );
 }
@@ -85,6 +74,8 @@ const styles = StyleSheet.create({
     marginBottom: 32,
   },
   button: {
+    width: "100%",
+    height: 48,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",

@@ -1,7 +1,7 @@
 import {
-  AppAnimatedPressable,
   AppIcon,
   AppImage,
+  AppPressable,
   AppSafeAreaView,
   AppScrollView,
   AppText,
@@ -112,7 +112,7 @@ export default function UpdateScreen() {
 
         {/* Action buttons */}
         <AppView>
-          <AppAnimatedPressable
+          <AppPressable
             onPress={() => {
               openURL(appConfig.release.downloadUrl);
             }}
@@ -127,8 +127,8 @@ export default function UpdateScreen() {
             ]}
           >
             <AppText variant="button">Download APK</AppText>
-          </AppAnimatedPressable>
-          <AppAnimatedPressable
+          </AppPressable>
+          <AppPressable
             onPress={() => {
               openURL(appConfig.release.websiteUrl);
             }}
@@ -143,7 +143,7 @@ export default function UpdateScreen() {
             ]}
           >
             <AppText variant="button">Website</AppText>
-          </AppAnimatedPressable>
+          </AppPressable>
         </AppView>
 
         {/* How to update guide */}
@@ -237,6 +237,7 @@ const styles = StyleSheet.create({
     borderRadius: 4.5,
   },
   button: {
+    width: "100%",
     height: 48,
     flexDirection: "row",
     alignItems: "center",

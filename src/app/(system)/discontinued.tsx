@@ -1,7 +1,7 @@
 import {
-  AppAnimatedPressable,
   AppIcon,
   AppImage,
+  AppPressable,
   AppSafeAreaView,
   AppText,
   AppView,
@@ -32,12 +32,8 @@ export default function DiscontinuedScreen() {
           website.
         </AppText>
       </AppView>
-      <AppAnimatedPressable
+      <AppPressable
         onPress={() => {}}
-        containerStyle={{
-          width: "100%",
-          height: 48,
-        }}
         style={({ pressed }) => [
           styles.button,
           {
@@ -55,7 +51,7 @@ export default function DiscontinuedScreen() {
           size={16}
           style={{ transform: "rotate(45deg)" }}
         />
-      </AppAnimatedPressable>
+      </AppPressable>
     </AppSafeAreaView>
   );
 }
@@ -82,6 +78,8 @@ const styles = StyleSheet.create({
     marginBottom: 32,
   },
   button: {
+    width: "100%",
+    height: 48,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",

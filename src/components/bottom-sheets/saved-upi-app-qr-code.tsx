@@ -1,12 +1,13 @@
 import {
   AppBottomSheet,
   AppImage,
+  AppPressable,
   AppText,
   AppView,
 } from "@/components/app-ui";
 import { useTheme } from "@/hooks/use-theme";
 import { BottomSheetView } from "@gorhom/bottom-sheet";
-import { Pressable, StyleSheet } from "react-native";
+import { StyleSheet } from "react-native";
 
 import { screenWidth } from "@/constants/dimensions";
 import { upiAppLogo } from "@/constants/upi-app-logo";
@@ -50,7 +51,7 @@ export function SavedUpiAppQrCodeBottomSheet() {
             {mapRowState(
               Object.values(savedUpiApps),
               ({ item, columnIndex, isIncompleteRow }) => (
-                <Pressable
+                <AppPressable
                   key={item.upiId}
                   onPress={() => {
                     router.push({
@@ -65,9 +66,7 @@ export function SavedUpiAppQrCodeBottomSheet() {
                   style={({ pressed }) => [
                     styles.providerLink,
                     {
-                      borderColor: pressed
-                        ? theme.border.focus
-                        : theme.border.primary,
+                      borderColor: theme.border.primary,
                       backgroundColor: pressed
                         ? theme.background.selected
                         : theme.background.tertiary,
@@ -91,7 +90,7 @@ export function SavedUpiAppQrCodeBottomSheet() {
                       {item.appName}
                     </AppText>
                   </AppView>
-                </Pressable>
+                </AppPressable>
               ),
               3,
             )}
