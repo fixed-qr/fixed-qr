@@ -1,5 +1,7 @@
 import { ConfigContext, ExpoConfig } from "expo/config";
 
+const APP_VERSION = "1.1.0";
+
 const IS_DEV = process.env.APP_VARIANT === "development";
 const IS_PREVIEW = process.env.APP_VARIANT === "preview";
 
@@ -30,7 +32,7 @@ const getAppName = () => {
 const expoConfig = ({ config }: ConfigContext): ExpoConfig => ({
   ...config,
   name: getAppName(),
-  version: "1.0.0",
+  version: APP_VERSION,
   slug: "fixed-qr",
   scheme: "fixed-qr",
   orientation: "portrait",
