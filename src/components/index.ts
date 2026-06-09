@@ -1,3 +1,4 @@
+export { AlertModal } from "./alert-modal";
 export { Amount } from "./amount";
 export { AppLogo } from "./app-logo";
 export { AppName } from "./app-name";
