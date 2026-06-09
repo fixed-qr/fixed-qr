@@ -25,7 +25,7 @@ export default function HomeScreen() {
           variant="bodyLarge"
           weight="600"
           color="secondary"
-          style={styles.greetingMessageText}
+          style={styles.message}
         >
           👋 Hi, {name}!
         </AppText>
@@ -62,8 +62,8 @@ export default function HomeScreen() {
 }
 
 const styles = StyleSheet.create({
-  greetingMessageText: {
-    marginBlock: 16,
+  message: {
+    marginVertical: 12,
     marginLeft: 1,
     textTransform: "capitalize",
   },
