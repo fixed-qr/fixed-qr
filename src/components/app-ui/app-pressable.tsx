@@ -1,4 +1,4 @@
-import React from "react";
+import { useState } from "react";
 import {
   GestureResponderEvent,
   Pressable,
@@ -34,7 +34,7 @@ export function AppPressable({
 }: Readonly<AppPressableProps>) {
   const scale = useSharedValue(1);
 
-  const [state, setState] = React.useState<AppPressableState>({
+  const [state, setState] = useState<AppPressableState>({
     pressed: false,
     hovered: false,
     focused: false,
