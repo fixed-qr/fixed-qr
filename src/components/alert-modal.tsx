@@ -28,6 +28,9 @@ export function AlertModal({
     if (visible) {
       setMounted(true);
 
+      opacity.setValue(0);
+      scale.setValue(0.9);
+
       Animated.parallel([
         Animated.timing(opacity, {
           toValue: 1,
@@ -57,12 +60,18 @@ export function AlertModal({
         setMounted(false);
       });
     }
-  }, [visible, mounted, opacity, scale]);
+  }, [visible]);
 
   if (!mounted) return null;
 
   return (
-    <Modal transparent visible={mounted}>
+    <Modal
+      transparent
+      visible={mounted}
+      animationType="none"
+      statusBarTranslucent
+      onRequestClose={onCancel ?? onConfirm}
+    >
       <Animated.View
         style={[
           styles.overlay,
@@ -72,6 +81,10 @@ export function AlertModal({
           },
         ]}
       >
+        {onCancel && (
+          <Pressable style={StyleSheet.absoluteFill} onPress={onCancel} />
+        )}
+
         <Animated.View
           style={[
             styles.container,
@@ -86,12 +99,11 @@ export function AlertModal({
             <AppText variant="headingSmall" style={styles.title}>
               {title}
             </AppText>
+
             <AppText
               variant="bodyMedium"
               color="secondary"
               style={styles.message}
-              numberOfLines={2}
-              ellipsizeMode="tail"
             >
               {message}
             </AppText>
@@ -99,48 +111,42 @@ export function AlertModal({
 
           <AppView
             style={[
-              styles.horzantalLine,
+              styles.horizontalLine,
               { backgroundColor: theme.border.primary },
             ]}
           />
 
           <View style={styles.actions}>
             {onCancel && (
-              <Pressable
-                onPress={onCancel}
-                style={({ pressed }) => [
-                  styles.button,
-                  styles.cancelButton,
-                  {
-                    backgroundColor: pressed
-                      ? theme.background.selected
-                      : undefined,
-                  },
-                ]}
-              >
-                <AppText variant="button">Cancel</AppText>
-              </Pressable>
-            )}
+              <>
+                <Pressable
+                  accessibilityRole="button"
+                  accessibilityLabel="Cancel"
+                  onPress={onCancel}
+                  style={({ pressed }) => [
+                    styles.button,
+                    { opacity: pressed ? 0.6 : 1 },
+                  ]}
+                >
+                  <AppText variant="button">Cancel</AppText>
+                </Pressable>
 
-            {onCancel && (
-              <AppView
-                style={[
-                  styles.verticleLine,
-                  { backgroundColor: theme.border.primary },
-                ]}
-              />
+                <AppView
+                  style={[
+                    styles.verticalLine,
+                    { backgroundColor: theme.border.primary },
+                  ]}
+                />
+              </>
             )}
 
             <Pressable
+              accessibilityRole="button"
+              accessibilityLabel="Confirm"
               onPress={onConfirm}
               style={({ pressed }) => [
                 styles.button,
-                styles.confirmButton,
-                {
-                  backgroundColor: pressed
-                    ? theme.background.selected
-                    : undefined,
-                },
+                { opacity: pressed ? 0.6 : 1 },
               ]}
             >
               <AppText variant="button">Confirm</AppText>
@@ -181,7 +187,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
     marginBottom: 8,
   },
-  horzantalLine: {
+  horizontalLine: {
     width: "100%",
     height: 1,
     borderRadius: 999,
@@ -201,10 +207,8 @@ const styles = StyleSheet.create({
   },
   cancelButton: {},
   confirmButton: {},
-  verticleLine: {
+  verticalLine: {
     height: "100%",
     width: 1,
-    borderBottomLeftRadius: 999,
-    borderBottomRightRadius: 999,
   },
 });
