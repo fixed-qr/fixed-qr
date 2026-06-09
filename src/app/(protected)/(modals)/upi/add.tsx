@@ -29,6 +29,7 @@ export default function AddUPIScreen() {
   const [selectedAppName, setSelectedAppName] = useState<UpiAppName | null>(
     null,
   );
+  const [upiAppError, setUpiAppError] = useState<string | null>(null);
   const addUpiApp = useSavedUpiAppStore((state) => state.addUpiApp);
   const router = useRouter();
 
@@ -41,7 +42,12 @@ export default function AddUPIScreen() {
     const validationError = validateUpiId(upiId);
     setError(validationError);
 
-    if (!validationError && selectedAppName) {
+    if (!selectedAppName) {
+      setUpiAppError("Please select UPI ID provider app");
+      return;
+    }
+
+    if (!validationError && !upiAppError) {
       addUpiApp(selectedAppName, {
         appName: selectedAppName,
         upiId: upiId,
@@ -127,11 +133,16 @@ export default function AddUPIScreen() {
           keyExtractor={(item) => item}
           renderItem={({ item, isSelected, onPress }) => (
             <AppPressable
-              onPress={onPress}
+              onPress={() => {
+                onPress();
+                setUpiAppError(null);
+              }}
               style={[
                 styles.upiAppCard,
                 {
-                  borderColor: theme.border.primary,
+                  borderColor: upiAppError
+                    ? theme.status.danger
+                    : theme.border.primary,
                   backgroundColor: isSelected
                     ? theme.background.selected
                     : theme.background.tertiary,
