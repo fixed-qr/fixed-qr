@@ -6,7 +6,8 @@ import { useTransactionStore } from "@/store/transaction-store";
 import { useUserStore } from "@/store/user-store";
 import { useRouter } from "expo-router";
 import { useState } from "react";
-import { Alert, Pressable, StyleSheet } from "react-native";
+import { Pressable, StyleSheet } from "react-native";
+import { AlertModal } from "../alert-modal";
 
 export function SettingSection() {
   const theme = useTheme();
@@ -16,6 +17,7 @@ export function SettingSection() {
     transactions: boolean;
   }>({ deleteAccount: false, transactions: false });
   const router = useRouter();
+  const [showAlert, setShowAlert] = useState(false);
   const resetIdentity = useIdentityStore((state) => state.verifyIdentity);
   const removeUser = useUserStore((state) => state.removeUser);
   const clearTransactions = useTransactionStore(
@@ -23,29 +25,10 @@ export function SettingSection() {
   );
 
   const handelOnPress = () => {
-    Alert.alert(
-      "Delete Account",
-      "This will permanently delete your account and all associated data. This action cannot be undone.",
-      [
-        {
-          text: "Cancel",
-          style: "cancel",
-        },
-        {
-          text: "Delete Account",
-          style: "destructive",
-          onPress: () => {
-            removeUser();
-            clearTransactions();
-            resetIdentity();
-            router.replace("/(auth)/get-started");
-          },
-        },
-      ],
-      {
-        cancelable: true,
-      },
-    );
+    removeUser();
+    clearTransactions();
+    resetIdentity();
+    router.replace("/(auth)/get-started");
   };
 
   const onPressColor = (state: boolean) => {
@@ -54,8 +37,9 @@ export function SettingSection() {
 
   return (
     <AppGroup title="Settings">
+      {/* Delete account button */}
       <Pressable
-        onPress={handelOnPress}
+        onPress={() => setShowAlert(true)}
         onPressIn={() => setPressed({ ...pressed, deleteAccount: true })}
         onPressOut={() => setPressed({ ...pressed, deleteAccount: false })}
         style={[
@@ -84,6 +68,20 @@ export function SettingSection() {
           style={{ marginLeft: "auto" }}
         />
       </Pressable>
+
+      {/* Delete account confirmation */}
+      <AlertModal
+        visible={showAlert}
+        title="Delete Account"
+        message="This will permanently delete your account and all associated data."
+        onCancel={() => setShowAlert(false)}
+        onConfirm={() => {
+          handelOnPress();
+          setShowAlert(false);
+        }}
+      />
+
+      {/* Transactions view button */}
       <Pressable
         onPress={() => {
           snapToIndex("TRANSACTION", 0);
