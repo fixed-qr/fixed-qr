@@ -1,12 +1,15 @@
 import { useAppVersion } from "@/hooks/use-app-version";
 import { useTheme } from "@/hooks/use-theme";
 import { useAppUpdateStore } from "@/store/app-update-store";
+import { useRouter } from "expo-router";
 import { useEffect, useMemo } from "react";
 import { StyleSheet } from "react-native";
 import { AppPressable, AppText, AppView } from "../app-ui";
 
 export function AppUpdateSection() {
   const theme = useTheme();
+  const router = useRouter();
+
   const { versionCode } = useAppVersion();
 
   const checkAppUpdate = useAppUpdateStore((state) => state.checkAppUpdate);
@@ -42,7 +45,12 @@ export function AppUpdateSection() {
       <AppText variant="bodyMedium" style={styles.updateTitle}>
         ✨ New update is ready
       </AppText>
-      <AppPressable style={styles.updateButton}>
+      <AppPressable
+        onPress={() => {
+          router.navigate("/(system)/update");
+        }}
+        style={styles.updateButton}
+      >
         <AppText variant="button">Update</AppText>
       </AppPressable>
     </AppView>
