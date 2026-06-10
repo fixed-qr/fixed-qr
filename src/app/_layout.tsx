@@ -16,7 +16,7 @@ import {
   initialWindowMetrics,
 } from "react-native-safe-area-context";
 
-SplashScreen.preventAutoHideAsync();
+SplashScreen.preventAutoHideAsync().catch(() => {});
 
 export default function RootLayout() {
   const scheme = useColorScheme();
@@ -40,7 +40,7 @@ export default function RootLayout() {
   useEffect(() => {
     if (!isReady) return;
 
-    SplashScreen.hideAsync();
+    SplashScreen.hideAsync().catch(() => {});
   }, [isReady]);
 
   if (!isReady) {
