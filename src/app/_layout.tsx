@@ -1,14 +1,11 @@
-import { useAppVersion } from "@/hooks/use-app-version";
 import { useTheme } from "@/hooks/use-theme";
-import { useAppConfigStore } from "@/store/app-config-store";
-import { AppConfig } from "@/types/app-config";
-import { versionToVersionCode } from "@/utils/version-to-version-code";
+import { useUserStore } from "@/store/user-store";
 import {
   DarkTheme,
   DefaultTheme,
   ThemeProvider,
 } from "@react-navigation/native";
-import { Href, Stack, usePathname, useRouter } from "expo-router";
+import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { StatusBar } from "expo-status-bar";
 import { useEffect, useState } from "react";
@@ -24,19 +21,12 @@ SplashScreen.preventAutoHideAsync();
 export default function RootLayout() {
   const scheme = useColorScheme();
   const theme = useTheme();
-  const router = useRouter();
-  const pathname = usePathname();
-  const { version } = useAppVersion();
   const [isReady, setIsReady] = useState(false);
-  const appConfig = useAppConfigStore((state) => state.appConfig);
-  const fetchAppConfig = useAppConfigStore((state) => state.fetchAppConfig);
 
   useEffect(() => {
     async function prepare() {
       try {
-        await useAppConfigStore.persist.rehydrate();
-
-        await fetchAppConfig();
+        await useUserStore.persist.rehydrate();
       } catch (error) {
         console.error(error);
       } finally {
@@ -45,23 +35,13 @@ export default function RootLayout() {
     }
 
     prepare();
-  }, [fetchAppConfig]);
+  }, []);
 
   useEffect(() => {
     if (!isReady) return;
 
-    const redirectPath = getRedirectPath(
-      appConfig,
-      versionToVersionCode(version),
-    );
-
-    if (redirectPath && pathname !== redirectPath) {
-      router.replace(redirectPath);
-      return;
-    }
-
     SplashScreen.hideAsync();
-  }, [isReady, appConfig, version]);
+  }, [isReady]);
 
   if (!isReady) {
     return null;
@@ -94,25 +74,4 @@ export default function RootLayout() {
       </GestureHandlerRootView>
     </SafeAreaProvider>
   );
-}
-
-function getRedirectPath(
-  config: AppConfig,
-  currentVersion: number,
-): Href | null {
-  const { status, release } = config;
-
-  if (status === "online" && currentVersion < release.versionCode) {
-    return "/(system)/update";
-  }
-
-  if (status === "maintenance") {
-    return "/(system)/maintenance";
-  }
-
-  if (status !== "online") {
-    return "/(system)/discontinued";
-  }
-
-  return null;
 }

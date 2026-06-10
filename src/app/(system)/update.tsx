@@ -8,7 +8,7 @@ import {
   AppView,
 } from "@/components/app-ui";
 import { useTheme } from "@/hooks/use-theme";
-import { useAppConfigStore } from "@/store/app-config-store";
+import { useAppUpdateStore } from "@/store/app-update-store";
 import { openURL } from "expo-linking";
 import { ActivityIndicator, StyleSheet } from "react-native";
 
@@ -23,7 +23,7 @@ const updateGuide: string[] = [
 
 export default function UpdateScreen() {
   const theme = useTheme();
-  const { appConfig, isLoading } = useAppConfigStore();
+  const { appUpdate, isLoading } = useAppUpdateStore();
 
   if (isLoading) {
     return (
@@ -46,7 +46,7 @@ export default function UpdateScreen() {
             weight="500"
             style={{ textAlign: "center" }}
           >
-            {appConfig?.release.title}
+            {appUpdate?.title}
           </AppText>
         </AppView>
         <AppView style={styles.release}>
@@ -78,7 +78,7 @@ export default function UpdateScreen() {
                 />
                 <AppText variant="bodyMedium">Version</AppText>
               </AppView>
-              <AppText>{appConfig.release.version}</AppText>
+              <AppText>{appUpdate?.version}</AppText>
             </AppView>
             <AppView
               style={[styles.releaseRow, { borderColor: theme.border.primary }]}
@@ -87,12 +87,12 @@ export default function UpdateScreen() {
                 <AppIcon name="watch" color={theme.text.primary} size={14} />
                 <AppText variant="bodyMedium">Date Time</AppText>
               </AppView>
-              <AppText>{appConfig.release.publishedAt}</AppText>
+              <AppText>{appUpdate?.publishedAt}</AppText>
             </AppView>
             <AppView style={[styles.releaseRow, styles.releaseNotes]}>
               <AppText variant="bodyMedium">Release Notes</AppText>
               <AppView>
-                {appConfig.release.notes.map((note, index) => (
+                {appUpdate?.notes.map((note, index) => (
                   <AppView style={styles.releaseNotesRow} key={note + index}>
                     <AppView
                       style={[
@@ -114,7 +114,7 @@ export default function UpdateScreen() {
         <AppView>
           <AppPressable
             onPress={() => {
-              openURL(appConfig.release.downloadUrl);
+              openURL(appUpdate?.downloadUrl as string);
             }}
             style={({ pressed }) => [
               styles.button,
@@ -130,7 +130,7 @@ export default function UpdateScreen() {
           </AppPressable>
           <AppPressable
             onPress={() => {
-              openURL(appConfig.release.websiteUrl);
+              openURL(appUpdate?.websiteUrl as string);
             }}
             style={({ pressed }) => [
               styles.button,
