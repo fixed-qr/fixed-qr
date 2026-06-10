@@ -10,6 +10,7 @@ import {
 import { useTheme } from "@/hooks/use-theme";
 import { useAppUpdateStore } from "@/store/app-update-store";
 import { openURL } from "expo-linking";
+import { useEffect } from "react";
 import { ActivityIndicator, StyleSheet } from "react-native";
 
 const updateGuide: string[] = [
@@ -23,7 +24,16 @@ const updateGuide: string[] = [
 
 export default function UpdateScreen() {
   const theme = useTheme();
-  const { appUpdate, isLoading } = useAppUpdateStore();
+  const checkAppUpdate = useAppUpdateStore((state) => state.checkAppUpdate);
+  const isLoading = useAppUpdateStore((state) => state.isLoading);
+  const appUpdate = useAppUpdateStore((state) => state.appUpdate);
+  const error = useAppUpdateStore((state) => state.error);
+
+  useEffect(() => {
+    if (!isLoading && !appUpdate && !error) {
+      checkAppUpdate();
+    }
+  }, [checkAppUpdate, isLoading, appUpdate, error]);
 
   if (isLoading) {
     return (
@@ -35,7 +45,7 @@ export default function UpdateScreen() {
 
   return (
     <AppSafeAreaView style={styles.container}>
-      <AppScrollView>
+      <AppScrollView contentContainerStyle={{ padding: 20 }}>
         <AppView style={styles.update}>
           <AppImage
             source={require("@/assets/images/icons/system/update.png")}
