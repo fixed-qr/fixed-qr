@@ -9,7 +9,7 @@
     "prebuild": "APP_VARIANT=development expo prebuild",
     "android": "ELECTRON_DISABLE_SANDBOX=1 APP_VARIANT=development expo run:android",
     "ios": "ELECTRON_DISABLE_SANDBOX=1 APP_VARIANT=development expo run:ios",
-    "build:apk": " eas build --platform android --profile production --local --output ./local-builds/android/FixedQR-1.1.0-release.apk"
+    "build:android": " eas build --platform android --profile production"
   },
   "dependencies": {
     "@gorhom/bottom-sheet": "^5.2.14",
