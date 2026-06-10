@@ -1,0 +1,20 @@
+{
+  "version": "1.1.0",
+  "versionCode": 110,
+  "title": "Performance & UI Enhancements",
+  "websiteUrl": "https://fixed-qr.netlify.app",
+  "downloadUrl": "https://github.com/fixed-qr/fixed-qr/releases/download/v1.1.0/FixedQR-1.1.0-release.apk",
+  "publishedAt": "2026-06-10T04:47:00Z",
+  "notes": [
+    "Redesigned key screens with a cleaner interface",
+    "Improved QR code generation",
+    "Enhanced shortcut amount selection",
+    "Faster app startup and smoother navigation",
+    "Improved responsiveness and performance",
+    "Optimized memory usage",
+    "Better form validation and error handling",
+    "Fixed splash screen flickering",
+    "Resolved minor UI issues",
+    "General stability improvements"
+  ]
+}
