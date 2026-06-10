@@ -39,7 +39,7 @@ export const useAppConfigStore = create<AppConfigStore>()(
           });
 
           const response = await fetch(
-            "https://gist.githubusercontent.com/fixed-qr/32d520be4de453727c020d93f2f87b45/raw/app-config.json",
+            "https://gist.githubusercontent.com/fixed-qr/97e20f45ed52a7e6cd8f76350dc162cf/raw/app-config.json",
           );
 
           if (!response.ok) {
