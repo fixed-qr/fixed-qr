@@ -1,9 +1,34 @@
+import { useAppVersion } from "@/hooks/use-app-version";
 import { useTheme } from "@/hooks/use-theme";
+import { useAppUpdateStore } from "@/store/app-update-store";
+import { useEffect, useMemo } from "react";
 import { StyleSheet } from "react-native";
 import { AppPressable, AppText, AppView } from "../app-ui";
 
 export function AppUpdateSection() {
   const theme = useTheme();
+  const { versionCode } = useAppVersion();
+
+  const checkAppUpdate = useAppUpdateStore((state) => state.checkAppUpdate);
+  const isLoading = useAppUpdateStore((state) => state.isLoading);
+  const appUpdate = useAppUpdateStore((state) => state.appUpdate);
+  const error = useAppUpdateStore((state) => state.error);
+
+  useEffect(() => {
+    if (!isLoading && !appUpdate && !error) {
+      checkAppUpdate();
+    }
+  }, [checkAppUpdate]);
+
+  // Decide whether update is available
+  const showUpdate = useMemo(() => {
+    if (!appUpdate) return false;
+    return versionCode < appUpdate.versionCode;
+  }, [appUpdate, versionCode]);
+
+  if (isLoading || error || !showUpdate) {
+    return null;
+  }
 
   return (
     <AppView

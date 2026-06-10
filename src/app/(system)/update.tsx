@@ -33,7 +33,7 @@ export default function UpdateScreen() {
     if (!isLoading && !appUpdate && !error) {
       checkAppUpdate();
     }
-  }, [checkAppUpdate, isLoading, appUpdate, error]);
+  }, [checkAppUpdate]);
 
   if (isLoading) {
     return (

@@ -5,6 +5,7 @@ import { useMemo } from "react";
 export type AppVersionInfo = {
   appName: string;
   version: string;
+  versionCode: number;
   buildVersion: string;
 };
 
@@ -17,9 +18,10 @@ export function useAppVersion(): AppVersionInfo {
     const buildVersion = App.nativeBuildVersion ?? "1";
 
     return {
-      version,
-      buildVersion,
       appName,
+      version,
+      versionCode: Number(version.split(".").join("")),
+      buildVersion,
     };
   }, []);
 }

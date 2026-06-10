@@ -6,7 +6,7 @@ import {
   AppScrollView,
   AppText,
 } from "@/components/app-ui";
-import { QuickActionSection } from "@/components/sections";
+import { AppUpdateSection, QuickActionSection } from "@/components/sections";
 import { useTheme } from "@/hooks/use-theme";
 import { useUserStore } from "@/store/user-store";
 import { useRouter } from "expo-router";
@@ -20,6 +20,7 @@ export default function HomeScreen() {
   return (
     <AppSafeAreaView>
       <Header />
+      <AppUpdateSection />
       <AppScrollView>
         <AppText
           variant="bodyLarge"
