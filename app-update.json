@@ -1,16 +1,9 @@
 {
-  "version": "1.0.0",
+  "version": "1.0.1",
   "versionCode": 101,
-  "title": "Initial Release",
+  "title": "Bug Fixed",
   "websiteUrl": "https://fixed-qr.netlify.app",
   "downloadUrl": "https://github.com/fixed-qr/fixed-qr/releases/download/v1.0.0/FixedQR-1.0.0-release.apk",
   "publishedAt": "2026-06-10T04:47:00Z",
-  "notes": [
-    "Instant UPI QR generation",
-    "Quick amount shortcut buttons",
-    "Save frequently used amounts automatically",
-    "Simple account setup",
-    "Add & update UPI ID anytime",
-    "Lightweight and easy to use"
-  ]
+  "notes": ["Resolved update button click bug."]
 }
