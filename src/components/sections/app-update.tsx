@@ -43,7 +43,7 @@ export function AppUpdateSection() {
       ]}
     >
       <AppText variant="bodyMedium" style={styles.updateTitle}>
-        ✨ New update is ready
+        ✨ New update is available
       </AppText>
       <AppPressable
         onPress={() => {
