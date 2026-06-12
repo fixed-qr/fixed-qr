@@ -8,7 +8,7 @@ import {
 import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { StatusBar } from "expo-status-bar";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useColorScheme } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import {
@@ -21,39 +21,58 @@ SplashScreen.preventAutoHideAsync().catch(() => {});
 export default function RootLayout() {
   const scheme = useColorScheme();
   const theme = useTheme();
-  const [isReady, setIsReady] = useState(false);
+
+  const splashHiddenRef = useRef(false);
+
+  const [hasHydrated, setHasHydrated] = useState(
+    useUserStore.persist.hasHydrated(),
+  );
 
   useEffect(() => {
-    async function prepare() {
-      try {
-        await useUserStore.persist.rehydrate();
-      } catch (error) {
-        console.error(error);
-      } finally {
-        setIsReady(true);
-      }
+    if (useUserStore.persist.hasHydrated()) {
+      setHasHydrated(true);
+      return;
     }
 
-    prepare();
+    const unsubscribe = useUserStore.persist.onFinishHydration(() => {
+      setHasHydrated(true);
+    });
+
+    return unsubscribe;
   }, []);
 
-  useEffect(() => {
-    if (!isReady) return;
+  const onLayoutRootView = useCallback(async () => {
+    if (!hasHydrated || splashHiddenRef.current) {
+      return;
+    }
 
-    SplashScreen.hideAsync().catch(() => {});
-  }, [isReady]);
+    splashHiddenRef.current = true;
 
-  if (!isReady) {
+    try {
+      await SplashScreen.hideAsync();
+    } catch {
+      // ignore
+    }
+  }, [hasHydrated]);
+
+  if (!hasHydrated) {
     return null;
   }
 
   return (
     <SafeAreaProvider
       initialMetrics={initialWindowMetrics}
-      style={{ flex: 1, backgroundColor: theme.background.primary }}
+      style={{
+        flex: 1,
+        backgroundColor: theme.background.primary,
+      }}
     >
       <GestureHandlerRootView
-        style={{ flex: 1, backgroundColor: theme.background.primary }}
+        onLayout={onLayoutRootView}
+        style={{
+          flex: 1,
+          backgroundColor: theme.background.primary,
+        }}
       >
         <ThemeProvider value={scheme === "dark" ? DarkTheme : DefaultTheme}>
           <StatusBar style={scheme === "dark" ? "light" : "dark"} />
@@ -68,7 +87,7 @@ export default function RootLayout() {
           >
             <Stack.Screen name="(auth)" options={{ animation: "fade" }} />
             <Stack.Screen name="(system)" options={{ animation: "fade" }} />
-            <Stack.Screen name="(protected)" />
+            <Stack.Screen name="(protected)" options={{ animation: "fade" }} />
           </Stack>
         </ThemeProvider>
       </GestureHandlerRootView>
