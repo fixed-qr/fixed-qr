@@ -6,7 +6,7 @@ import {
   BottomSheetBackdropProps,
   BottomSheetModal,
 } from "@gorhom/bottom-sheet";
-import { useFocusEffect, useRouter } from "expo-router";
+import { useFocusEffect, useRouter, useSegments } from "expo-router";
 import { useCallback, useEffect, useRef } from "react";
 import { BackHandler, StyleProp, StyleSheet, ViewStyle } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -26,6 +26,7 @@ export function AppSheet({
   const router = useRouter();
   const sheetOpen = useRef(false);
   const isAnimating = useRef(false);
+  const segments = useSegments();
 
   const { sheetRef, enableDynamicSizing, snapPoints } = useAppSheetStore(
     useShallow((state) => ({
@@ -47,6 +48,12 @@ export function AppSheet({
           return true;
         }
 
+        // Back if current sheet is nested
+        if (segments[1] == "sheets" && segments.length > 3) {
+          router.back();
+          return true;
+        }
+
         // Handle sheet closing
         if (sheetOpen.current) {
           sheetRef.current?.dismiss();
@@ -63,7 +70,7 @@ export function AppSheet({
       );
 
       return () => subscription.remove();
-    }, [sheetRef]),
+    }, [sheetRef, segments, router]),
   );
 
   return (
