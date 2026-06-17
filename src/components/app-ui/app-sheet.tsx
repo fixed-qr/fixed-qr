@@ -81,6 +81,7 @@ export function AppSheet({
       enablePanDownToClose={true}
       topInset={insets.top}
       bottomInset={insets.bottom}
+      keyboardBlurBehavior="restore"
       backdropComponent={renderAppSheetBackdrop}
       onDismiss={() => {
         router.back();
