@@ -88,6 +88,10 @@ export function AppSheet({
       animationConfigs={{
         duration: 380,
       }}
+      handleStyle={{
+        borderBottomWidth: 1,
+        borderColor: theme.border.primary,
+      }}
       handleIndicatorStyle={{
         backgroundColor: theme.text.muted,
         width: 36,
@@ -98,6 +102,9 @@ export function AppSheet({
         backgroundColor: theme.background.secondary,
         borderTopLeftRadius: borderRadius,
         borderTopRightRadius: borderRadius,
+        shadowOpacity: 0.1,
+        shadowRadius: 10,
+        elevation: 8,
       }}
       containerStyle={[StyleSheet.absoluteFill, containerStyle]}
     >
@@ -112,7 +119,7 @@ function renderAppSheetBackdrop(props: Readonly<BottomSheetBackdropProps>) {
       {...props}
       appearsOnIndex={0}
       disappearsOnIndex={-1}
-      opacity={0.25}
+      opacity={0.5}
     />
   );
 }

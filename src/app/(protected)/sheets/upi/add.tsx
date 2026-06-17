@@ -63,8 +63,6 @@ export default function AddUpiSheet() {
     <BottomSheetScrollView
       contentContainerStyle={{
         padding: 20,
-        borderTopWidth: 1,
-        borderColor: theme.border.primary,
       }}
     >
       <AppView>

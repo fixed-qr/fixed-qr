@@ -88,8 +88,6 @@ export default function QrcodeSheet() {
     <BottomSheetScrollView
       contentContainerStyle={{
         padding: 20,
-        borderTopWidth: 1,
-        borderColor: theme.border.primary,
         gap: gap,
       }}
     >
