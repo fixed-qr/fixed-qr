@@ -4,5 +4,6 @@ export { AppLogo } from "./app-logo";
 export { AppName } from "./app-name";
 export { EmptyCard } from "./empty-card";
 export { Header } from "./header";
+export { NumericKeypad } from "./numeric-keypad";
 export { PasswordInput } from "./password-input";
 

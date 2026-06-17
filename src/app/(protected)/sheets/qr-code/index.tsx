@@ -1,4 +1,4 @@
-import { Amount } from "@/components";
+import { Amount, NumericKeypad } from "@/components";
 import { AppPressable, AppText, AppView } from "@/components/app-ui";
 import { screenWidth } from "@/constants/dimensions";
 import { upiAppLogo } from "@/constants/upi-app-logo";
@@ -12,20 +12,6 @@ import { Link, useRouter } from "expo-router";
 import { useState } from "react";
 import { StyleSheet } from "react-native";
 
-const numericKeys = [
-  "1",
-  "2",
-  "3",
-  "4",
-  "5",
-  "6",
-  "7",
-  "8",
-  "9",
-  ".",
-  "0",
-  "⌫",
-];
 const gap = 8;
 const width = (screenWidth - gap * 3 - 40) / 3;
 
@@ -34,55 +20,6 @@ export default function QrcodeSheet() {
   const router = useRouter();
   const [value, setValue] = useState("");
   const savedUpiApps = useSavedUpiAppStore((states) => states.savedUpiApps);
-
-  const renderNumericKeyPad = () => {
-    const handlePress = (num: any) => {
-      if (value.length !== 0 || num !== "0") {
-        setValue((prev) => prev + num);
-      }
-    };
-
-    const handleDelete = () => {
-      setValue((prev) => prev.slice(0, -1));
-    };
-
-    return (
-      <AppView
-        style={[
-          styles.numericPadContainer,
-          { backgroundColor: theme.background.secondary },
-        ]}
-      >
-        {numericKeys.map((key) => {
-          if (key === "") {
-            return <AppView key={key} style={styles.key} />;
-          }
-
-          return (
-            <AppPressable
-              key={key}
-              style={({ pressed }) => [
-                styles.key,
-                {
-                  borderColor: theme.border.primary,
-                  backgroundColor: pressed
-                    ? theme.background.selected
-                    : theme.background.tertiary,
-                },
-              ]}
-              onPress={() => (key === "⌫" ? handleDelete() : handlePress(key))}
-            >
-              <AppText
-                style={[styles.keyText, { fontSize: key === "⌫" ? 18 : 28 }]}
-              >
-                {key}
-              </AppText>
-            </AppPressable>
-          );
-        })}
-      </AppView>
-    );
-  };
 
   return (
     <BottomSheetScrollView
@@ -106,11 +43,11 @@ export default function QrcodeSheet() {
       </AppView>
 
       {/* Numeric Key Pad */}
-      {renderNumericKeyPad()}
+      <NumericKeypad value={value} onChange={setValue} />
 
       {/* Providers */}
       {Object.keys(savedUpiApps).length ? (
-        <AppView style={styles.providerContainer}>
+        <AppView style={styles.upiAppContainer}>
           {mapRowState(
             Object.values(savedUpiApps),
             ({ item, columnIndex, isIncompleteRow }) => (
@@ -129,7 +66,7 @@ export default function QrcodeSheet() {
                   });
                 }}
                 style={({ pressed }) => [
-                  styles.providerLink,
+                  styles.upiAppLink,
                   {
                     borderColor: theme.border.primary,
                     backgroundColor: pressed
@@ -141,17 +78,17 @@ export default function QrcodeSheet() {
                 ]}
               >
                 <AppView style={{ alignItems: "center", gap: 4 }}>
-                  <AppView style={styles.providerLogoContainer}>
+                  <AppView style={styles.upiAppLogoContainer}>
                     <Image
                       source={upiAppLogo[item.appName]}
-                      style={styles.providerLogo}
+                      style={styles.upiAppLogo}
                       cachePolicy="memory-disk"
                     />
                   </AppView>
                   <AppText
                     variant="bodySmall"
                     weight="500"
-                    style={styles.providerLabel}
+                    style={styles.upiAppLabel}
                   >
                     {item.appName}
                   </AppText>
@@ -198,7 +135,7 @@ const styles = StyleSheet.create({
     fontSize: 32,
     fontWeight: 600,
   },
-  providerContainer: {
+  upiAppContainer: {
     flexGrow: 1,
     flexDirection: "row",
     justifyContent: "center",
@@ -206,7 +143,7 @@ const styles = StyleSheet.create({
     flexWrap: "wrap",
     gap: gap,
   },
-  providerLink: {
+  upiAppLink: {
     width: width,
     justifyContent: "center",
     alignItems: "center",
@@ -214,36 +151,18 @@ const styles = StyleSheet.create({
     padding: 8,
     borderRadius: 99,
   },
-  providerLogoContainer: {
+  upiAppLogoContainer: {
     width: 24,
     height: 24,
     backgroundColor: "transparent",
   },
-  providerLogo: {
+  upiAppLogo: {
     objectFit: "contain",
     width: "100%",
     height: "100%",
   },
-  providerLabel: {
+  upiAppLabel: {
     textAlign: "center",
-  },
-  numericPadContainer: {
-    flexDirection: "row",
-    flexWrap: "wrap",
-    justifyContent: "center",
-    gap: gap,
-  },
-  key: {
-    width: width,
-    height: 60,
-    borderRadius: 99,
-    justifyContent: "center",
-    alignItems: "center",
-    borderWidth: 1,
-  },
-  keyText: {
-    fontSize: 28,
-    fontWeight: "600",
   },
   upiIdNotFound: {
     width: "100%",
