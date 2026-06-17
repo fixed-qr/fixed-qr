@@ -1,16 +1,12 @@
 import { Amount } from "@/components";
-import {
-  AppPressable,
-  AppScrollView,
-  AppText,
-  AppView,
-} from "@/components/app-ui";
+import { AppPressable, AppText, AppView } from "@/components/app-ui";
 import { screenWidth } from "@/constants/dimensions";
 import { upiAppLogo } from "@/constants/upi-app-logo";
 import { useTheme } from "@/hooks/use-theme";
 import { useSavedUpiAppStore } from "@/store/saved-upi-app-store";
 import { QrCodeResultParams } from "@/types/qr-code-result-params";
 import { mapRowState } from "@/utils/map-row-state";
+import { BottomSheetScrollView } from "@gorhom/bottom-sheet";
 import { Image } from "expo-image";
 import { Link, useRouter } from "expo-router";
 import { useState } from "react";
@@ -33,7 +29,7 @@ const numericKeys = [
 const gap = 8;
 const width = (screenWidth - gap * 3 - 40) / 3;
 
-export default function QrCodeScreen() {
+export default function QrcodeSheet() {
   const theme = useTheme();
   const router = useRouter();
   const [value, setValue] = useState("");
@@ -89,12 +85,12 @@ export default function QrCodeScreen() {
   };
 
   return (
-    <AppScrollView
-      style={{
-        backgroundColor: theme.background.secondary,
-      }}
+    <BottomSheetScrollView
       contentContainerStyle={{
-        backgroundColor: theme.background.secondary,
+        padding: 20,
+        borderTopWidth: 1,
+        borderColor: theme.border.primary,
+        gap: gap,
       }}
     >
       <AppView style={{ alignItems: "center", marginBottom: 16 }}>
@@ -126,7 +122,7 @@ export default function QrCodeScreen() {
                   if (!Number(value)) return;
 
                   router.push({
-                    pathname: "/(protected)/(modals)/qr-code/result",
+                    pathname: "/(protected)/sheets/qr-code/result",
                     params: {
                       amount: value,
                       upiId: item.upiId,
@@ -181,7 +177,7 @@ export default function QrCodeScreen() {
           </Link>
         </AppView>
       )}
-    </AppScrollView>
+    </BottomSheetScrollView>
   );
 }
 

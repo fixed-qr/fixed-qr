@@ -1,5 +1,5 @@
 import { Amount } from "@/components";
-import { AppScrollView, AppText, AppView } from "@/components/app-ui";
+import { AppText, AppView } from "@/components/app-ui";
 import { screenWidth } from "@/constants/dimensions";
 import { upiAppLogo } from "@/constants/upi-app-logo";
 import { useTheme } from "@/hooks/use-theme";
@@ -10,6 +10,7 @@ import { Transaction } from "@/types/transaction";
 import { buildUpiPaymentUrl } from "@/utils/build-upi-payment-url";
 import { createTransactionId } from "@/utils/create-transaction-id";
 import { DateTime } from "@/utils/date-time";
+import { BottomSheetScrollView } from "@gorhom/bottom-sheet";
 import { useLocalSearchParams } from "expo-router";
 import { useEffect } from "react";
 import { Image, StyleSheet } from "react-native";
@@ -18,7 +19,7 @@ import QRCode from "react-native-qrcode-svg";
 const width = (screenWidth - 40) / 1.6;
 const borderRadius = 24;
 
-export default function GeneratedQRCodeScreen() {
+export default function QrcodeResultSheet() {
   const theme = useTheme();
   const { upiId, amount, appName } = useLocalSearchParams<QrCodeResultParams>();
   const addTransaction = useTransactionStore((state) => state.addTransaction);
@@ -38,7 +39,13 @@ export default function GeneratedQRCodeScreen() {
   }, []);
 
   return (
-    <AppScrollView>
+    <BottomSheetScrollView
+      contentContainerStyle={{
+        padding: 20,
+        borderTopWidth: 1,
+        borderColor: theme.border.primary,
+      }}
+    >
       <AppView
         style={[
           styles.container,
@@ -101,7 +108,7 @@ export default function GeneratedQRCodeScreen() {
         </AppText>
         {!!amount && <Amount value={amount} size={24} />}
       </AppView>
-    </AppScrollView>
+    </BottomSheetScrollView>
   );
 }
 

@@ -1,9 +1,9 @@
 import {
-  AppBottomSheet,
-  AppImage,
-  AppPressable,
-  AppText,
-  AppView,
+    AppBottomSheet,
+    AppImage,
+    AppPressable,
+    AppText,
+    AppView,
 } from "@/components/app-ui";
 import { useTheme } from "@/hooks/use-theme";
 import { BottomSheetView } from "@gorhom/bottom-sheet";
@@ -55,7 +55,7 @@ export function SavedUpiAppQrCodeBottomSheet() {
                   key={item.upiId}
                   onPress={() => {
                     router.push({
-                      pathname: "/(protected)/(modals)/qr-code/result",
+                      pathname: "/(protected)/sheets/qr-code/result",
                       params: {
                         upiId: item.upiId,
                         appName: item.appName,

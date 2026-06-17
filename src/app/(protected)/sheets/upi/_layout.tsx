@@ -1,14 +1,11 @@
-import { useTheme } from "@/hooks/use-theme";
 import { Stack } from "expo-router";
 
 export default function UpiLayout() {
-  const theme = useTheme();
-
   return (
     <Stack
       screenOptions={{
         headerShown: false,
-        contentStyle: { backgroundColor: theme.background.secondary },
+        contentStyle: { backgroundColor: undefined },
       }}
     />
   );

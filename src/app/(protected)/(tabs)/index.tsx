@@ -34,7 +34,7 @@ export default function HomeScreen() {
         {/* Generate QR Code Button */}
         <AppPressable
           onPress={() => {
-            router.push("/(protected)/(modals)/qr-code");
+            router.push("/(protected)/sheets/qr-code");
           }}
           style={({ pressed }) => [
             styles.GenQRCode,

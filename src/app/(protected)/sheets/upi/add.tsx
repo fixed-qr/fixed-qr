@@ -2,7 +2,6 @@ import {
   AppIcon,
   AppImage,
   AppPressable,
-  AppScrollView,
   AppSelectList,
   AppText,
   AppView,
@@ -14,14 +13,18 @@ import { useTheme } from "@/hooks/use-theme";
 import { useSavedUpiAppStore } from "@/store/saved-upi-app-store";
 import { UpiAppName } from "@/types/upi-app-name";
 import { validateUpiId } from "@/validators/upi-id-validator";
+import {
+  BottomSheetScrollView,
+  BottomSheetTextInput,
+} from "@gorhom/bottom-sheet";
 import { useRouter } from "expo-router";
 import { useState } from "react";
-import { StyleSheet, TextInput } from "react-native";
+import { StyleSheet } from "react-native";
 
 const gap = 8;
 const width = (screenWidth - gap * 2 - 40) / 3;
 
-export default function AddUPIScreen() {
+export default function AddUpiSheet() {
   const theme = useTheme();
   const [upiId, setUpiId] = useState("");
   const [error, setError] = useState<string | null>(null);
@@ -57,7 +60,13 @@ export default function AddUPIScreen() {
   };
 
   return (
-    <AppScrollView contentContainerStyle={styles.scrollContent}>
+    <BottomSheetScrollView
+      contentContainerStyle={{
+        padding: 20,
+        borderTopWidth: 1,
+        borderColor: theme.border.primary,
+      }}
+    >
       <AppView>
         <AppView style={{ alignItems: "center", marginBottom: 16 }}>
           <AppText variant="headingSmall" weight="600">
@@ -94,7 +103,7 @@ export default function AddUPIScreen() {
             >
               UPI ID
             </AppText>
-            <TextInput
+            <BottomSheetTextInput
               autoCorrect={false}
               autoCapitalize="none"
               placeholder="Enter your UPI ID here"
@@ -183,7 +192,7 @@ export default function AddUPIScreen() {
           Save
         </AppText>
       </AppPressable>
-    </AppScrollView>
+    </BottomSheetScrollView>
   );
 }
 

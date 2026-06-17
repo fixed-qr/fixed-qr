@@ -15,7 +15,7 @@ export function SavedUpiAppSection() {
         title="Saved UPI IDs"
         titleIconName="add-circle"
         onTitlePress={() => {
-          router.navigate("/(protected)/(modals)/upi/add");
+          router.navigate("/(protected)/sheets/upi/add");
         }}
       >
         {Object.keys(savedUpiApps).length ? (

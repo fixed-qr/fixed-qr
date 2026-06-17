@@ -1,10 +1,10 @@
 import { Amount, EmptyCard } from "@/components";
 import {
-  AppIcon,
-  AppImage,
-  AppPressable,
-  AppText,
-  AppView,
+    AppIcon,
+    AppImage,
+    AppPressable,
+    AppText,
+    AppView,
 } from "@/components/app-ui";
 import { screenWidth } from "@/constants/dimensions";
 import { upiAppLogo } from "@/constants/upi-app-logo";
@@ -57,7 +57,7 @@ export function QuickActionSection() {
               key={tsx.id}
               onPress={() => {
                 router.push({
-                  pathname: "/(protected)/(modals)/qr-code/result",
+                  pathname: "/(protected)/sheets/qr-code/result",
                   params: {
                     upiId: savedUpiApps[tsx.appName]?.upiId,
                     amount: tsx.amount,
