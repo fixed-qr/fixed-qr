@@ -28,11 +28,6 @@ export default function QrcodeSheet() {
         gap: gap,
       }}
     >
-      <AppView style={{ alignItems: "center", marginBottom: 16 }}>
-        <AppText variant="headingSmall" weight="600">
-          Create QR Code
-        </AppText>
-      </AppView>
       <AppView
         style={[
           styles.amountInput,
