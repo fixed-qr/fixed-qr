@@ -8,7 +8,7 @@ import { useSavedUpiAppStore } from "@/store/saved-upi-app-store";
 import { mapRowState } from "@/utils/map-row-state";
 import { BottomSheetScrollView } from "@gorhom/bottom-sheet";
 import { Image } from "expo-image";
-import { Link, useRouter } from "expo-router";
+import { Link, usePathname, useRouter } from "expo-router";
 import { useState } from "react";
 import { StyleSheet } from "react-native";
 
@@ -18,11 +18,13 @@ const width = (screenWidth - gap * 3 - 40) / 3;
 export default function QrcodeSheet() {
   const theme = useTheme();
   const router = useRouter();
+  const pathname = usePathname();
   const [value, setValue] = useState("");
   const savedUpiApps = useSavedUpiAppStore((states) => states.savedUpiApps);
 
   return (
     <BottomSheetScrollView
+      key={pathname}
       contentContainerStyle={{
         padding: 20,
         gap: gap,

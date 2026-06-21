@@ -17,7 +17,7 @@ import {
   BottomSheetScrollView,
   BottomSheetTextInput,
 } from "@gorhom/bottom-sheet";
-import { useRouter } from "expo-router";
+import { usePathname, useRouter } from "expo-router";
 import { useState } from "react";
 import { StyleSheet } from "react-native";
 
@@ -26,6 +26,7 @@ const width = (screenWidth - gap * 2 - 40) / 3;
 
 export default function AddUpiSheet() {
   const theme = useTheme();
+  const pathname = usePathname();
   const [upiId, setUpiId] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [isFocused, setIsFocused] = useState(false);
@@ -61,6 +62,7 @@ export default function AddUpiSheet() {
 
   return (
     <BottomSheetScrollView
+      key={pathname}
       contentContainerStyle={{
         padding: 20,
       }}
