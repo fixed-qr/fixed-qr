@@ -14,6 +14,8 @@ export default function SheetLayout() {
         >
           <Stack.Screen name="qr-code" />
           <Stack.Screen name="upi" />
+          <Stack.Screen name="saved-upi-app-qrcode" />
+          <Stack.Screen name="transaction" />
         </Stack>
       </AppSheet>
     </BottomSheetModalProvider>

@@ -1,4 +1,3 @@
-import { TransactionBottomSheet } from "@/components/bottom-sheets";
 import { useUserStore } from "@/store/user-store";
 import { Redirect, Stack, usePathname } from "expo-router";
 
@@ -11,24 +10,21 @@ export default function ProtectedLayout() {
   }
 
   return (
-    <>
-      <Stack
-        screenOptions={{
-          headerShown: false,
+    <Stack
+      screenOptions={{
+        headerShown: false,
+        contentStyle: { backgroundColor: undefined },
+      }}
+    >
+      <Stack.Screen name="(tabs)" />
+      <Stack.Screen
+        name="sheets"
+        options={{
           contentStyle: { backgroundColor: undefined },
+          presentation: "transparentModal",
+          animation: "fade",
         }}
-      >
-        <Stack.Screen name="(tabs)" />
-        <Stack.Screen
-          name="sheets"
-          options={{
-            contentStyle: { backgroundColor: undefined },
-            presentation: "transparentModal",
-            animation: "fade",
-          }}
-        />
-      </Stack>
-      <TransactionBottomSheet />
-    </>
+      />
+    </Stack>
   );
 }

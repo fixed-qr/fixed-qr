@@ -1,6 +1,5 @@
 import { AppGroup, AppIcon, AppText } from "@/components/app-ui";
 import { useTheme } from "@/hooks/use-theme";
-import { useBottomSheetStore } from "@/store/bottom-sheet-store";
 import { useIdentityStore } from "@/store/identity-store";
 import { useTransactionStore } from "@/store/transaction-store";
 import { useUserStore } from "@/store/user-store";
@@ -11,7 +10,6 @@ import { AlertModal } from "../alert-modal";
 
 export function SettingSection() {
   const theme = useTheme();
-  const snapToIndex = useBottomSheetStore((state) => state.snapToIndex);
   const [pressed, setPressed] = useState<{
     deleteAccount: boolean;
     transactions: boolean;
@@ -81,10 +79,10 @@ export function SettingSection() {
         }}
       />
 
-      {/* Transactions view button */}
+      {/* Transactions */}
       <Pressable
         onPress={() => {
-          snapToIndex("TRANSACTION", 0);
+          router.push("/(protected)/sheets/transaction");
         }}
         onPressIn={() => setPressed({ ...pressed, transactions: true })}
         onPressOut={() => setPressed({ ...pressed, transactions: false })}
