@@ -6,15 +6,20 @@ import {
   BottomSheetBackdropProps,
   BottomSheetModal,
 } from "@gorhom/bottom-sheet";
-import { useFocusEffect, useRouter, useSegments } from "expo-router";
+import { useFocusEffect, useGlobalSearchParams, useRouter } from "expo-router";
 import { useCallback, useEffect, useRef } from "react";
 import { BackHandler, StyleProp, StyleSheet, ViewStyle } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useShallow } from "zustand/react/shallow";
 
-interface AppSheetProps {
+export interface AppSheetProps {
   children: React.ReactNode;
   containerStyle?: StyleProp<ViewStyle>;
+}
+
+export interface SheetState {
+  isOpen: boolean;
+  isAnimating: boolean;
 }
 
 export function AppSheet({
@@ -24,10 +29,12 @@ export function AppSheet({
   const theme = useTheme();
   const insets = useSafeAreaInsets();
   const router = useRouter();
-  const sheetOpen = useRef(false);
-  const isAnimating = useRef(false);
-  const segments = useSegments();
+  const sheetState = useRef<SheetState>({
+    isOpen: false,
+    isAnimating: false,
+  });
 
+  const { isChildSheet } = useGlobalSearchParams<{ isChildSheet?: "true" }>();
   const { sheetRef, enableDynamicSizing, snapPoints } = useAppSheetStore(
     useShallow((state) => ({
       sheetRef: state.sheetRef,
@@ -44,19 +51,17 @@ export function AppSheet({
     useCallback(() => {
       const onBackPress = () => {
         // Back press ignored while animating
-        if (isAnimating.current) {
+        if (sheetState.current.isAnimating) {
           return true;
         }
 
-        // Back if current sheet is nested
-        if (segments[1] == "sheets" && segments.length > 3) {
-          router.back();
-          return true;
-        }
-
-        // Handle sheet closing
-        if (sheetOpen.current) {
-          sheetRef.current?.dismiss();
+        // Handle navigation and sheet closing
+        if (sheetState.current.isOpen) {
+          if (isChildSheet) {
+            router.back();
+          } else {
+            sheetRef.current?.dismiss();
+          }
           return true;
         }
 
@@ -70,7 +75,7 @@ export function AppSheet({
       );
 
       return () => subscription.remove();
-    }, [sheetRef, segments, router]),
+    }, [sheetRef, isChildSheet, router]),
   );
 
   return (
@@ -87,11 +92,11 @@ export function AppSheet({
         router.back();
       }}
       onAnimate={() => {
-        isAnimating.current = true;
+        sheetState.current.isAnimating = true;
       }}
       onChange={(index) => {
-        sheetOpen.current = index !== -1;
-        isAnimating.current = false;
+        sheetState.current.isOpen = index !== -1;
+        sheetState.current.isAnimating = false;
       }}
       animationConfigs={{
         duration: 380,

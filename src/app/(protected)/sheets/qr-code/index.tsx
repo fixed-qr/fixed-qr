@@ -1,10 +1,10 @@
 import { Amount, NumericKeypad } from "@/components";
 import { AppPressable, AppText, AppView } from "@/components/app-ui";
 import { screenWidth } from "@/constants/dimensions";
+import { isChildSheet } from "@/constants/is-child-sheet";
 import { upiAppLogo } from "@/constants/upi-app-logo";
 import { useTheme } from "@/hooks/use-theme";
 import { useSavedUpiAppStore } from "@/store/saved-upi-app-store";
-import { QrCodeResultParams } from "@/types/qr-code-result-params";
 import { mapRowState } from "@/utils/map-row-state";
 import { BottomSheetScrollView } from "@gorhom/bottom-sheet";
 import { Image } from "expo-image";
@@ -57,7 +57,8 @@ export default function QrcodeSheet() {
                       amount: value,
                       upiId: item.upiId,
                       appName: item.appName,
-                    } as QrCodeResultParams,
+                      isChildSheet,
+                    },
                   });
                 }}
                 style={({ pressed }) => [
