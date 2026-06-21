@@ -1,7 +1,4 @@
-import {
-  SavedUpiAppQrCodeBottomSheet,
-  TransactionBottomSheet,
-} from "@/components/bottom-sheets";
+import { TransactionBottomSheet } from "@/components/bottom-sheets";
 import { useUserStore } from "@/store/user-store";
 import { Redirect, Stack, usePathname } from "expo-router";
 
@@ -31,7 +28,6 @@ export default function ProtectedLayout() {
           }}
         />
       </Stack>
-      <SavedUpiAppQrCodeBottomSheet />
       <TransactionBottomSheet />
     </>
   );

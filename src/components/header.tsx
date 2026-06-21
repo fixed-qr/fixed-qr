@@ -1,14 +1,13 @@
-import { AppPressable, AppView } from "@/components/app-ui";
+import { AppView } from "@/components/app-ui";
 import { useTheme } from "@/hooks/use-theme";
-import { useBottomSheetStore } from "@/store/bottom-sheet-store";
 import { Ionicons } from "@expo/vector-icons";
+import { Link } from "expo-router";
 import { StyleSheet } from "react-native";
 import { AppLogo } from "./app-logo";
 import { AppName } from "./app-name";
 
 export function Header() {
   const theme = useTheme();
-  const expand = useBottomSheetStore((state) => state.expand);
 
   return (
     <AppView style={styles.container}>
@@ -17,14 +16,12 @@ export function Header() {
         <AppName />
       </AppView>
       <AppView style={styles.rightContainer}>
-        <AppPressable
+        <Link
+          href={"/(protected)/sheets/saved-upi-app-qrcodes"}
           style={styles.button}
-          onPress={() => {
-            expand("SAVED_UPI_APP_QR_CODE");
-          }}
         >
           <Ionicons name="qr-code" size={26} color={theme.text.primary} />
-        </AppPressable>
+        </Link>
       </AppView>
     </AppView>
   );
