@@ -17,7 +17,7 @@ export function Header() {
       </AppView>
       <AppView style={styles.rightContainer}>
         <Link
-          href={"/(protected)/sheets/saved-upi-app-qrcodes"}
+          href={"/(protected)/sheets/saved-upi-app-qrcode"}
           style={styles.button}
         >
           <Ionicons name="qr-code" size={26} color={theme.text.primary} />
