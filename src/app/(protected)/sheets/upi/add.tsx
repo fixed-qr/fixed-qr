@@ -22,7 +22,7 @@ import { useState } from "react";
 import { StyleSheet } from "react-native";
 
 const gap = 8;
-const width = (SCREEN_WIDTH - gap * 2 - SCREEN_PADDING * 2) / 3;
+const width = (SCREEN_WIDTH - gap * 3 - SCREEN_PADDING * 2) / 3;
 
 export default function AddUpiSheet() {
   const theme = useTheme();
