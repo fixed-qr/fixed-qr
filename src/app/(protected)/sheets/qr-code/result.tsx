@@ -16,12 +16,12 @@ import { useEffect } from "react";
 import { Image, StyleSheet } from "react-native";
 import QRCode from "react-native-qrcode-svg";
 
-const width = (screenWidth - 40) / 1.6;
+const width = (screenWidth - 40) / 1.5;
 const borderRadius = 24;
 
 export default function QrcodeResultSheet() {
   const theme = useTheme();
-  const { upiId, amount, appName } = useLocalSearchParams<QrCodeResultParams>();
+  const { appName, upiId, amount } = useLocalSearchParams<QrCodeResultParams>();
   const addTransaction = useTransactionStore((state) => state.addTransaction);
   const user = useUserStore((state) => state.user);
 
@@ -42,6 +42,7 @@ export default function QrcodeResultSheet() {
     <BottomSheetScrollView
       contentContainerStyle={{
         padding: 20,
+        paddingTop: 0,
       }}
     >
       <AppView
