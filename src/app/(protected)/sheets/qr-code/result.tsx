@@ -88,23 +88,6 @@ export default function QrcodeResultSheet() {
           />
         </AppView>
 
-        <AppText
-          variant="bodySmall"
-          weight="500"
-          color="tertiary"
-          style={{ marginBottom: 2 }}
-        >
-          UPI ID
-        </AppText>
-
-        <AppText
-          variant="bodySmall"
-          weight="500"
-          color="tertiary"
-          style={{ marginBottom: 8 }}
-        >
-          {upiId}
-        </AppText>
         {!!amount && <Amount value={amount} size={24} />}
       </AppView>
     </BottomSheetScrollView>
