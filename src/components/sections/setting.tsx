@@ -1,6 +1,7 @@
 import { AppGroup, AppIcon, AppText } from "@/components/app-ui";
 import { useTheme } from "@/hooks/use-theme";
 import { useIdentityStore } from "@/store/identity-store";
+import { useSavedUpiAppStore } from "@/store/saved-upi-app-store";
 import { useTransactionStore } from "@/store/transaction-store";
 import { useUserStore } from "@/store/user-store";
 import { useRouter } from "expo-router";
@@ -18,12 +19,14 @@ export function SettingSection() {
   const [showAlert, setShowAlert] = useState(false);
   const resetIdentity = useIdentityStore((state) => state.verifyIdentity);
   const removeUser = useUserStore((state) => state.removeUser);
+  const clearUpiApps = useSavedUpiAppStore((state) => state.clearUpiApps);
   const clearTransactions = useTransactionStore(
     (state) => state.clearTransactions,
   );
 
   const handelOnPress = () => {
     removeUser();
+    clearUpiApps();
     clearTransactions();
     resetIdentity();
     router.replace("/(auth)/get-started");
