@@ -37,7 +37,7 @@ export function LegalInformationBottomSheet() {
           paddingBottom: 8,
         }}
       >
-        <AppView style={{ alignItems: "center", marginBottom: 16 }}>
+        <AppView style={{ alignItems: "center", marginVertical: 16 }}>
           <AppText variant="headingSmall" weight="600">
             Terms & Privacy
           </AppText>

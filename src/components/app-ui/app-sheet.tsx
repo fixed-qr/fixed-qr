@@ -1,4 +1,3 @@
-import { borderRadius } from "@/constants/platform";
 import { useTheme } from "@/hooks/use-theme";
 import { useAppSheetStore } from "@/store/app-sheet-store";
 import {
@@ -107,14 +106,14 @@ export function AppSheet({
       }}
       handleIndicatorStyle={{
         backgroundColor: theme.text.muted,
-        width: 36,
+        width: 48,
         height: 4,
         borderRadius: 4,
       }}
       backgroundStyle={{
         backgroundColor: theme.background.secondary,
-        borderTopLeftRadius: borderRadius,
-        borderTopRightRadius: borderRadius,
+        borderTopLeftRadius: 28,
+        borderTopRightRadius: 28,
         shadowOpacity: 0.1,
         shadowRadius: 10,
         elevation: 8,

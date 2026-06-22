@@ -68,7 +68,7 @@ export function IdentityBottomSheet() {
           paddingHorizontal: SCREEN_PADDING,
         }}
       >
-        <AppView style={{ alignItems: "center", marginBottom: 16 }}>
+        <AppView style={{ alignItems: "center", marginVertical: 16 }}>
           <AppText variant="headingSmall" weight="600">
             Verify Your Identity
           </AppText>
