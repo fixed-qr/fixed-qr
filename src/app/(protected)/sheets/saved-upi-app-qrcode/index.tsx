@@ -3,15 +3,15 @@ import { useTheme } from "@/hooks/use-theme";
 import { BottomSheetView } from "@gorhom/bottom-sheet";
 import { StyleSheet } from "react-native";
 
-import { screenWidth } from "@/constants/dimensions";
 import { isChildSheet } from "@/constants/is-child-sheet";
+import { SCREEN_PADDING, SCREEN_WIDTH } from "@/constants/screen";
 import { upiAppLogo } from "@/constants/upi-app-logo";
 import { useSavedUpiAppStore } from "@/store/saved-upi-app-store";
 import { mapRowState } from "@/utils/map-row-state";
 import { Link, usePathname, useRouter } from "expo-router";
 
 const gap = 8;
-const width = (screenWidth - gap * 3 - 40) / 3;
+const width = (SCREEN_WIDTH - gap * 3 - SCREEN_PADDING * 2) / 3;
 
 export default function SavedUpiAppQrcodeSheet() {
   const theme = useTheme();
@@ -24,7 +24,7 @@ export default function SavedUpiAppQrcodeSheet() {
       key={pathname}
       style={{
         backgroundColor: theme.background.secondary,
-        padding: 20,
+        padding: SCREEN_PADDING,
       }}
     >
       <AppView style={{ alignItems: "center", marginBottom: 16 }}>

@@ -1,12 +1,12 @@
 import { Amount, EmptyCard } from "@/components";
 import {
-    AppIcon,
-    AppImage,
-    AppPressable,
-    AppText,
-    AppView,
+  AppIcon,
+  AppImage,
+  AppPressable,
+  AppText,
+  AppView,
 } from "@/components/app-ui";
-import { screenWidth } from "@/constants/dimensions";
+import { SCREEN_PADDING, SCREEN_WIDTH } from "@/constants/screen";
 import { upiAppLogo } from "@/constants/upi-app-logo";
 import { useTheme } from "@/hooks/use-theme";
 import { useSavedUpiAppStore } from "@/store/saved-upi-app-store";
@@ -16,7 +16,7 @@ import { useMemo } from "react";
 import { StyleSheet } from "react-native";
 
 const gap = 8;
-const width = (screenWidth - gap - 40 - 1) / 2;
+const width = (SCREEN_WIDTH - gap - SCREEN_PADDING * 2) / 2;
 
 export function QuickActionSection() {
   const theme = useTheme();

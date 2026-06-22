@@ -1,6 +1,6 @@
 import { Amount } from "@/components";
 import { AppText, AppView } from "@/components/app-ui";
-import { screenWidth } from "@/constants/dimensions";
+import { SCREEN_PADDING, SCREEN_WIDTH } from "@/constants/screen";
 import { upiAppLogo } from "@/constants/upi-app-logo";
 import { useTheme } from "@/hooks/use-theme";
 import { useTransactionStore } from "@/store/transaction-store";
@@ -16,7 +16,7 @@ import { useEffect } from "react";
 import { Image, StyleSheet } from "react-native";
 import QRCode from "react-native-qrcode-svg";
 
-const width = (screenWidth - 40) / 1.5;
+const width = (SCREEN_WIDTH - SCREEN_PADDING * 2) / 1.5;
 const borderRadius = 24;
 
 export default function QrcodeResultSheet() {

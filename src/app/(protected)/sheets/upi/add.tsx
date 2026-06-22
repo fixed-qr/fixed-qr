@@ -6,7 +6,7 @@ import {
   AppText,
   AppView,
 } from "@/components/app-ui";
-import { screenWidth } from "@/constants/dimensions";
+import { SCREEN_PADDING, SCREEN_WIDTH } from "@/constants/screen";
 import { supportedUpiApps } from "@/constants/supported-upi-apps";
 import { upiAppLogo } from "@/constants/upi-app-logo";
 import { useTheme } from "@/hooks/use-theme";
@@ -22,7 +22,7 @@ import { useState } from "react";
 import { StyleSheet } from "react-native";
 
 const gap = 8;
-const width = (screenWidth - gap * 2 - 40) / 3;
+const width = (SCREEN_WIDTH - gap * 2 - SCREEN_PADDING * 2) / 3;
 
 export default function AddUpiSheet() {
   const theme = useTheme();
@@ -197,9 +197,6 @@ export default function AddUpiSheet() {
 }
 
 const styles = StyleSheet.create({
-  scrollContent: {
-    paddingBottom: 40,
-  },
   input: {
     width: "100%",
     flexDirection: "row",

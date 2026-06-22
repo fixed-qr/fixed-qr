@@ -1,5 +1,6 @@
 import { Amount, EmptyCard } from "@/components";
 import { AppIcon, AppImage, AppText, AppView } from "@/components/app-ui";
+import { SCREEN_PADDING } from "@/constants/screen";
 import { upiAppLogo } from "@/constants/upi-app-logo";
 import { useTheme } from "@/hooks/use-theme";
 import { useTransactionStore } from "@/store/transaction-store";
@@ -16,7 +17,7 @@ export default function TransactionSheet() {
       style={{
         backgroundColor: theme.background.secondary,
       }}
-      contentContainerStyle={{ padding: 20 }}
+      contentContainerStyle={{ padding: SCREEN_PADDING }}
     >
       <AppView style={{ alignItems: "center", marginBottom: 16 }}>
         <AppText variant="headingSmall" weight="600">

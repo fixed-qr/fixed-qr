@@ -7,6 +7,7 @@ import {
   AppText,
   AppView,
 } from "@/components/app-ui";
+import { SCREEN_PADDING } from "@/constants/screen";
 import { useTheme } from "@/hooks/use-theme";
 import { useAppUpdateStore } from "@/store/app-update-store";
 import { openURL } from "expo-linking";
@@ -45,7 +46,7 @@ export default function UpdateScreen() {
 
   return (
     <AppSafeAreaView style={styles.container}>
-      <AppScrollView contentContainerStyle={{ padding: 20 }}>
+      <AppScrollView contentContainerStyle={{ padding: SCREEN_PADDING }}>
         <AppView style={styles.update}>
           <AppImage
             source={require("@/assets/images/icons/system/update.png")}

@@ -1,4 +1,5 @@
 import { AppView } from "@/components/app-ui";
+import { SCREEN_PADDING } from "@/constants/screen";
 import { useTheme } from "@/hooks/use-theme";
 import { Ionicons } from "@expo/vector-icons";
 import { Link } from "expo-router";
@@ -31,7 +32,7 @@ const styles = StyleSheet.create({
   container: {
     width: "100%",
     flexDirection: "row",
-    paddingHorizontal: 20,
+    paddingHorizontal: SCREEN_PADDING,
     paddingVertical: 12,
     justifyContent: "space-between",
     alignItems: "center",

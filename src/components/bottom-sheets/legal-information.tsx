@@ -1,4 +1,5 @@
 import { AppBottomSheet, AppText, AppView } from "@/components/app-ui";
+import { SCREEN_PADDING } from "@/constants/screen";
 import { useTheme } from "@/hooks/use-theme";
 import { useBottomSheetStore } from "@/store/bottom-sheet-store";
 import { useLegalInformationStore } from "@/store/legal-information-store";
@@ -32,8 +33,8 @@ export function LegalInformationBottomSheet() {
           backgroundColor: theme.background.secondary,
         }}
         contentContainerStyle={{
-          paddingHorizontal: 20,
-          paddingBottom: 10,
+          paddingHorizontal: SCREEN_PADDING,
+          paddingBottom: 8,
         }}
       >
         <AppView style={{ alignItems: "center", marginBottom: 16 }}>

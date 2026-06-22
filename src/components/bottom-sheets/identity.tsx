@@ -1,15 +1,16 @@
 import { PasswordInput } from "@/components";
 import {
-    AppBottomSheet,
-    AppPressable,
-    AppText,
-    AppView,
+  AppBottomSheet,
+  AppPressable,
+  AppText,
+  AppView,
 } from "@/components/app-ui";
 import { useTheme } from "@/hooks/use-theme";
 import { BottomSheetView } from "@gorhom/bottom-sheet";
 import { useState } from "react";
 import { Keyboard, StyleSheet } from "react-native";
 
+import { SCREEN_PADDING } from "@/constants/screen";
 import { useBottomSheetStore } from "@/store/bottom-sheet-store";
 import { useIdentityStore } from "@/store/identity-store";
 import { useUserStore } from "@/store/user-store";
@@ -64,7 +65,7 @@ export function IdentityBottomSheet() {
       <BottomSheetView
         style={{
           backgroundColor: theme.background.secondary,
-          paddingHorizontal: 20,
+          paddingHorizontal: SCREEN_PADDING,
         }}
       >
         <AppView style={{ alignItems: "center", marginBottom: 16 }}>

@@ -1,7 +1,7 @@
 import { Amount, NumericKeypad } from "@/components";
 import { AppPressable, AppText, AppView } from "@/components/app-ui";
-import { screenWidth } from "@/constants/dimensions";
 import { isChildSheet } from "@/constants/is-child-sheet";
+import { SCREEN_PADDING, SCREEN_WIDTH } from "@/constants/screen";
 import { upiAppLogo } from "@/constants/upi-app-logo";
 import { useTheme } from "@/hooks/use-theme";
 import { useSavedUpiAppStore } from "@/store/saved-upi-app-store";
@@ -13,7 +13,7 @@ import { useState } from "react";
 import { StyleSheet } from "react-native";
 
 const gap = 8;
-const width = (screenWidth - gap * 3 - 40) / 3;
+const width = (SCREEN_WIDTH - gap * 3 - SCREEN_PADDING * 2) / 3;
 
 export default function QrcodeSheet() {
   const theme = useTheme();
@@ -24,7 +24,7 @@ export default function QrcodeSheet() {
   return (
     <BottomSheetScrollView
       contentContainerStyle={{
-        padding: 20,
+        padding: SCREEN_PADDING,
         gap: gap,
       }}
     >
@@ -118,9 +118,9 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-    paddingHorizontal: 32,
+    paddingHorizontal: SCREEN_PADDING,
     marginTop: 8,
-    marginBottom: 28,
+    marginBottom: 16,
   },
   rupeeUintImage: {
     height: 22,

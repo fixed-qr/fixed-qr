@@ -1,3 +1,4 @@
+import { SCREEN_PADDING } from "@/constants/screen";
 import { useTheme } from "@/hooks/use-theme";
 import React, { useEffect, useRef, useState } from "react";
 import { Animated, Modal, Pressable, StyleSheet, View } from "react-native";
@@ -163,14 +164,14 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    padding: 20,
+    padding: SCREEN_PADDING,
   },
   container: {
-    width: "90%",
+    width: "100%",
     maxWidth: 400,
     alignItems: "center",
     justifyContent: "center",
-    borderRadius: 24,
+    borderRadius: 28,
     overflow: "hidden",
     borderWidth: 1,
   },

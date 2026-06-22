@@ -1,5 +1,5 @@
 import { AppPressable, AppText, AppView } from "@/components/app-ui";
-import { screenWidth } from "@/constants/dimensions";
+import { SCREEN_PADDING, SCREEN_WIDTH } from "@/constants/screen";
 import { useTheme } from "@/hooks/use-theme";
 import { StyleSheet } from "react-native";
 
@@ -19,7 +19,7 @@ const KEYPAD_KEYS = [
 ];
 
 const KEYPAD_GAP = 8;
-const KEY_WIDTH = (screenWidth - KEYPAD_GAP * 3 - 40) / 3;
+const KEY_WIDTH = (SCREEN_WIDTH - KEYPAD_GAP * 3 - SCREEN_PADDING * 2) / 3;
 
 interface NumericKeypadProps {
   value: string;

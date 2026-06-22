@@ -6,6 +6,7 @@ import {
   AppText,
   AppView,
 } from "@/components/app-ui";
+import { SCREEN_PADDING } from "@/constants/screen";
 import { useTheme } from "@/hooks/use-theme";
 import { StyleSheet } from "react-native";
 
@@ -60,7 +61,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
-    paddingHorizontal: 20,
+    paddingHorizontal: SCREEN_PADDING,
   },
   maintenance: {
     alignItems: "center",
