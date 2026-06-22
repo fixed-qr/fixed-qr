@@ -1,4 +1,4 @@
-import { AppGroup, AppIcon, AppText } from "@/components/app-ui";
+import { AppIcon, AppText } from "@/components/app-ui";
 import { useTheme } from "@/hooks/use-theme";
 import { useIdentityStore } from "@/store/identity-store";
 import { useSavedUpiAppStore } from "@/store/saved-upi-app-store";
@@ -8,6 +8,7 @@ import { useRouter } from "expo-router";
 import { useState } from "react";
 import { Pressable, StyleSheet } from "react-native";
 import { AlertModal } from "../alert-modal";
+import { Section } from "../section";
 
 export function SettingSection() {
   const theme = useTheme();
@@ -37,7 +38,7 @@ export function SettingSection() {
   };
 
   return (
-    <AppGroup title="Settings">
+    <Section title="Settings">
       {/* Delete account button */}
       <Pressable
         onPress={() => setShowAlert(true)}
@@ -115,7 +116,7 @@ export function SettingSection() {
           style={{ marginLeft: "auto" }}
         />
       </Pressable>
-    </AppGroup>
+    </Section>
   );
 }
 

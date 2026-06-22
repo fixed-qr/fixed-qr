@@ -1,5 +1,5 @@
-import { EmptyCard } from "@/components";
-import { AppGroup, AppView } from "@/components/app-ui";
+import { EmptyCard, Section } from "@/components";
+import { AppView } from "@/components/app-ui";
 import { useSavedUpiAppStore } from "@/store/saved-upi-app-store";
 import { useRouter } from "expo-router";
 import { StyleSheet } from "react-native";
@@ -11,7 +11,7 @@ export function SavedUpiAppSection() {
 
   return (
     <AppView style={styles.container}>
-      <AppGroup
+      <Section
         title="Saved UPI IDs"
         titleIconName="add-circle"
         onTitlePress={() => {
@@ -29,7 +29,7 @@ export function SavedUpiAppSection() {
         ) : (
           <EmptyCard message="Your Saved UPI ID will appear here." />
         )}
-      </AppGroup>
+      </Section>
     </AppView>
   );
 }
