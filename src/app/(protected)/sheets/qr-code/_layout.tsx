@@ -1,8 +1,11 @@
-import { Stack } from "expo-router";
+import { Stack, usePathname } from "expo-router";
 
 export default function QrcodeLayout() {
+  const pathname = usePathname();
+
   return (
     <Stack
+      key={pathname}
       screenOptions={{
         headerShown: false,
         contentStyle: { backgroundColor: undefined },

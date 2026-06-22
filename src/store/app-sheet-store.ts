@@ -10,7 +10,6 @@ interface AppSheetStore {
 
   enableDynamicSizing: boolean;
   snapPoints: SnapPoints;
-
   setEnableDynamicSizing: (enabled: boolean) => void;
   setSnapPoints: (points: SnapPoints) => void;
 
@@ -25,15 +24,8 @@ export const useAppSheetStore = create<AppSheetStore>((set, get) => ({
   enableDynamicSizing: true,
   snapPoints: [],
 
-  setEnableDynamicSizing: (enabled) =>
-    set({
-      enableDynamicSizing: enabled,
-    }),
-
-  setSnapPoints: (points) =>
-    set({
-      snapPoints: points,
-    }),
+  setEnableDynamicSizing: (enabled) => set({ enableDynamicSizing: enabled }),
+  setSnapPoints: (points) => set({ snapPoints: points }),
 
   present: () => {
     get().sheetRef.current?.present();

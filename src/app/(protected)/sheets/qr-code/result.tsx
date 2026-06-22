@@ -11,7 +11,7 @@ import { buildUpiPaymentUrl } from "@/utils/build-upi-payment-url";
 import { createTransactionId } from "@/utils/create-transaction-id";
 import { DateTime } from "@/utils/date-time";
 import { BottomSheetScrollView } from "@gorhom/bottom-sheet";
-import { useLocalSearchParams, usePathname } from "expo-router";
+import { useLocalSearchParams } from "expo-router";
 import { useEffect } from "react";
 import { Image, StyleSheet } from "react-native";
 import QRCode from "react-native-qrcode-svg";
@@ -21,7 +21,6 @@ const borderRadius = 24;
 
 export default function QrcodeResultSheet() {
   const theme = useTheme();
-  const pathname = usePathname();
   const { upiId, amount, appName } = useLocalSearchParams<QrCodeResultParams>();
   const addTransaction = useTransactionStore((state) => state.addTransaction);
   const user = useUserStore((state) => state.user);
@@ -41,7 +40,6 @@ export default function QrcodeResultSheet() {
 
   return (
     <BottomSheetScrollView
-      key={pathname}
       contentContainerStyle={{
         padding: 20,
       }}
