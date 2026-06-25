@@ -1,63 +1,61 @@
-import { AppBottomSheet, AppText, AppView } from "@/components/app-ui";
+import { AppSafeAreaView, AppText, AppView } from "@/components/app-ui";
 import { SCREEN_PADDING } from "@/constants/screen";
 import { useTheme } from "@/hooks/use-theme";
-import { useBottomSheetStore } from "@/store/bottom-sheet-store";
-import { useLegalInformationStore } from "@/store/legal-information-store";
+import { usePrivacyPolicyStore } from "@/store/privacy-policy-store";
 import { BottomSheetScrollView } from "@gorhom/bottom-sheet/src";
 import { useEffect } from "react";
 import { ActivityIndicator } from "react-native";
 import Markdown from "react-native-markdown-display";
+import { useShallow } from "zustand/react/shallow";
 
 export default function PrivacyPolicySheet() {
   const theme = useTheme();
-  const ref = useBottomSheetStore((state) =>
-    state.register("LEGAL_INFORMATION"),
-  );
-  const { legalInformation, loading, fetchLegalInformation } =
-    useLegalInformationStore();
+  const { fetchPrivacyPolicy, privacyPolicy, isLoading, error } =
+    usePrivacyPolicyStore(useShallow((state) => state));
 
   useEffect(() => {
-    fetchLegalInformation();
+    if (!privacyPolicy && !isLoading && !error) {
+      fetchPrivacyPolicy();
+    }
   }, []);
 
-  return (
-    <AppBottomSheet
-      ref={ref}
-      index={-1}
-      enableDynamicSizing={false}
-      enablePanDownToClose={true}
-      snapPoints={["60%"]}
-    >
-      <BottomSheetScrollView
-        style={{
-          backgroundColor: theme.background.secondary,
-        }}
-        contentContainerStyle={{
-          paddingHorizontal: SCREEN_PADDING,
-          paddingBottom: 8,
-        }}
+  if (isLoading) {
+    return (
+      <AppSafeAreaView
+        style={{ flex: 1, alignItems: "center", justifyContent: "center" }}
       >
-        <AppView style={{ alignItems: "center", marginVertical: 16 }}>
-          <AppText variant="headingSmall" weight="600">
-            Terms & Privacy
-          </AppText>
-        </AppView>
-        {!loading && legalInformation ? (
-          <Markdown
-            style={{
-              body: {
-                backgroundColor: theme.background.secondary,
-                color: theme.text.primary,
-                borderColor: theme.border.primary,
-              },
-            }}
-          >
-            {legalInformation}
-          </Markdown>
-        ) : (
-          <ActivityIndicator size={24} color={theme.text.primary} />
-        )}
-      </BottomSheetScrollView>
-    </AppBottomSheet>
+        <ActivityIndicator color={theme.text.primary} size={24} />
+      </AppSafeAreaView>
+    );
+  }
+
+  return (
+    <BottomSheetScrollView
+      contentContainerStyle={{
+        padding: SCREEN_PADDING,
+        paddingBottom: 8,
+      }}
+    >
+      <AppView style={{ alignItems: "center", marginBottom: 8 }}>
+        <AppText variant="headingSmall" weight="600">
+          Terms & Privacy
+        </AppText>
+      </AppView>
+      {!isLoading && privacyPolicy ? (
+        <Markdown
+          style={{
+            body: {
+              backgroundColor: theme.background.secondary,
+              color: theme.text.primary,
+              borderColor: theme.border.primary,
+            },
+          }}
+        >
+          {privacyPolicy}
+        </Markdown>
+      ) : (
+        <ActivityIndicator size={24} color={theme.text.primary} />
+      )}
+    </BottomSheetScrollView>
   );
 }

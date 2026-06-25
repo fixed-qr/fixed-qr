@@ -1,4 +1,5 @@
 import {
+  AppPressable,
   AppSafeAreaView,
   AppScrollView,
   AppText,
@@ -6,12 +7,15 @@ import {
 } from "@/components/app-ui";
 import { IdentityBottomSheet } from "@/components/bottom-sheets";
 import { SavedUpiAppSection, SettingSection } from "@/components/sections";
+import { SCREEN_PADDING } from "@/constants/screen";
+import { useSheet } from "@/features/sheets/use-sheet";
 import { useTheme } from "@/hooks/use-theme";
 import { useUserStore } from "@/store/user-store";
 import { Image, StyleSheet } from "react-native";
 
 export default function ProfileScreen() {
   const theme = useTheme();
+  const sheet = useSheet();
   const name = useUserStore((state) => state.user?.name);
 
   return (
@@ -38,7 +42,21 @@ export default function ProfileScreen() {
         </AppView>
         <SettingSection />
         <SavedUpiAppSection />
+
+        {/* Legal Information */}
+        <AppView style={styles.legalInformationContainer}>
+          <AppPressable
+            onPress={() => {
+              sheet.push("PrivacyPolicySheet", {});
+            }}
+          >
+            <AppText variant="bodySmall" color="muted">
+              Terms of Service and Privacy Policy
+            </AppText>
+          </AppPressable>
+        </AppView>
       </AppScrollView>
+
       <IdentityBottomSheet />
     </AppSafeAreaView>
   );
@@ -67,5 +85,11 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: 600,
     textTransform: "capitalize",
+  },
+  legalInformationContainer: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    padding: SCREEN_PADDING,
   },
 });
