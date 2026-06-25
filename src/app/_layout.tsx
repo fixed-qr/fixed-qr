@@ -1,3 +1,4 @@
+import { SheetProvider } from "@/features/sheets/sheet-provider";
 import { useTheme } from "@/hooks/use-theme";
 import { useUserStore } from "@/store/user-store";
 import {
@@ -75,20 +76,25 @@ export default function RootLayout() {
             backgroundColor: theme.background.primary,
           }}
         >
-          <StatusBar style={scheme === "dark" ? "light" : "dark"} />
+          <SheetProvider>
+            <StatusBar style={scheme === "dark" ? "light" : "dark"} />
 
-          <Stack
-            screenOptions={{
-              headerShown: false,
-              contentStyle: {
-                backgroundColor: theme.background.primary,
-              },
-            }}
-          >
-            <Stack.Screen name="(auth)" options={{ animation: "fade" }} />
-            <Stack.Screen name="(system)" options={{ animation: "fade" }} />
-            <Stack.Screen name="(protected)" options={{ animation: "fade" }} />
-          </Stack>
+            <Stack
+              screenOptions={{
+                headerShown: false,
+                contentStyle: {
+                  backgroundColor: theme.background.primary,
+                },
+              }}
+            >
+              <Stack.Screen name="(auth)" options={{ animation: "fade" }} />
+              <Stack.Screen name="(system)" options={{ animation: "fade" }} />
+              <Stack.Screen
+                name="(protected)"
+                options={{ animation: "fade" }}
+              />
+            </Stack>
+          </SheetProvider>
         </SafeAreaProvider>
       </ThemeProvider>
     </GestureHandlerRootView>
