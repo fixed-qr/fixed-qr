@@ -60,15 +60,15 @@ export default function RootLayout() {
   }
 
   return (
-    <SafeAreaProvider
-      initialMetrics={initialWindowMetrics}
+    <GestureHandlerRootView
+      onLayout={onLayoutRootView}
       style={{
         flex: 1,
         backgroundColor: theme.background.primary,
       }}
     >
-      <GestureHandlerRootView
-        onLayout={onLayoutRootView}
+      <SafeAreaProvider
+        initialMetrics={initialWindowMetrics}
         style={{
           flex: 1,
           backgroundColor: theme.background.primary,
@@ -90,7 +90,7 @@ export default function RootLayout() {
             <Stack.Screen name="(protected)" options={{ animation: "fade" }} />
           </Stack>
         </ThemeProvider>
-      </GestureHandlerRootView>
-    </SafeAreaProvider>
+      </SafeAreaProvider>
+    </GestureHandlerRootView>
   );
 }
