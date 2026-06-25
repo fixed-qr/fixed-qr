@@ -67,14 +67,14 @@ export default function RootLayout() {
         backgroundColor: theme.background.primary,
       }}
     >
-      <SafeAreaProvider
-        initialMetrics={initialWindowMetrics}
-        style={{
-          flex: 1,
-          backgroundColor: theme.background.primary,
-        }}
-      >
-        <ThemeProvider value={scheme === "dark" ? DarkTheme : DefaultTheme}>
+      <ThemeProvider value={scheme === "dark" ? DarkTheme : DefaultTheme}>
+        <SafeAreaProvider
+          initialMetrics={initialWindowMetrics}
+          style={{
+            flex: 1,
+            backgroundColor: theme.background.primary,
+          }}
+        >
           <StatusBar style={scheme === "dark" ? "light" : "dark"} />
 
           <Stack
@@ -89,8 +89,8 @@ export default function RootLayout() {
             <Stack.Screen name="(system)" options={{ animation: "fade" }} />
             <Stack.Screen name="(protected)" options={{ animation: "fade" }} />
           </Stack>
-        </ThemeProvider>
-      </SafeAreaProvider>
+        </SafeAreaProvider>
+      </ThemeProvider>
     </GestureHandlerRootView>
   );
 }
