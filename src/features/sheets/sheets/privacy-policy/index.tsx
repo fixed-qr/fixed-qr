@@ -8,7 +8,7 @@ import { useEffect } from "react";
 import { ActivityIndicator } from "react-native";
 import Markdown from "react-native-markdown-display";
 
-export function LegalInformationBottomSheet() {
+export default function PrivacyPolicySheet() {
   const theme = useTheme();
   const ref = useBottomSheetStore((state) =>
     state.register("LEGAL_INFORMATION"),

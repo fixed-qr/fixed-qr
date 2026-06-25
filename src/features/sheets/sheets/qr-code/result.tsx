@@ -20,7 +20,7 @@ const borderRadius = 24;
 interface QrcodeResultSheetProps {
   appName: UpiAppName;
   upiId: string;
-  amount: string | undefined;
+  amount?: string;
 }
 
 export default function QrcodeResultSheet({

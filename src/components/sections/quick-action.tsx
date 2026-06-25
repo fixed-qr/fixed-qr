@@ -8,10 +8,10 @@ import {
 } from "@/components/app-ui";
 import { SCREEN_PADDING, SCREEN_WIDTH } from "@/constants/screen";
 import { upiAppLogo } from "@/constants/upi-app-logo";
+import { useSheet } from "@/features/sheets/use-sheet";
 import { useTheme } from "@/hooks/use-theme";
 import { useSavedUpiAppStore } from "@/store/saved-upi-app-store";
 import { useTransactionStore } from "@/store/transaction-store";
-import { useRouter } from "expo-router";
 import { useMemo } from "react";
 import { StyleSheet } from "react-native";
 
@@ -20,7 +20,7 @@ const width = (SCREEN_WIDTH - gap - SCREEN_PADDING * 2) / 2;
 
 export function QuickActionSection() {
   const theme = useTheme();
-  const router = useRouter();
+  const sheet = useSheet();
   const transactions = useTransactionStore((state) => state.transactions);
   const savedUpiApps = useSavedUpiAppStore((state) => state.savedUpiApps);
 
@@ -56,13 +56,10 @@ export function QuickActionSection() {
             <AppPressable
               key={tsx.id}
               onPress={() => {
-                router.push({
-                  pathname: "/(protected)/sheets/qr-code/result",
-                  params: {
-                    upiId: savedUpiApps[tsx.appName]?.upiId,
-                    amount: tsx.amount,
-                    appName: tsx.appName,
-                  },
+                sheet.push("QrcodeResultSheet", {
+                  appName: tsx.appName,
+                  upiId: savedUpiApps[tsx.appName]?.upiId as string,
+                  amount: tsx.amount,
                 });
               }}
               style={({ pressed }) => [

@@ -3,19 +3,19 @@ import { useTheme } from "@/hooks/use-theme";
 import { BottomSheetView } from "@gorhom/bottom-sheet";
 import { StyleSheet } from "react-native";
 
-import { isChildSheet } from "@/constants/is-child-sheet";
 import { SCREEN_PADDING, SCREEN_WIDTH } from "@/constants/screen";
 import { upiAppLogo } from "@/constants/upi-app-logo";
 import { useSavedUpiAppStore } from "@/store/saved-upi-app-store";
 import { mapRowState } from "@/utils/map-row-state";
-import { Link, useRouter } from "expo-router";
+import { Link } from "expo-router";
+import { useSheet } from "../../use-sheet";
 
 const gap = 8;
 const width = (SCREEN_WIDTH - gap * 3 - SCREEN_PADDING * 2) / 3;
 
 export default function SavedUpiAppQrcodeSheet() {
   const theme = useTheme();
-  const router = useRouter();
+  const sheet = useSheet();
   const savedUpiApps = useSavedUpiAppStore((state) => state.savedUpiApps);
 
   return (
@@ -38,13 +38,9 @@ export default function SavedUpiAppQrcodeSheet() {
               <AppPressable
                 key={item.upiId}
                 onPress={() => {
-                  router.push({
-                    pathname: "/(protected)/sheets/qr-code/result",
-                    params: {
-                      upiId: item.upiId,
-                      appName: item.appName,
-                      isChildSheet,
-                    },
+                  sheet.push("QrcodeResultSheet", {
+                    appName: item.appName,
+                    upiId: item.upiId,
                   });
                 }}
                 style={({ pressed }) => [

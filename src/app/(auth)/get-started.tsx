@@ -7,9 +7,8 @@ import {
   AppText,
   AppView,
 } from "@/components/app-ui";
-import { LegalInformationBottomSheet } from "@/components/bottom-sheets";
+import { useSheet } from "@/features/sheets/use-sheet";
 import { useTheme } from "@/hooks/use-theme";
-import { useBottomSheetStore } from "@/store/bottom-sheet-store";
 import { useIdentityStore } from "@/store/identity-store";
 import { useUserStore } from "@/store/user-store";
 import { User } from "@/types/user";
@@ -32,11 +31,11 @@ export default function GetStartedScreen() {
   const [errors, setErrors] = useState<Partial<User>>({});
   const [isChecked, setChecked] = useState(false);
   const [isCheckedError, setCheckedError] = useState(false);
-  const expand = useBottomSheetStore((state) => state.expand);
+  const sheet = useSheet();
 
   const handleExpand = () => {
     if (!isChecked) {
-      expand("LEGAL_INFORMATION");
+      sheet.push("PrivacyPolicySheet", {});
     }
   };
 
@@ -246,7 +245,6 @@ export default function GetStartedScreen() {
           </AppPressable>
         </AppView>
       </AppScrollView>
-      <LegalInformationBottomSheet />
     </AppSafeAreaView>
   );
 }

@@ -1,14 +1,15 @@
-import { AppView } from "@/components/app-ui";
+import { AppPressable, AppView } from "@/components/app-ui";
 import { SCREEN_PADDING } from "@/constants/screen";
+import { useSheet } from "@/features/sheets/use-sheet";
 import { useTheme } from "@/hooks/use-theme";
 import { Ionicons } from "@expo/vector-icons";
-import { Link } from "expo-router";
 import { StyleSheet } from "react-native";
 import { AppLogo } from "./app-logo";
 import { AppName } from "./app-name";
 
 export function Header() {
   const theme = useTheme();
+  const sheet = useSheet();
 
   return (
     <AppView style={styles.container}>
@@ -17,12 +18,14 @@ export function Header() {
         <AppName />
       </AppView>
       <AppView style={styles.rightContainer}>
-        <Link
-          href={"/(protected)/sheets/saved-upi-app-qrcode"}
+        <AppPressable
+          onPress={() => {
+            sheet.push("SavedUpiAppQrcodeSheet", {});
+          }}
           style={styles.button}
         >
           <Ionicons name="qr-code" size={26} color={theme.text.primary} />
-        </Link>
+        </AppPressable>
       </AppView>
     </AppView>
   );

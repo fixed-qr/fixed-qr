@@ -1,12 +1,12 @@
 import { EmptyCard, Section } from "@/components";
 import { AppView } from "@/components/app-ui";
+import { useSheet } from "@/features/sheets/use-sheet";
 import { useSavedUpiAppStore } from "@/store/saved-upi-app-store";
-import { useRouter } from "expo-router";
 import { StyleSheet } from "react-native";
 import { SavedUpiAppCard } from "../saved-upi-app-card";
 
 export function SavedUpiAppSection() {
-  const router = useRouter();
+  const sheet = useSheet();
   const savedUpiApps = useSavedUpiAppStore((state) => state.savedUpiApps);
 
   return (
@@ -15,7 +15,7 @@ export function SavedUpiAppSection() {
         title="Saved UPI IDs"
         titleIconName="add-circle"
         onTitlePress={() => {
-          router.navigate("/(protected)/sheets/upi/add");
+          sheet.push("AddUpiSheet", {});
         }}
       >
         {Object.keys(savedUpiApps).length ? (

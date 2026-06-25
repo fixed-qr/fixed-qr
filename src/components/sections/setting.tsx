@@ -1,4 +1,5 @@
 import { AppIcon, AppText } from "@/components/app-ui";
+import { useSheet } from "@/features/sheets/use-sheet";
 import { useTheme } from "@/hooks/use-theme";
 import { useIdentityStore } from "@/store/identity-store";
 import { useSavedUpiAppStore } from "@/store/saved-upi-app-store";
@@ -17,6 +18,7 @@ export function SettingSection() {
     transactions: boolean;
   }>({ deleteAccount: false, transactions: false });
   const router = useRouter();
+  const sheet = useSheet();
   const [showAlert, setShowAlert] = useState(false);
   const resetIdentity = useIdentityStore((state) => state.verifyIdentity);
   const removeUser = useUserStore((state) => state.removeUser);
@@ -86,7 +88,7 @@ export function SettingSection() {
       {/* Transactions */}
       <Pressable
         onPress={() => {
-          router.push("/(protected)/sheets/transaction");
+          sheet.push("TransactionSheet", {});
         }}
         onPressIn={() => setPressed({ ...pressed, transactions: true })}
         onPressOut={() => setPressed({ ...pressed, transactions: false })}

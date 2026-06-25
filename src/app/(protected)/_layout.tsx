@@ -17,14 +17,6 @@ export default function ProtectedLayout() {
       }}
     >
       <Stack.Screen name="(tabs)" />
-      <Stack.Screen
-        name="sheets"
-        options={{
-          contentStyle: { backgroundColor: undefined },
-          presentation: "transparentModal",
-          animation: "fade",
-        }}
-      />
     </Stack>
   );
 }

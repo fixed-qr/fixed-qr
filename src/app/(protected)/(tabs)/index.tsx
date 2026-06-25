@@ -7,15 +7,15 @@ import {
   AppText,
 } from "@/components/app-ui";
 import { AppUpdateSection, QuickActionSection } from "@/components/sections";
+import { useSheet } from "@/features/sheets/use-sheet";
 import { useTheme } from "@/hooks/use-theme";
 import { useUserStore } from "@/store/user-store";
-import { useRouter } from "expo-router";
 import { StyleSheet } from "react-native";
 
 export default function HomeScreen() {
   const theme = useTheme();
-  const router = useRouter();
   const name = useUserStore((state) => state.user?.name);
+  const sheet = useSheet();
 
   return (
     <AppSafeAreaView>
@@ -34,7 +34,7 @@ export default function HomeScreen() {
         {/* Generate QR Code Button */}
         <AppPressable
           onPress={() => {
-            router.push("/(protected)/sheets/qr-code");
+            sheet.push("QrcodeSheet", {});
           }}
           style={({ pressed }) => [
             styles.GenQRCode,
