@@ -83,7 +83,7 @@ function SheetInstance({ sheet, index }: Readonly<SheetInstanceProps>) {
       }}
       containerStyle={[StyleSheet.absoluteFill]}
     >
-      <SheetComponent {...(sheet.payload as any)} />
+      <SheetComponent {...(sheet.params as any)} />
     </BottomSheetModal>
   );
 }

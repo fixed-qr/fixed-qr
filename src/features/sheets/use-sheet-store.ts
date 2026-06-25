@@ -1,18 +1,18 @@
 import { nanoid } from "nanoid/non-secure";
 import { create } from "zustand";
-import { SheetName, SheetPayloadMap } from "./sheet-registry";
+import { SheetName, SheetParamsMap } from "./sheet-registry";
 
 export type SheetItem<T extends SheetName = SheetName> = {
   id: string;
   name: T;
-  payload: SheetPayloadMap[T];
+  params: SheetParamsMap[T];
 };
 
 interface SheetStore {
   stack: SheetItem[];
 
-  push: <T extends SheetName>(name: T, payload: SheetPayloadMap[T]) => void;
-  replace: <T extends SheetName>(name: T, payload: SheetPayloadMap[T]) => void;
+  push: <T extends SheetName>(name: T, params: SheetParamsMap[T]) => void;
+  replace: <T extends SheetName>(name: T, params: SheetParamsMap[T]) => void;
   pop: () => void;
   removeSheet: (id: string) => void;
   closeAll: () => void;
@@ -21,26 +21,26 @@ interface SheetStore {
 export const useSheetStore = create<SheetStore>((set) => ({
   stack: [],
 
-  push: (name, payload) =>
+  push: (name, params) =>
     set((state) => ({
       stack: [
         ...state.stack,
         {
           id: nanoid(),
           name,
-          payload,
+          params,
         },
       ],
     })),
 
-  replace: (name, payload) =>
+  replace: (name, params) =>
     set((state) => ({
       stack: [
         ...state.stack.slice(0, -1),
         {
           id: nanoid(),
           name,
-          payload,
+          params,
         },
       ],
     })),
