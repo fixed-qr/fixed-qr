@@ -1,7 +1,7 @@
 import { AppIcon, AppText } from "@/components/app-ui";
+import { useIdentityVerificationStore } from "@/features/identity-verification/store";
 import { useSheet } from "@/features/sheets/use-sheet";
 import { useTheme } from "@/hooks/use-theme";
-import { useIdentityStore } from "@/store/identity-store";
 import { useSavedUpiAppStore } from "@/store/saved-upi-app-store";
 import { useTransactionStore } from "@/store/transaction-store";
 import { useUserStore } from "@/store/user-store";
@@ -20,7 +20,9 @@ export function SettingSection() {
   const router = useRouter();
   const sheet = useSheet();
   const [showAlert, setShowAlert] = useState(false);
-  const resetIdentity = useIdentityStore((state) => state.verifyIdentity);
+  const resetIdentity = useIdentityVerificationStore(
+    (state) => state.verifyIdentity,
+  );
   const removeUser = useUserStore((state) => state.removeUser);
   const clearUpiApps = useSavedUpiAppStore((state) => state.clearUpiApps);
   const clearTransactions = useTransactionStore(
@@ -40,7 +42,7 @@ export function SettingSection() {
   };
 
   return (
-    <Section title="Settings">
+    <Section>
       {/* Delete account button */}
       <Pressable
         onPress={() => setShowAlert(true)}

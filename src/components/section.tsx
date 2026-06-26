@@ -4,8 +4,8 @@ import { Pressable, StyleSheet, ViewStyle } from "react-native";
 import { AppIcon, AppIconProps, AppText, AppView } from "./app-ui";
 
 export interface SectionProps {
-  title: string;
   children: ReactNode;
+  title?: string;
   onTitlePress?: () => void;
   titleIconName?: AppIconProps["name"];
   containerStyle?: ViewStyle;
@@ -23,9 +23,11 @@ export const Section = ({
   return (
     <AppView>
       <Pressable style={styles.titleContainer} onPress={onTitlePress}>
-        <AppText variant="bodyMedium" color="tertiary" weight="600">
-          {title}
-        </AppText>
+        {title && (
+          <AppText variant="bodyMedium" color="tertiary" weight="600">
+            {title}
+          </AppText>
+        )}
         {titleIconName && (
           <AppIcon name={titleIconName} size={18} color={theme.text.tertiary} />
         )}

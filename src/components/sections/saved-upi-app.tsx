@@ -1,5 +1,4 @@
 import { EmptyCard, Section } from "@/components";
-import { AppView } from "@/components/app-ui";
 import { useSheet } from "@/features/sheets/use-sheet";
 import { useSavedUpiAppStore } from "@/store/saved-upi-app-store";
 import { StyleSheet } from "react-native";
@@ -10,34 +9,29 @@ export function SavedUpiAppSection() {
   const savedUpiApps = useSavedUpiAppStore((state) => state.savedUpiApps);
 
   return (
-    <AppView style={styles.container}>
-      <Section
-        title="Saved UPI IDs"
-        titleIconName="add-circle"
-        onTitlePress={() => {
-          sheet.push("AddUpiSheet", {});
-        }}
-      >
-        {Object.keys(savedUpiApps).length ? (
-          Object.values(savedUpiApps).map((upiApp, index) => (
-            <SavedUpiAppCard
-              key={upiApp.appName + index}
-              upiApp={upiApp}
-              isLast={Object.keys(savedUpiApps).length - 1 == index}
-            />
-          ))
-        ) : (
-          <EmptyCard message="Your Saved UPI ID will appear here." />
-        )}
-      </Section>
-    </AppView>
+    <Section
+      title="Saved UPI IDs"
+      titleIconName="add-circle"
+      onTitlePress={() => {
+        sheet.push("AddUpiSheet", {});
+      }}
+    >
+      {Object.keys(savedUpiApps).length ? (
+        Object.values(savedUpiApps).map((upiApp, index) => (
+          <SavedUpiAppCard
+            key={upiApp.appName + index}
+            upiApp={upiApp}
+            isLast={Object.keys(savedUpiApps).length - 1 == index}
+          />
+        ))
+      ) : (
+        <EmptyCard message="Your Saved UPI ID will appear here." />
+      )}
+    </Section>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    marginTop: 16,
-  },
   upiId: {
     flexDirection: "row",
     alignItems: "center",

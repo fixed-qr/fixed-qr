@@ -1,4 +1,6 @@
 import {
+  AppIcon,
+  AppImage,
   AppPressable,
   AppSafeAreaView,
   AppScrollView,
@@ -8,38 +10,62 @@ import {
 import { SavedUpiAppSection, SettingSection } from "@/components/sections";
 import { SCREEN_PADDING } from "@/constants/screen";
 import IdentityVerification from "@/features/identity-verification/components";
+import { useIdentityVerificationStore } from "@/features/identity-verification/store";
 import { useSheet } from "@/features/sheets/use-sheet";
 import { useTheme } from "@/hooks/use-theme";
 import { useUserStore } from "@/store/user-store";
-import { Image, StyleSheet } from "react-native";
+import { StyleSheet } from "react-native";
 
 export default function ProfileScreen() {
   const theme = useTheme();
   const sheet = useSheet();
+  const resetIdentity = useIdentityVerificationStore(
+    (state) => state.resetIdentity,
+  );
   const name = useUserStore((state) => state.user?.name);
 
   return (
     <AppSafeAreaView>
-      <AppScrollView>
-        <AppView style={styles.userProfileContainer}>
-          <AppView
-            style={[
-              styles.userProfileAvatarContainer,
-              {
-                backgroundColor: theme.background.surface,
-              },
-            ]}
-          >
-            <Image
+      <AppScrollView contentContainerStyle={{ gap: 16 }}>
+        <AppView style={{ marginVertical: 16, marginTop: 24 }}>
+          <AppText variant="headingMedium" style={{ textAlign: "center" }}>
+            Settings
+          </AppText>
+        </AppView>
+
+        <AppView
+          style={[
+            styles.profileCard,
+            {
+              backgroundColor: theme.background.card,
+              borderColor: theme.border.primary,
+            },
+          ]}
+        >
+          <AppView style={styles.profileCardImageContainer}>
+            <AppImage
               source={require("@/assets/images/icons/tab/user-profile.png")}
               style={[
-                styles.userProfileAvatar,
-                { tintColor: theme.text.primary },
+                {
+                  tintColor: theme.text.primary,
+                  objectFit: "contain",
+                  width: "90%",
+                  height: "90%",
+                },
               ]}
             />
           </AppView>
-          <AppText style={styles.userProfileName}>{name}</AppText>
+          <AppText variant="headingSmall">{name}</AppText>
+          <AppPressable
+            onPress={() => {
+              resetIdentity();
+            }}
+            style={{ marginLeft: "auto", marginRight: 8 }}
+          >
+            <AppIcon name="log-out" size={24} color={theme.text.tertiary} />
+          </AppPressable>
         </AppView>
+
         <SettingSection />
         <SavedUpiAppSection />
 
@@ -64,28 +90,21 @@ export default function ProfileScreen() {
 }
 
 const styles = StyleSheet.create({
-  userProfileContainer: {
+  profileCard: {
+    flexDirection: "row",
     alignItems: "center",
-    marginTop: 32,
-    marginBottom: 24,
-    gap: 16,
+    gap: 8,
+    padding: SCREEN_PADDING / 2,
+    borderRadius: 99,
+    borderWidth: 1,
   },
-  userProfileAvatarContainer: {
+  profileCardImageContainer: {
     aspectRatio: 1,
-    width: 100,
-    borderRadius: 999,
-  },
-  userProfileAvatar: {
-    objectFit: "contain",
-    width: "100%",
-    height: "100%",
-  },
-  userProfileName: {
-    width: "100%",
-    textAlign: "center",
-    fontSize: 24,
-    fontWeight: 600,
-    textTransform: "capitalize",
+    width: 64,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: 99,
   },
   legalInformationContainer: {
     flex: 1,

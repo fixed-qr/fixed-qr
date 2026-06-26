@@ -7,9 +7,9 @@ import {
   AppText,
   AppView,
 } from "@/components/app-ui";
+import { useIdentityVerificationStore } from "@/features/identity-verification/store";
 import { useSheet } from "@/features/sheets/use-sheet";
 import { useTheme } from "@/hooks/use-theme";
-import { useIdentityStore } from "@/store/identity-store";
 import { useUserStore } from "@/store/user-store";
 import { User } from "@/types/user";
 import { validateUser } from "@/validators/user-validator";
@@ -22,7 +22,9 @@ export default function GetStartedScreen() {
   const theme = useTheme();
   const router = useRouter();
   const [isFocused, setIsFocused] = useState(false);
-  const verifyIdentity = useIdentityStore((state) => state.verifyIdentity);
+  const verifyIdentity = useIdentityVerificationStore(
+    (state) => state.verifyIdentity,
+  );
   const createUser = useUserStore((state) => state.createUser);
   const [user, setUser] = useState<User>({
     name: "",
