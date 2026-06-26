@@ -70,6 +70,13 @@ const expoConfig = ({ config }: ConfigContext): ExpoConfig => ({
         },
       },
     ],
+    [
+      "expo-file-system",
+      {
+        supportsOpeningDocumentsInPlace: true,
+        enableFileSharing: true,
+      },
+    ],
   ],
   experiments: {
     typedRoutes: true,
