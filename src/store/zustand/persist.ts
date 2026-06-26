@@ -10,5 +10,5 @@ export const createPersistOptions = <T extends object, P = T>(
 ): PersistOptions<T, P> => ({
   name,
   storage: createPersistStorage<P>(),
-  partialize,
+  partialize: partialize ?? ((state) => state as unknown as P),
 });
