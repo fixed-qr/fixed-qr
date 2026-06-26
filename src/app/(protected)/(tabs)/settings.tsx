@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     gap: 8,
     padding: 8,
-    borderRadius: 24,
+    borderRadius: 99,
     borderWidth: 1,
   },
   profileCardImageContainer: {
