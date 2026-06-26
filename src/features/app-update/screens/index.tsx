@@ -102,7 +102,7 @@ export default function AppUpdate() {
             </AppView>
             <AppView style={[styles.releaseRow, styles.releaseNotes]}>
               <AppText variant="bodyMedium">Release Notes</AppText>
-              <AppView>
+              <AppView style={{ flex: 1, width: "100%" }}>
                 {appUpdate?.notes.map((note, index) => (
                   <AppView style={styles.releaseNotesRow} key={note + index}>
                     <AppView
@@ -111,9 +111,11 @@ export default function AppUpdate() {
                         { backgroundColor: theme.text.tertiary },
                       ]}
                     />
-                    <AppText variant="bodySmall" color="tertiary">
-                      {note}
-                    </AppText>
+                    <AppView style={{ flex: 1 }}>
+                      <AppText variant="bodySmall" color="secondary">
+                        {note}
+                      </AppText>
+                    </AppView>
                   </AppView>
                 ))}
               </AppView>
@@ -231,16 +233,19 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   releaseNotes: {
+    width: "100%",
     borderBottomWidth: 0,
     flexDirection: "column",
     alignItems: "flex-start",
     marginTop: 8,
   },
   releaseNotesRow: {
+    width: "100%",
     marginTop: 8,
+    flex: 1,
     flexDirection: "row",
     alignItems: "center",
-    gap: 8,
+    gap: 6,
   },
   noteDot: {
     aspectRatio: 1,
