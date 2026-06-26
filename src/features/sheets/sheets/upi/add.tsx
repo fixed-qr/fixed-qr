@@ -17,15 +17,16 @@ import {
   BottomSheetScrollView,
   BottomSheetTextInput,
 } from "@gorhom/bottom-sheet";
-import { useRouter } from "expo-router";
 import { useState } from "react";
 import { StyleSheet } from "react-native";
+import { useSheet } from "../../use-sheet";
 
 const gap = 8;
 const width = (SCREEN_WIDTH - gap * 3 - SCREEN_PADDING * 2) / 3;
 
 export default function AddUpiSheet() {
   const theme = useTheme();
+  const sheet = useSheet();
 
   const [upiId, setUpiId] = useState("");
   const [error, setError] = useState<string | null>(null);
@@ -35,7 +36,6 @@ export default function AddUpiSheet() {
   );
   const [upiAppError, setUpiAppError] = useState<string | null>(null);
 
-  const router = useRouter();
   const addUpiApp = useSavedUpiAppStore((state) => state.addUpiApp);
 
   const handleUPIIdChange = (value: string) => {
@@ -57,7 +57,7 @@ export default function AddUpiSheet() {
         appName: selectedAppName,
         upiId: upiId,
       });
-      router.back();
+      sheet.pop();
     }
   };
 
