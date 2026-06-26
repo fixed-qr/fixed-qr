@@ -1,7 +1,7 @@
 import { SCREEN_PADDING } from "@/constants/screen";
 import { useTheme } from "@/hooks/use-theme";
-import React, { useEffect, useRef, useState } from "react";
-import { Animated, Modal, Pressable, StyleSheet, View } from "react-native";
+import React, { useEffect, useState } from "react";
+import { Modal, Pressable, StyleSheet, View } from "react-native";
 import { AppText, AppView } from "./app-ui";
 
 interface AlertModalProps {
@@ -22,46 +22,13 @@ export function AlertModal({
   const theme = useTheme();
   const [mounted, setMounted] = useState(visible);
 
-  const opacity = useRef(new Animated.Value(0)).current;
-  const scale = useRef(new Animated.Value(0.9)).current;
-
   useEffect(() => {
     if (visible) {
       setMounted(true);
-
-      opacity.setValue(0);
-      scale.setValue(0.9);
-
-      Animated.parallel([
-        Animated.timing(opacity, {
-          toValue: 1,
-          duration: 250,
-          useNativeDriver: true,
-        }),
-        Animated.spring(scale, {
-          toValue: 1,
-          friction: 8,
-          tension: 80,
-          useNativeDriver: true,
-        }),
-      ]).start();
     } else if (mounted) {
-      Animated.parallel([
-        Animated.timing(opacity, {
-          toValue: 0,
-          duration: 200,
-          useNativeDriver: true,
-        }),
-        Animated.timing(scale, {
-          toValue: 0.9,
-          duration: 200,
-          useNativeDriver: true,
-        }),
-      ]).start(() => {
-        setMounted(false);
-      });
+      setMounted(false);
     }
-  }, [visible]);
+  }, [visible, mounted]);
 
   if (!mounted) return null;
 
@@ -69,15 +36,14 @@ export function AlertModal({
     <Modal
       transparent
       visible={mounted}
-      animationType="none"
       statusBarTranslucent
+      animationType="fade"
       onRequestClose={onCancel ?? onConfirm}
     >
-      <Animated.View
+      <AppView
         style={[
           styles.overlay,
           {
-            opacity,
             backgroundColor: theme.overlay.primary,
           },
         ]}
@@ -86,11 +52,10 @@ export function AlertModal({
           <Pressable style={StyleSheet.absoluteFill} onPress={onCancel} />
         )}
 
-        <Animated.View
+        <AppView
           style={[
             styles.container,
             {
-              transform: [{ scale }],
               borderColor: theme.border.primary,
               backgroundColor: theme.background.surfaceElevated,
             },
@@ -153,8 +118,8 @@ export function AlertModal({
               <AppText variant="button">Confirm</AppText>
             </Pressable>
           </View>
-        </Animated.View>
-      </Animated.View>
+        </AppView>
+      </AppView>
     </Modal>
   );
 }
@@ -205,10 +170,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     paddingHorizontal: 16,
     paddingVertical: 12,
-    borderRadius: 8,
   },
-  cancelButton: {},
-  confirmButton: {},
   verticalLine: {
     height: "100%",
     width: 1,
