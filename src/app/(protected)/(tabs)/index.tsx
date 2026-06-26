@@ -6,7 +6,7 @@ import {
   AppScrollView,
   AppText,
 } from "@/components/app-ui";
-import { AppUpdateSection, QuickActionSection } from "@/components/sections";
+import { QuickActionSection } from "@/components/sections";
 import { useSheet } from "@/features/sheets/use-sheet";
 import { useTheme } from "@/hooks/use-theme";
 import { useUserStore } from "@/store/user-store";
@@ -19,8 +19,10 @@ export default function HomeScreen() {
 
   return (
     <AppSafeAreaView>
+      {/* Header */}
       <Header />
-      <AppUpdateSection />
+
+      {/* Content */}
       <AppScrollView>
         <AppText
           variant="bodyLarge"
