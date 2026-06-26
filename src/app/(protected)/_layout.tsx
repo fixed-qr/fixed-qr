@@ -15,7 +15,7 @@ export default function ProtectedLayout() {
   );
 
   useEffect(() => {
-    if (!isLoading && !appUpdate && !error) {
+    if (!isLoading && !error) {
       checkAppUpdate();
     }
   }, [checkAppUpdate]);

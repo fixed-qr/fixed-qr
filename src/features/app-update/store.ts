@@ -50,6 +50,11 @@ export const useAppUpdateStore = create<AppUpdateStore>()(
         }
       },
     }),
-    createPersistOptions<AppUpdateStore>("app-update-store"),
+    createPersistOptions<AppUpdateStore, Pick<AppUpdateStore, "appUpdate">>(
+      "app-update-store",
+      (state) => ({
+        appUpdate: state.appUpdate,
+      }),
+    ),
   ),
 );

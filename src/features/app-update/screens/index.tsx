@@ -31,7 +31,7 @@ export default function AppUpdate() {
   );
 
   useEffect(() => {
-    if (!isLoading && !appUpdate && !error) {
+    if (!isLoading && !error) {
       checkAppUpdate();
     }
   }, [checkAppUpdate]);
