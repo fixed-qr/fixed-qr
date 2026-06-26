@@ -161,12 +161,7 @@ export default function AppUpdate() {
 
         {/* How to update guide */}
         <AppView>
-          <AppText
-            variant="bodyMedium"
-            weight="500"
-            color="tertiary"
-            style={styles.releaseTitle}
-          >
+          <AppText variant="bodyMedium" style={styles.releaseTitle}>
             How to update
           </AppText>
           <AppView style={styles.guideRowContainer}>
