@@ -2,6 +2,8 @@
 
 **FixedQR** is a lightweight mobile app built to simplify **UPI payments for small businesses** by enabling instant generation of **fixed-amount UPI QR codes**.
 
+[Visit Our Website](https://fixed-qr.netlify.app)
+
 ## 💡 Why FixedQR Exists
 
 While observing local shops and vendors, a common checkout pattern stood out:
