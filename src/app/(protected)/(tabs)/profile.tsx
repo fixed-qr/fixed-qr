@@ -5,9 +5,9 @@ import {
   AppText,
   AppView,
 } from "@/components/app-ui";
-import { IdentityBottomSheet } from "@/components/bottom-sheets";
 import { SavedUpiAppSection, SettingSection } from "@/components/sections";
 import { SCREEN_PADDING } from "@/constants/screen";
+import IdentityVerification from "@/features/identity-verification/components";
 import { useSheet } from "@/features/sheets/use-sheet";
 import { useTheme } from "@/hooks/use-theme";
 import { useUserStore } from "@/store/user-store";
@@ -57,7 +57,8 @@ export default function ProfileScreen() {
         </AppView>
       </AppScrollView>
 
-      <IdentityBottomSheet />
+      {/* Verify User Identity */}
+      <IdentityVerification />
     </AppSafeAreaView>
   );
 }
