@@ -3,6 +3,7 @@ import { AppIcon, AppImage, AppText, AppView } from "@/components/app-ui";
 import { upiAppLogo } from "@/constants/upi-app-logo";
 import { useTheme } from "@/hooks/use-theme";
 import { useSavedUpiAppStore } from "@/store/saved-upi-app-store";
+import { useTransactionStore } from "@/store/transaction-store";
 import { UpiApp } from "@/types/upi-app";
 import { useState } from "react";
 import { Pressable, StyleSheet } from "react-native";
@@ -18,6 +19,7 @@ export function SavedUpiAppCard({
 }: Readonly<SavedUpiAppCardProps>) {
   const theme = useTheme();
   const removeUpiApp = useSavedUpiAppStore((state) => state.removeUpiApp);
+  const deleteMany = useTransactionStore((state) => state.deleteMany);
   const [showAlert, setShowAlert] = useState(false);
 
   return (
@@ -62,6 +64,7 @@ export function SavedUpiAppCard({
         onCancel={() => setShowAlert(false)}
         onConfirm={() => {
           removeUpiApp(upiApp.appName);
+          deleteMany(upiApp.appName);
           setShowAlert(false);
         }}
       />
