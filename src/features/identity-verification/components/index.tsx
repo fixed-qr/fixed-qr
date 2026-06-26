@@ -32,7 +32,7 @@ export default function IdentityVerification() {
   const pathname = usePathname();
 
   useEffect(() => {
-    if (pathname === "/profile" && !isSessionValid()) {
+    if (pathname === "/settings" && !isSessionValid()) {
       sheetRef.current?.expand();
     } else {
       sheetRef.current?.forceClose();

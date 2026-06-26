@@ -6,7 +6,7 @@ export default function TabLayout() {
 
   return (
     <NativeTabs
-      backgroundColor={theme.background.secondary}
+      backgroundColor={theme.background.primary}
       indicatorColor={theme.accent.subtle}
       labelStyle={{ selected: { color: theme.text.primary } }}
     >
@@ -17,10 +17,10 @@ export default function TabLayout() {
           renderingMode="template"
         />
       </NativeTabs.Trigger>
-      <NativeTabs.Trigger name="profile">
-        <NativeTabs.Trigger.Label>Profile</NativeTabs.Trigger.Label>
+      <NativeTabs.Trigger name="settings">
+        <NativeTabs.Trigger.Label>Settings</NativeTabs.Trigger.Label>
         <NativeTabs.Trigger.Icon
-          src={require("@/assets/images/icons/tab/user-profile.png")}
+          src={require("@/assets/images/icons/tab/setting.png")}
           renderingMode="template"
         />
       </NativeTabs.Trigger>
