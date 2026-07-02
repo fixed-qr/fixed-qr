@@ -22,16 +22,26 @@ export const useSheetStore = create<SheetStore>((set) => ({
   stack: [],
 
   push: (name, params) =>
-    set((state) => ({
-      stack: [
-        ...state.stack,
-        {
-          id: nanoid(),
-          name,
-          params,
-        },
-      ],
-    })),
+    set((state) => {
+      const exists = state.stack.some((sheet) => sheet.name === name);
+
+      // Do not add the sheet if it already exists in the stack
+      if (exists) {
+        return state;
+      }
+
+      // Add the new sheet to the stack
+      return {
+        stack: [
+          ...state.stack,
+          {
+            id: nanoid(),
+            name,
+            params,
+          },
+        ],
+      };
+    }),
 
   replace: (name, params) =>
     set((state) => ({
