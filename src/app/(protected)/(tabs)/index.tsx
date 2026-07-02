@@ -6,7 +6,7 @@ import {
   AppScrollView,
   AppText,
 } from "@/components/app-ui";
-import { QuickActionSection } from "@/components/sections";
+import { Suggestion } from "@/features/history/components/suggestion";
 import { useSheet } from "@/features/sheets/use-sheet";
 import { useTheme } from "@/hooks/use-theme";
 import { useUserStore } from "@/store/user-store";
@@ -58,7 +58,7 @@ export default function HomeScreen() {
           </AppText>
         </AppPressable>
 
-        <QuickActionSection />
+        <Suggestion />
       </AppScrollView>
     </AppSafeAreaView>
   );

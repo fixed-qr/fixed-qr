@@ -11,24 +11,25 @@ import { upiAppLogo } from "@/constants/upi-app-logo";
 import { useSheet } from "@/features/sheets/use-sheet";
 import { useTheme } from "@/hooks/use-theme";
 import { useSavedUpiAppStore } from "@/store/saved-upi-app-store";
-import { useTransactionStore } from "@/store/transaction-store";
 import { useMemo } from "react";
 import { StyleSheet } from "react-native";
+import { useHistoryStore } from "../store";
 
 const gap = 8;
 const width = (SCREEN_WIDTH - gap - SCREEN_PADDING * 2) / 2;
 
-export function QuickActionSection() {
+export function Suggestion() {
   const theme = useTheme();
   const sheet = useSheet();
-  const transactions = useTransactionStore((state) => state.transactions);
+
+  const histories = useHistoryStore((state) => state.histories);
   const savedUpiApps = useSavedUpiAppStore((state) => state.savedUpiApps);
 
-  const suggestedTransactions = useMemo(() => {
+  const suggestions = useMemo(() => {
     const seen = new Set<string>();
 
-    return transactions.filter((transaction) => {
-      const key = `${transaction.amount}-${transaction.appName}`;
+    return histories.filter((history) => {
+      const key = `${history.amount}-${history.appName}`;
 
       if (seen.has(key)) {
         return false;
@@ -38,7 +39,7 @@ export function QuickActionSection() {
 
       return true;
     });
-  }, [transactions]).slice(0, 4);
+  }, [histories]).slice(0, 4);
 
   return (
     <AppView>
@@ -46,13 +47,13 @@ export function QuickActionSection() {
         variant="bodyMedium"
         color="tertiary"
         weight="600"
-        style={styles.quickActionsTitle}
+        style={styles.quickSuggestionsTitle}
       >
-        Quick Actions
+        Suggestions
       </AppText>
-      {suggestedTransactions.length ? (
-        <AppView style={[styles.quickActions]}>
-          {suggestedTransactions.map((tsx) => (
+      {suggestions.length ? (
+        <AppView style={[styles.quickSuggestions]}>
+          {suggestions.map((tsx) => (
             <AppPressable
               key={tsx.id}
               onPress={() => {
@@ -63,7 +64,7 @@ export function QuickActionSection() {
                 });
               }}
               style={({ pressed }) => [
-                styles.quickAction,
+                styles.quickSuggestion,
                 {
                   borderColor: theme.border.primary,
                   backgroundColor: pressed
@@ -79,7 +80,7 @@ export function QuickActionSection() {
                 style={styles.logoImage}
               />
               <Amount value={tsx.amount} />
-              <AppView style={styles.provider}>
+              <AppView style={styles.upiApp}>
                 <AppText variant="bodyMedium" color="secondary">
                   {tsx.appName}
                 </AppText>
@@ -110,17 +111,17 @@ export function QuickActionSection() {
 }
 
 const styles = StyleSheet.create({
-  quickActionsTitle: {
+  quickSuggestionsTitle: {
     marginTop: 16,
     paddingHorizontal: 8,
   },
-  quickActions: {
+  quickSuggestions: {
     marginTop: 8,
     flexDirection: "row",
     flexWrap: "wrap",
     gap: gap,
   },
-  quickAction: {
+  quickSuggestion: {
     padding: 16,
     borderWidth: 1,
     borderRadius: 28,
@@ -130,7 +131,7 @@ const styles = StyleSheet.create({
     height: 36,
     marginBottom: 6,
   },
-  provider: {
+  upiApp: {
     marginTop: 2,
     flexDirection: "row",
     alignItems: "center",

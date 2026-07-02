@@ -3,14 +3,14 @@ import { AppIcon, AppImage, AppText, AppView } from "@/components/app-ui";
 import { SCREEN_PADDING } from "@/constants/screen";
 import { upiAppLogo } from "@/constants/upi-app-logo";
 import { useTheme } from "@/hooks/use-theme";
-import { useTransactionStore } from "@/store/transaction-store";
 import { DateTime } from "@/utils/date-time";
 import { BottomSheetScrollView } from "@gorhom/bottom-sheet/src";
 import { StyleSheet } from "react-native";
+import { useHistoryStore } from "../store";
 
-export default function TransactionSheet() {
+export function History() {
   const theme = useTheme();
-  const transactions = useTransactionStore((state) => state.transactions);
+  const histories = useHistoryStore((state) => state.histories);
 
   return (
     <BottomSheetScrollView
@@ -21,45 +21,45 @@ export default function TransactionSheet() {
     >
       <AppView style={{ alignItems: "center", marginBottom: 16 }}>
         <AppText variant="headingSmall" weight="600">
-          Transactions
+          History
         </AppText>
       </AppView>
-      {transactions.length ? (
+      {histories.length ? (
         <AppView
           style={[
-            styles.transactions,
+            styles.histories,
             {
               backgroundColor: theme.background.tertiary,
               borderColor: theme.border.primary,
             },
           ]}
         >
-          {transactions.map((tsx, index) => (
+          {histories.map((history, index) => (
             <AppView
-              key={tsx.id + index}
+              key={history.id + index}
               style={[
-                styles.transaction,
+                styles.history,
                 {
                   borderColor: theme.border.primary,
-                  borderBottomWidth: index === transactions.length - 1 ? 0 : 1,
+                  borderBottomWidth: index === histories.length - 1 ? 0 : 1,
                 },
               ]}
             >
               <AppView style={styles.left}>
                 <AppImage
-                  source={upiAppLogo[tsx.appName]}
+                  source={upiAppLogo[history.appName]}
                   style={styles.logoImage}
                 />
               </AppView>
               <AppView style={styles.right}>
                 <AppView style={styles.rightLeft}>
-                  <AppText variant="button">{tsx.appName}</AppText>
+                  <AppText variant="button">{history.appName}</AppText>
                   <AppText variant="bodySmall" color="tertiary">
-                    {new DateTime(tsx.date).formatTo("datetime")}
+                    {new DateTime(history.date).formatTo("datetime")}
                   </AppText>
                 </AppView>
                 <AppView style={styles.rightRight}>
-                  <Amount value={tsx.amount} size={10} />
+                  <Amount value={history.amount} size={10} />
                   <AppIcon
                     name="arrow-back"
                     size={18}
@@ -77,7 +77,7 @@ export default function TransactionSheet() {
           ))}
         </AppView>
       ) : (
-        <EmptyCard message="Your recent transactions will appear here." />
+        <EmptyCard message="Your all histories will appear here." />
       )}
     </BottomSheetScrollView>
   );
@@ -91,13 +91,13 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
-  transactions: {
+  histories: {
     flex: 1,
     paddingVertical: 8,
     borderRadius: 24,
     borderWidth: 1,
   },
-  transaction: {
+  history: {
     flexDirection: "row",
     paddingVertical: 8,
     paddingHorizontal: 12,

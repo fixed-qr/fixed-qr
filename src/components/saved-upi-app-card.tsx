@@ -1,26 +1,27 @@
 import { AlertModal } from "@/components";
 import { AppIcon, AppImage, AppText, AppView } from "@/components/app-ui";
 import { upiAppLogo } from "@/constants/upi-app-logo";
+import { useHistoryStore } from "@/features/history/store";
 import { useTheme } from "@/hooks/use-theme";
 import { useSavedUpiAppStore } from "@/store/saved-upi-app-store";
-import { useTransactionStore } from "@/store/transaction-store";
 import { UpiApp } from "@/types/upi-app";
 import { useState } from "react";
 import { Pressable, StyleSheet } from "react-native";
 
-interface SavedUpiAppCardProps {
+interface Props {
   upiApp: UpiApp;
   isLast: boolean;
 }
 
-export function SavedUpiAppCard({
-  upiApp,
-  isLast,
-}: Readonly<SavedUpiAppCardProps>) {
+export function SavedUpiAppCard({ upiApp, isLast }: Readonly<Props>) {
   const theme = useTheme();
-  const removeUpiApp = useSavedUpiAppStore((state) => state.removeUpiApp);
-  const deleteMany = useTransactionStore((state) => state.deleteMany);
+
   const [showAlert, setShowAlert] = useState(false);
+
+  const removeUpiApp = useSavedUpiAppStore((state) => state.removeUpiApp);
+  const clearHistoriesForApp = useHistoryStore(
+    (state) => state.clearHistoriesForApp,
+  );
 
   return (
     <>
@@ -64,7 +65,7 @@ export function SavedUpiAppCard({
         onCancel={() => setShowAlert(false)}
         onConfirm={() => {
           removeUpiApp(upiApp.appName);
-          deleteMany(upiApp.appName);
+          clearHistoriesForApp(upiApp.appName);
           setShowAlert(false);
         }}
       />

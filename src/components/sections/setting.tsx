@@ -1,9 +1,9 @@
 import { AppIcon, AppText } from "@/components/app-ui";
+import { useHistoryStore } from "@/features/history/store";
 import { useIdentityVerificationStore } from "@/features/identity-verification/store";
 import { useSheet } from "@/features/sheets/use-sheet";
 import { useTheme } from "@/hooks/use-theme";
 import { useSavedUpiAppStore } from "@/store/saved-upi-app-store";
-import { useTransactionStore } from "@/store/transaction-store";
 import { useUserStore } from "@/store/user-store";
 import { useRouter } from "expo-router";
 import { useState } from "react";
@@ -19,20 +19,20 @@ export function SettingSection() {
   }>({ deleteAccount: false, transactions: false });
   const router = useRouter();
   const sheet = useSheet();
+
   const [showAlert, setShowAlert] = useState(false);
+
   const resetIdentity = useIdentityVerificationStore(
     (state) => state.verifyIdentity,
   );
   const removeUser = useUserStore((state) => state.removeUser);
   const clearUpiApps = useSavedUpiAppStore((state) => state.clearUpiApps);
-  const clearTransactions = useTransactionStore(
-    (state) => state.clearTransactions,
-  );
+  const clearHistories = useHistoryStore((state) => state.clearHistories);
 
   const handelOnPress = () => {
     removeUser();
     clearUpiApps();
-    clearTransactions();
+    clearHistories();
     resetIdentity();
     router.replace("/(auth)/get-started");
   };
@@ -87,10 +87,10 @@ export function SettingSection() {
         }}
       />
 
-      {/* Transactions */}
+      {/* History */}
       <Pressable
         onPress={() => {
-          sheet.push("TransactionSheet", {});
+          sheet.push("HistorySheet", {});
         }}
         onPressIn={() => setPressed({ ...pressed, transactions: true })}
         onPressOut={() => setPressed({ ...pressed, transactions: false })}
@@ -111,7 +111,7 @@ export function SettingSection() {
           variant="button"
           style={{ color: onPressColor(pressed.transactions) }}
         >
-          Transactions
+          History
         </AppText>
         <AppIcon
           name={"arrow-forward"}
