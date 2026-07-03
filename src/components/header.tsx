@@ -20,7 +20,7 @@ export function Header() {
       <AppView style={styles.rightContainer}>
         <AppPressable
           onPress={() => {
-            sheet.push("SavedUpiAppQrcodeSheet", {});
+            sheet.push("SavedUpiQrcodeSheet", {});
           }}
           style={styles.button}
         >

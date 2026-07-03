@@ -8,7 +8,7 @@ import Markdown from "react-native-markdown-display";
 import { useShallow } from "zustand/react/shallow";
 import { usePrivacyPolicyStore } from "../store";
 
-export default function PrivacyPolicy() {
+export function PrivacyPolicySheet() {
   const theme = useTheme();
 
   const { fetchPrivacyPolicy, privacyPolicy, isLoading, error } =

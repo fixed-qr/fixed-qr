@@ -8,7 +8,7 @@ import { BottomSheetScrollView } from "@gorhom/bottom-sheet";
 import { StyleSheet } from "react-native";
 import { useHistoryStore } from "../store";
 
-export function History() {
+export function HistorySheet() {
   const theme = useTheme();
   const histories = useHistoryStore((state) => state.histories);
 

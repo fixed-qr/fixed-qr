@@ -13,7 +13,7 @@ import { useSavedUpiAppStore } from "../store";
 const gap = 8;
 const width = (SCREEN_WIDTH - gap * 3 - SCREEN_PADDING * 2) / 3;
 
-export function SavedUpiQrcode() {
+export function SavedUpiQrcodeSheet() {
   const theme = useTheme();
   const sheet = useSheet();
 

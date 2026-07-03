@@ -24,7 +24,7 @@ const updateGuide: string[] = [
   "Open the app and continue using the latest version.",
 ];
 
-export default function AppUpdate() {
+export function AppUpdate() {
   const theme = useTheme();
   const { checkAppUpdate, appUpdate, isLoading, error } = useAppUpdateStore(
     useShallow((state) => state),
