@@ -1,7 +1,7 @@
+import { createPersistOptions } from "@/store/zustand/persist";
 import { User } from "@/types/user";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import { createPersistOptions } from "./zustand/persist";
 
 interface UserStore {
   user: User | null;

@@ -2,8 +2,8 @@ import { Amount, NumericKeypad } from "@/components";
 import { AppPressable, AppText, AppView } from "@/components/app-ui";
 import { SCREEN_PADDING, SCREEN_WIDTH } from "@/constants/screen";
 import { upiAppLogo } from "@/constants/upi-app-logo";
+import { useSavedUpiAppStore } from "@/features/saved-upi-app/store";
 import { useTheme } from "@/hooks/use-theme";
-import { useSavedUpiAppStore } from "@/store/saved-upi-app-store";
 import { mapRowState } from "@/utils/map-row-state";
 import { BottomSheetScrollView } from "@gorhom/bottom-sheet";
 import { Image } from "expo-image";
@@ -15,7 +15,7 @@ import { useSheet } from "../../use-sheet";
 const gap = 8;
 const width = (SCREEN_WIDTH - gap * 3 - SCREEN_PADDING * 2) / 3;
 
-export default function QrcodeSheet() {
+export function QrcodeSheet() {
   const theme = useTheme();
   const sheet = useSheet();
   const [value, setValue] = useState("");
@@ -92,7 +92,7 @@ export default function QrcodeSheet() {
         </AppView>
       ) : (
         <AppView style={styles.upiIdNotFound}>
-          <Link href={"/(protected)/(tabs)/profile"}>
+          <Link href={"/(protected)/(tabs)/settings"}>
             <AppText
               style={[
                 styles.upiIdNotFoundLink,

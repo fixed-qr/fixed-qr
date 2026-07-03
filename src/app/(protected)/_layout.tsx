@@ -1,6 +1,6 @@
 import { useAppUpdateStore } from "@/features/app-update/store";
+import { useUserStore } from "@/features/user/store";
 import { useAppVersion } from "@/hooks/use-app-version";
-import { useUserStore } from "@/store/user-store";
 import { Redirect, Stack, usePathname } from "expo-router";
 import { useEffect, useMemo } from "react";
 import { useShallow } from "zustand/react/shallow";

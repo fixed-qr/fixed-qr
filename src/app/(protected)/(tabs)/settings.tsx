@@ -7,22 +7,24 @@ import {
   AppText,
   AppView,
 } from "@/components/app-ui";
-import { SavedUpiAppSection, SettingSection } from "@/components/sections";
+import { Settings } from "@/components/settings";
 import { SCREEN_PADDING } from "@/constants/screen";
 import IdentityVerification from "@/features/identity-verification/components";
 import { useIdentityVerificationStore } from "@/features/identity-verification/store";
+import { SavedUpiApp } from "@/features/saved-upi-app/components";
 import { useSheet } from "@/features/sheets/use-sheet";
+import { useUserStore } from "@/features/user/store";
 import { useTheme } from "@/hooks/use-theme";
-import { useUserStore } from "@/store/user-store";
 import { StyleSheet } from "react-native";
 
 export default function SettingScreen() {
   const theme = useTheme();
   const sheet = useSheet();
+
+  const name = useUserStore((state) => state.user?.name);
   const resetIdentity = useIdentityVerificationStore(
     (state) => state.resetIdentity,
   );
-  const name = useUserStore((state) => state.user?.name);
 
   return (
     <AppSafeAreaView>
@@ -66,8 +68,8 @@ export default function SettingScreen() {
           </AppPressable>
         </AppView>
 
-        <SettingSection />
-        <SavedUpiAppSection />
+        <Settings />
+        <SavedUpiApp />
 
         {/* Legal Information */}
         <AppView style={styles.legalInformationContainer}>

@@ -1,9 +1,9 @@
+import { createPersistOptions } from "@/store/zustand/persist";
 import { SavedUpiApps } from "@/types/saved-upi-apps";
 import { UpiApp } from "@/types/upi-app";
 import { UpiAppName } from "@/types/upi-app-name";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import { createPersistOptions } from "./zustand/persist";
 
 interface SavedUpiAppStore {
   savedUpiApps: Partial<SavedUpiApps>;
@@ -35,6 +35,6 @@ export const useSavedUpiAppStore = create<SavedUpiAppStore>()(
         }),
       clearUpiApps: () => set({ savedUpiApps: {} }),
     }),
-    createPersistOptions<SavedUpiAppStore>("upi-app-store"),
+    createPersistOptions<SavedUpiAppStore>("saved-upi-app-store"),
   ),
 );

@@ -3,8 +3,8 @@ import { AppText, AppView } from "@/components/app-ui";
 import { SCREEN_PADDING, SCREEN_WIDTH } from "@/constants/screen";
 import { upiAppLogo } from "@/constants/upi-app-logo";
 import { useHistoryStore } from "@/features/history/store";
+import { useUserStore } from "@/features/user/store";
 import { useTheme } from "@/hooks/use-theme";
-import { useUserStore } from "@/store/user-store";
 import { UpiAppName } from "@/types/upi-app-name";
 import { buildUpiPaymentUrl } from "@/utils/build-upi-payment-url";
 import { createTransactionId } from "@/utils/create-transaction-id";
@@ -23,12 +23,13 @@ interface QrcodeResultSheetProps {
   amount?: string;
 }
 
-export default function QrcodeResultSheet({
+export function QrcodeResultSheet({
   appName,
   upiId,
   amount,
 }: Readonly<QrcodeResultSheetProps>) {
   const theme = useTheme();
+
   const addHistory = useHistoryStore((state) => state.addHistory);
   const user = useUserStore((state) => state.user);
 

@@ -9,8 +9,8 @@ import {
 import { SCREEN_PADDING, SCREEN_WIDTH } from "@/constants/screen";
 import { supportedUpiApps } from "@/constants/supported-upi-apps";
 import { upiAppLogo } from "@/constants/upi-app-logo";
+import { useSavedUpiAppStore } from "@/features/saved-upi-app/store";
 import { useTheme } from "@/hooks/use-theme";
-import { useSavedUpiAppStore } from "@/store/saved-upi-app-store";
 import { UpiAppName } from "@/types/upi-app-name";
 import { validateUpiId } from "@/validators/upi-id-validator";
 import {
@@ -24,7 +24,7 @@ import { useSheet } from "../../use-sheet";
 const gap = 8;
 const width = (SCREEN_WIDTH - gap * 3 - SCREEN_PADDING * 2) / 3;
 
-export default function AddUpiSheet() {
+export function AddUpiSheet() {
   const theme = useTheme();
   const sheet = useSheet();
 

@@ -8,9 +8,9 @@ import {
 } from "@/components/app-ui";
 import { SCREEN_PADDING, SCREEN_WIDTH } from "@/constants/screen";
 import { upiAppLogo } from "@/constants/upi-app-logo";
+import { useSavedUpiAppStore } from "@/features/saved-upi-app/store";
 import { useSheet } from "@/features/sheets/use-sheet";
 import { useTheme } from "@/hooks/use-theme";
-import { useSavedUpiAppStore } from "@/store/saved-upi-app-store";
 import { useMemo } from "react";
 import { StyleSheet } from "react-native";
 import { useHistoryStore } from "../store";

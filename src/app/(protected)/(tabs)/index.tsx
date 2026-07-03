@@ -8,8 +8,8 @@ import {
 } from "@/components/app-ui";
 import { Suggestion } from "@/features/history/components/suggestion";
 import { useSheet } from "@/features/sheets/use-sheet";
+import { useUserStore } from "@/features/user/store";
 import { useTheme } from "@/hooks/use-theme";
-import { useUserStore } from "@/store/user-store";
 import { StyleSheet } from "react-native";
 
 export default function HomeScreen() {

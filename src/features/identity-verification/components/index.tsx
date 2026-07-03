@@ -1,8 +1,8 @@
 import { PasswordInput } from "@/components";
 import { AppPressable, AppText, AppView } from "@/components/app-ui";
 import { SCREEN_PADDING } from "@/constants/screen";
+import { useUserStore } from "@/features/user/store";
 import { useTheme } from "@/hooks/use-theme";
-import { useUserStore } from "@/store/user-store";
 import BottomSheet, {
   BottomSheetBackdrop,
   BottomSheetBackdropProps,
@@ -18,6 +18,7 @@ import { useIdentityVerificationStore } from "../store";
 export default function IdentityVerification() {
   const theme = useTheme();
   const insets = useSafeAreaInsets();
+  const pathname = usePathname();
   const sheetRef = useRef<BottomSheet>(null);
   const isSheetOpen = useRef(false);
 
@@ -28,8 +29,6 @@ export default function IdentityVerification() {
     useShallow((state) => state),
   );
   const storedPassword = useUserStore((state) => state.user?.password);
-
-  const pathname = usePathname();
 
   useEffect(() => {
     if (pathname === "/settings" && !isSessionValid()) {

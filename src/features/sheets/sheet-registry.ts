@@ -1,16 +1,16 @@
 import type React from "react";
 import { HistorySheet } from "./sheets/history";
-import PrivacyPolicySheet from "./sheets/privacy-policy";
-import QrcodeSheet from "./sheets/qr-code";
-import QrcodeResultSheet from "./sheets/qr-code/result";
-import SavedUpiAppQrcodeSheet from "./sheets/saved-upi-app-qrcode";
-import AddUpiSheet from "./sheets/upi/add";
+import { PrivacyPolicySheet } from "./sheets/privacy-policy";
+import { QrcodeSheet } from "./sheets/qr-code";
+import { QrcodeResultSheet } from "./sheets/qr-code/result";
+import { SavedUpiQrcodeSheet } from "./sheets/saved-upi-qrcode";
+import { AddUpiSheet } from "./sheets/upi/add";
 
 export const sheetRegistry = {
   PrivacyPolicySheet,
   QrcodeSheet,
   QrcodeResultSheet,
-  SavedUpiAppQrcodeSheet,
+  SavedUpiQrcodeSheet,
   HistorySheet,
   AddUpiSheet,
 } as const;

@@ -5,17 +5,18 @@ import { StyleSheet } from "react-native";
 
 import { SCREEN_PADDING, SCREEN_WIDTH } from "@/constants/screen";
 import { upiAppLogo } from "@/constants/upi-app-logo";
-import { useSavedUpiAppStore } from "@/store/saved-upi-app-store";
+import { useSheet } from "@/features/sheets/use-sheet";
 import { mapRowState } from "@/utils/map-row-state";
 import { Link } from "expo-router";
-import { useSheet } from "../../use-sheet";
+import { useSavedUpiAppStore } from "../store";
 
 const gap = 8;
 const width = (SCREEN_WIDTH - gap * 3 - SCREEN_PADDING * 2) / 3;
 
-export default function SavedUpiAppQrcodeSheet() {
+export function SavedUpiQrcode() {
   const theme = useTheme();
   const sheet = useSheet();
+
   const savedUpiApps = useSavedUpiAppStore((state) => state.savedUpiApps);
 
   return (
@@ -77,7 +78,7 @@ export default function SavedUpiAppQrcodeSheet() {
         </AppView>
       ) : (
         <AppView style={styles.upiIdNotFound}>
-          <Link href={"/(protected)/(tabs)/profile"}>
+          <Link href={"/(protected)/(tabs)/settings"}>
             <AppText
               style={[
                 styles.upiIdNotFoundLink,

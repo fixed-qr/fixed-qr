@@ -1,10 +1,10 @@
 import { EmptyCard, Section } from "@/components";
 import { useSheet } from "@/features/sheets/use-sheet";
-import { useSavedUpiAppStore } from "@/store/saved-upi-app-store";
 import { StyleSheet } from "react-native";
-import { SavedUpiAppCard } from "../saved-upi-app-card";
+import { useSavedUpiAppStore } from "../store";
+import { SavedUpiAppCard } from "./saved-upi-app-card";
 
-export function SavedUpiAppSection() {
+export function SavedUpiApp() {
   const sheet = useSheet();
   const savedUpiApps = useSavedUpiAppStore((state) => state.savedUpiApps);
 
@@ -25,7 +25,7 @@ export function SavedUpiAppSection() {
           />
         ))
       ) : (
-        <EmptyCard message="Your Saved UPI ID will appear here." />
+        <EmptyCard message="Your Saved UPI will appear here." />
       )}
     </Section>
   );

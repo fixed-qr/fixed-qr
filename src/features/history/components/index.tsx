@@ -4,7 +4,7 @@ import { SCREEN_PADDING } from "@/constants/screen";
 import { upiAppLogo } from "@/constants/upi-app-logo";
 import { useTheme } from "@/hooks/use-theme";
 import { DateTime } from "@/utils/date-time";
-import { BottomSheetScrollView } from "@gorhom/bottom-sheet/src";
+import { BottomSheetScrollView } from "@gorhom/bottom-sheet";
 import { StyleSheet } from "react-native";
 import { useHistoryStore } from "../store";
 

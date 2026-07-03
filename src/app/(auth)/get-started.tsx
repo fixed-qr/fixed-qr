@@ -9,8 +9,8 @@ import {
 } from "@/components/app-ui";
 import { useIdentityVerificationStore } from "@/features/identity-verification/store";
 import { useSheet } from "@/features/sheets/use-sheet";
+import { useUserStore } from "@/features/user/store";
 import { useTheme } from "@/hooks/use-theme";
-import { useUserStore } from "@/store/user-store";
 import { User } from "@/types/user";
 import { validateUser } from "@/validators/user-validator";
 import { Checkbox } from "expo-checkbox";
@@ -21,11 +21,9 @@ import { Pressable, StyleSheet, TextInput } from "react-native";
 export default function GetStartedScreen() {
   const theme = useTheme();
   const router = useRouter();
+  const sheet = useSheet();
+
   const [isFocused, setIsFocused] = useState(false);
-  const verifyIdentity = useIdentityVerificationStore(
-    (state) => state.verifyIdentity,
-  );
-  const createUser = useUserStore((state) => state.createUser);
   const [user, setUser] = useState<User>({
     name: "",
     password: "",
@@ -33,7 +31,11 @@ export default function GetStartedScreen() {
   const [errors, setErrors] = useState<Partial<User>>({});
   const [isChecked, setChecked] = useState(false);
   const [isCheckedError, setCheckedError] = useState(false);
-  const sheet = useSheet();
+
+  const createUser = useUserStore((state) => state.createUser);
+  const verifyIdentity = useIdentityVerificationStore(
+    (state) => state.verifyIdentity,
+  );
 
   const handleExpand = () => {
     if (!isChecked) {

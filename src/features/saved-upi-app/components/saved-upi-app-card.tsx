@@ -3,10 +3,10 @@ import { AppIcon, AppImage, AppText, AppView } from "@/components/app-ui";
 import { upiAppLogo } from "@/constants/upi-app-logo";
 import { useHistoryStore } from "@/features/history/store";
 import { useTheme } from "@/hooks/use-theme";
-import { useSavedUpiAppStore } from "@/store/saved-upi-app-store";
 import { UpiApp } from "@/types/upi-app";
 import { useState } from "react";
 import { Pressable, StyleSheet } from "react-native";
+import { useSavedUpiAppStore } from "../store";
 
 interface Props {
   upiApp: UpiApp;

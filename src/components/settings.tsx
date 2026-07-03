@@ -1,26 +1,26 @@
 import { AppIcon, AppText } from "@/components/app-ui";
 import { useHistoryStore } from "@/features/history/store";
 import { useIdentityVerificationStore } from "@/features/identity-verification/store";
+import { useSavedUpiAppStore } from "@/features/saved-upi-app/store";
 import { useSheet } from "@/features/sheets/use-sheet";
+import { useUserStore } from "@/features/user/store";
 import { useTheme } from "@/hooks/use-theme";
-import { useSavedUpiAppStore } from "@/store/saved-upi-app-store";
-import { useUserStore } from "@/store/user-store";
 import { useRouter } from "expo-router";
 import { useState } from "react";
 import { Pressable, StyleSheet } from "react-native";
-import { AlertModal } from "../alert-modal";
-import { Section } from "../section";
+import { AlertModal } from "./alert-modal";
+import { Section } from "./section";
 
-export function SettingSection() {
+export function Settings() {
   const theme = useTheme();
-  const [pressed, setPressed] = useState<{
-    deleteAccount: boolean;
-    transactions: boolean;
-  }>({ deleteAccount: false, transactions: false });
   const router = useRouter();
   const sheet = useSheet();
 
   const [showAlert, setShowAlert] = useState(false);
+  const [pressed, setPressed] = useState<{
+    deleteAccount: boolean;
+    transactions: boolean;
+  }>({ deleteAccount: false, transactions: false });
 
   const resetIdentity = useIdentityVerificationStore(
     (state) => state.verifyIdentity,

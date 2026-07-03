@@ -1,6 +1,6 @@
 import { SheetProvider } from "@/features/sheets/sheet-provider";
+import { useUserStore } from "@/features/user/store";
 import { useTheme } from "@/hooks/use-theme";
-import { useUserStore } from "@/store/user-store";
 import {
   DarkTheme,
   DefaultTheme,
