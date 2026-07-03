@@ -6,7 +6,7 @@ import { useTheme } from "@/hooks/use-theme";
 import { UpiApp } from "@/types/upi-app";
 import { useState } from "react";
 import { Pressable, StyleSheet } from "react-native";
-import { useSavedUpiAppStore } from "../store";
+import { useUpiAppStore } from "../store";
 
 interface Props {
   upiApp: UpiApp;
@@ -18,7 +18,7 @@ export function SavedUpiAppCard({ upiApp, isLast }: Readonly<Props>) {
 
   const [showAlert, setShowAlert] = useState(false);
 
-  const removeUpiApp = useSavedUpiAppStore((state) => state.removeUpiApp);
+  const removeUpiApp = useUpiAppStore((state) => state.removeUpiApp);
   const clearHistoriesForApp = useHistoryStore(
     (state) => state.clearHistoriesForApp,
   );

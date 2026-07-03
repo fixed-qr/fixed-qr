@@ -1,10 +1,10 @@
-import { SheetProvider } from "@/features/sheets/sheet-provider";
 import { useUserStore } from "@/features/user/store";
 import { useTheme } from "@/hooks/use-theme";
+import { SheetProvider } from "@/sheets/components/sheet-provider";
 import {
-  DarkTheme,
-  DefaultTheme,
-  ThemeProvider,
+    DarkTheme,
+    DefaultTheme,
+    ThemeProvider,
 } from "@react-navigation/native";
 import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
@@ -13,8 +13,8 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { useColorScheme } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import {
-  SafeAreaProvider,
-  initialWindowMetrics,
+    SafeAreaProvider,
+    initialWindowMetrics,
 } from "react-native-safe-area-context";
 
 SplashScreen.preventAutoHideAsync().catch(() => {});

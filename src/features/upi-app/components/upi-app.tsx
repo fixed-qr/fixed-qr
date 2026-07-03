@@ -1,27 +1,27 @@
 import { EmptyCard, Section } from "@/components";
-import { useSheet } from "@/features/sheets/use-sheet";
+import { useSheet } from "@/sheets/use-sheet";
 import { StyleSheet } from "react-native";
-import { useSavedUpiAppStore } from "../store";
-import { SavedUpiAppCard } from "./saved-upi-app-card";
+import { useUpiAppStore } from "../store";
+import { SavedUpiAppCard } from "./upi-app-card";
 
-export function SavedUpiApp() {
+export function UpiApp() {
   const sheet = useSheet();
-  const savedUpiApps = useSavedUpiAppStore((state) => state.savedUpiApps);
+  const upiApps = useUpiAppStore((state) => state.upiApps);
 
   return (
     <Section
       title="Saved UPI IDs"
       titleIconName="add-circle"
       onTitlePress={() => {
-        sheet.push("AddUpiSheet", {});
+        sheet.push("AddUpiAppSheet", {});
       }}
     >
-      {Object.keys(savedUpiApps).length ? (
-        Object.values(savedUpiApps).map((upiApp, index) => (
+      {Object.keys(upiApps).length ? (
+        Object.values(upiApps).map((upiApp, index) => (
           <SavedUpiAppCard
             key={upiApp.appName + index}
             upiApp={upiApp}
-            isLast={Object.keys(savedUpiApps).length - 1 == index}
+            isLast={Object.keys(upiApps).length - 1 == index}
           />
         ))
       ) : (

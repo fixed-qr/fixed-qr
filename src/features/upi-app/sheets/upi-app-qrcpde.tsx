@@ -5,19 +5,19 @@ import { StyleSheet } from "react-native";
 
 import { SCREEN_PADDING, SCREEN_WIDTH } from "@/constants/screen";
 import { upiAppLogo } from "@/constants/upi-app-logo";
-import { useSheet } from "@/features/sheets/use-sheet";
+import { useSheet } from "@/sheets/use-sheet";
 import { mapRowState } from "@/utils/map-row-state";
 import { Link } from "expo-router";
-import { useSavedUpiAppStore } from "../store";
+import { useUpiAppStore } from "../store";
 
 const gap = 8;
 const width = (SCREEN_WIDTH - gap * 3 - SCREEN_PADDING * 2) / 3;
 
-export function SavedUpiQrcodeSheet() {
+export function UpiAppQrcodeSheet() {
   const theme = useTheme();
   const sheet = useSheet();
 
-  const savedUpiApps = useSavedUpiAppStore((state) => state.savedUpiApps);
+  const upiApps = useUpiAppStore((state) => state.upiApps);
 
   return (
     <BottomSheetView
@@ -31,10 +31,10 @@ export function SavedUpiQrcodeSheet() {
           Saved UPI QR Codes
         </AppText>
       </AppView>
-      {Object.keys(savedUpiApps).length ? (
+      {Object.keys(upiApps).length ? (
         <AppView style={styles.providerContainer}>
           {mapRowState(
-            Object.values(savedUpiApps),
+            Object.values(upiApps),
             ({ item, columnIndex, isIncompleteRow }) => (
               <AppPressable
                 key={item.upiId}

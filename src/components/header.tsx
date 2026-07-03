@@ -1,7 +1,7 @@
 import { AppPressable, AppView } from "@/components/app-ui";
 import { SCREEN_PADDING } from "@/constants/screen";
-import { useSheet } from "@/features/sheets/use-sheet";
 import { useTheme } from "@/hooks/use-theme";
+import { useSheet } from "@/sheets/use-sheet";
 import { Ionicons } from "@expo/vector-icons";
 import { StyleSheet } from "react-native";
 import { AppLogo } from "./app-logo";
@@ -20,7 +20,7 @@ export function Header() {
       <AppView style={styles.rightContainer}>
         <AppPressable
           onPress={() => {
-            sheet.push("SavedUpiQrcodeSheet", {});
+            sheet.push("UpiAppQrcodeSheet", {});
           }}
           style={styles.button}
         >

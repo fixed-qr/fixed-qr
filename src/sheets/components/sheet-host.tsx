@@ -1,14 +1,14 @@
 import { useTheme } from "@/hooks/use-theme";
 import {
-  BottomSheetBackdrop,
-  BottomSheetBackdropProps,
-  BottomSheetModal,
+    BottomSheetBackdrop,
+    BottomSheetBackdropProps,
+    BottomSheetModal,
 } from "@gorhom/bottom-sheet";
 import { useEffect, useRef } from "react";
 import { StyleSheet } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { sheetRegistry } from "./sheet-registry";
-import { SheetItem, useSheetStore } from "./use-sheet-store";
+import { sheetRegistry } from "../sheet-registry";
+import { SheetItem, useSheetStore } from "../use-sheet-store";
 
 export function SheetHost() {
   const stack = useSheetStore((s) => s.stack);

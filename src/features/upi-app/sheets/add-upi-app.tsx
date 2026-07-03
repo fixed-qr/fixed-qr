@@ -1,30 +1,30 @@
 import {
-  AppIcon,
-  AppImage,
-  AppPressable,
-  AppSelectList,
-  AppText,
-  AppView,
+    AppIcon,
+    AppImage,
+    AppPressable,
+    AppSelectList,
+    AppText,
+    AppView,
 } from "@/components/app-ui";
 import { SCREEN_PADDING, SCREEN_WIDTH } from "@/constants/screen";
 import { supportedUpiApps } from "@/constants/supported-upi-apps";
 import { upiAppLogo } from "@/constants/upi-app-logo";
-import { useSavedUpiAppStore } from "@/features/saved-upi-app/store";
 import { useTheme } from "@/hooks/use-theme";
+import { useSheet } from "@/sheets/use-sheet";
 import { UpiAppName } from "@/types/upi-app-name";
 import { validateUpiId } from "@/validators/upi-id-validator";
 import {
-  BottomSheetScrollView,
-  BottomSheetTextInput,
+    BottomSheetScrollView,
+    BottomSheetTextInput,
 } from "@gorhom/bottom-sheet";
 import { useState } from "react";
 import { StyleSheet } from "react-native";
-import { useSheet } from "../../use-sheet";
+import { useUpiAppStore } from "../store";
 
 const gap = 8;
 const width = (SCREEN_WIDTH - gap * 3 - SCREEN_PADDING * 2) / 3;
 
-export function AddUpiSheet() {
+export function AddUpiAppSheet() {
   const theme = useTheme();
   const sheet = useSheet();
 
@@ -36,7 +36,7 @@ export function AddUpiSheet() {
   );
   const [upiAppError, setUpiAppError] = useState<string | null>(null);
 
-  const addUpiApp = useSavedUpiAppStore((state) => state.addUpiApp);
+  const addUpiApp = useUpiAppStore((state) => state.addUpiApp);
 
   const handleUPIIdChange = (value: string) => {
     setUpiId(value);

@@ -1,16 +1,17 @@
-import { Amount, NumericKeypad } from "@/components";
+import { Amount } from "@/components";
 import { AppPressable, AppText, AppView } from "@/components/app-ui";
 import { SCREEN_PADDING, SCREEN_WIDTH } from "@/constants/screen";
 import { upiAppLogo } from "@/constants/upi-app-logo";
-import { useSavedUpiAppStore } from "@/features/saved-upi-app/store";
+import { useUpiAppStore } from "@/features/upi-app/store";
 import { useTheme } from "@/hooks/use-theme";
+import { useSheet } from "@/sheets/use-sheet";
 import { mapRowState } from "@/utils/map-row-state";
 import { BottomSheetScrollView } from "@gorhom/bottom-sheet";
 import { Image } from "expo-image";
 import { Link } from "expo-router";
 import { useState } from "react";
 import { StyleSheet } from "react-native";
-import { useSheet } from "../../use-sheet";
+import { NumericKeypad } from "../components/numeric-keypad";
 
 const gap = 8;
 const width = (SCREEN_WIDTH - gap * 3 - SCREEN_PADDING * 2) / 3;
@@ -18,8 +19,9 @@ const width = (SCREEN_WIDTH - gap * 3 - SCREEN_PADDING * 2) / 3;
 export function QrcodeSheet() {
   const theme = useTheme();
   const sheet = useSheet();
+
   const [value, setValue] = useState("");
-  const savedUpiApps = useSavedUpiAppStore((states) => states.savedUpiApps);
+  const upiApps = useUpiAppStore((states) => states.upiApps);
 
   return (
     <BottomSheetScrollView
@@ -41,10 +43,10 @@ export function QrcodeSheet() {
       <NumericKeypad value={value} onChange={setValue} />
 
       {/* Providers */}
-      {Object.keys(savedUpiApps).length ? (
+      {Object.keys(upiApps).length ? (
         <AppView style={styles.upiAppContainer}>
           {mapRowState(
-            Object.values(savedUpiApps),
+            Object.values(upiApps),
             ({ item, columnIndex, isIncompleteRow }) => (
               <AppPressable
                 key={item.upiId}

@@ -1,20 +1,20 @@
 import {
-  AppIcon,
-  AppImage,
-  AppPressable,
-  AppSafeAreaView,
-  AppScrollView,
-  AppText,
-  AppView,
+    AppIcon,
+    AppImage,
+    AppPressable,
+    AppSafeAreaView,
+    AppScrollView,
+    AppText,
+    AppView,
 } from "@/components/app-ui";
 import { Settings } from "@/components/settings";
 import { SCREEN_PADDING } from "@/constants/screen";
 import IdentityVerification from "@/features/identity-verification/components";
 import { useIdentityVerificationStore } from "@/features/identity-verification/store";
-import { SavedUpiApp } from "@/features/saved-upi-app/components";
-import { useSheet } from "@/features/sheets/use-sheet";
+import { UpiApp } from "@/features/upi-app/components";
 import { useUserStore } from "@/features/user/store";
 import { useTheme } from "@/hooks/use-theme";
+import { useSheet } from "@/sheets/use-sheet";
 import { StyleSheet } from "react-native";
 
 export default function SettingScreen() {
@@ -69,7 +69,7 @@ export default function SettingScreen() {
         </AppView>
 
         <Settings />
-        <SavedUpiApp />
+        <UpiApp />
 
         {/* Legal Information */}
         <AppView style={styles.legalInformationContainer}>

@@ -1,16 +1,16 @@
 import { AppLogo, AppName, PasswordInput } from "@/components";
 import {
-  AppIcon,
-  AppPressable,
-  AppSafeAreaView,
-  AppScrollView,
-  AppText,
-  AppView,
+    AppIcon,
+    AppPressable,
+    AppSafeAreaView,
+    AppScrollView,
+    AppText,
+    AppView,
 } from "@/components/app-ui";
 import { useIdentityVerificationStore } from "@/features/identity-verification/store";
-import { useSheet } from "@/features/sheets/use-sheet";
 import { useUserStore } from "@/features/user/store";
 import { useTheme } from "@/hooks/use-theme";
+import { useSheet } from "@/sheets/use-sheet";
 import { User } from "@/types/user";
 import { validateUser } from "@/validators/user-validator";
 import { Checkbox } from "expo-checkbox";

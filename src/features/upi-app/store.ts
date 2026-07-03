@@ -1,40 +1,40 @@
 import { createPersistOptions } from "@/store/zustand/persist";
-import { SavedUpiApps } from "@/types/saved-upi-apps";
 import { UpiApp } from "@/types/upi-app";
 import { UpiAppName } from "@/types/upi-app-name";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
+import { UpiApps } from "./types";
 
-interface SavedUpiAppStore {
-  savedUpiApps: Partial<SavedUpiApps>;
+interface UpiAppStore {
+  upiApps: Partial<UpiApps>;
 
   addUpiApp: (appName: UpiAppName, upiApp: UpiApp) => void;
   removeUpiApp: (appName: UpiAppName) => void;
   clearUpiApps: () => void;
 }
 
-export const useSavedUpiAppStore = create<SavedUpiAppStore>()(
+export const useUpiAppStore = create<UpiAppStore>()(
   persist(
     (set) => ({
-      savedUpiApps: {},
+      upiApps: {},
 
       addUpiApp: (appName, upiApp) =>
         set((state) => ({
-          savedUpiApps: {
-            ...state.savedUpiApps,
+          upiApps: {
+            ...state.upiApps,
             [appName]: upiApp,
           },
         })),
       removeUpiApp: (appName) =>
         set(function (state) {
-          const { [appName]: _, ...remainingApps } = state.savedUpiApps;
+          const { [appName]: _, ...remainingApps } = state.upiApps;
 
           return {
-            savedUpiApps: remainingApps,
+            upiApps: remainingApps,
           };
         }),
-      clearUpiApps: () => set({ savedUpiApps: {} }),
+      clearUpiApps: () => set({ upiApps: {} }),
     }),
-    createPersistOptions<SavedUpiAppStore>("saved-upi-app-store"),
+    createPersistOptions<UpiAppStore>("upi-app-store"),
   ),
 );

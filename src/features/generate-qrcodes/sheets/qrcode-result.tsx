@@ -17,17 +17,13 @@ import QRCode from "react-native-qrcode-svg";
 const width = (SCREEN_WIDTH - SCREEN_PADDING * 2) / 1.5;
 const borderRadius = 24;
 
-interface QrcodeResultSheetProps {
+interface Props {
   appName: UpiAppName;
   upiId: string;
   amount?: string;
 }
 
-export function QrcodeResultSheet({
-  appName,
-  upiId,
-  amount,
-}: Readonly<QrcodeResultSheetProps>) {
+export function QrcodeResultSheet({ appName, upiId, amount }: Readonly<Props>) {
   const theme = useTheme();
 
   const addHistory = useHistoryStore((state) => state.addHistory);

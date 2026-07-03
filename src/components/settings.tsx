@@ -1,10 +1,10 @@
 import { AppIcon, AppText } from "@/components/app-ui";
 import { useHistoryStore } from "@/features/history/store";
 import { useIdentityVerificationStore } from "@/features/identity-verification/store";
-import { useSavedUpiAppStore } from "@/features/saved-upi-app/store";
-import { useSheet } from "@/features/sheets/use-sheet";
+import { useUpiAppStore } from "@/features/upi-app/store";
 import { useUserStore } from "@/features/user/store";
 import { useTheme } from "@/hooks/use-theme";
+import { useSheet } from "@/sheets/use-sheet";
 import { useRouter } from "expo-router";
 import { useState } from "react";
 import { Pressable, StyleSheet } from "react-native";
@@ -26,7 +26,7 @@ export function Settings() {
     (state) => state.verifyIdentity,
   );
   const removeUser = useUserStore((state) => state.removeUser);
-  const clearUpiApps = useSavedUpiAppStore((state) => state.clearUpiApps);
+  const clearUpiApps = useUpiAppStore((state) => state.clearUpiApps);
   const clearHistories = useHistoryStore((state) => state.clearHistories);
 
   const handelOnPress = () => {

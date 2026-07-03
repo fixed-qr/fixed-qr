@@ -1,16 +1,16 @@
 import { Amount, EmptyCard } from "@/components";
 import {
-  AppIcon,
-  AppImage,
-  AppPressable,
-  AppText,
-  AppView,
+    AppIcon,
+    AppImage,
+    AppPressable,
+    AppText,
+    AppView,
 } from "@/components/app-ui";
 import { SCREEN_PADDING, SCREEN_WIDTH } from "@/constants/screen";
 import { upiAppLogo } from "@/constants/upi-app-logo";
-import { useSavedUpiAppStore } from "@/features/saved-upi-app/store";
-import { useSheet } from "@/features/sheets/use-sheet";
+import { useUpiAppStore } from "@/features/upi-app/store";
 import { useTheme } from "@/hooks/use-theme";
+import { useSheet } from "@/sheets/use-sheet";
 import { useMemo } from "react";
 import { StyleSheet } from "react-native";
 import { useHistoryStore } from "../store";
@@ -23,7 +23,7 @@ export function Suggestion() {
   const sheet = useSheet();
 
   const histories = useHistoryStore((state) => state.histories);
-  const savedUpiApps = useSavedUpiAppStore((state) => state.savedUpiApps);
+  const upiApps = useUpiAppStore((state) => state.upiApps);
 
   const suggestions = useMemo(() => {
     const seen = new Set<string>();
@@ -59,7 +59,7 @@ export function Suggestion() {
               onPress={() => {
                 sheet.push("QrcodeResultSheet", {
                   appName: tsx.appName,
-                  upiId: savedUpiApps[tsx.appName]?.upiId as string,
+                  upiId: upiApps[tsx.appName]?.upiId as string,
                   amount: tsx.amount,
                 });
               }}
