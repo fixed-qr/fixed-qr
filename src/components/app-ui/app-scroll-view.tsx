@@ -1,4 +1,3 @@
-import { SCREEN_PADDING } from "@/constants/screen";
 import { ScrollView, ScrollViewProps } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
@@ -17,7 +16,6 @@ export function AppScrollView({
       contentContainerStyle={[
         {
           backgroundColor: undefined,
-          paddingHorizontal: SCREEN_PADDING,
           gap: 8,
         },
         contentContainerStyle,

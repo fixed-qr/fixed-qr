@@ -1,5 +1,4 @@
 import { AppPressable, AppView } from "@/components/app-ui";
-import { SCREEN_PADDING } from "@/constants/screen";
 import { useTheme } from "@/hooks/use-theme";
 import { useSheet } from "@/sheets/use-sheet";
 import { Ionicons } from "@expo/vector-icons";
@@ -35,7 +34,6 @@ const styles = StyleSheet.create({
   container: {
     width: "100%",
     flexDirection: "row",
-    paddingHorizontal: SCREEN_PADDING,
     paddingVertical: 12,
     justifyContent: "space-between",
     alignItems: "center",

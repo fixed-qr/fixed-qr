@@ -1,4 +1,4 @@
-import { Amount, EmptyCard } from "@/components";
+import { Amount, EmptyCard, Section } from "@/components";
 import {
   AppIcon,
   AppImage,
@@ -42,17 +42,9 @@ export function Suggestion() {
   }, [histories]).slice(0, 4);
 
   return (
-    <AppView>
-      <AppText
-        variant="bodyMedium"
-        color="tertiary"
-        weight="600"
-        style={styles.quickSuggestionsTitle}
-      >
-        Suggestions
-      </AppText>
+    <Section title="Suggestions">
       {suggestions.length ? (
-        <AppView style={[styles.quickSuggestions]}>
+        <AppView style={[styles.suggestions]}>
           {suggestions.map((tsx) => (
             <AppPressable
               key={tsx.id}
@@ -64,7 +56,7 @@ export function Suggestion() {
                 });
               }}
               style={({ pressed }) => [
-                styles.quickSuggestion,
+                styles.suggestion,
                 {
                   borderColor: theme.border.primary,
                   backgroundColor: pressed
@@ -100,28 +92,22 @@ export function Suggestion() {
             borderWidth: 1,
             borderColor: theme.border.primary,
             borderRadius: 24,
-            marginTop: 8,
           }}
         >
           <EmptyCard message="Your quick actions will appear here." />
         </AppView>
       )}
-    </AppView>
+    </Section>
   );
 }
 
 const styles = StyleSheet.create({
-  quickSuggestionsTitle: {
-    marginTop: 16,
-    paddingHorizontal: 8,
-  },
-  quickSuggestions: {
-    marginTop: 8,
+  suggestions: {
     flexDirection: "row",
     flexWrap: "wrap",
     gap: gap,
   },
-  quickSuggestion: {
+  suggestion: {
     padding: 16,
     borderWidth: 1,
     borderRadius: 28,

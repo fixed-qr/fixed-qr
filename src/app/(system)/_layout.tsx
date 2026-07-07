@@ -11,8 +11,6 @@ export default function SystemLayout() {
         contentStyle: { backgroundColor: theme.background.secondary },
       }}
     >
-      <Stack.Screen name="discontinued" />
-      <Stack.Screen name="maintenance" />
       <Stack.Screen name="update" />
     </Stack>
   );

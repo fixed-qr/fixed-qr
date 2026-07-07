@@ -1,10 +1,11 @@
 import { Header } from "@/components";
 import {
-    AppIcon,
-    AppPressable,
-    AppSafeAreaView,
-    AppScrollView,
-    AppText,
+  AppIcon,
+  AppPressable,
+  AppScreenView,
+  AppScrollView,
+  AppText,
+  AppView,
 } from "@/components/app-ui";
 import { Suggestion } from "@/features/history/components/suggestion";
 import { useUserStore } from "@/features/user/store";
@@ -18,12 +19,13 @@ export default function HomeScreen() {
   const sheet = useSheet();
 
   return (
-    <AppSafeAreaView>
+    <AppScreenView>
       {/* Header */}
       <Header />
 
-      {/* Content */}
-      <AppScrollView>
+      <AppScrollView contentContainerStyle={{ gap: 8 }}>
+        {/* Content */}
+
         <AppText
           variant="bodyLarge"
           weight="600"
@@ -39,7 +41,7 @@ export default function HomeScreen() {
             sheet.push("QrcodeSheet", {});
           }}
           style={({ pressed }) => [
-            styles.GenQRCode,
+            styles.genQrCode,
             {
               borderColor: theme.border.primary,
               backgroundColor: pressed
@@ -53,14 +55,17 @@ export default function HomeScreen() {
             size={24}
             color={theme.text.primary}
           />
-          <AppText variant="button" style={styles.GenQRCodeText}>
+          <AppText variant="button" style={styles.genQrCodeText}>
             New QR Code
           </AppText>
         </AppPressable>
 
-        <Suggestion />
+        {/* Suggestion */}
+        <AppView style={{ marginTop: 16 }}>
+          <Suggestion />
+        </AppView>
       </AppScrollView>
-    </AppSafeAreaView>
+    </AppScreenView>
   );
 }
 
@@ -70,7 +75,7 @@ const styles = StyleSheet.create({
     marginLeft: 1,
     textTransform: "capitalize",
   },
-  GenQRCode: {
+  genQrCode: {
     width: "100%",
     padding: 16,
     flexDirection: "row",
@@ -80,7 +85,7 @@ const styles = StyleSheet.create({
     borderRadius: 68,
     borderWidth: 1,
   },
-  GenQRCodeText: {
+  genQrCodeText: {
     textAlign: "center",
   },
 });

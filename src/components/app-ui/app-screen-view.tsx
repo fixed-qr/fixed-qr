@@ -1,3 +1,4 @@
+import { SCREEN_PADDING } from "@/constants/screen";
 import { BackgroundToken } from "@/constants/theme-colors";
 import { useTheme } from "@/hooks/use-theme";
 import { PropsWithChildren, useMemo } from "react";
@@ -20,7 +21,7 @@ export function AppScreenView({
   const preStyles = useMemo(() => {
     const bgColor = backgroundColor
       ? theme.background[backgroundColor]
-      : undefined;
+      : theme.background.primary;
 
     return {
       backgroundColor: bgColor,
@@ -28,6 +29,7 @@ export function AppScreenView({
       flexDirection: "column" as const,
       paddingTop: insets.top,
       paddingBottom: insets.bottom,
+      paddingHorizontal: SCREEN_PADDING,
     };
   }, [theme, insets]);
 

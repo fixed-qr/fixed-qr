@@ -32,16 +32,7 @@ export const Section = ({
           <AppIcon name={titleIconName} size={18} color={theme.text.tertiary} />
         )}
       </Pressable>
-      <AppView
-        style={[
-          styles.sectionContainer,
-          {
-            backgroundColor: theme.background.secondary,
-            borderColor: theme.border.primary,
-          },
-          containerStyle,
-        ]}
-      >
+      <AppView style={[styles.sectionContainer, containerStyle]}>
         {children}
       </AppView>
     </AppView>
@@ -53,13 +44,10 @@ const styles = StyleSheet.create({
     width: "100%",
     flexDirection: "row",
     justifyContent: "space-between",
-    paddingInline: 8,
+    paddingInline: 12,
   },
   sectionContainer: {
     flex: 1,
-    marginTop: 8,
-    paddingHorizontal: 12,
-    borderRadius: 24,
-    borderWidth: 1,
+    marginTop: 6,
   },
 });

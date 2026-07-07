@@ -44,7 +44,15 @@ export function Settings() {
   };
 
   return (
-    <Section>
+    <Section
+      containerStyle={{
+        paddingHorizontal: 12,
+        borderWidth: 1,
+        borderRadius: 20,
+        borderColor: theme.border.primary,
+        backgroundColor: theme.background.secondary,
+      }}
+    >
       {/* Delete account button */}
       <Pressable
         onPress={() => setShowAlert(true)}

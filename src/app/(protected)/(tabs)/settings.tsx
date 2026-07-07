@@ -2,7 +2,7 @@ import {
   AppIcon,
   AppImage,
   AppPressable,
-  AppSafeAreaView,
+  AppScreenView,
   AppScrollView,
   AppText,
   AppView,
@@ -23,8 +23,8 @@ export default function SettingScreen() {
   const name = useUserStore((state) => state.user?.name);
 
   return (
-    <AppSafeAreaView>
-      <AppScrollView contentContainerStyle={{ gap: 16 }}>
+    <AppScreenView>
+      <AppScrollView contentContainerStyle={{ gap: 8 }}>
         <AppView style={{ marginVertical: 16, marginTop: 24 }}>
           <AppText variant="headingMedium" style={{ textAlign: "center" }}>
             Settings
@@ -53,7 +53,12 @@ export default function SettingScreen() {
               ]}
             />
           </AppView>
-          <AppText variant="headingSmall">{name}</AppText>
+          <AppText
+            variant="headingSmall"
+            style={{ textTransform: "capitalize" }}
+          >
+            {name}
+          </AppText>
           <AppPressable
             onPress={() => {}}
             style={{ marginLeft: "auto", marginRight: 8 }}
@@ -62,8 +67,15 @@ export default function SettingScreen() {
           </AppPressable>
         </AppView>
 
-        <Settings />
-        <UpiApp />
+        {/* Settings */}
+        <AppView style={{ marginTop: 16 }}>
+          <Settings />
+        </AppView>
+
+        {/* UPI Apps */}
+        <AppView style={{ marginTop: 16 }}>
+          <UpiApp />
+        </AppView>
 
         {/* Legal Information */}
         <AppView style={styles.legalInformationContainer}>
@@ -81,7 +93,7 @@ export default function SettingScreen() {
 
       {/* Verify User Identity */}
       <VerifyUserIdentity />
-    </AppSafeAreaView>
+    </AppScreenView>
   );
 }
 

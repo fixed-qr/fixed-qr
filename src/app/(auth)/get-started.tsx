@@ -2,7 +2,7 @@ import { AppLogo, AppName, PasswordInput } from "@/components";
 import {
   AppIcon,
   AppPressable,
-  AppSafeAreaView,
+  AppScreenView,
   AppScrollView,
   AppText,
   AppView,
@@ -84,7 +84,7 @@ export default function GetStartedScreen() {
   };
 
   return (
-    <AppSafeAreaView>
+    <AppScreenView>
       <AppScrollView
         contentContainerStyle={{
           flex: 1,
@@ -248,7 +248,7 @@ export default function GetStartedScreen() {
           </AppPressable>
         </AppView>
       </AppScrollView>
-    </AppSafeAreaView>
+    </AppScreenView>
   );
 }
 

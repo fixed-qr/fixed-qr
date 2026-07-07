@@ -1,19 +1,29 @@
 import { EmptyCard, Section } from "@/components";
+import { useTheme } from "@/hooks/use-theme";
 import { useSheet } from "@/sheets/use-sheet";
 import { StyleSheet } from "react-native";
 import { useUpiAppStore } from "../store";
 import { SavedUpiAppCard } from "./upi-app-card";
 
 export function UpiApp() {
+  const theme = useTheme();
   const sheet = useSheet();
+
   const upiApps = useUpiAppStore((state) => state.upiApps);
 
   return (
     <Section
-      title="Saved UPI IDs"
+      title="Added UPI IDs"
       titleIconName="add-circle"
       onTitlePress={() => {
         sheet.push("AddUpiAppSheet", {});
+      }}
+      containerStyle={{
+        paddingHorizontal: 12,
+        borderWidth: 1,
+        borderRadius: 20,
+        borderColor: theme.border.primary,
+        backgroundColor: theme.background.secondary,
       }}
     >
       {Object.keys(upiApps).length ? (

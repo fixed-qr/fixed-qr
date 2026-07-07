@@ -2,10 +2,9 @@ import {
   AppIcon,
   AppImage,
   AppPressable,
-  AppSafeAreaView,
   AppScrollView,
   AppText,
-  AppView,
+  AppView
 } from "@/components/app-ui";
 import { SCREEN_PADDING } from "@/constants/screen";
 import { useTheme } from "@/hooks/use-theme";
@@ -37,148 +36,138 @@ export function AppUpdate() {
   }, [checkAppUpdate]);
 
   if (isLoading) {
-    return (
-      <AppSafeAreaView style={[styles.container, { justifyContent: "center" }]}>
-        <ActivityIndicator color={theme.text.primary} size={24} />
-      </AppSafeAreaView>
-    );
+    return <ActivityIndicator color={theme.text.primary} size={24} />;
   }
 
   return (
-    <AppSafeAreaView style={styles.container}>
-      <AppScrollView contentContainerStyle={{ padding: SCREEN_PADDING }}>
-        <AppView style={styles.update}>
-          <AppImage
-            source={require("@/assets/images/icons/system/update.png")}
-            style={styles.updateImage}
-          />
-          <AppText
-            variant="bodyLarge"
-            weight="500"
-            style={{ textAlign: "center" }}
-          >
-            {appUpdate?.title}
-          </AppText>
-        </AppView>
-        <AppView style={styles.release}>
-          <AppText
-            variant="bodyMedium"
-            weight="500"
-            color="tertiary"
-            style={styles.releaseTitle}
-          >
-            Latest Release
-          </AppText>
+    <AppScrollView contentContainerStyle={styles.container}>
+      <AppView style={styles.update}>
+        <AppImage
+          source={require("@/assets/images/icons/system/update.png")}
+          style={styles.updateImage}
+        />
+        <AppText
+          variant="bodyLarge"
+          weight="500"
+          style={{ textAlign: "center" }}
+        >
+          {appUpdate?.title}
+        </AppText>
+      </AppView>
+      <AppView style={styles.release}>
+        <AppText
+          variant="bodyMedium"
+          weight="500"
+          color="tertiary"
+          style={styles.releaseTitle}
+        >
+          Latest Release
+        </AppText>
+        <AppView
+          style={[
+            styles.releaseCard,
+            {
+              backgroundColor: theme.background.card,
+              borderColor: theme.border.primary,
+            },
+          ]}
+        >
           <AppView
-            style={[
-              styles.releaseCard,
-              {
-                backgroundColor: theme.background.card,
-                borderColor: theme.border.primary,
-              },
-            ]}
+            style={[styles.releaseRow, { borderColor: theme.border.primary }]}
           >
-            <AppView
-              style={[styles.releaseRow, { borderColor: theme.border.primary }]}
-            >
-              <AppView style={styles.releaseInfo}>
-                <AppIcon
-                  name="git-merge"
-                  color={theme.text.primary}
-                  size={14}
-                />
-                <AppText variant="bodyMedium">Version</AppText>
-              </AppView>
-              <AppText>{appUpdate?.version}</AppText>
+            <AppView style={styles.releaseInfo}>
+              <AppIcon name="git-merge" color={theme.text.primary} size={14} />
+              <AppText variant="bodyMedium">Version</AppText>
             </AppView>
-            <AppView
-              style={[styles.releaseRow, { borderColor: theme.border.primary }]}
-            >
-              <AppView style={styles.releaseInfo}>
-                <AppIcon name="watch" color={theme.text.primary} size={14} />
-                <AppText variant="bodyMedium">Date Time</AppText>
-              </AppView>
-              <AppText>{appUpdate?.publishedAt}</AppText>
+            <AppText>{appUpdate?.version}</AppText>
+          </AppView>
+          <AppView
+            style={[styles.releaseRow, { borderColor: theme.border.primary }]}
+          >
+            <AppView style={styles.releaseInfo}>
+              <AppIcon name="watch" color={theme.text.primary} size={14} />
+              <AppText variant="bodyMedium">Date Time</AppText>
             </AppView>
-            <AppView style={[styles.releaseRow, styles.releaseNotes]}>
-              <AppText variant="bodyMedium">Release Notes</AppText>
-              <AppView style={{ flex: 1, width: "100%" }}>
-                {appUpdate?.notes.map((note, index) => (
-                  <AppView style={styles.releaseNotesRow} key={note + index}>
-                    <AppView
-                      style={[
-                        styles.noteDot,
-                        { backgroundColor: theme.text.tertiary },
-                      ]}
-                    />
-                    <AppView style={{ flex: 1 }}>
-                      <AppText variant="bodySmall" color="secondary">
-                        {note}
-                      </AppText>
-                    </AppView>
+            <AppText>{appUpdate?.publishedAt}</AppText>
+          </AppView>
+          <AppView style={[styles.releaseRow, styles.releaseNotes]}>
+            <AppText variant="bodyMedium">Release Notes</AppText>
+            <AppView style={{ flex: 1, width: "100%" }}>
+              {appUpdate?.notes.map((note, index) => (
+                <AppView style={styles.releaseNotesRow} key={note + index}>
+                  <AppView
+                    style={[
+                      styles.noteDot,
+                      { backgroundColor: theme.text.tertiary },
+                    ]}
+                  />
+                  <AppView style={{ flex: 1 }}>
+                    <AppText variant="bodySmall" color="secondary">
+                      {note}
+                    </AppText>
                   </AppView>
-                ))}
-              </AppView>
+                </AppView>
+              ))}
             </AppView>
           </AppView>
         </AppView>
+      </AppView>
 
-        {/* Action buttons */}
-        <AppView>
-          <AppPressable
-            onPress={() => {
-              openURL(appUpdate?.downloadUrl as string);
-            }}
-            style={({ pressed }) => [
-              styles.button,
-              {
-                borderColor: theme.border.primary,
-                backgroundColor: pressed
-                  ? theme.background.cardMuted
-                  : theme.background.card,
-              },
-            ]}
-          >
-            <AppText variant="button">Download APK</AppText>
-          </AppPressable>
-          <AppPressable
-            onPress={() => {
-              openURL(appUpdate?.websiteUrl as string);
-            }}
-            style={({ pressed }) => [
-              styles.button,
-              {
-                borderColor: theme.border.primary,
-                backgroundColor: pressed
-                  ? theme.background.cardMuted
-                  : theme.background.card,
-              },
-            ]}
-          >
-            <AppText variant="button">Website</AppText>
-          </AppPressable>
-        </AppView>
+      {/* Action buttons */}
+      <AppView>
+        <AppPressable
+          onPress={() => {
+            openURL(appUpdate?.downloadUrl as string);
+          }}
+          style={({ pressed }) => [
+            styles.button,
+            {
+              borderColor: theme.border.primary,
+              backgroundColor: pressed
+                ? theme.background.cardMuted
+                : theme.background.card,
+            },
+          ]}
+        >
+          <AppText variant="button">Download APK</AppText>
+        </AppPressable>
+        <AppPressable
+          onPress={() => {
+            openURL(appUpdate?.websiteUrl as string);
+          }}
+          style={({ pressed }) => [
+            styles.button,
+            {
+              borderColor: theme.border.primary,
+              backgroundColor: pressed
+                ? theme.background.cardMuted
+                : theme.background.card,
+            },
+          ]}
+        >
+          <AppText variant="button">Website</AppText>
+        </AppPressable>
+      </AppView>
 
-        {/* How to update guide */}
-        <AppView>
-          <AppText variant="bodyMedium" style={styles.releaseTitle}>
-            How to update
-          </AppText>
-          <AppView style={styles.guideRowContainer}>
-            {updateGuide.map((guide: string, index: number) => (
-              <AppView style={styles.guideRow} key={guide + index}>
-                <AppText variant="bodySmall" color="secondary">
-                  {index + 1}.
-                </AppText>
-                <AppText variant="bodySmall" color="secondary">
-                  {guide}
-                </AppText>
-              </AppView>
-            ))}
-          </AppView>
+      {/* How to update guide */}
+      <AppView>
+        <AppText variant="bodyMedium" style={styles.releaseTitle}>
+          How to update
+        </AppText>
+        <AppView style={styles.guideRowContainer}>
+          {updateGuide.map((guide: string, index: number) => (
+            <AppView style={styles.guideRow} key={guide + index}>
+              <AppText variant="bodySmall" color="secondary">
+                {index + 1}.
+              </AppText>
+              <AppText variant="bodySmall" color="secondary">
+                {guide}
+              </AppText>
+            </AppView>
+          ))}
         </AppView>
-      </AppScrollView>
-    </AppSafeAreaView>
+      </AppView>
+    </AppScrollView>
   );
 }
 
@@ -186,6 +175,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
+    padding: SCREEN_PADDING,
   },
   update: {
     alignItems: "center",
