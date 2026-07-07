@@ -1,4 +1,4 @@
-import { AppSafeAreaView, AppText, AppView } from "@/components/app-ui";
+import { AppText, AppView } from "@/components/app-ui";
 import { SCREEN_PADDING } from "@/constants/screen";
 import { useTheme } from "@/hooks/use-theme";
 import { BottomSheetScrollView } from "@gorhom/bottom-sheet/src";
@@ -20,16 +20,6 @@ export function PrivacyPolicySheet() {
     }
   }, []);
 
-  if (isLoading) {
-    return (
-      <AppSafeAreaView
-        style={{ flex: 1, alignItems: "center", justifyContent: "center" }}
-      >
-        <ActivityIndicator color={theme.text.primary} size={24} />
-      </AppSafeAreaView>
-    );
-  }
-
   return (
     <BottomSheetScrollView
       contentContainerStyle={{
@@ -42,7 +32,16 @@ export function PrivacyPolicySheet() {
           Terms & Privacy
         </AppText>
       </AppView>
-      {!isLoading && privacyPolicy ? (
+
+      {isLoading ? (
+        <AppView style={{ alignItems: "center", marginVertical: 16 }}>
+          <ActivityIndicator size={24} color={theme.text.primary} />
+        </AppView>
+      ) : error ? (
+        <AppText variant="bodySmall" style={{ color: theme.status.danger }}>
+          {error}
+        </AppText>
+      ) : (
         <Markdown
           style={{
             body: {
@@ -52,10 +51,8 @@ export function PrivacyPolicySheet() {
             },
           }}
         >
-          {privacyPolicy}
+          {privacyPolicy || "No privacy policy available at the moment."}
         </Markdown>
-      ) : (
-        <ActivityIndicator size={24} color={theme.text.primary} />
       )}
     </BottomSheetScrollView>
   );
