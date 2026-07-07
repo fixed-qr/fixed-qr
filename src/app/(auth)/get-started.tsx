@@ -1,13 +1,12 @@
 import { AppLogo, AppName, PasswordInput } from "@/components";
 import {
-    AppIcon,
-    AppPressable,
-    AppSafeAreaView,
-    AppScrollView,
-    AppText,
-    AppView,
+  AppIcon,
+  AppPressable,
+  AppSafeAreaView,
+  AppScrollView,
+  AppText,
+  AppView,
 } from "@/components/app-ui";
-import { useIdentityVerificationStore } from "@/features/identity-verification/store";
 import { useUserStore } from "@/features/user/store";
 import { useTheme } from "@/hooks/use-theme";
 import { useSheet } from "@/sheets/use-sheet";
@@ -17,6 +16,7 @@ import { Checkbox } from "expo-checkbox";
 import { useRouter } from "expo-router";
 import { useState } from "react";
 import { Pressable, StyleSheet, TextInput } from "react-native";
+import { useShallow } from "zustand/react/shallow";
 
 export default function GetStartedScreen() {
   const theme = useTheme();
@@ -24,7 +24,7 @@ export default function GetStartedScreen() {
   const sheet = useSheet();
 
   const [isFocused, setIsFocused] = useState(false);
-  const [user, setUser] = useState<User>({
+  const [form, setForm] = useState<User>({
     name: "",
     password: "",
   });
@@ -32,9 +32,8 @@ export default function GetStartedScreen() {
   const [isChecked, setChecked] = useState(false);
   const [isCheckedError, setCheckedError] = useState(false);
 
-  const createUser = useUserStore((state) => state.createUser);
-  const verifyIdentity = useIdentityVerificationStore(
-    (state) => state.verifyIdentity,
+  const { setUser, verifyIdentity } = useUserStore(
+    useShallow((state) => state),
   );
 
   const handleExpand = () => {
@@ -44,7 +43,7 @@ export default function GetStartedScreen() {
   };
 
   const handleInputChange = (field: keyof User, value: string) => {
-    setUser((prev) => ({
+    setForm((prev) => ({
       ...prev,
       [field]: value,
     }));
@@ -59,7 +58,7 @@ export default function GetStartedScreen() {
   };
 
   const handleGetStartedPress = () => {
-    const validationErrors = validateUser(user);
+    const validationErrors = validateUser(form);
     setErrors(validationErrors);
 
     if (!isChecked) {
@@ -68,7 +67,7 @@ export default function GetStartedScreen() {
     }
 
     if (Object.keys(validationErrors).length === 0 && isChecked) {
-      createUser(user);
+      setUser({ name: form.name, password: form.password });
       verifyIdentity();
       router.replace("/");
     }
@@ -146,7 +145,7 @@ export default function GetStartedScreen() {
                 placeholder="Enter your name"
                 placeholderTextColor={theme.text.secondary}
                 style={[styles.inputField, { color: theme.text.primary }]}
-                value={user.name}
+                value={form.name}
                 onChangeText={(text) => handleInputChange("name", text)}
                 onFocus={() => setIsFocused(true)}
                 onBlur={() => setIsFocused(false)}
@@ -166,7 +165,7 @@ export default function GetStartedScreen() {
 
           {/* Password */}
           <PasswordInput
-            value={user.password}
+            value={form.password}
             onChangeText={(text) => handleInputChange("password", text)}
             hasError={!!errors.password}
           />

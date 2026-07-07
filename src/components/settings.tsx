@@ -1,6 +1,5 @@
 import { AppIcon, AppText } from "@/components/app-ui";
 import { useHistoryStore } from "@/features/history/store";
-import { useIdentityVerificationStore } from "@/features/identity-verification/store";
 import { useUpiAppStore } from "@/features/upi-app/store";
 import { useUserStore } from "@/features/user/store";
 import { useTheme } from "@/hooks/use-theme";
@@ -8,6 +7,7 @@ import { useSheet } from "@/sheets/use-sheet";
 import { useRouter } from "expo-router";
 import { useState } from "react";
 import { Pressable, StyleSheet } from "react-native";
+import { useShallow } from "zustand/react/shallow";
 import { AlertModal } from "./alert-modal";
 import { Section } from "./section";
 
@@ -22,18 +22,20 @@ export function Settings() {
     transactions: boolean;
   }>({ deleteAccount: false, transactions: false });
 
-  const resetIdentity = useIdentityVerificationStore(
-    (state) => state.verifyIdentity,
+  const { clearUser, clearIdentityVerification } = useUserStore(
+    useShallow((state) => ({
+      clearUser: state.clearUser,
+      clearIdentityVerification: state.clearIdentityVerification,
+    })),
   );
-  const removeUser = useUserStore((state) => state.removeUser);
   const clearUpiApps = useUpiAppStore((state) => state.clearUpiApps);
   const clearHistories = useHistoryStore((state) => state.clearHistories);
 
   const handelOnPress = () => {
-    removeUser();
+    clearUser();
     clearUpiApps();
     clearHistories();
-    resetIdentity();
+    clearIdentityVerification();
     router.replace("/(auth)/get-started");
   };
 

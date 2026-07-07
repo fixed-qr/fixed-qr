@@ -1,17 +1,16 @@
 import {
-    AppIcon,
-    AppImage,
-    AppPressable,
-    AppSafeAreaView,
-    AppScrollView,
-    AppText,
-    AppView,
+  AppIcon,
+  AppImage,
+  AppPressable,
+  AppSafeAreaView,
+  AppScrollView,
+  AppText,
+  AppView,
 } from "@/components/app-ui";
 import { Settings } from "@/components/settings";
 import { SCREEN_PADDING } from "@/constants/screen";
-import IdentityVerification from "@/features/identity-verification/components";
-import { useIdentityVerificationStore } from "@/features/identity-verification/store";
 import { UpiApp } from "@/features/upi-app/components";
+import { VerifyUserIdentity } from "@/features/user/components";
 import { useUserStore } from "@/features/user/store";
 import { useTheme } from "@/hooks/use-theme";
 import { useSheet } from "@/sheets/use-sheet";
@@ -22,9 +21,6 @@ export default function SettingScreen() {
   const sheet = useSheet();
 
   const name = useUserStore((state) => state.user?.name);
-  const resetIdentity = useIdentityVerificationStore(
-    (state) => state.resetIdentity,
-  );
 
   return (
     <AppSafeAreaView>
@@ -59,9 +55,7 @@ export default function SettingScreen() {
           </AppView>
           <AppText variant="headingSmall">{name}</AppText>
           <AppPressable
-            onPress={() => {
-              resetIdentity();
-            }}
+            onPress={() => {}}
             style={{ marginLeft: "auto", marginRight: 8 }}
           >
             <AppIcon name="log-out" size={24} color={theme.text.tertiary} />
@@ -86,7 +80,7 @@ export default function SettingScreen() {
       </AppScrollView>
 
       {/* Verify User Identity */}
-      <IdentityVerification />
+      <VerifyUserIdentity />
     </AppSafeAreaView>
   );
 }

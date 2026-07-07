@@ -4,18 +4,17 @@ import { SCREEN_PADDING } from "@/constants/screen";
 import { useUserStore } from "@/features/user/store";
 import { useTheme } from "@/hooks/use-theme";
 import BottomSheet, {
-  BottomSheetBackdrop,
-  BottomSheetBackdropProps,
-  BottomSheetView,
+    BottomSheetBackdrop,
+    BottomSheetBackdropProps,
+    BottomSheetView,
 } from "@gorhom/bottom-sheet";
 import { usePathname } from "expo-router";
 import { useEffect, useRef, useState } from "react";
 import { Keyboard, StyleSheet } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useShallow } from "zustand/react/shallow";
-import { useIdentityVerificationStore } from "../store";
 
-export default function IdentityVerification() {
+export function VerifyUserIdentity() {
   const theme = useTheme();
   const insets = useSafeAreaInsets();
   const pathname = usePathname();
@@ -25,18 +24,17 @@ export default function IdentityVerification() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
-  const { isSessionValid, verifyIdentity } = useIdentityVerificationStore(
+  const { user, isIdentityVerified, verifyIdentity } = useUserStore(
     useShallow((state) => state),
   );
-  const storedPassword = useUserStore((state) => state.user?.password);
 
   useEffect(() => {
-    if (pathname === "/settings" && !isSessionValid()) {
+    if (pathname === "/settings" && !isIdentityVerified()) {
       sheetRef.current?.expand();
     } else {
       sheetRef.current?.forceClose();
     }
-  }, [pathname, isSessionValid]);
+  }, [pathname, isIdentityVerified]);
 
   const handlePasswordChange = (value: string) => {
     setError("");
@@ -51,7 +49,7 @@ export default function IdentityVerification() {
       return;
     }
 
-    if (trimmedPassword !== storedPassword) {
+    if (trimmedPassword !== user?.password) {
       setError("Incorrect password");
       return;
     }
