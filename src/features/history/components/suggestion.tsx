@@ -1,10 +1,10 @@
 import { Amount, EmptyCard } from "@/components";
 import {
-    AppIcon,
-    AppImage,
-    AppPressable,
-    AppText,
-    AppView,
+  AppIcon,
+  AppImage,
+  AppPressable,
+  AppText,
+  AppView,
 } from "@/components/app-ui";
 import { SCREEN_PADDING, SCREEN_WIDTH } from "@/constants/screen";
 import { upiAppLogo } from "@/constants/upi-app-logo";
