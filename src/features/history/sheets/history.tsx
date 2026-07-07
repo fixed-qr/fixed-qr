@@ -68,11 +68,6 @@ export function HistorySheet() {
                   />
                 </AppView>
               </AppView>
-              <AppIcon
-                name="information-circle"
-                size={18}
-                color={theme.text.secondary}
-              />
             </AppView>
           ))}
         </AppView>
