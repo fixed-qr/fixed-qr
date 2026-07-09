@@ -5,7 +5,7 @@ import { createPersistOptions } from "@/store/zustand/persist";
 import { User } from "@/types/user";
 
 const ONE_MINUTE_MS = 60_000;
-const IDENTITY_VERIFICATION_TTL_MS = ONE_MINUTE_MS * 5; // 5 minutes
+const IDENTITY_VERIFICATION_TTL_MS = ONE_MINUTE_MS * 2; // 2 minutes
 
 interface UserStore {
   user: User | null;
