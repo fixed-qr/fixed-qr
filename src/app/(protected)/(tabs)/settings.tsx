@@ -16,14 +16,16 @@ import { StyleSheet } from "react-native";
 export default function SettingScreen() {
   const sheet = useSheet();
 
-  const isIdentityVerified = useUserStore((state) => state.isIdentityVerified);
+  const isIdentityVerified = useUserStore((state) =>
+    state.isIdentityVerified(),
+  );
 
-  if (!isIdentityVerified()) {
+  if (!isIdentityVerified) {
     return <VerifyUserIdentity />;
   }
 
   return (
-    <AppScreenView>
+    <AppScreenView key={isIdentityVerified ? "verified" : "unverified"}>
       <AppScrollView contentContainerStyle={{ gap: 8 }}>
         <AppView style={{ marginVertical: 16, marginTop: 24 }}>
           <AppText variant="headingMedium" style={{ textAlign: "center" }}>
