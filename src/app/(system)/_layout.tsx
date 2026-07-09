@@ -8,7 +8,8 @@ export default function SystemLayout() {
     <Stack
       screenOptions={{
         headerShown: false,
-        contentStyle: { backgroundColor: theme.background.secondary },
+        animation: "fade",
+        contentStyle: { backgroundColor: theme.background.primary },
       }}
     >
       <Stack.Screen name="update" />

@@ -2,9 +2,9 @@ import { useUserStore } from "@/features/user/store";
 import { useTheme } from "@/hooks/use-theme";
 import { SheetProvider } from "@/sheets/components/sheet-provider";
 import {
-    DarkTheme,
-    DefaultTheme,
-    ThemeProvider,
+  DarkTheme,
+  DefaultTheme,
+  ThemeProvider,
 } from "@react-navigation/native";
 import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
@@ -13,8 +13,8 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { useColorScheme } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import {
-    SafeAreaProvider,
-    initialWindowMetrics,
+  SafeAreaProvider,
+  initialWindowMetrics,
 } from "react-native-safe-area-context";
 
 SplashScreen.preventAutoHideAsync().catch(() => {});
@@ -87,12 +87,22 @@ export default function RootLayout() {
                 },
               }}
             >
-              <Stack.Screen name="(auth)" options={{ animation: "fade" }} />
-              <Stack.Screen name="(system)" options={{ animation: "fade" }} />
               <Stack.Screen
-                name="(protected)"
+                name="(auth)/get-started"
                 options={{ animation: "fade" }}
               />
+              <Stack.Screen
+                name="(auth)/verify-user-identity"
+                options={{
+                  presentation: "transparentModal",
+                  animation: "fade",
+                  contentStyle: {
+                    backgroundColor: "transparent",
+                  },
+                }}
+              />
+              <Stack.Screen name="(system)" />
+              <Stack.Screen name="(protected)" />
             </Stack>
           </SheetProvider>
         </SafeAreaProvider>
