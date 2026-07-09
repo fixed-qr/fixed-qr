@@ -1,7 +1,8 @@
 import { AppIcon, AppText, AppView } from "@/components/app-ui";
 import { useTheme } from "@/hooks/use-theme";
+import { BottomSheetTextInput } from "@gorhom/bottom-sheet";
 import { useState } from "react";
-import { Pressable, StyleSheet, TextInput } from "react-native";
+import { Pressable, StyleSheet } from "react-native";
 
 interface PasswordInputProps {
   value: string;
@@ -10,7 +11,7 @@ interface PasswordInputProps {
   hasError?: boolean;
 }
 
-export function PasswordInput({
+export function PasswordSheetInput({
   value,
   onChangeText,
   onSubmitEditing,
@@ -50,7 +51,7 @@ export function PasswordInput({
           Password
         </AppText>
         <AppView style={styles.fieldRow}>
-          <TextInput
+          <BottomSheetTextInput
             secureTextEntry={!isVisible}
             textContentType="password"
             autoCorrect={false}

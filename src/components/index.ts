@@ -5,5 +5,6 @@ export { AppName } from "./app-name";
 export { EmptyCard } from "./empty-card";
 export { Header } from "./header";
 export { PasswordInput } from "./password-input";
+export { PasswordSheetInput } from "./password-sheet-input";
 export { Section } from "./section";
 

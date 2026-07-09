@@ -8,7 +8,7 @@ import {
 import { Settings } from "@/components/settings";
 import { SCREEN_PADDING } from "@/constants/screen";
 import { UpiApp } from "@/features/upi-app/components";
-import { UserProfile, VerifyUserIdentity } from "@/features/user/components";
+import { UserProfile } from "@/features/user/components";
 import { useSheet } from "@/sheets/use-sheet";
 import { StyleSheet } from "react-native";
 
@@ -50,9 +50,6 @@ export default function SettingScreen() {
           </AppPressable>
         </AppView>
       </AppScrollView>
-
-      {/* Verify User Identity */}
-      <VerifyUserIdentity />
     </AppScreenView>
   );
 }

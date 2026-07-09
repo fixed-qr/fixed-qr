@@ -1,16 +1,5 @@
-import { AppScreenView, AppText } from "@/components/app-ui";
-import { StyleSheet } from "react-native";
+import { VerifyUserIdentity } from "@/features/user/components";
 
 export default function VerifyUserIdentityScreen() {
-  return (
-    <AppScreenView style={styles.container}>
-      <AppText>VerifyUserIdentity</AppText>
-    </AppScreenView>
-  );
+  return <VerifyUserIdentity />;
 }
-
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: "transparent",
-  },
-});

@@ -1,40 +1,34 @@
-import { PasswordInput } from "@/components";
+import { PasswordSheetInput } from "@/components";
 import { AppPressable, AppText, AppView } from "@/components/app-ui";
 import { SCREEN_PADDING } from "@/constants/screen";
 import { useUserStore } from "@/features/user/store";
 import { useTheme } from "@/hooks/use-theme";
 import BottomSheet, {
-    BottomSheetBackdrop,
-    BottomSheetBackdropProps,
-    BottomSheetView,
+  BottomSheetBackdrop,
+  BottomSheetBackdropProps,
+  BottomSheetView,
 } from "@gorhom/bottom-sheet";
-import { usePathname } from "expo-router";
-import { useEffect, useRef, useState } from "react";
-import { Keyboard, StyleSheet } from "react-native";
+import { useRouter } from "expo-router";
+import { useState } from "react";
+import { StyleSheet } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useShallow } from "zustand/react/shallow";
 
 export function VerifyUserIdentity() {
   const theme = useTheme();
+
   const insets = useSafeAreaInsets();
-  const pathname = usePathname();
-  const sheetRef = useRef<BottomSheet>(null);
-  const isSheetOpen = useRef(false);
+  const router = useRouter();
 
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
-  const { user, isIdentityVerified, verifyIdentity } = useUserStore(
-    useShallow((state) => state),
+  const { user, verifyIdentity } = useUserStore(
+    useShallow((state) => ({
+      user: state.user,
+      verifyIdentity: state.verifyIdentity,
+    })),
   );
-
-  useEffect(() => {
-    if (pathname === "/settings" && !isIdentityVerified()) {
-      sheetRef.current?.expand();
-    } else {
-      sheetRef.current?.forceClose();
-    }
-  }, [pathname, isIdentityVerified]);
 
   const handlePasswordChange = (value: string) => {
     setError("");
@@ -56,22 +50,20 @@ export function VerifyUserIdentity() {
 
     setError("");
 
+    // Verify user identity
     verifyIdentity();
-    sheetRef.current?.forceClose();
-    Keyboard.dismiss();
+
+    // Replace with target url
+    router.replace("/(protected)/(tabs)/settings");
   };
 
   return (
     <BottomSheet
-      ref={sheetRef}
       enablePanDownToClose={false}
       topInset={insets.top}
       bottomInset={insets.bottom}
       keyboardBlurBehavior="restore"
       backdropComponent={renderAppSheetBackdrop}
-      onChange={(index) => {
-        isSheetOpen.current = index !== -1;
-      }}
       animationConfigs={{
         duration: 380,
       }}
@@ -107,7 +99,7 @@ export function VerifyUserIdentity() {
             Verify Your Identity
           </AppText>
         </AppView>
-        <PasswordInput
+        <PasswordSheetInput
           value={password}
           onChangeText={handlePasswordChange}
           onSubmitEditing={handleOnSubmit}
