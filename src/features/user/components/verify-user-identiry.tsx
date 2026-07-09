@@ -1,5 +1,12 @@
-import { PasswordSheetInput } from "@/components";
-import { AppPressable, AppText, AppView } from "@/components/app-ui";
+import { PasswordInput } from "@/components";
+import {
+  AppPressable,
+  AppScreenView,
+  AppScrollView,
+  AppText,
+  AppView,
+} from "@/components/app-ui";
+import { Settings } from "@/components/settings";
 import { SCREEN_PADDING } from "@/constants/screen";
 import { useUserStore } from "@/features/user/store";
 import { useTheme } from "@/hooks/use-theme";
@@ -13,6 +20,7 @@ import { useState } from "react";
 import { StyleSheet } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useShallow } from "zustand/react/shallow";
+import { UserProfile } from "./user-profile";
 
 export function VerifyUserIdentity() {
   const theme = useTheme();
@@ -54,91 +62,113 @@ export function VerifyUserIdentity() {
     verifyIdentity();
 
     // Replace with target url
-    router.replace("/(protected)/(tabs)/settings");
+    router.navigate("/(protected)/(tabs)/settings");
   };
 
   return (
-    <BottomSheet
-      enablePanDownToClose={false}
-      topInset={insets.top}
-      bottomInset={insets.bottom}
-      keyboardBlurBehavior="restore"
-      backdropComponent={renderAppSheetBackdrop}
-      animationConfigs={{
-        duration: 380,
-      }}
-      handleStyle={{
-        borderBottomWidth: 1,
-        borderColor: theme.border.primary,
-      }}
-      handleIndicatorStyle={{
-        backgroundColor: theme.text.muted,
-        width: 48,
-        height: 4,
-        borderRadius: 4,
-      }}
-      backgroundStyle={{
-        backgroundColor: theme.background.secondary,
-        borderTopLeftRadius: 28,
-        borderTopRightRadius: 28,
-        shadowOpacity: 0.1,
-        shadowRadius: 10,
-        elevation: 8,
-      }}
-      containerStyle={StyleSheet.absoluteFill}
-    >
-      <BottomSheetView
-        style={{
-          backgroundColor: theme.background.secondary,
-          padding: SCREEN_PADDING,
-          paddingTop: 0,
-        }}
-      >
-        <AppView style={{ alignItems: "center", marginVertical: 16 }}>
-          <AppText variant="headingSmall" weight="600">
-            Verify Your Identity
+    <AppScreenView>
+      <AppScrollView contentContainerStyle={{ gap: 8 }}>
+        <AppView style={{ marginVertical: 16, marginTop: 24 }}>
+          <AppText variant="headingMedium" style={{ textAlign: "center" }}>
+            Settings
           </AppText>
         </AppView>
-        <PasswordSheetInput
-          value={password}
-          onChangeText={handlePasswordChange}
-          onSubmitEditing={handleOnSubmit}
-          hasError={!!error}
-        />
-        {!!error && (
-          <AppView
-            style={[
-              styles.error,
-              { backgroundColor: theme.background.secondary },
-            ]}
-          >
-            <AppText variant="bodySmall" style={{ color: theme.status.danger }}>
-              {error}
+
+        {/* User Profile */}
+        <UserProfile />
+
+        {/* Settings */}
+        <AppView style={{ marginTop: 16 }}>
+          <Settings />
+        </AppView>
+      </AppScrollView>
+
+      {/* Verification Form Sheet */}
+      <BottomSheet
+        enablePanDownToClose={false}
+        topInset={insets.top}
+        bottomInset={insets.bottom}
+        keyboardBlurBehavior="restore"
+        backdropComponent={renderAppSheetBackdrop}
+        animationConfigs={{
+          duration: 380,
+        }}
+        handleStyle={{
+          borderBottomWidth: 1,
+          borderColor: theme.border.primary,
+        }}
+        handleIndicatorStyle={{
+          backgroundColor: theme.text.muted,
+          width: 48,
+          height: 4,
+          borderRadius: 4,
+        }}
+        backgroundStyle={{
+          backgroundColor: theme.background.secondary,
+          borderTopLeftRadius: 28,
+          borderTopRightRadius: 28,
+          shadowOpacity: 0.1,
+          shadowRadius: 10,
+          elevation: 8,
+        }}
+        containerStyle={StyleSheet.absoluteFill}
+      >
+        <BottomSheetView
+          style={{
+            backgroundColor: theme.background.secondary,
+            padding: SCREEN_PADDING,
+            paddingTop: 0,
+          }}
+        >
+          <AppView style={{ alignItems: "center", marginVertical: 16 }}>
+            <AppText variant="headingSmall" weight="600">
+              Verify Your Identity
             </AppText>
           </AppView>
-        )}
-        <AppPressable
-          onPress={handleOnSubmit}
-          style={({ pressed }) => [
-            styles.authenticateButton,
-            {
-              borderColor: theme.border.primary,
-              backgroundColor: pressed
-                ? theme.accent.pressed
-                : theme.accent.primary,
-            },
-          ]}
-        >
-          <AppText
-            variant="button"
-            color="inverse"
-            style={{ flex: 1, textAlign: "center" }}
+          <PasswordInput
+            value={password}
+            onChangeText={handlePasswordChange}
+            onSubmitEditing={handleOnSubmit}
+            hasError={!!error}
+          />
+          {!!error && (
+            <AppView
+              style={[
+                styles.error,
+                { backgroundColor: theme.background.secondary },
+              ]}
+            >
+              <AppText
+                variant="bodySmall"
+                style={{ color: theme.status.danger }}
+              >
+                {error}
+              </AppText>
+            </AppView>
+          )}
+          <AppPressable
+            onPress={handleOnSubmit}
+            style={({ pressed }) => [
+              styles.authenticateButton,
+              {
+                borderColor: theme.border.primary,
+                backgroundColor: pressed
+                  ? theme.accent.pressed
+                  : theme.accent.primary,
+              },
+            ]}
           >
-            Verify
-          </AppText>
-        </AppPressable>
-      </BottomSheetView>
-    </BottomSheet>
+            <AppText
+              variant="button"
+              color="inverse"
+              style={{ flex: 1, textAlign: "center" }}
+            >
+              Verify
+            </AppText>
+          </AppPressable>
+        </BottomSheetView>
+      </BottomSheet>
+    </AppScreenView>
   );
 }
 
@@ -146,7 +176,7 @@ function renderAppSheetBackdrop(props: Readonly<BottomSheetBackdropProps>) {
   return (
     <BottomSheetBackdrop
       {...props}
-      pressBehavior={"none"}
+      pressBehavior="none"
       appearsOnIndex={0}
       disappearsOnIndex={-1}
       opacity={0.5}

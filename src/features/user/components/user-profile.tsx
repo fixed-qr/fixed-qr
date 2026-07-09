@@ -1,18 +1,26 @@
 import {
-    AppIcon,
-    AppImage,
-    AppPressable,
-    AppText,
-    AppView,
+  AppIcon,
+  AppImage,
+  AppPressable,
+  AppText,
+  AppView,
 } from "@/components/app-ui";
 import { useTheme } from "@/hooks/use-theme";
+import { useRouter } from "expo-router";
 import { StyleSheet } from "react-native";
+import { useShallow } from "zustand/react/shallow";
 import { useUserStore } from "../store";
 
 export function UserProfile() {
   const theme = useTheme();
+  const router = useRouter();
 
-  const name = useUserStore((state) => state.user?.name);
+  const { name, clearIdentityVerification } = useUserStore(
+    useShallow((state) => ({
+      name: state.user?.name,
+      clearIdentityVerification: state.clearIdentityVerification,
+    })),
+  );
 
   return (
     <AppView
@@ -41,7 +49,10 @@ export function UserProfile() {
         {name}
       </AppText>
       <AppPressable
-        onPress={() => {}}
+        onPress={() => {
+          clearIdentityVerification();
+          router.navigate("/(protected)/(tabs)/settings");
+        }}
         style={{ marginLeft: "auto", marginRight: 8 }}
       >
         <AppIcon name="log-out" size={24} color={theme.text.tertiary} />

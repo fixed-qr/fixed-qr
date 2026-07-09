@@ -91,16 +91,6 @@ export default function RootLayout() {
                 name="(auth)/get-started"
                 options={{ animation: "fade" }}
               />
-              <Stack.Screen
-                name="(auth)/verify-user-identity"
-                options={{
-                  presentation: "transparentModal",
-                  animation: "fade",
-                  contentStyle: {
-                    backgroundColor: "transparent",
-                  },
-                }}
-              />
               <Stack.Screen name="(system)" />
               <Stack.Screen name="(protected)" />
             </Stack>

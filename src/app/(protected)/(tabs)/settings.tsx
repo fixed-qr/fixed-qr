@@ -8,12 +8,19 @@ import {
 import { Settings } from "@/components/settings";
 import { SCREEN_PADDING } from "@/constants/screen";
 import { UpiApp } from "@/features/upi-app/components";
-import { UserProfile } from "@/features/user/components";
+import { UserProfile, VerifyUserIdentity } from "@/features/user/components";
+import { useUserStore } from "@/features/user/store";
 import { useSheet } from "@/sheets/use-sheet";
 import { StyleSheet } from "react-native";
 
 export default function SettingScreen() {
   const sheet = useSheet();
+
+  const isIdentityVerified = useUserStore((state) => state.isIdentityVerified);
+
+  if (!isIdentityVerified()) {
+    return <VerifyUserIdentity />;
+  }
 
   return (
     <AppScreenView>
