@@ -15,9 +15,10 @@ export function UserProfile() {
   const theme = useTheme();
   const router = useRouter();
 
-  const { name, clearIdentityVerification } = useUserStore(
+  const { name, isIdentityVerified, clearIdentityVerification } = useUserStore(
     useShallow((state) => ({
       name: state.user?.name,
+      isIdentityVerified: state.isIdentityVerified,
       clearIdentityVerification: state.clearIdentityVerification,
     })),
   );
@@ -48,15 +49,19 @@ export function UserProfile() {
       <AppText variant="headingSmall" style={{ textTransform: "capitalize" }}>
         {name}
       </AppText>
-      <AppPressable
-        onPress={() => {
-          clearIdentityVerification();
-          router.navigate("/(protected)/(tabs)/settings");
-        }}
-        style={{ marginLeft: "auto", marginRight: 8 }}
-      >
-        <AppIcon name="log-out" size={24} color={theme.text.tertiary} />
-      </AppPressable>
+
+      {/* Render reset identtiry btn */}
+      {isIdentityVerified() && (
+        <AppPressable
+          onPress={() => {
+            clearIdentityVerification();
+            router.navigate("/(protected)/(tabs)/settings");
+          }}
+          style={{ marginLeft: "auto", marginRight: 8 }}
+        >
+          <AppIcon name="log-out" size={24} color={theme.text.tertiary} />
+        </AppPressable>
+      )}
     </AppView>
   );
 }
