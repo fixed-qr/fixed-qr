@@ -20,7 +20,7 @@ export function useAppVersion(): AppVersionInfo {
     return {
       appName,
       version,
-      versionCode: Number(version.split(".").join("")),
+      versionCode: Number(version.replaceAll(".", "")),
       buildVersion,
     };
   }, []);
