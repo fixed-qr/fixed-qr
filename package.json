@@ -3,13 +3,13 @@
   "main": "expo-router/entry",
   "version": "1.1.0",
   "scripts": {
-    "start": "expo start",
-    "web": "expo start --web",
     "lint": "expo lint",
+    "start": "APP_VARIANT=development expo start",
+    "web": "APP_VARIANT=development expo start --web",
     "prebuild": "APP_VARIANT=development expo prebuild",
-    "android": "ELECTRON_DISABLE_SANDBOX=1 APP_VARIANT=development expo run:android",
-    "ios": "ELECTRON_DISABLE_SANDBOX=1 APP_VARIANT=development expo run:ios",
-    "build:android": " eas build --platform android --profile production"
+    "android": "APP_VARIANT=development expo run:android",
+    "ios": "APP_VARIANT=development expo run:ios",
+    "build:android": "eas build --platform android --profile production"
   },
   "dependencies": {
     "@gorhom/bottom-sheet": "^5.2.14",
