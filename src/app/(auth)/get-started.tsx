@@ -38,7 +38,7 @@ export default function GetStartedScreen() {
             color="secondary"
             style={styles.description}
           >
-            Get started to begin your personalized journey with FixedQR.
+            Continue to begin your personalized journey with FixedQR.
           </AppText>
         </AppView>
       </AppView>
@@ -81,7 +81,7 @@ export default function GetStartedScreen() {
             color="tertiary"
             onPress={onTermsPrivacyPolicyPress}
           >
-            Terms. Privacy Policy.
+            Terms and Privacy Policy.
           </AppText>
         </AppText>
       </AppView>

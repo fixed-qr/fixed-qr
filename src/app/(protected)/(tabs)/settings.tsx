@@ -11,21 +11,34 @@ import { UpiApp } from "@/features/upi-app/components";
 import { UserProfile, VerifyUserIdentity } from "@/features/user/components";
 import { useUserStore } from "@/features/user/store";
 import { useSheet } from "@/sheets/use-sheet";
+import { usePathname } from "expo-router";
+import { useEffect, useState } from "react";
 import { StyleSheet } from "react-native";
 
 export default function SettingScreen() {
   const sheet = useSheet();
+  const pathname = usePathname();
+
+  const [isIdentityChange, setIsIdentityChange] = useState<boolean | null>(
+    null,
+  );
 
   const isIdentityVerified = useUserStore((state) =>
     state.isIdentityVerified(),
   );
 
+  useEffect(() => {
+    setIsIdentityChange(() => isIdentityChange);
+  }, [pathname, isIdentityVerified]);
+
+  const cacheKey = isIdentityChange ? "verified" : "unverified";
+
   if (!isIdentityVerified) {
-    return <VerifyUserIdentity />;
+    return <VerifyUserIdentity key={cacheKey} />;
   }
 
   return (
-    <AppScreenView key={isIdentityVerified ? "verified" : "unverified"}>
+    <AppScreenView key={cacheKey}>
       <AppScrollView contentContainerStyle={{ gap: 8 }}>
         <AppView style={{ marginVertical: 16, marginTop: 24 }}>
           <AppText variant="headingMedium" style={{ textAlign: "center" }}>
@@ -53,8 +66,8 @@ export default function SettingScreen() {
               sheet.push("PrivacyPolicySheet", {});
             }}
           >
-            <AppText variant="bodySmall" color="muted">
-              Terms of Service & Privacy Policy
+            <AppText variant="bodySmall" color="disabled">
+              Our Terms and Privacy Policy.
             </AppText>
           </AppPressable>
         </AppView>
