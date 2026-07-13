@@ -10,9 +10,11 @@ import { buildUpiPaymentUrl } from "@/utils/build-upi-payment-url";
 import { createTransactionId } from "@/utils/create-transaction-id";
 import { DateTime } from "@/utils/date-time";
 import { BottomSheetScrollView } from "@gorhom/bottom-sheet";
-import { useEffect } from "react";
+import * as Sharing from "expo-sharing";
+import { useEffect, useRef } from "react";
 import { Image, StyleSheet } from "react-native";
 import QRCode from "react-native-qrcode-svg";
+import ViewShot from "react-native-view-shot";
 
 const width = (SCREEN_WIDTH - SCREEN_PADDING * 2) / 1.5;
 const borderRadius = 24;
@@ -25,6 +27,8 @@ interface Props {
 
 export function QrcodeResultSheet({ appName, upiId, amount }: Readonly<Props>) {
   const theme = useTheme();
+
+  const viewShotRef = useRef<ViewShot | null>(null);
 
   const addHistory = useHistoryStore((state) => state.addHistory);
   const user = useUserStore((state) => state.user);
@@ -42,6 +46,22 @@ export function QrcodeResultSheet({ appName, upiId, amount }: Readonly<Props>) {
     });
   }, []);
 
+  const captureQR = async () => {
+    if (!viewShotRef.current) return;
+
+    const uri = await viewShotRef.current?.capture?.();
+
+    return uri;
+  };
+
+  const shareQR = async () => {
+    const imageUri = await captureQR();
+
+    if (!imageUri) return;
+
+    await Sharing.shareAsync(imageUri);
+  };
+
   return (
     <BottomSheetScrollView
       contentContainerStyle={{
@@ -49,7 +69,12 @@ export function QrcodeResultSheet({ appName, upiId, amount }: Readonly<Props>) {
         paddingTop: 0,
       }}
     >
-      <AppView
+      <ViewShot
+        ref={viewShotRef}
+        options={{
+          format: "png",
+          quality: 1,
+        }}
         style={[
           styles.container,
           { backgroundColor: theme.background.secondary },
@@ -93,9 +118,12 @@ export function QrcodeResultSheet({ appName, upiId, amount }: Readonly<Props>) {
         </AppView>
 
         {!!amount && <Amount value={amount} size={24} />}
-      </AppView>
+      </ViewShot>
+
+      {/* Share Button */}
       <AppView style={styles.shareContainer}>
         <AppPressable
+          onPress={shareQR}
           style={[
             styles.shareButton,
             {
