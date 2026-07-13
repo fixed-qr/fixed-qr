@@ -36,25 +36,25 @@ const expoConfig = ({ config }: ConfigContext): ExpoConfig => ({
   slug: "fixed-qr",
   scheme: "fixed-qr",
   orientation: "portrait",
-  icon: "./assets/images/icon.png",
+  icon: "./assets/images/app-icons/icon.png",
   userInterfaceStyle: "automatic",
   ios: {
-    icon: "./assets/images/icon.png",
+    icon: "./assets/images/app-icons/icon.png",
     bundleIdentifier: getUniqueIdentifier(),
   },
   android: {
     adaptiveIcon: {
-      backgroundColor: "#2563EB",
-      foregroundImage: "./assets/images/android-icon-foreground.png",
-      backgroundImage: "./assets/images/android-icon-background.png",
-      monochromeImage: "./assets/images/android-icon-monochrome.png",
+      backgroundColor: "#1B1B1B",
+      backgroundImage: "./assets/images/app-icons/android/background.png",
+      foregroundImage: "./assets/images/app-icons/android/adaptive.png",
+      monochromeImage: "./assets/images/app-icons/android/adaptive.png",
     },
     predictiveBackGestureEnabled: false,
     package: getUniqueIdentifier(),
   },
   web: {
     output: "static",
-    favicon: "./assets/images/favicon.png",
+    favicon: "./assets/images/app-icons/logo.png",
   },
   plugins: [
     "expo-router",
@@ -63,10 +63,12 @@ const expoConfig = ({ config }: ConfigContext): ExpoConfig => ({
     [
       "expo-splash-screen",
       {
-        backgroundColor: "#2563EB",
-        android: {
-          image: "./assets/images/splash-icon.png",
-          imageWidth: 76,
+        backgroundColor: "#FAFAFB",
+        image: "./assets/images/app-icons/splash/dark.png",
+        resizeMode: "contain",
+        dark: {
+          backgroundColor: "#09090B",
+          image: "./assets/images/app-icons/splash/light.png",
         },
       },
     ],

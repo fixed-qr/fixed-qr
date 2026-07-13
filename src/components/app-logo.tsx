@@ -12,7 +12,7 @@ export function AppLogo({ size = 32 }: Readonly<AppLogoProps>) {
   return (
     <AppView style={[styles.appLogo, { width: size, height: size }]}>
       <AppImage
-        source={require("@/assets/images/expo-logo.png")}
+        source={require("@/assets/images/app-icons/logo.png")}
         style={styles.appLogoImage}
         tintColor={theme.text.primary}
       />
