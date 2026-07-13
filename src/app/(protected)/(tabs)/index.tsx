@@ -44,9 +44,7 @@ export default function HomeScreen() {
             styles.genQrCode,
             {
               borderColor: theme.border.primary,
-              backgroundColor: pressed
-                ? theme.accent.subtle
-                : theme.accent.soft,
+              backgroundColor: theme.accent.subtle,
             },
           ]}
         >
@@ -77,6 +75,7 @@ const styles = StyleSheet.create({
   },
   genQrCode: {
     width: "100%",
+    height: 64,
     padding: 16,
     flexDirection: "row",
     alignItems: "center",
