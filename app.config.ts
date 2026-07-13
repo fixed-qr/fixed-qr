@@ -60,6 +60,7 @@ const expoConfig = ({ config }: ConfigContext): ExpoConfig => ({
     "expo-router",
     "expo-image",
     "expo-web-browser",
+    "expo-sharing",
     [
       "expo-splash-screen",
       {
