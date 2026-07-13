@@ -1,5 +1,5 @@
 import { Amount } from "@/components";
-import { AppText, AppView } from "@/components/app-ui";
+import { AppIcon, AppPressable, AppText, AppView } from "@/components/app-ui";
 import { SCREEN_PADDING, SCREEN_WIDTH } from "@/constants/screen";
 import { upiAppLogo } from "@/constants/upi-app-logo";
 import { useHistoryStore } from "@/features/history/store";
@@ -62,7 +62,7 @@ export function QrcodeResultSheet({ appName, upiId, amount }: Readonly<Props>) {
           ]}
         >
           <Image source={upiAppLogo[appName]} style={styles.image} />
-          <AppText style={styles.message}>Scan to pay</AppText>
+          <AppText style={styles.message}>Scan & pay</AppText>
         </AppView>
         <AppView
           style={[
@@ -94,6 +94,19 @@ export function QrcodeResultSheet({ appName, upiId, amount }: Readonly<Props>) {
 
         {!!amount && <Amount value={amount} size={24} />}
       </AppView>
+      <AppView style={styles.shareContainer}>
+        <AppPressable
+          style={[
+            styles.shareButton,
+            {
+              backgroundColor: theme.accent.subtle,
+              borderColor: theme.border.primary,
+            },
+          ]}
+        >
+          <AppIcon name="share-social" size={24} color={theme.text.primary} />
+        </AppPressable>
+      </AppView>
     </BottomSheetScrollView>
   );
 }
@@ -102,7 +115,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
+    paddingBottom: 8,
   },
+
   upiIdContainer: {
     alignItems: "center",
     justifyContent: "center",
@@ -112,14 +127,17 @@ const styles = StyleSheet.create({
     paddingInline: 12,
     borderRadius: 16,
   },
+
   image: {
     width: 32,
     height: 32,
   },
+
   message: {
     fontSize: 18,
     fontWeight: 600,
   },
+
   qrCodeContainer: {
     aspectRatio: 1,
     width: width,
@@ -128,5 +146,21 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     marginBottom: 16,
+  },
+
+  shareContainer: {
+    alignItems: "center",
+    justifyContent: "center",
+    marginTop: 8,
+    marginBottom: 12,
+  },
+
+  shareButton: {
+    aspectRatio: 1,
+    width: 48,
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: 48,
+    borderWidth: 1,
   },
 });
