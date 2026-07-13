@@ -59,7 +59,11 @@ export function UserProfile() {
           }}
           style={{ marginLeft: "auto", marginRight: 8 }}
         >
-          <AppIcon name="log-out" size={24} color={theme.text.tertiary} />
+          <AppIcon
+            name="log-out-outline"
+            size={24}
+            color={theme.text.tertiary}
+          />
         </AppPressable>
       )}
     </AppView>

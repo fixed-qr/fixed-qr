@@ -16,7 +16,7 @@ import BottomSheet, {
   BottomSheetView,
 } from "@gorhom/bottom-sheet";
 import { useRouter } from "expo-router";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { StyleSheet } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useShallow } from "zustand/react/shallow";
@@ -28,6 +28,8 @@ export function VerifyUserIdentity() {
   const insets = useSafeAreaInsets();
   const router = useRouter();
 
+  const sheetRef = useRef<BottomSheet>(null);
+
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
@@ -38,12 +40,12 @@ export function VerifyUserIdentity() {
     })),
   );
 
-  const handlePasswordChange = (value: string) => {
+  const onChangeText = (value: string) => {
     setError("");
     setPassword(value);
   };
 
-  const handleOnSubmit = () => {
+  const onSubmit = () => {
     const trimmedPassword = password.trim();
 
     if (!trimmedPassword) {
@@ -61,8 +63,13 @@ export function VerifyUserIdentity() {
     // Verify user identity
     verifyIdentity();
 
-    // Replace with target url
-    router.navigate("/(protected)/(tabs)/settings");
+    // Dismiss if succcess
+    requestAnimationFrame(() => {
+      sheetRef.current?.close();
+
+      // Replace with target url
+      router.navigate("/(protected)/(tabs)/settings");
+    });
   };
 
   return (
@@ -85,6 +92,7 @@ export function VerifyUserIdentity() {
 
       {/* Verification Form Sheet */}
       <BottomSheet
+        ref={sheetRef}
         enablePanDownToClose={false}
         topInset={insets.top}
         bottomInset={insets.bottom}
@@ -127,8 +135,8 @@ export function VerifyUserIdentity() {
           </AppView>
           <PasswordInput
             value={password}
-            onChangeText={handlePasswordChange}
-            onSubmitEditing={handleOnSubmit}
+            onChangeText={onChangeText}
+            onSubmitEditing={onSubmit}
             hasError={!!error}
           />
           {!!error && (
@@ -147,7 +155,7 @@ export function VerifyUserIdentity() {
             </AppView>
           )}
           <AppPressable
-            onPress={handleOnSubmit}
+            onPress={onSubmit}
             style={({ pressed }) => [
               styles.authenticateButton,
               {
