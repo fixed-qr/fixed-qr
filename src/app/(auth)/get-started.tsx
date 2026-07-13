@@ -1,314 +1,125 @@
-import { AppLogo, AppName, PasswordInput } from "@/components";
+import { AppLogo, AppName } from "@/components";
 import {
   AppIcon,
   AppPressable,
   AppScreenView,
-  AppScrollView,
   AppText,
   AppView,
 } from "@/components/app-ui";
-import { useUserStore } from "@/features/user/store";
 import { useTheme } from "@/hooks/use-theme";
 import { useSheet } from "@/sheets/use-sheet";
-import { User } from "@/types/user";
-import { validateUser } from "@/validators/user-validator";
-import { Checkbox } from "expo-checkbox";
-import { useRouter } from "expo-router";
-import { useState } from "react";
-import { Pressable, StyleSheet, TextInput } from "react-native";
-import { useShallow } from "zustand/react/shallow";
+import { StyleSheet } from "react-native";
 
 export default function GetStartedScreen() {
   const theme = useTheme();
-  const router = useRouter();
   const sheet = useSheet();
 
-  const [isFocused, setIsFocused] = useState(false);
-  const [form, setForm] = useState<User>({
-    name: "",
-    password: "",
-  });
-  const [errors, setErrors] = useState<Partial<User>>({});
-  const [isChecked, setChecked] = useState(false);
-  const [isCheckedError, setCheckedError] = useState(false);
-
-  const { setUser, verifyIdentity } = useUserStore(
-    useShallow((state) => state),
-  );
-
-  const handleExpand = () => {
-    if (!isChecked) {
-      sheet.push("PrivacyPolicySheet", {});
-    }
+  const onContinuePress = () => {
+    sheet.push("GetStartedFormSheet", {});
   };
 
-  const handleInputChange = (field: keyof User, value: string) => {
-    setForm((prev) => ({
-      ...prev,
-      [field]: value,
-    }));
-
-    if (errors[field]) {
-      setErrors((prev) => {
-        const updatedErrors = { ...prev };
-        delete updatedErrors[field];
-        return updatedErrors;
-      });
-    }
-  };
-
-  const handleGetStartedPress = () => {
-    const validationErrors = validateUser(form);
-    setErrors(validationErrors);
-
-    if (!isChecked) {
-      setCheckedError(true);
-      return;
-    }
-
-    if (Object.keys(validationErrors).length === 0 && isChecked) {
-      setUser({ name: form.name, password: form.password });
-      verifyIdentity();
-      router.replace("/");
-    }
-  };
-
-  const getCheckboxColor = () => {
-    if (isChecked) {
-      return theme.border.focus;
-    }
-    if (isCheckedError) {
-      return theme.status.danger;
-    }
-    return theme.text.muted;
+  const onTermsPrivacyPolicyPress = () => {
+    sheet.push("PrivacyPolicySheet", {});
   };
 
   return (
-    <AppScreenView>
-      <AppScrollView
-        contentContainerStyle={{
-          flex: 1,
-          gap: 16,
-        }}
-      >
+    <AppScreenView
+      style={{
+        flex: 1,
+        gap: 16,
+      }}
+    >
+      <AppView style={styles.topContainer}>
         <AppView style={styles.header}>
-          <AppLogo size={48} />
+          <AppLogo size={75} />
           <AppName />
           <AppText
-            variant="bodySmall"
+            variant="bodyMedium"
             color="secondary"
-            style={styles.screenDescription}
+            style={styles.description}
           >
             Get started to begin your personalized journey with FixedQR.
           </AppText>
         </AppView>
-        <AppView style={styles.form}>
-          {/* User Name */}
-          <AppView
-            style={[
-              styles.input,
-              {
-                backgroundColor: isFocused
-                  ? theme.background.selected
-                  : theme.background.tertiary,
-                borderColor: errors.name
-                  ? theme.status.danger
-                  : theme.border.primary,
-              },
-            ]}
-          >
-            <AppView style={styles.left}>
-              <AppIcon
-                name="person"
-                size={22}
-                color={errors.name ? theme.status.danger : theme.text.secondary}
-              />
-            </AppView>
-            <AppView style={styles.right}>
-              <AppText
-                variant="bodySmall"
-                weight="500"
-                color="secondary"
-                style={[
-                  styles.label,
-                  {
-                    color: errors.name
-                      ? theme.status.danger
-                      : theme.text.secondary,
-                  },
-                ]}
-              >
-                Name
-              </AppText>
-              <TextInput
-                textContentType="name"
-                placeholder="Enter your name"
-                placeholderTextColor={theme.text.secondary}
-                style={[styles.inputField, { color: theme.text.primary }]}
-                value={form.name}
-                onChangeText={(text) => handleInputChange("name", text)}
-                onFocus={() => setIsFocused(true)}
-                onBlur={() => setIsFocused(false)}
-              />
-            </AppView>
-          </AppView>
-          {!!errors.name && (
-            <AppView style={styles.error}>
-              <AppText
-                variant="bodySmall"
-                style={{ color: theme.status.danger }}
-              >
-                {errors.name}
-              </AppText>
-            </AppView>
-          )}
+      </AppView>
 
-          {/* Password */}
-          <PasswordInput
-            value={form.password}
-            onChangeText={(text) => handleInputChange("password", text)}
-            hasError={!!errors.password}
+      <AppView style={styles.bottomContainer}>
+        {/* Action */}
+        <AppPressable
+          onPress={onContinuePress}
+          style={({ pressed }) => [
+            styles.getStartedButton,
+            {
+              borderColor: theme.border.primary,
+              backgroundColor: theme.accent.pressed,
+            },
+          ]}
+        >
+          <AppText variant="button" color="inverse">
+            Continue
+          </AppText>
+          <AppIcon
+            name="arrow-forward"
+            size={18}
+            style={{
+              color: theme.text.inverse,
+              fontWeight: 600,
+            }}
           />
-          {!!errors.password && (
-            <AppView style={styles.error}>
-              <AppText
-                variant="bodySmall"
-                style={{ color: theme.status.danger }}
-              >
-                {errors.password}
-              </AppText>
-            </AppView>
-          )}
+        </AppPressable>
 
-          {/* Privacy Policy */}
-          <AppView style={styles.privacyPolicy}>
-            <Checkbox
-              value={isChecked}
-              onValueChange={(value) => {
-                setChecked(value);
-                setCheckedError(false);
-                handleExpand();
-              }}
-              color={getCheckboxColor()}
-              style={{
-                borderWidth: 1.5,
-                borderRadius: 4,
-                width: 18,
-                height: 18,
-              }}
-            />
-            <Pressable
-              onPress={() => {
-                setChecked((prev) => !prev);
-                setCheckedError(false);
-                handleExpand();
-              }}
-            >
-              <AppText
-                variant="bodySmall"
-                style={[
-                  styles.privacyPolicyText,
-                  {
-                    color: isCheckedError
-                      ? theme.status.danger
-                      : theme.text.secondary,
-                  },
-                ]}
-              >
-                I agree to the Terms of Service and Privacy Policy.
-              </AppText>
-            </Pressable>
-          </AppView>
+        {/* Privacy Policy */}
 
-          {/* Action */}
-          <AppPressable
-            onPress={handleGetStartedPress}
-            style={({ pressed }) => [
-              styles.getStartedButton,
-              {
-                borderColor: theme.border.primary,
-                backgroundColor: pressed
-                  ? theme.accent.pressed
-                  : theme.accent.primary,
-              },
-            ]}
+        <AppText
+          variant="bodyMedium"
+          color="muted"
+          style={styles.privacyPolicy}
+        >
+          By continuing, you agree to our {""}
+          <AppText
+            variant="bodyMedium"
+            color="tertiary"
+            onPress={onTermsPrivacyPolicyPress}
           >
-            <AppText variant="button" style={{ color: theme.text.inverse }}>
-              Get Started
-            </AppText>
-            <AppIcon
-              name="arrow-up"
-              size={18}
-              style={{
-                transform: "rotate(45deg)",
-                color: theme.text.inverse,
-                fontWeight: 600,
-              }}
-            />
-          </AppPressable>
-        </AppView>
-      </AppScrollView>
+            Terms. Privacy Policy.
+          </AppText>
+        </AppText>
+      </AppView>
     </AppScreenView>
   );
 }
 
 const styles = StyleSheet.create({
+  topContainer: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+
   header: {
     alignItems: "center",
-    marginTop: 32,
-    marginBottom: 16,
+    gap: 4,
   },
-  screenDescription: {
-    marginTop: 6,
+
+  description: {
+    marginTop: 16,
     textAlign: "center",
     maxWidth: "75%",
   },
-  form: {
+
+  bottomContainer: {
+    paddingBottom: 75,
     alignItems: "center",
-    gap: 16,
+    gap: 24,
   },
-  input: {
-    width: "100%",
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 12,
-    paddingTop: 8,
-    paddingLeft: 12,
-    paddingRight: 12,
-    borderBottomWidth: 1,
-    borderRadius: 8,
-  },
-  left: {
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  right: {
-    flex: 1,
-  },
-  label: {
-    marginBottom: 2,
-  },
-  inputField: {
-    backgroundColor: "transparent",
-    margin: 0,
-    fontSize: 16,
-    height: 40,
-    paddingVertical: 4,
-  },
-  error: {
-    alignSelf: "flex-start",
-    paddingLeft: 4,
-  },
+
   privacyPolicy: {
-    width: "100%",
-    marginTop: 8,
-    flexDirection: "row",
+    textAlign: "center",
     alignItems: "center",
-    gap: 8,
+    justifyContent: "center",
+    width: 200,
   },
-  privacyPolicyText: {
-    width: "90%",
-  },
+
   getStartedButton: {
     width: "100%",
     marginTop: 16,
