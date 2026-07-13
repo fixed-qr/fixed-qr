@@ -94,7 +94,7 @@ export function Suggestion() {
             borderRadius: 24,
           }}
         >
-          <EmptyCard message="Your quick actions will appear here." />
+          <EmptyCard message="Your recent suggestions will appear here." />
         </AppView>
       )}
     </Section>
