@@ -61,10 +61,9 @@ export function HistorySheet() {
                 <AppView style={styles.rightRight}>
                   <Amount value={history.amount} size={10} />
                   <AppIcon
-                    name="arrow-back"
+                    name="qr-code"
                     size={18}
                     color={theme.text.primary}
-                    style={{ transform: "rotate(-45deg)" }}
                   />
                 </AppView>
               </AppView>
