@@ -74,6 +74,12 @@ const expoConfig = ({ config }: ConfigContext): ExpoConfig => ({
       },
     ],
     [
+      "expo-font",
+      {
+        fonts: ["./assets/fonts/OleoScript/OleoScript-Bold.ttf"],
+      },
+    ],
+    [
       "expo-file-system",
       {
         supportsOpeningDocumentsInPlace: true,

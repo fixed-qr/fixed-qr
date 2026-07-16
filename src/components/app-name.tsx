@@ -3,7 +3,12 @@ import { AppText } from "./app-ui";
 
 export function AppName() {
   return (
-    <AppText variant="headingSmall" weight="600" color="primary">
+    <AppText
+      variant="headingMedium"
+      weight="600"
+      color="primary"
+      style={{ fontFamily: "OleoScript-Bold" }}
+    >
       FixedQR
     </AppText>
   );

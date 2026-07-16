@@ -13,7 +13,7 @@ export function Header() {
   return (
     <AppView style={styles.container}>
       <AppView style={styles.leftContainer}>
-        <AppLogo />
+        <AppLogo size={30} />
         <AppName />
       </AppView>
       <AppView style={styles.rightContainer}>
@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
-    gap: 8,
+    gap: 4,
   },
   rightContainer: {
     flexDirection: "row",
