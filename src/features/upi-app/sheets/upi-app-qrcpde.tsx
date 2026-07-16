@@ -78,7 +78,12 @@ export function UpiAppQrcodeSheet() {
         </AppView>
       ) : (
         <AppView style={styles.upiIdNotFound}>
-          <Link href={"/(protected)/(tabs)/settings"}>
+          <Link
+            href={"/(protected)/(tabs)/settings"}
+            onPress={() => {
+              sheet.pop();
+            }}
+          >
             <AppText
               style={[
                 styles.upiIdNotFoundLink,
