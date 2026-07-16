@@ -1,18 +1,20 @@
 {
-  "version": "1.1.0",
-  "versionCode": 110,
-  "title": "Performance Improvements, UI Redesign & Bug Fixes",
+  "version": "2.0.0",
+  "versionCode": 200,
+  "title": "Optimized app , Featued Added & Bug Fixes",
   "websiteUrl": "https://fixed-qr.netlify.app",
-  "downloadUrl": "https://github.com/fixed-qr/fixed-qr/releases/download/v1.1.0/FixedQR-1.1.0-release.apk",
+  "downloadUrl": "https://github.com/fixed-qr/fixed-qr/releases/download/v2.0.0/FixedQR-2.0.0-release.apk",
   "publishedAt": "2026-06-12T04:47:00Z",
   "notes": [
     "Performance optimizations across the app",
-    "Redesigned bottom sheet screens for a cleaner experience",
-    "Change Profile Screen to Settings Screen",
-    "Improved overall responsiveness and stability",
-    "Fixed logout-related issues",
-    "Fixed saved UPI IDs not being removed correctly",
-    "Fixed related data cleanup when deleting a saved UPI ID",
-    "Various minor bug fixes and UI improvements"
+    "Add Share Qr Code feature",
+    "Update Splash screen color as for theme scheme",
+    "Change header app title font",
+    "Re-Design app icons",
+    "Re-Design get sarted screen",
+    "Re-Design verify user identity screen and fixed reset bug",
+    "Fixed amount visibality issues",
+    "Fixed close sheet if user click add upi app from sheets",
+    "And Various minor bug fixes"
   ]
 }
