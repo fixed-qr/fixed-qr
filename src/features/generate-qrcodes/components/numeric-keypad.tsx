@@ -56,9 +56,7 @@ export function NumericKeypad({
             styles.key,
             {
               borderColor: theme.border.primary,
-              backgroundColor: pressed
-                ? theme.background.selected
-                : theme.background.tertiary,
+              backgroundColor: theme.background.cardMuted,
             },
           ]}
           onPress={() =>
@@ -83,6 +81,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     gap: KEYPAD_GAP,
   },
+
   key: {
     width: KEY_WIDTH,
     height: 60,
@@ -91,6 +90,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     borderWidth: 1,
   },
+
   keyText: {
     fontWeight: "600",
   },

@@ -67,10 +67,7 @@ export function QrcodeSheet() {
                   styles.upiAppLink,
                   {
                     borderColor: theme.border.primary,
-                    backgroundColor: pressed
-                      ? theme.background.selected
-                      : theme.background.tertiary,
-
+                    backgroundColor: theme.background.cardMuted,
                     flex: isIncompleteRow ? 1 : 0,
                   },
                 ]}
