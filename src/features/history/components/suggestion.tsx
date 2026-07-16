@@ -15,8 +15,8 @@ import { useMemo } from "react";
 import { StyleSheet } from "react-native";
 import { useHistoryStore } from "../store";
 
-const gap = 8;
-const width = (SCREEN_WIDTH - gap - SCREEN_PADDING * 2) / 2;
+const GAP = 8;
+const WIDTH = (SCREEN_WIDTH - GAP - SCREEN_PADDING * 2) / 2;
 
 export function Suggestion() {
   const theme = useTheme();
@@ -58,12 +58,9 @@ export function Suggestion() {
               style={({ pressed }) => [
                 styles.suggestion,
                 {
+                  width: WIDTH,
                   borderColor: theme.border.primary,
-                  backgroundColor: pressed
-                    ? theme.background.selected
-                    : theme.background.card,
-                  width: width,
-                  height: width / 1.25,
+                  backgroundColor: theme.background.cardMuted,
                 },
               ]}
             >
@@ -71,16 +68,18 @@ export function Suggestion() {
                 source={upiAppLogo[tsx.appName]}
                 style={styles.logoImage}
               />
-              <Amount value={tsx.amount} />
+              <Amount value={tsx.amount} currencySize={15} fontSize={20} />
+
+              {/* UPI app name */}
               <AppView style={styles.upiApp}>
-                <AppText variant="bodyMedium" color="secondary">
+                <AppText variant="bodySmall" color="tertiary">
                   {tsx.appName}
                 </AppText>
                 <AppIcon
                   name="arrow-forward"
                   size={16}
                   style={{ transform: "rotate(-45deg)" }}
-                  color={theme.text.secondary}
+                  color={theme.text.tertiary}
                 />
               </AppView>
             </AppPressable>
@@ -105,24 +104,22 @@ const styles = StyleSheet.create({
   suggestions: {
     flexDirection: "row",
     flexWrap: "wrap",
-    gap: gap,
+    gap: GAP,
   },
   suggestion: {
+    gap: 4,
     padding: 16,
     borderWidth: 1,
-    borderRadius: 28,
+    borderRadius: 26,
   },
   logoImage: {
-    width: 36,
-    height: 36,
-    marginBottom: 6,
+    width: 32,
+    height: 32,
   },
   upiApp: {
-    marginTop: 2,
+    gap: 2,
     flexDirection: "row",
     alignItems: "center",
-    gap: 2,
-    backgroundColor: "transparent",
     overflow: "hidden",
   },
 });

@@ -59,7 +59,11 @@ export function HistorySheet() {
                   </AppText>
                 </AppView>
                 <AppView style={styles.rightRight}>
-                  <Amount value={history.amount} size={10} />
+                  <Amount
+                    value={history.amount}
+                    currencySize={14}
+                    fontSize={18}
+                  />
                   <AppIcon
                     name="qr-code"
                     size={18}

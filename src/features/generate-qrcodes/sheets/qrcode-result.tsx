@@ -133,7 +133,9 @@ export function QrcodeResultSheet({ appName, upiId, amount }: Readonly<Props>) {
               />
             </AppView>
 
-            {!!amount && <Amount value={amount} size={24} />}
+            {!!amount && (
+              <Amount value={amount} currencySize={18} fontSize={24} />
+            )}
           </AppView>
 
           {/* Share Button */}

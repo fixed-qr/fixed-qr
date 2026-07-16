@@ -81,7 +81,9 @@ export const ShareQrcode = forwardRef<ViewShot, Omit<Props, "viewShotRef">>(
               />
             </AppView>
 
-            {!!amount && <Amount value={amount} size={24} />}
+            {!!amount && (
+              <Amount value={amount} currencySize={18} fontSize={24} />
+            )}
           </AppView>
           <AppView
             style={[

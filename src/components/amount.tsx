@@ -1,16 +1,14 @@
 import { AppImage, AppText, AppView } from "@/components/app-ui";
 import { useTheme } from "@/hooks/use-theme";
-import React from "react";
 import { StyleSheet } from "react-native";
 
-const initialSize = 15.5;
-
-interface AmountProps {
+interface Props {
   value: string;
-  size?: number;
+  currencySize: number;
+  fontSize: number;
 }
 
-export function Amount({ value, size }: Readonly<AmountProps>) {
+export function Amount({ value, currencySize, fontSize }: Readonly<Props>) {
   const theme = useTheme();
 
   return (
@@ -18,17 +16,15 @@ export function Amount({ value, size }: Readonly<AmountProps>) {
       <AppImage
         source={require("@/assets/images/icons/others/rupee.png")}
         tintColor={theme.text.primary}
-        style={[
-          styles.unitImage,
-          {
-            width: size || initialSize,
-            height: size || initialSize,
-          },
-        ]}
+        style={{
+          width: currencySize,
+          height: currencySize,
+        }}
       />
       <AppText
         style={{
-          fontSize: size ? size + 8 : initialSize + 8,
+          fontSize: fontSize,
+          paddingHorizontal: 2,
         }}
       >
         {value}
@@ -41,9 +37,5 @@ const styles = StyleSheet.create({
   amount: {
     flexDirection: "row",
     alignItems: "center",
-  },
-  unitImage: {
-    height: initialSize,
-    width: initialSize,
   },
 });
