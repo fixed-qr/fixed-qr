@@ -13,8 +13,8 @@ import { useState } from "react";
 import { StyleSheet } from "react-native";
 import { NumericKeypad } from "../components";
 
-const gap = 8;
-const width = (SCREEN_WIDTH - gap * 3 - SCREEN_PADDING * 2) / 3;
+const GAP = 8;
+const WIDTH = (SCREEN_WIDTH - GAP * 3 - SCREEN_PADDING * 2) / 3;
 
 export function QrcodeSheet() {
   const theme = useTheme();
@@ -27,7 +27,7 @@ export function QrcodeSheet() {
     <BottomSheetScrollView
       contentContainerStyle={{
         padding: SCREEN_PADDING,
-        gap: gap,
+        gap: GAP,
       }}
     >
       <AppView
@@ -36,7 +36,11 @@ export function QrcodeSheet() {
           { backgroundColor: theme.background.secondary },
         ]}
       >
-        <Amount value={value.length === 0 ? "0" : value} size={22} />
+        <Amount
+          value={value.length === 0 ? "0" : value}
+          currencySize={20}
+          fontSize={28}
+        />
       </AppView>
 
       {/* Numeric Key Pad */}
@@ -140,10 +144,10 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     flexWrap: "wrap",
-    gap: gap,
+    gap: GAP,
   },
   upiAppLink: {
-    width: width,
+    width: WIDTH,
     justifyContent: "center",
     alignItems: "center",
     borderWidth: 1,
