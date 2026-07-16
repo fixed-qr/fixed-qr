@@ -11,7 +11,7 @@ import { Image } from "expo-image";
 import { Link } from "expo-router";
 import { useState } from "react";
 import { StyleSheet } from "react-native";
-import { NumericKeypad } from "../components/numeric-keypad";
+import { NumericKeypad } from "../components";
 
 const gap = 8;
 const width = (SCREEN_WIDTH - gap * 3 - SCREEN_PADDING * 2) / 3;
